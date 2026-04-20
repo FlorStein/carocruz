@@ -177,6 +177,7 @@ function todosLosProductos() {
   if (typeof PRODUCTOS_LIMPIEZA     !== 'undefined') listas.push(PRODUCTOS_LIMPIEZA);
   if (typeof PRODUCTOS_DESCARTABLES !== 'undefined') listas.push(PRODUCTOS_DESCARTABLES);
   if (typeof PRODUCTOS_EMBALAJE     !== 'undefined') listas.push(PRODUCTOS_EMBALAJE);
+  if (typeof PRODUCTOS_CAJAS        !== 'undefined') listas.push(PRODUCTOS_CAJAS);
   return listas.flat();
 }
 
