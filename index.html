@@ -39,10 +39,27 @@
 
       <!-- Iconos derecha -->
       <div class="header-icons">
-        <button class="icon-btn" aria-label="Mi cuenta">
+        <button id="btnMiCuenta" class="icon-btn" aria-label="Mi cuenta" onclick="abrirModalAuth('login')">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           <span>Mi cuenta</span>
         </button>
+
+        <!-- Usuario logueado (visible cuando hay sesión activa) -->
+        <div id="userDisplay" class="user-display" style="display:none" role="navigation" aria-label="Menú de usuario">
+          <button class="user-trigger" onclick="toggleUserDropdown()" aria-label="Menú de usuario" aria-haspopup="true">
+            <div class="user-avatar" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span id="userNameDisplay" class="user-name">Usuario</span>
+            <svg class="user-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div id="userDropdown" class="user-dropdown" role="menu">
+            <button class="user-dropdown-item" onclick="handleLogout()" role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Cerrar sesión
+            </button>
+          </div>
+        </div>
         <button class="icon-btn cart-trigger" aria-label="Carrito" onclick="toggleCart()">
           <div class="cart-icon-wrap">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -270,6 +287,89 @@
     </div>
   </aside>
 
+  <!-- ░░ MODAL DE AUTENTICACIÓN ░░ -->
+  <div id="authOverlay" class="auth-overlay hidden" onclick="cerrarModalAuth()"></div>
+
+  <div id="authModal" class="auth-modal" role="dialog" aria-modal="true" aria-label="Cuenta de usuario">
+    <div class="auth-modal-head">
+      <div class="auth-tabs" role="tablist">
+        <button id="tabLogin"    class="auth-tab auth-tab--active" role="tab" onclick="cambiarTabAuth('login')">Iniciar sesión</button>
+        <button id="tabRegister" class="auth-tab"                  role="tab" onclick="cambiarTabAuth('register')">Crear cuenta</button>
+      </div>
+      <button class="auth-close-btn" onclick="cerrarModalAuth()" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- FORM: INICIAR SESIÓN -->
+    <form id="formLogin" class="auth-form" onsubmit="handleLogin(event)" novalidate>
+      <div class="auth-field">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" placeholder="tu@email.com" autocomplete="email" />
+        <span id="loginEmailError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="loginPassword">Contraseña</label>
+        <div class="pw-wrap">
+          <input id="loginPassword" type="password" placeholder="Tu contraseña" autocomplete="current-password" />
+          <button type="button" class="pw-toggle" onclick="togglePw('loginPassword', this)" aria-label="Mostrar contraseña">
+            <svg class="eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-on" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <span id="loginPasswordError" class="auth-field-error"></span>
+      </div>
+      <button id="btnLogin" type="submit" class="auth-submit">Ingresar</button>
+      <p class="auth-switch-link">¿No tenés cuenta? <button type="button" onclick="cambiarTabAuth('register')">Crear cuenta gratis</button></p>
+    </form>
+
+    <!-- FORM: CREAR CUENTA -->
+    <form id="formRegister" class="auth-form hidden" onsubmit="handleRegister(event)" novalidate>
+      <div class="auth-field">
+        <label for="regName">Nombre completo</label>
+        <input id="regName" type="text" placeholder="Tu nombre" autocomplete="name" />
+        <span id="regNameError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="regEmail">Email</label>
+        <input id="regEmail" type="email" placeholder="tu@email.com" autocomplete="email" />
+        <span id="regEmailError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="regPassword">Contraseña</label>
+        <div class="pw-wrap">
+          <input id="regPassword" type="password" placeholder="Mín. 8 caracteres, 1 mayúscula, 1 número" autocomplete="new-password" oninput="updateStrength(this.value)" />
+          <button type="button" class="pw-toggle" onclick="togglePw('regPassword', this)" aria-label="Mostrar contraseña">
+            <svg class="eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-on" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <div class="strength-meter">
+          <div class="strength-track"><div id="strengthBar" class="strength-bar"></div></div>
+          <span id="strengthText" class="strength-label"></span>
+        </div>
+        <span id="regPasswordError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="regConfirm">Confirmar contraseña</label>
+        <div class="pw-wrap">
+          <input id="regConfirm" type="password" placeholder="Repetí tu contraseña" autocomplete="new-password" />
+          <button type="button" class="pw-toggle" onclick="togglePw('regConfirm', this)" aria-label="Mostrar contraseña">
+            <svg class="eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-on" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <span id="regConfirmError" class="auth-field-error"></span>
+      </div>
+      <button id="btnRegister" type="submit" class="auth-submit">Crear cuenta</button>
+      <p class="auth-switch-link">¿Ya tenés cuenta? <button type="button" onclick="cambiarTabAuth('login')">Iniciar sesión</button></p>
+    </form>
+  </div>
+
   <script src="script.js"></script>
+  <!-- Firebase Auth SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
