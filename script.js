@@ -173,6 +173,7 @@ function todosLosProductos() {
   const listas = [PRODUCTOS_NOVEDADES, PRODUCTOS_OFERTAS];
   if (typeof PRODUCTOS_GASTRONOMICO !== 'undefined') listas.push(PRODUCTOS_GASTRONOMICO);
   if (typeof PRODUCTOS_ESCOLAR      !== 'undefined') listas.push(PRODUCTOS_ESCOLAR);
+  if (typeof PRODUCTOS_LIBRERIA     !== 'undefined') listas.push(PRODUCTOS_LIBRERIA);
   return listas.flat();
 }
 
