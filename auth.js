@@ -11,12 +11,12 @@
 
 // ─── REEMPLAZÁ ESTOS VALORES CON LOS DE TU PROYECTO ──────────────────────────
 const FIREBASE_CONFIG = {
-  apiKey:            "REEMPLAZAR_CON_TU_API_KEY",
-  authDomain:        "REEMPLAZAR_CON_TU_PROYECTO.firebaseapp.com",
-  projectId:         "REEMPLAZAR_CON_TU_PROYECTO_ID",
-  storageBucket:     "REEMPLAZAR_CON_TU_PROYECTO.appspot.com",
-  messagingSenderId: "REEMPLAZAR_CON_TU_SENDER_ID",
-  appId:             "REEMPLAZAR_CON_TU_APP_ID"
+  apiKey:            "AIzaSyAzwyvdj6hhJDMyPhkWmEgIBZl1MfzQ4M8",
+  authDomain:        "carocruz-4bccc.firebaseapp.com",
+  projectId:         "carocruz-4bccc",
+  storageBucket:     "carocruz-4bccc.firebasestorage.app",
+  messagingSenderId: "478517746609",
+  appId:             "1:478517746609:web:a06ee588d3b3d88d547b90"
 };
 // ─────────────────────────────────────────────────────────────────────────────
 
