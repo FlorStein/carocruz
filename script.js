@@ -170,7 +170,10 @@ function guardarCarrito() {
 }
 
 function todosLosProductos() {
-  return [...PRODUCTOS_NOVEDADES, ...PRODUCTOS_OFERTAS];
+  const listas = [PRODUCTOS_NOVEDADES, PRODUCTOS_OFERTAS];
+  if (typeof PRODUCTOS_GASTRONOMICO !== 'undefined') listas.push(PRODUCTOS_GASTRONOMICO);
+  if (typeof PRODUCTOS_ESCOLAR      !== 'undefined') listas.push(PRODUCTOS_ESCOLAR);
+  return listas.flat();
 }
 
 function agregarAlCarrito(id) {
@@ -349,6 +352,58 @@ function finalizarCompra() {
   window.open(`https://wa.me/5491100000000?text=${msg}`, '_blank');
 }
 
+// ── Navegación por categorías ────────────────────────────────────────────────
+
+const _HOME_IDS = ['heroSection', 'benefitsSection', 'novedades', 'ofertas'];
+
+function mostrarCategoria(cat, titulo) {
+  _HOME_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  const catView  = document.getElementById('categoriaView');
+  const catTitle = document.getElementById('categoriaTitulo');
+  const catCount = document.getElementById('categoriaConteo');
+  if (!catView) return;
+
+  catView.style.display = '';
+  if (catTitle) catTitle.textContent = (titulo || cat).toUpperCase();
+
+  const prods = todosLosProductos().filter(p => p.categoria === cat);
+  if (prods.length === 0) {
+    if (catCount) catCount.textContent = '';
+    const grid = document.getElementById('categoriaGrid');
+    if (grid) grid.innerHTML = `<p style="color:#6B7280;grid-column:1/-1;padding:24px 0">Cargando productos de esta categoría…</p>`;
+  } else {
+    if (catCount) catCount.textContent = prods.length + ' productos';
+    renderGrid(prods, 'categoriaGrid');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.cat-item').forEach(el => {
+    el.classList.toggle('cat-item--active', el.dataset.cat === cat);
+  });
+}
+
+function volverAlHome(scrollTo) {
+  const catView = document.getElementById('categoriaView');
+  if (catView) catView.style.display = 'none';
+
+  _HOME_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = '';
+  });
+
+  document.querySelectorAll('.cat-item').forEach(el => el.classList.remove('cat-item--active'));
+
+  if (scrollTo) {
+    setTimeout(() => document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' }), 50);
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
 // ── Búsqueda ─────────────────────────────────────────────────────────────────
 
 function buscar() {
@@ -357,21 +412,29 @@ function buscar() {
 
   const results = todosLosProductos().filter(p => p.nombre.toLowerCase().includes(q));
 
-  ['novedadesGrid', 'ofertasGrid'].forEach(id => {
+  _HOME_IDS.forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.innerHTML = '';
+    if (el) el.style.display = 'none';
   });
 
-  const novedadesGrid = document.getElementById('novedadesGrid');
-  if (novedadesGrid) {
-    if (results.length === 0) {
-      novedadesGrid.innerHTML = `<p style="color:#6B7280;grid-column:1/-1;padding:24px 0">No se encontraron productos para "<strong>${q}</strong>".</p>`;
-    } else {
-      novedadesGrid.innerHTML = results.map(renderProductCard).join('');
-    }
+  const catView  = document.getElementById('categoriaView');
+  const catTitle = document.getElementById('categoriaTitulo');
+  const catCount = document.getElementById('categoriaConteo');
+  const grid     = document.getElementById('categoriaGrid');
+
+  if (catView)  catView.style.display = '';
+  if (catTitle) catTitle.textContent = `RESULTADOS: "${q.toUpperCase()}"`;
+
+  if (results.length === 0) {
+    if (catCount) catCount.textContent = 'sin resultados';
+    if (grid) grid.innerHTML = `<p style="color:#6B7280;grid-column:1/-1;padding:24px 0">No se encontraron productos para "<strong>${q}</strong>".</p>`;
+  } else {
+    if (catCount) catCount.textContent = results.length + ' resultado' + (results.length !== 1 ? 's' : '');
+    renderGrid(results, 'categoriaGrid');
   }
 
-  document.getElementById('novedades')?.scrollIntoView({ behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.cat-item').forEach(el => el.classList.remove('cat-item--active'));
 }
 
 // ── Toast ─────────────────────────────────────────────────────────────────────
