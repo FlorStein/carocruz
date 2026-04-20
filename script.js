@@ -7,6 +7,9 @@
 
 'use strict';
 
+// Fallback: si imagenes-map.js no se cargó, IMAGENES_MAP será un objeto vacío
+if (typeof window.IMAGENES_MAP === 'undefined') window.IMAGENES_MAP = {};
+
 // ── Catálogo ─────────────────────────────────────────────────────────────────
 
 const PRODUCTOS_NOVEDADES = [
@@ -112,10 +115,15 @@ function formatPrecio(n) {
 // ── Render de cards ───────────────────────────────────────────────────────────
 
 function renderProductCard(prod) {
+  const imgUrl = (window.IMAGENES_MAP && window.IMAGENES_MAP[prod.id]) || null;
+  const cardBg      = imgUrl ? 'background:#fff;border-bottom:1px solid #eee' : `background:${prod.bgImg}`;
+  const cardContent = imgUrl
+    ? `<img src="${imgUrl}" alt="${prod.nombre}" class="card-foto" loading="lazy" onerror="this.closest('.card-img').classList.add('card-img--fallback');this.remove()">`
+    : `<span style="color:${prod.iconColor}">${prod.icon}</span>`;
   return `
     <article class="product-card" data-id="${prod.id}">
-      <div class="card-img" style="background:${prod.bgImg}">
-        <span style="color:${prod.iconColor}">${prod.icon}</span>
+      <div class="card-img" style="${cardBg}">
+        ${cardContent}
       </div>
       <div class="card-body">
         <span class="card-badge" style="background:${prod.categColor};color:${prod.categText}">${prod.categoria}</span>
