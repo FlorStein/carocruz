@@ -174,6 +174,7 @@ function todosLosProductos() {
   if (typeof PRODUCTOS_GASTRONOMICO !== 'undefined') listas.push(PRODUCTOS_GASTRONOMICO);
   if (typeof PRODUCTOS_ESCOLAR      !== 'undefined') listas.push(PRODUCTOS_ESCOLAR);
   if (typeof PRODUCTOS_LIBRERIA     !== 'undefined') listas.push(PRODUCTOS_LIBRERIA);
+  if (typeof PRODUCTOS_LIMPIEZA     !== 'undefined') listas.push(PRODUCTOS_LIMPIEZA);
   return listas.flat();
 }
 
