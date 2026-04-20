@@ -213,6 +213,20 @@ function quitarDelCarrito(id) {
   actualizarUI();
 }
 
+function cambiarCantidadCarrito(id, delta) {
+  const item = carrito.find(i => i.id === id);
+  if (!item) return;
+  item.cantidad = Math.max(1, item.cantidad + delta);
+  guardarCarrito();
+  actualizarUI();
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  guardarCarrito();
+  actualizarUI();
+}
+
 function calcularTotal() {
   return carrito.reduce((sum, i) => sum + i.precio * i.cantidad, 0);
 }
@@ -220,17 +234,45 @@ function calcularTotal() {
 function actualizarUI() {
   const total = calcularTotal();
   const count = carrito.reduce((s, i) => s + i.cantidad, 0);
+  const MIN   = 80000;
 
-  // Badge
+  // Badge header
   const badge = document.getElementById('cartCount');
   if (badge) {
     badge.textContent = count;
     badge.classList.toggle('hidden', count === 0);
   }
 
-  // Total
-  const totalEl = document.getElementById('cartTotal');
+  // Total y cantidad
+  const totalEl   = document.getElementById('cartTotal');
+  const countEl   = document.getElementById('cartItemsCount');
   if (totalEl) totalEl.textContent = formatPrecio(total);
+  if (countEl) countEl.textContent = count === 1 ? '1 producto' : `${count} productos`;
+
+  // Botón vaciar
+  const btnVaciar = document.getElementById('btnVaciarCarrito');
+  if (btnVaciar) btnVaciar.style.display = carrito.length > 0 ? 'inline-flex' : 'none';
+
+  // Progress bar
+  const pct     = Math.min(100, (total / MIN) * 100);
+  const bar     = document.getElementById('cartProgressBar');
+  const barText = document.getElementById('cartProgressText');
+  if (bar) {
+    bar.style.width      = pct + '%';
+    bar.style.background = pct >= 100 ? '#22C55E' : 'var(--orange)';
+  }
+  if (barText) {
+    if (pct >= 100) {
+      barText.textContent = '¡Llegaste al mínimo de compra! ✓';
+      barText.style.color = '#22C55E';
+    } else if (total === 0) {
+      barText.textContent = 'Compra mínima $80.000';
+      barText.style.color = '';
+    } else {
+      barText.textContent = `Te faltan ${formatPrecio(MIN - total)} para el mínimo`;
+      barText.style.color = '';
+    }
+  }
 
   // Items
   const itemsEl = document.getElementById('cartItems');
@@ -248,17 +290,26 @@ function actualizarUI() {
 
   itemsEl.innerHTML = carrito.map(item => `
     <div class="cart-item">
-      <div class="cart-item-icon" style="background:${item.bgImg}">
-        <span style="color:${item.iconColor}">${item.icon}</span>
+      <div class="cart-item-top">
+        <div class="cart-item-icon" style="background:${item.bgImg}">
+          <span style="color:${item.iconColor}">${item.icon}</span>
+        </div>
+        <div class="cart-item-info">
+          <p class="cart-item-name">${item.nombre}</p>
+          <p class="cart-item-unit-price">${formatPrecio(item.precio)} c/u</p>
+        </div>
+        <button class="cart-item-remove" onclick="quitarDelCarrito('${item.id}')" aria-label="Eliminar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
       </div>
-      <div class="cart-item-info">
-        <p class="cart-item-name">${item.nombre}</p>
-        <p class="cart-item-price">${formatPrecio(item.precio * item.cantidad)}</p>
-        <p class="cart-item-qty">Cantidad: ${item.cantidad}</p>
+      <div class="cart-item-bottom">
+        <div class="cart-qty-row">
+          <button class="cart-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', -1)">−</button>
+          <span class="cart-qty-value">${item.cantidad}</span>
+          <button class="cart-qty-btn" onclick="cambiarCantidadCarrito('${item.id}', 1)">+</button>
+        </div>
+        <p class="cart-item-subtotal">${formatPrecio(item.precio * item.cantidad)}</p>
       </div>
-      <button class="cart-item-remove" onclick="quitarDelCarrito('${item.id}')" aria-label="Eliminar">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-      </button>
     </div>
   `).join('');
 }

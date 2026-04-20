@@ -644,8 +644,22 @@ ul { list-style: none; }
   border-bottom: 1px solid var(--border);
 }
 .cart-panel-header h2 { font-size: 18px; font-weight: 700; color: var(--blue); }
-.cart-panel-header button svg { width: 22px; height: 22px; color: #374151; }
-.cart-panel-header button:hover svg { color: var(--orange); }
+.cart-header-actions { display: flex; align-items: center; gap: 8px; }
+.cart-header-actions button svg { width: 22px; height: 22px; color: #374151; }
+.cart-header-actions button:hover svg { color: var(--orange); }
+.cart-vaciar-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: #EF4444;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #FCA5A5;
+  font-family: inherit;
+  cursor: pointer;
+  align-items: center;
+  transition: background var(--transition);
+}
+.cart-vaciar-btn:hover { background: #FEF2F2; }
 
 .cart-items {
   flex: 1;
@@ -659,26 +673,39 @@ ul { list-style: none; }
 /* Item en carrito */
 .cart-item {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  gap: 10px;
   padding: 14px;
   border: 1px solid var(--border);
   border-radius: 8px;
 }
+.cart-item-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
 .cart-item-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.cart-item-icon svg { width: 24px; height: 24px; }
+.cart-item-icon svg { width: 22px; height: 22px; }
 .cart-item-info { flex: 1; min-width: 0; }
-.cart-item-name { font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cart-item-price { font-size: 13px; font-weight: 700; color: var(--blue); margin-top: 2px; }
-.cart-item-qty   { font-size: 11px; color: var(--text-muted); }
+.cart-item-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cart-item-unit-price { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
 .cart-item-remove {
   background: #FEF2F2;
   border-radius: 6px;
@@ -688,6 +715,43 @@ ul { list-style: none; }
 }
 .cart-item-remove:hover { background: #FEE2E2; }
 .cart-item-remove svg { width: 14px; height: 14px; }
+
+/* Fila inferior: qty + subtotal */
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 56px;
+}
+.cart-qty-row { display: flex; align-items: center; gap: 6px; }
+.cart-qty-btn {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  background: #F3F4F6;
+  color: #374151;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.cart-qty-btn:hover { background: #E5E7EB; }
+.cart-qty-value {
+  font-size: 14px;
+  font-weight: 700;
+  min-width: 22px;
+  text-align: center;
+  color: var(--blue);
+}
+.cart-item-subtotal {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--blue);
+}
 
 .cart-empty {
   display: flex;
@@ -716,6 +780,36 @@ ul { list-style: none; }
   color: var(--blue);
 }
 .cart-min-note { font-size: 11px; color: var(--text-muted); text-align: center; }
+
+/* Barra de progreso mínimo */
+.cart-progress-wrap { display: flex; flex-direction: column; gap: 5px; }
+.cart-progress-track {
+  height: 6px;
+  background: #E5E7EB;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cart-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--orange);
+  border-radius: 4px;
+  transition: width .4s ease, background .3s ease;
+}
+.cart-progress-text { font-size: 11px; color: var(--text-muted); }
+
+/* Seguir comprando */
+.cart-seguir-btn {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px;
+  transition: color var(--transition);
+}
+.cart-seguir-btn:hover { color: var(--orange); }
 
 /* ======================================================
    RESPONSIVE — TABLET (≤900px)
