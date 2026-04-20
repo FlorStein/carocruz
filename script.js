@@ -123,7 +123,7 @@ function renderProductCard(prod) {
         <p class="card-price">${formatPrecio(prod.precio)}</p>
         <div class="qty-row">
           <button class="qty-btn" onclick="cambiarCantidad('${prod.id}', -1)">−</button>
-          <span class="qty-value" id="qty-${prod.id}">0</span>
+          <span class="qty-value" id="qty-${prod.id}">1</span>
           <button class="qty-btn" onclick="cambiarCantidad('${prod.id}', 1)">+</button>
         </div>
         <button class="add-btn" onclick="agregarAlCarrito('${prod.id}')">
@@ -146,8 +146,8 @@ function renderGrid(productos, gridId) {
 const cantidades = {};
 
 function cambiarCantidad(id, delta) {
-  if (cantidades[id] === undefined) cantidades[id] = 0;
-  cantidades[id] = Math.max(0, cantidades[id] + delta);
+  if (cantidades[id] === undefined) cantidades[id] = 1;
+  cantidades[id] = Math.max(1, cantidades[id] + delta);
   const el = document.getElementById('qty-' + id);
   if (el) el.textContent = cantidades[id];
 }
@@ -183,7 +183,7 @@ function todosLosProductos() {
 }
 
 function agregarAlCarrito(id) {
-  const cantidad = cantidades[id] || 0;
+  const cantidad = cantidades[id] || 1;
   if (cantidad === 0) {
     mostrarToast('Seleccioná una cantidad primero');
     return;
@@ -207,9 +207,9 @@ function agregarAlCarrito(id) {
     });
   }
 
-  cantidades[id] = 0;
+  cantidades[id] = 1;
   const qtyEl = document.getElementById('qty-' + id);
-  if (qtyEl) qtyEl.textContent = '0';
+  if (qtyEl) qtyEl.textContent = '1';
 
   guardarCarrito();
   actualizarUI();
