@@ -173,6 +173,24 @@ async function handleLogin(e) {
 window.handleLogin = handleLogin;
 
 /* =====================================================
+   LOGIN CON GOOGLE
+   ===================================================== */
+async function handleGoogle() {
+  limpiarErroresAuth();
+  var btn = document.getElementById('btnGoogle') || document.getElementById('btnGoogleReg');
+  try {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    await window._auth.signInWithPopup(provider);
+    // onAuthStateChanged cierra el modal y actualiza el header
+  } catch (err) {
+    if (err.code !== 'auth/popup-closed-by-user') {
+      mostrarErrorAuth('loginPasswordError', mensajeFirebase(err.code));
+    }
+  }
+}
+window.handleGoogle = handleGoogle;
+
+/* =====================================================
    CERRAR SESIÓN
    ===================================================== */
 async function handleLogout() {
