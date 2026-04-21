@@ -1,0 +1,248 @@
+# Matches con score 50-64% — revisar si la imagen es correcta
+# Formato: [score] id  nombre_local  →  slug_TAM
+
+[60%] gast-89      DISPENSER TOALLAS INTERCALADAS                → dispenser-para-toallas-de-mano-intercaladas
+[50%] gast-112     PALITOS BROCHETE 15CM X100U                   → palitos-de-helado-x-50-color
+[50%] gast-113     PALITOS BROCHETE 25CM X50U                    → palitos-de-helado-x-50-color
+[60%] esc-2        AVON BLOCK A6 LISO XU                         → block-a5-esquela-husares-avon-liso
+[50%] esc-4        CARTELES DE GOMA EVA XU                       → goma-eva-40x60-2-mm
+[50%] esc-7        CARTULINA IMPRESA                             → cartulina-color-x-1-44-x-63
+[50%] esc-9        COMPAS STUDY XU                               → compas-metalico-escolar
+[50%] esc-12       CRAYONES X6 JUMBO SIMBAL                      → crayones-filgo-sta-jumbo-x-12
+[50%] esc-16       CUADERNO EXITO AB3 X48H T/DURA XU             → cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614
+[50%] esc-19       CUADERNO LAPRIDA AB3 X50H (EXITO)             → cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614
+[50%] esc-24       CUADERNO RIVADAVIA ABC X50H (EXITO)           → cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614
+[50%] esc-30       CUADERNO T/FLEXIBLE X48H AMERICA              → cuaderno-tapa-flexible-america-rayado-16x21-24-hojas
+[50%] esc-32       CUTER REPUESTO CHICO X10U                     → repuesto-canson-n-3-blanco
+[50%] esc-33       CUTER REPUESTO GRANDE X10U                    → repuesto-canson-n-3-blanco
+[50%] esc-40       GENIO-FILGO REPUESTO ROLLER GEL BORRABLE      → repuesto-borrable-filgo-borrax-se-azul
+[50%] esc-43       GOMA EVA GLITER A4 XU                         → goma-eva-40x60-2-mm
+[53%] esc-50       LAPICES COLOR CORTO X6 SIMBAL                 → lapices-de-colores-x-12-cortos-filgo
+[50%] esc-55       LAPRIDA REPUESTO 480H                         → repuesto-laprida-x-288-hojas-rayado
+[50%] esc-56       LAPRIDA REPUESTO 48H                          → repuesto-laprida-x-288-hojas-rayado
+[50%] esc-57       LAPRIDA REPUESTO A4 X48H                      → repuesto-laprida-x-288-hojas-rayado
+[50%] esc-58       LAPRIDA REPUESTO N3 24H                       → repuesto-laprida-x-288-hojas-rayado
+[50%] esc-61       PINCEL 12 XU                                  → pincel-fino
+[50%] esc-62       PINCEL 8 XU                                   → pincel-fino
+[50%] esc-63       PINCEL N-10                                   → pincel-fino
+[50%] esc-64       PINCEL N6 XU                                  → pincel-fino
+[50%] esc-81       RIVADAVIA REPUESTO 24H                        → repuesto-rivadavia-x-480-hojas-rayado
+[50%] esc-82       RIVADAVIA REPUESTO 480H                       → repuesto-rivadavia-x-480-hojas-rayado
+[50%] esc-83       RIVADAVIA REPUESTO 48H                        → repuesto-rivadavia-x-480-hojas-rayado
+[50%] esc-84       SACAPUNTAS CON GOMA 2EN1 XU MAPED             → sacapuntas-con-deposito
+[50%] esc-96       TIJERA XU ESCOLAR SIMBAL                      → tijera-escolar-ezco-filgo-12-cm
+[50%] lib-0        ABROCHADORA KARTEC 50 PINZA XU                → abrochadora-grap-10-50-pinza-pintada
+[50%] lib-1        ABROCHADORA MAPED MINI METAL 10H XU           → abrochadora-kangaro-hp-435-24-6-24-8-26-6-y-26-8
+[50%] lib-4        ABROCHADORA METAL E-352                       → abrochadora-kangaro-hp-435-24-6-24-8-26-6-y-26-8
+[50%] lib-7        ABROCHADORA SIMBALL CONFORT PINZA N10 XU      → abrochadora-grap-10-50-pinza-pintada
+[50%] lib-9        ACRILICO XU COLORES EN PROMO                  → acrilico-eterna-ad-50-ml-colores-varios
+[50%] lib-14       APRIETA PAPEL COLOR 19MM XU                   → aprieta-papel-niquelado-40-chico
+[50%] lib-15       APRIETA PAPEL COLOR 25MM XU                   → aprieta-papel-niquelado-40-chico
+[50%] lib-16       APRIETA PAPEL COLOR 32MM XU                   → aprieta-papel-niquelado-40-chico
+[50%] lib-17       APRIETA PAPEL COLOR 41MM XU                   → aprieta-papel-niquelado-40-chico
+[50%] lib-18       APRIETA PAPEL COLOR 51MM XU                   → aprieta-papel-niquelado-40-chico
+[50%] lib-19       APRIETA PAPEL METALIZADO 19MM XU              → aprieta-papel-niquelado-40-chico
+[50%] lib-20       APRIETA PAPEL METALIZADO 25MM XU              → aprieta-papel-niquelado-40-chico
+[50%] lib-21       APRIETA PAPEL METALIZADO 32MM XU              → aprieta-papel-niquelado-40-chico
+[50%] lib-28       BANDAS ELASTICAS X100G                        → bandas-elasticas-consul-x100-gramos
+[50%] lib-29       BANDAS ELASTICAS X500G                        → bandas-elasticas-consul-x100-gramos
+[50%] lib-34       BIBLIORATO GRIS OFICIO XU THE PEL             → bibliorato-avios-medoro-oficio-color
+[60%] lib-41       BLOCK DE HOJAS RAYADAS/CUADRICULADAS A4 80H AMERICA → block-a4-avon-america-80-hojas-cuadriculado
+[60%] lib-42       BLOCK DE HOJAS RAYADAS/CUADRICULADAS A5 80H AMERICA → block-a4-avon-america-80-hojas-cuadriculado
+[50%] lib-43       BLOCK OFICIO AMERICA                          → block-a4-america-x-80-hojas-liso
+[50%] lib-45       BROCHES ABROCHADORA MAPED/SIMBAL 24/6 X1000U  → abrochadora-kangaro-hp-65-para-broches-65
+[50%] lib-60       CARPETA 3 SOLAPAS X100U                       → carpeta-interna-2-solapas-abierta
+[50%] lib-63       CARPETA CARATULA X100U                        → carpeta-cartulina-caratula-oficio-color
+[50%] lib-65       CARPETA INTERNA XU                            → carpeta-interna-2-solapas-abierta
+[50%] lib-66       CARPETA KRAFT 3 SOLAPAS N6 XU                 → carpeta-interna-2-solapas-abierta
+[50%] lib-67       CARPETA KRAFT 3 SOLAPAS XU                    → carpeta-interna-2-solapas-abierta
+[50%] lib-78       CLIPS 3 X100U                                 → broches-clips-n-7-8-78mm
+[50%] lib-79       CLIPS 4 X100U                                 → broches-clips-n-7-8-78mm
+[50%] lib-80       CLIPS 5 X100U                                 → broches-clips-n-7-8-78mm
+[50%] lib-81       CLIPS 6 X50U                                  → broches-clips-n-7-8-78mm
+[50%] lib-82       CLIPS PLASTICO N3 X100U                       → broches-clips-n-7-8-78mm
+[50%] lib-83       CLIPS PLASTICO N-6 X50U                       → broches-clips-n-7-8-78mm
+[50%] lib-84       CLIPS PLASTICO N4 X100U                       → broches-clips-n-7-8-78mm
+[50%] lib-131      FABER BIROMES XU                              → lapiz-faber-n-2-negro
+[50%] lib-134      FABER RESALTADOR XU                           → lapiz-faber-n-2-negro
+[60%] lib-142      FILGO BORRABLE JUMP GO! XU                    → lapicera-roller-filgo-jump-borrable
+[60%] lib-143      FILGO BORRABLE ROLLER GEL + REPUESTO          → marcador-roller-gel-filgo-azul
+[50%] lib-147      FILGO MAR 040 XU                              → minas-filgo-0-7-mm
+[50%] lib-148      FILGO MAR 041 XU                              → minas-filgo-0-7-mm
+[50%] lib-149      FILGO MAR 042 XU                              → minas-filgo-0-7-mm
+[60%] lib-152      FILGO MARCADOR 058 PIZARRA XU                 → marcador-trabi-450-filgo-058-para-pizarra-azul
+[53%] lib-153      FILGO MARCADOR X8 PINCEL                      → marcadores-filgo-x-10-largos-colores
+[60%] lib-157      FILGO RESALTADOR FINE XU                      → resaltador-filgo-lighter-fine-fino-celeste
+[50%] lib-159      FILGO RESALTADOR XU                           → minas-filgo-0-7-mm
+[50%] lib-162      FILGO RETRACTIL ONE XU                        → boligrafo-filgo-retractil-ginza-azul
+[52%] lib-165      FILGO TNT MARCADORES ROLLER GLAM X4U          → marcador-roller-gel-filgo-azul
+[50%] lib-176      GLASE COMUN XU                                → papel-glase-metal-x-10-unidades
+[50%] lib-177      GLASE METALIZADO XU                           → papel-glase-metal-x-10-unidades
+[50%] lib-181      GOTITA GEL XU                                 → pegamento-la-gotita-gel-3-grs
+[50%] lib-182      GOTITA XU                                     → pegamento-la-gotita-x-2ml
+[50%] lib-198      LAMA CARPETA COLOR 3 SOLAPAS XU               → carpeta-e18-clip-lateral-a4-lama
+[50%] lib-201      LAMA SEPARADORES X5U A4-OFICIO                → separadores-plasticos-oficio-5-posiciones
+[50%] lib-205      LAPIZ NEGRO GOMA MAPED                        → lapiz-faber-n-2-negro
+[50%] lib-206      LAPIZ NEGRO MAPED                             → lapiz-faber-n-2-negro
+[50%] lib-207      LAPIZ NEGRO NAVY XU                           → lapiz-faber-n-2-negro
+[50%] lib-209      LAPIZ PORTA MINA                              → porta-lapiz-alambre-negro-values
+[50%] lib-216      LFABER MARCADOR XU                            → marcador-edding-1200-azul
+[60%] lib-226      MARCADOR 450 PIZARRA XU TRABI                 → marcador-trabi-450-filgo-058-para-pizarra-azul
+[50%] lib-227      MARCADOR 710/711 XU TRABI OFERTA              → marcador-edding-1200-azul
+[60%] lib-228      MARCADOR AL AGUA XU TRABI                     → marcador-al-agua-trabi-420-negro-punta-redonda
+[50%] lib-230      MARCADOR X10U SIMBAL                          → marcador-edding-1200-azul
+[50%] lib-231      MARCADOR X10U TRABI                           → marcador-edding-1200-azul
+[50%] lib-232      MARCADOR X6U TRABI                            → marcador-edding-1200-azul
+[50%] lib-233      MARCADOR XU TRABI                             → marcador-edding-1200-azul
+[50%] lib-234      MINAS CAJA                                    → minas-filgo-0-7-mm
+[50%] lib-249      MURESCO SOBRE 30X40 X50U                      → sobre-blanco-19x24-x10-unidades-3890
+[50%] lib-255      MYD CARPETA 3 SOLAPAS X100U                   → carpeta-interna-2-solapas-abierta
+[50%] lib-256      MYD CARPETA 3 SOLAPAS XU                      → carpeta-interna-2-solapas-abierta
+[50%] lib-257      MYD CARPETA CARATULA PREMIUM XU               → carpeta-cartulina-caratula-oficio-color
+[50%] lib-258      MYD CARPETA CARATULA X100U                    → carpeta-cartulina-caratula-oficio-color
+[50%] lib-259      MYD CARPETA CARATULA XU                       → carpeta-cartulina-caratula-oficio-color
+[50%] lib-260      MYD CARPETA CARATULA REFORZADA XU             → carpeta-cartulina-caratula-oficio-color
+[50%] lib-263      MYD CARPETA FOLIOS 30 T/DURA XU               → carpeta-plastica-a4-x-10-folios
+[50%] lib-264      MYD CARPETA FOLIOS 40 T/DURA XU               → carpeta-plastica-a4-x-10-folios
+[50%] lib-273      MYD TACO 9X9 BLANCO                           → taco-notas-9-x-9-color
+[50%] lib-274      MYD TACO 9X9 COLOR X400U                      → taco-notas-9-x-9-color
+[50%] lib-275      MYD TACO COLOR 9X9 X300U                      → taco-notas-9-x-9-color
+[50%] lib-276      MYD TACO MADERA 9X9 X300U                     → taco-notas-9-x-9-color
+[50%] lib-310      PELIKAN MARCADOR 710 XU                       → marcador-edding-1200-azul
+[50%] lib-311      PELIKAN MARCADOR 711 XU                       → marcador-edding-1200-azul
+[50%] lib-329      PORTA TACO METAL XU                           → taco-notas-9-x-9-color
+[50%] lib-330      PORTA TACO NEGRO XU                           → taco-notas-9-x-9-color
+[50%] lib-338      RECIBO DUPLICADO XU                           → talonario-husares-recibo-duplicado-1825
+[60%] lib-341      RESMA PAPEL AUTOR OFICIO 80G XU PROMO         → resma-ledesma-autor-75-grs-oficio
+[50%] lib-342      RESMA PAPEL PUNAX A4 75G XU                   → resma-punax-75-grs-ledesma-a4-oferta
+[50%] lib-343      RESMA PAPEL PUNAX A4 75G XU PROMO             → resma-punax-75-grs-ledesma-a4-oferta
+[50%] lib-344      ROLLER GEL CENTRO 1.0 XU SIMBAL               → marcador-roller-gel-filgo-azul
+[50%] lib-345      ROLLER GEL POWER 1MM SIMBAL                   → marcador-roller-gel-filgo-azul
+[50%] lib-346      ROLLER GEL TANKPEN 0.7 XU SIMBAL              → marcador-roller-gel-filgo-azul
+[50%] lib-369      ROLLOS COCINA 6 DE 200 PAÑOS PANDA            → rollos-de-cocina-sussex-clasico-3-rollos-x-60-panos
+[50%] lib-384      SACAPUNTAS MAPED                              → sacapuntas-metalico
+[50%] lib-392      SHARPIE MARCADOR XU                           → marcador-edding-1200-azul
+[50%] lib-405      SKYCOLOR GOMA LAPIZ XU                        → lapiz-faber-n-2-negro
+[50%] lim-17       CIF ANTIGRASA X450ML XU                       → limpiador-cif-antigrasa-repuesto-900ml
+[50%] lim-19       DESENGRASANTE FORTE PREMIUM X5 LITROS         → limpiador-desengrasante-emerel-x-5-litros
+[50%] lim-24       DETERGENTE 1 CALIDAD 5 LITROS                 → detergente-x-5-litros-acento-gigante
+[50%] lim-25       DETERGENTE PREMIUM 5 LITROS                   → detergente-x-5-litros-acento-gigante
+[50%] lim-27       DISPENSER JABON/GEL                           → dispenser-para-jabon-liquido-o-alcohol-en-gel-500-cc
+[50%] lim-35       ESPONJA MORTIMER XU                           → esponja-doble-cara-mortimer-sed-metal
+[50%] lim-39       GUANTES GOMA S/M/XL                           → guantes-de-nitrilo-negro-x-100
+[50%] lim-42       HILO ALGODON CHICO 50GRS                      → hilo-algodon-ovillo-x-50-grs
+[50%] lim-43       HILO ALGODON 250G XU                          → hilo-algodon-ovillo-x-50-grs
+[50%] lim-44       HILO ALGODON 27H X100M                        → hilo-algodon-ovillo-x-50-grs
+[50%] lim-45       HILO ALGODON 8/20 MACRAME COLORES X30         → hilo-algodon-ovillo-x-50-grs
+[50%] lim-46       HILO ALGODON AMARILLO X250G XU                → hilo-algodon-ovillo-x-50-grs
+[50%] lim-47       HILO ALGODON VARIEDAD COLORES X33G            → hilo-algodon-ovillo-x-50-grs
+[50%] lim-69       MISTER MUSCULO LIMPIA VIDRIO 450ML XU         → limpia-vidrio-x-5-litros-view
+[53%] lim-73       MULTIMAX DESODORANTE P/1 LITRO                → desodorante-procenex-x-5-litros
+[60%] lim-80       RAID AEROSOL CUCARACHAS ACCION XU             → insecticida-en-aerosol-raid-mata-cucarachas
+[50%] lim-84       REJILLA P/COCHE MISTER TRAPO XU               → trapo-rejilla-media-naranja-okey-oferta
+[50%] lim-85       REJILLA P/COCINA MISTER TRAPO XU              → trapo-rejilla-media-naranja-okey-oferta
+[60%] lim-91       SUAVIZANTE P/ROPA T/VIVERE X1L                → suavizante-para-ropa-vivere-x-5-litros
+[60%] lim-92       SUAVIZANTE P/ROPA X5 LITROS                   → suavizante-para-ropa-vivere-x-5-litros
+[50%] lim-94       TRAPO PISO BLANCO GRANDE REFORZADO 60X70 CCLEAN XU → trapo-de-piso-blanco-1-2-naranja-alpargata-okey
+[53%] des-63       SACAPUNTAS CONTENEDOR XU SIMBAL               → sacapuntas-con-deposito
+[53%] des-75       VASOS PLASTICOS DESCARTABLES 50ML X100U       → vasos-de-plastico-180-cc-x-100-unidades
+[53%] des-76       VASOS PLASTICOS DESCARTABLES 80ML X100U       → vasos-de-plastico-180-cc-x-100-unidades
+[53%] des-77       VASOS PLASTICOS NEON X25                      → vasos-de-plastico-180-cc-x-100-unidades
+[50%] emb-5        BOBINA AZUL ELEGANTE 20X400 X2U               → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-6        BOBINA AZUL ELEGANTE 20X400 XU                → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-7        BOBINA MOVAR 60CM K                           → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-10       BOBINA MOVECO 40CM K                          → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-11       BOBINA MURESCO 100MT DORADA                   → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-12       BOBINA ROJA ELEGANTE 25X400M X2U              → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-13       BOBINA ROJA ELEGANTE 25X400M XU               → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-14       BOBINA ROLLO CONTINUO PAPEL X200 MTS          → rollo-termico-80-mm-x-45-mts-x-10-medoro
+[50%] emb-20       CELOFAN HOJA 70X100 XU                        → papel-celofan-color-x-10-unidades-55x90-cm
+[50%] emb-69       CINTA PARA FLORES                             → porta-rollo-para-cinta-12x30-y-18x25-898-s
+[52%] emb-71       FILGO CINTA CORRECTORA XU                     → corrector-cinta-filgo-line-506-6-mts
+[50%] emb-73       GUANTES POLIETILENO X100U                     → guantes-de-nitrilo-negro-x-100
+[50%] emb-75       HILO CINTA RECUPERADO X20 METROS              → cinta-metrica-retractil-1-5-metros
+[50%] emb-77       KENDRA PORTA CINTA CHICO                      → porta-rollo-para-cinta-12x30-y-18x25-898-s
+[50%] emb-78       KRAFT X KG                                    → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-92       PAPEL SULFITO BOBINA X KG                     → bobina-de-papel-kraft-de-100-cm-18-kg
+[50%] emb-101      ROLLO FILM 100M OFERTA XU                     → rollo-10-cm-film-strech-resinite
+[50%] emb-102      ROLLO FILM 30CM X1000MTS RESIMAX              → rollo-10-cm-film-strech-resinite
+[50%] emb-103      ROLLO FILM 38 X300M NARANJA XU                → rollo-10-cm-film-strech-resinite
+[50%] emb-104      ROLLO FILM 38CM X1000MTS RESIMAX              → rollo-10-cm-film-strech-resinite
+[50%] emb-105      ROLLO FILM 45CM X1000MTS RESIMAX              → rollo-10-cm-film-strech-resinite
+[53%] emb-140      SOBRES MANILA 13X19 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-141      SOBRES MANILA 14X21 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-142      SOBRES MANILA 16X23 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-143      SOBRES MANILA 19X25 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-144      SOBRES MANILA 20X28 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-145      SOBRES MANILA 23X32 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-146      SOBRES MANILA 25X35 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-147      SOBRES MANILA 27X37 XU                        → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-148      SOBRES MANILA 27X37 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-149      SOBRES MANILA 30X40 XU                        → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-150      SOBRES MANILA 30X40 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-151      SOBRES MANILA 37X45 X100U                     → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-152      SOBRES MANILA A4 SUELTO XU                    → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-153      SOBRES MANILA CHICOS XU                       → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-154      SOBRES MANILA GRANDE XU                       → sobre-manila-13-x-19-x-10-unidades
+[53%] emb-155      SOBRES MANILA 37X45 XU                        → sobre-manila-13-x-19-x-10-unidades
+[50%] caj-42       CAJA ARCHIVO 40X30X17 C205                    → caja-archivo-americana-alta-42x32x25-403
+[50%] caj-43       CAJA ARCHIVO 42X32X25 ART.403                 → caja-archivo-americana-alta-42x32x25-403
+[50%] caj-44       CAJA ARCHIVO 42X32X25 REFORZADA ART.406       → caja-archivo-americana-alta-42x32x25-403
+[50%] caj-45       CAJA ARCHIVO T/VOLCADA PLASTICO               → caja-archivo-americana-alta-42x32x25-403
+[50%] caj-65       CAJA ENSALADERA CARTON XU                     → caja-carton-corrugado-40x30x30-cm-x-10-unidades
+[50%] caj-144      PLANCHA CARTON 50X70 2MM                      → plancha-de-ojalillos
+[50%] caj-145      PLANCHA CARTON 50X70 X1MM                     → plancha-de-ojalillos
+[50%] caj-146      PLANCHA CARTON 70X100 0.5MM XU                → plancha-de-ojalillos
+[50%] caj-147      PLANCHA CARTON 70X100 1-1.5MM                 → plancha-de-ojalillos
+[50%] caj-148      PLANCHA CARTON 70X100 2MM                     → plancha-de-ojalillos
+[50%] caj-149      PLANCHA CARTON 70X100 3MM                     → plancha-de-ojalillos
+[50%] caj-150      PLANCHA CARTON GRIS 35X50 1MM XU              → plancha-de-ojalillos
+[50%] caj-152      PLANCHA CORCHO 45X60X3MM                      → plancha-de-ojalillos
+[50%] caj-153      PLANCHA CORCHO 60X90X2MM                      → plancha-de-ojalillos
+[50%] caj-154      PLANCHA MICRO COLOR XU                        → plancha-de-ojalillos
+[50%] caj-155      PLANCHA MICRO NATURAL XU                      → plancha-de-ojalillos
+[50%] bol-173      BOLSAS POLIPROPILENO 05X30 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-174      BOLSAS POLIPROPILENO 06X30 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-175      BOLSAS POLIPROPILENO 06X10 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-176      BOLSAS POLIPROPILENO 06X20 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-177      BOLSAS POLIPROPILENO 06X25 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-178      BOLSAS POLIPROPILENO 08X15 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-179      BOLSAS POLIPROPILENO 08X20 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-180      BOLSAS POLIPROPILENO 08X25 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-181      BOLSAS POLIPROPILENO 08X30 X200U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-182      BOLSAS POLIPROPILENO 10X15 ADHESIVO X100U     → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-183      BOLSAS POLIPROPILENO 10X25 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-184      BOLSAS POLIPROPILENO 10X15 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-185      BOLSAS POLIPROPILENO 10X20 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-186      BOLSAS POLIPROPILENO 12.5X13 ADHESIVO X100U   → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-187      BOLSAS POLIPROPILENO 12X20 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-188      BOLSAS POLIPROPILENO 12X25 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-189      BOLSAS POLIPROPILENO 12X30 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-190      BOLSAS POLIPROPILENO 15X20 ADHESIVO X100U     → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-191      BOLSAS POLIPROPILENO 15X20 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-192      BOLSAS POLIPROPILENO 15X25 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-193      BOLSAS POLIPROPILENO 15X30 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-194      BOLSAS POLIPROPILENO 17X30 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-195      BOLSAS POLIPROPILENO 20X30 ADHESIVO X100U     → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-196      BOLSAS POLIPROPILENO 20X25 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-197      BOLSAS POLIPROPILENO 20X30 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-198      BOLSAS POLIPROPILENO 20X35 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-199      BOLSAS POLIPROPILENO 20X40 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-200      BOLSAS POLIPROPILENO 22X40 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-201      BOLSAS POLIPROPILENO 25X35 ADHESIVO X100U     → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-202      BOLSAS POLIPROPILENO 25X35 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-203      BOLSAS POLIPROPILENO 25X40 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-204      BOLSAS POLIPROPILENO 30X40 ADHESIVO X100U     → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-205      BOLSAS POLIPROPILENO 30X40 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-206      BOLSAS POLIPROPILENO 35X45 ADHESIVO X100U     → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-207      BOLSAS POLIPROPILENO 35X45 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-208      BOLSAS POLIPROPILENO 40X50 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-209      BOLSAS POLIPROPILENO 50X60 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-210      BOLSAS POLIPROPILENO 5X5 ADHESIVO X100U       → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-211      BOLSAS POLIPROPILENO 5X8 ADHESIVO X100U       → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-212      BOLSAS POLIPROPILENO 60X75 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-213      BOLSAS POLIPROPILENO 6X14 ADHESIVO X100U      → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-214      BOLSAS POLIPROPILENO 10X30 X100U              → bolsas-cristal-polipropileno-pp-20x30-x-100-unidades
+[50%] bol-250      FUNDAS 50X70 X10U                             → fundas-cubrecuaderno-16x21
+[50%] bol-251      FUNDAS 60X120 X10U                            → fundas-cubrecuaderno-16x21
+[50%] bol-252      FUNDAS 60X90 X10U                             → fundas-cubrecuaderno-16x21

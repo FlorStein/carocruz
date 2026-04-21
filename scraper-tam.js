@@ -205,38 +205,69 @@ function leerCatalogosLocales() {
 
 // ─── Matching ─────────────────────────────────────────────────────────────────
 
-// Adjetivos/palabras genéricas que solas no pueden ser el único ancla de matching
+// Palabras que solas NO pueden anclar un match: adjetivos, colores, genéricos.
 const GENERIC_WORDS = new Set([
-  'chico', 'grande', 'mediano', 'pequeño',
-  'negro', 'azul', 'rojo', 'verde', 'blanco', 'amarillo', 'rosa', 'gris',
-  'color', 'colores', 'surtido',
+  // Tamaños
+  'chico', 'grande', 'mediano', 'pequeno', 'ultra',
+  // Colores — masculino Y femenino para evitar "goma blanca" → "cartulina blanca"
+  'negro', 'negra', 'azul', 'rojo', 'roja', 'verde', 'blanco', 'blanca',
+  'amarillo', 'amarilla', 'rosa', 'gris', 'naranja', 'celeste',
+  'violeta', 'lila', 'marron', 'beige', 'dorado', 'dorada',
+  'color', 'colores', 'surtido', 'surtida', 'surtidos', 'surtidas', 'varios',
+  // "papel" es tan genérico en una papelería que no puede anclar solo
+  // (evita "blondas de papel" → "papel afiche", "papel parafinado" → "papel afiche")
+  'papel',
+  // Materiales — forzosamente genéricos
   'metal', 'metalico', 'metalizada', 'metalizado',
-  'acero', 'plastico', 'plastica',
-  'doble', 'triple', 'extra',
-  'original', 'classic', 'premium',
+  // OJO: "plastico"/"plastica" NO están aquí a propósito.
+  // Son discriminadores válidos: "bandeja carton" ≠ "bandeja plastica",
+  // "caja carton" ≠ "caja plastica", etc.
+  'acero', 'goma', 'madera', 'tela', 'cuero',
+  // Calificadores
+  'doble', 'triple', 'extra', 'super', 'mini', 'maxi',
+  'original', 'classic', 'premium', 'profesional',
+  'oferta', 'especial', 'natural', 'transparente', 'opaco',
 ]);
 
 /**
- * Normaliza un slug para matching: quita sufijos de unidad y palabras de relleno.
- * CARTULINA COLOR XU → cartulina-color
- * CINTA ADHESIVA 48MMX100M X36ROLLOS → cinta-adhesiva-48mm-100m-x36rollo
+ * Normaliza un slug para matching:
+ *  - Elimina tokens puramente numéricos o de unidad   (50u, x10u, xu, 5kg)
+ *  - Elimina dimensiones simples y compuestas         (48mm, 100m, 12x30, 80x110cm)
+ *  - Elimina cantidades con prefijo x                 (x300m, x500ml, x100)
+ *  - Elimina códigos de formato/tamaño alfanuméricos  (a4, n3, n6, 2b, a3)
+ *  - Elimina SKUs/números de orden de 2+ dígitos      (403, 65, 850)
+ *
+ * Resultado: sólo quedan palabras que describen QUÉ es el producto.
+ * "CINTA ADHESIVA 18X50 XU STIKO" → "cinta-adhesiva-stiko"
+ * "ROLLO FILM 38X300M NARANJA XU" → "rollo-film"   (naranja filtrado en keywords)
+ * "CUADERNO EXITO N7 X96H XU"    → "cuaderno-exito"
  */
 function normSlug(slug) {
   return slug
     .split('-')
     .filter(w => {
       if (!w) return false;
-      // Quitar fragmentos puramente numéricos o sufijos como x10u, xu, x100, 50u, 500g
+      // Puramente numérico / xu / x100 / 50u
       if (/^x?\d+u?$/i.test(w)) return false;
+      // Magnitud con unidad: 48mm, 5kg, 750ml, 100grs, 30mts, 1lt
       if (/^\d+(u|ml|cc|kg|grs?|mm|cm|mts?|lts?|hs?)$/i.test(w)) return false;
+      // Metros solos: 100m, 300m
+      if (/^\d+m$/i.test(w)) return false;
+      // Dimensiones simples o compuestas: 12x30, 80x110, 42x32x25, 12x30cm
+      if (/^\d+(x\d+)+(m|cm|mm)?$/i.test(w)) return false;
+      // Cantidades con prefijo x y unidad opcional: x300m, x500ml, x100
+      if (/^x\d+[a-z]*$/i.test(w)) return false;
+      // Códigos de formato/tamaño: a4, n3, n6, 2b, a3, a5 (1 letra + 1-2 dígitos o viceversa)
+      if (/^[a-zA-Z]\d{1,2}$/.test(w) || /^\d{1,2}[a-zA-Z]$/.test(w)) return false;
+      // SKUs / números de orden de 2+ dígitos puros
+      if (/^\d{2,}$/.test(w)) return false;
       return true;
     })
     .join('-');
 }
 
 /**
- * Devuelve las palabras "sustantivas" de un slug normalizado:
- * filtra genéricos y palabras muy cortas.
+ * Keywords sustantivas: palabras ≥ 3 chars que no son adjetivos/colores genéricos.
  */
 function keywords(slug) {
   return normSlug(slug)
@@ -245,37 +276,40 @@ function keywords(slug) {
 }
 
 /**
- * Puntaje de similitud entre el slug de un producto local y el slug de TAM.
- * Devuelve un número entre 0 y 1 (1 = match exacto).
+ * Similitud entre slugLocal (catálogo Caro Cruz) y slugTAM.
  *
- * Reglas:
- *  1. Coincidencia exacta o casi-exacta de slugs normalizados → 1.0 / 0.95
- *  2. La PRIMERA keyword del slug más corto debe aparecer en el otro slug.
- *     Esto evita "esponja-acero" → "regla-de-acero" donde solo "acero" coincide.
- *  3. Score final = palabras_clave_comunes / max(palabras_clave_local, palabras_clave_TAM)
- *     con bonus de prefijo.
+ * Estrategia de ancla BIDIRECCIONAL:
+ *   - Dirección A: primera keyword de LOCAL aparece en TAM
+ *     (funciona cuando el local empieza con marca/tipo)
+ *   - Dirección B: primera keyword de TAM aparece en LOCAL
+ *     (funciona cuando el local omite la marca que TAM sí tiene)
+ *   Con UNA de las dos basta para pasar el filtro de ancla.
+ *
+ * Beneficio: "ROLLO FILM 38X300M" y "rollo-film-strech-resinite" matchean
+ *   aunque ninguno contenga la dimensión del otro.
+ *   "ESPONJA VERDE" y "regla-de-acero" NO matchean porque ni "esponja"
+ *   ni "verde" aparecen en {regla}.
  */
 function similitud(slugLocal, slugTAM) {
-  const normL = normSlug(slugLocal);
-  const normT = normSlug(slugTAM);
+  const nL = normSlug(slugLocal);
+  const nT = normSlug(slugTAM);
 
   if (slugLocal === slugTAM) return 1;
-  if (normL === normT && normL.length > 0) return 0.95;
+  if (nL === nT && nL.length > 3) return 0.95;
 
   const kwL = keywords(slugLocal);
   const kwT = keywords(slugTAM);
 
   if (kwL.length === 0 || kwT.length === 0) return 0;
 
-  // Regla: la primera keyword del slug MÁS CORTO (menos palabras) debe estar
-  // presente en el otro. Evita matches de tipo "esponja-acero" → "regla-de-acero"
-  const ancla = kwL.length <= kwT.length ? kwL[0] : kwT[0];
-  const destino = kwL.length <= kwT.length ? kwT : kwL;
-  // La ancla debe aparecer exactamente o como prefijo de alguna keyword destino
-  const anclaPresente = destino.some(w => w === ancla || w.startsWith(ancla) || ancla.startsWith(w));
-  if (!anclaPresente) return 0;
+  // Ancla bidireccional: la primera keyword de CUALQUIERA de los dos
+  // debe aparecer en el otro (exacta o como prefijo de ≥4 chars).
+  const anclaOK =
+    kwT.some(w => w === kwL[0] || (kwL[0].length >= 4 && (w.startsWith(kwL[0]) || kwL[0].startsWith(w)))) ||
+    kwL.some(w => w === kwT[0] || (kwT[0].length >= 4 && (w.startsWith(kwT[0]) || kwT[0].startsWith(w))));
+  if (!anclaOK) return 0;
 
-  // Score por keywords en común (con coincidencia parcial para palabras ≥5 chars)
+  // Score: palabras clave en común / max de ambas listas
   const setT = new Set(kwT);
   let comunes = 0;
   for (const w of kwL) {
@@ -287,18 +321,8 @@ function similitud(slugLocal, slugTAM) {
       }
     }
   }
-  const wordScore = comunes / Math.max(kwL.length, kwT.length);
 
-  // Bonus de prefijo (sobre slugs normalizados)
-  const minLen = Math.min(normL.length, normT.length);
-  let prefMatch = 0;
-  for (let i = 0; i < minLen; i++) {
-    if (normL[i] === normT[i]) prefMatch++;
-    else break;
-  }
-  const prefixScore = prefMatch / Math.max(normL.length, normT.length, 1);
-
-  return Math.max(wordScore, prefixScore * 0.9);
+  return comunes / Math.max(kwL.length, kwT.length);
 }
 
 
@@ -424,14 +448,45 @@ async function main() {
   console.log(`  Total procesados     : ${catalogoLocal.length}`);
   console.log('═══════════════════════════════════════════\n');
 
-  // 5. Resumen de los primeros matches para verificación
+  // 5. Distribución de scores + archivo de revisión manual
+  const rangos = { r100: [], r90: [], r70: [], r65: [], r50: [] };
+  for (const [id, data] of Object.entries(imageMap)) {
+    if (!data.imagen) continue;
+    const s = data.score;
+    if (s === 100)     rangos.r100.push({ id, data });
+    else if (s >= 90)  rangos.r90.push({ id, data });
+    else if (s >= 70)  rangos.r70.push({ id, data });
+    else if (s >= 65)  rangos.r65.push({ id, data });
+    else               rangos.r50.push({ id, data });
+  }
+  console.log('Distribución de scores:');
+  console.log(`  100%   : ${rangos.r100.length} (match exacto)`);
+  console.log(`  90-99% : ${rangos.r90.length}  (casi exacto)`);
+  console.log(`  70-89% : ${rangos.r70.length}  (buen match)`);
+  console.log(`  65-69% : ${rangos.r65.length}  (match aceptable)`);
+  console.log(`  50-64% : ${rangos.r50.length}  (revisar manualmente)\n`);
+
+  // Guardar items ≤ 64% para revisión manual
+  const lineasRevision = rangos.r50.map(
+    ({ id, data }) => `[${data.score}%] ${id.padEnd(12)} ${data.nombre.padEnd(45)} → ${data.tamSlug}`
+  );
+  fs.writeFileSync(
+    path.join(__dirname, 'matches-revisar.txt'),
+    `# Matches con score 50-64% — revisar si la imagen es correcta\n` +
+    `# Formato: [score] id  nombre_local  →  slug_TAM\n\n` +
+    lineasRevision.join('\n') + '\n',
+    'utf-8'
+  );
+  console.log(`  matches-revisar.txt generado (${rangos.r50.length} items para revisar)\n`);
+
+  // 6. Muestra de los primeros 10 matches para verificación rápida
   console.log('Muestra de matches (primeros 10):\n');
   let shown = 0;
   for (const [id, data] of Object.entries(imageMap)) {
     if (shown >= 10) break;
     if (data.imagen) {
       console.log(`  [${data.score}%] ${data.nombre}`);
-      console.log(`         → ${data.imagen}\n`);
+      console.log(`         → ${data.tamSlug}\n`);
       shown++;
     }
   }
