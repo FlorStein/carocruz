@@ -20,6 +20,11 @@ const FIREBASE_CONFIG = {
 };
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Emails con permisos de administración (en minúsculas)
+const ADMIN_EMAILS = [
+  'admin@caracruz.com.ar'
+];
+
 // Inicializar Firebase solo si la config fue reemplazada
 const CONFIG_PENDIENTE = FIREBASE_CONFIG.apiKey.startsWith('REEMPLAZAR');
 
@@ -42,16 +47,28 @@ function iniciarAuth() {
     const btnMiCuenta = document.getElementById('btnMiCuenta');
     const userDisplay  = document.getElementById('userDisplay');
     const userNameEl   = document.getElementById('userNameDisplay');
+    const adminMenuItem = document.getElementById('adminMenuItem');
 
     if (user) {
       if (btnMiCuenta) btnMiCuenta.style.display = 'none';
       if (userDisplay) userDisplay.style.display = 'flex';
       const nombre = user.displayName || user.email.split('@')[0];
       if (userNameEl) userNameEl.textContent = nombre;
+
+      const esAdmin = esUsuarioAdmin(user);
+      if (adminMenuItem) adminMenuItem.style.display = esAdmin ? 'flex' : 'none';
+      if (typeof window.actualizarEstadoAdmin === 'function') {
+        window.actualizarEstadoAdmin(esAdmin, user);
+      }
+
       cerrarModalAuth();
     } else {
       if (btnMiCuenta) btnMiCuenta.style.display = 'flex';
       if (userDisplay) userDisplay.style.display = 'none';
+      if (adminMenuItem) adminMenuItem.style.display = 'none';
+      if (typeof window.actualizarEstadoAdmin === 'function') {
+        window.actualizarEstadoAdmin(false, null);
+      }
     }
   });
 
@@ -271,6 +288,15 @@ function mostrarModoBeta() {
       abrirModalAuth('login');
     });
   }
+
+  if (typeof window.actualizarEstadoAdmin === 'function') {
+    window.actualizarEstadoAdmin(false, null);
+  }
+}
+
+function esUsuarioAdmin(user) {
+  const email = (user && user.email ? user.email : '').toLowerCase().trim();
+  return !!email && ADMIN_EMAILS.includes(email);
 }
 
 /* =====================================================

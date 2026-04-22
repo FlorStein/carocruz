@@ -54,6 +54,10 @@
             <svg class="user-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div id="userDropdown" class="user-dropdown" role="menu">
+            <button id="adminMenuItem" class="user-dropdown-item user-dropdown-item--admin" onclick="abrirAdminPanel()" role="menuitem" style="display:none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+              Panel admin
+            </button>
             <button class="user-dropdown-item" onclick="handleLogout()" role="menuitem">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
               Cerrar sesión
@@ -406,6 +410,114 @@
     </form>
   </div>
 
+  <!-- ░░ MODAL ADMIN PRODUCTOS ░░ -->
+  <div id="adminOverlay" class="auth-overlay hidden" onclick="cerrarAdminPanel()"></div>
+
+  <div id="adminModal" class="admin-modal" role="dialog" aria-modal="true" aria-label="Panel de administración">
+    <div class="admin-modal-head">
+      <div>
+        <p class="admin-kicker">Administración</p>
+        <h3>Cargar producto</h3>
+      </div>
+      <button class="auth-close-btn" onclick="cerrarAdminPanel()" aria-label="Cerrar panel de administración">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="admin-modal-body">
+      <form id="adminForm" class="admin-form" onsubmit="handleAltaProductoAdmin(event)" novalidate>
+        <h4 class="admin-section-title">Nueva publicación</h4>
+        <div class="auth-field">
+          <label for="adminNombre">Nombre del producto</label>
+          <input id="adminNombre" type="text" placeholder="Ej: Cuaderno universitario x 10" />
+        </div>
+        <div class="admin-form-grid">
+          <div class="auth-field">
+            <label for="adminPrecio">Precio</label>
+            <input id="adminPrecio" type="number" min="1" step="1" placeholder="12500" />
+          </div>
+          <div class="auth-field">
+            <label for="adminStock">Stock</label>
+            <input id="adminStock" type="number" min="0" step="1" placeholder="100" />
+          </div>
+        </div>
+        <div class="admin-form-grid">
+          <div class="auth-field">
+            <label for="adminCategoria">Categoría</label>
+            <select id="adminCategoria" class="admin-select">
+              <option value="LIMPIEZA">Limpieza</option>
+              <option value="LIBRERÍA">Librería</option>
+              <option value="ESCOLAR">Escolar</option>
+              <option value="EMBALAJE">Embalaje</option>
+              <option value="BOLSAS">Bolsas</option>
+              <option value="DESCARTABLES">Descartables</option>
+              <option value="CAJAS">Cajas</option>
+              <option value="GASTRONÓMICO">Gastronómico</option>
+              <option value="OFERTA">Oferta</option>
+            </select>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label for="adminImagen">URL de imagen (opcional)</label>
+          <input id="adminImagen" type="url" placeholder="https://..." />
+        </div>
+        <div class="auth-field">
+          <label for="adminImagenArchivo">O subir imagen (opcional)</label>
+          <input id="adminImagenArchivo" type="file" accept="image/*" />
+        </div>
+
+        <p class="admin-help">Podés usar URL o archivo. Si hay archivo, se prioriza ese. Con Firestore activo se sincroniza para todos.</p>
+        <span id="adminError" class="auth-field-error"></span>
+
+        <button id="btnAdminGuardar" type="submit" class="auth-submit">Guardar producto</button>
+      </form>
+
+      <section class="admin-gestion" aria-label="Gestión de publicaciones">
+        <h4 class="admin-section-title">Gestión de publicaciones</h4>
+        <div class="auth-field">
+          <label for="adminGestionBuscar">Buscar por nombre o categoría</label>
+          <input id="adminGestionBuscar" type="text" placeholder="Ej: cuaderno, limpieza, oferta" oninput="adminResetGestionPage();renderAdminGestionList()" />
+        </div>
+        <div class="admin-gestion-filtros">
+          <div class="admin-item-field">
+            <label for="adminGestionEstado">Estado de stock</label>
+            <select id="adminGestionEstado" class="admin-select" onchange="adminResetGestionPage();renderAdminGestionList()">
+              <option value="TODOS">Todos</option>
+              <option value="SIN_STOCK">Sin stock</option>
+              <option value="BAJO_STOCK">Bajo stock</option>
+              <option value="CON_STOCK">Con stock</option>
+            </select>
+          </div>
+          <div class="admin-item-field">
+            <label for="adminGestionCategoria">Categoría</label>
+            <select id="adminGestionCategoria" class="admin-select" onchange="adminResetGestionPage();renderAdminGestionList()">
+              <option value="TODAS">Todas</option>
+              <option value="LIMPIEZA">Limpieza</option>
+              <option value="LIBRERÍA">Librería</option>
+              <option value="ESCOLAR">Escolar</option>
+              <option value="EMBALAJE">Embalaje</option>
+              <option value="BOLSAS">Bolsas</option>
+              <option value="DESCARTABLES">Descartables</option>
+              <option value="CAJAS">Cajas</option>
+              <option value="GASTRONÓMICO">Gastronómico</option>
+              <option value="OFERTA">Oferta</option>
+            </select>
+          </div>
+          <div class="admin-item-field">
+            <label for="adminGestionUmbral">Umbral bajo stock</label>
+            <input id="adminGestionUmbral" type="number" min="1" step="1" value="10" oninput="adminResetGestionPage();renderAdminGestionList()" />
+          </div>
+        </div>
+        <div id="adminGestionList" class="admin-gestion-list"></div>
+        <div class="admin-gestion-pagination">
+          <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(-1)">Anterior</button>
+          <span id="adminGestionPageInfo" class="admin-gestion-page-info">Página 1 de 1</span>
+          <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(1)">Siguiente</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
   <script src="catalogo-gastronomico.js"></script>
   <script src="catalogo-escolar.js"></script>
   <script src="catalogo-libreria.js"></script>
@@ -420,6 +532,8 @@
   <!-- Firebase Auth SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
   <script src="auth.js"></script>
 </body>
 </html>
