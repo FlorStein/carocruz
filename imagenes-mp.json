@@ -1,0 +1,4303 @@
+{
+  "gast-0": {
+    "nombre": "ACRIMET BANDEJA 3 PISOS XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eaa83863-431f-828c-3702-bcfbed1e6ffd/e1e96f84ad5729b73ade10f85c78bdc1-6501ee7d4e16f.jpg",
+    "tamSlug": "bandeja-plastica-2-pisos-bs",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "gast-1": {
+    "nombre": "ACRIMET BANDEJA X2 PISOS U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eaa83863-431f-828c-3702-bcfbed1e6ffd/e1e96f84ad5729b73ade10f85c78bdc1-6501ee7d4e16f.jpg",
+    "tamSlug": "bandeja-plastica-2-pisos-bs",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "gast-6": {
+    "nombre": "BANDEJA CARTON N1 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-7": {
+    "nombre": "BANDEJA CARTON N2 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-8": {
+    "nombre": "BANDEJA CARTON N3 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-9": {
+    "nombre": "BANDEJA CARTON N4 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-10": {
+    "nombre": "BANDEJA CARTON N5 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-11": {
+    "nombre": "BANDEJA CARTON N6 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-12": {
+    "nombre": "BANDEJA CARTON N7 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 100
+  },
+  "gast-13": {
+    "nombre": "BANDEJA CARTON SUELTA XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/D_NQ_NP_2X_687633-MLA75847039553_042024-F-300x303.webp",
+    "mpSlug": "bandeja-de-carton-gris-redonda-n14-27cm-x-2cm",
+    "score": 67
+  },
+  "gast-15": {
+    "nombre": "BANDEJA HORNO RECTANGULAR 4000ML XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-1-100-300x300.jpg",
+    "mpSlug": "bandeja-rectangular-de-cartulina-satinada-n3-21-x-17-x-2",
+    "score": 50
+  },
+  "gast-16": {
+    "nombre": "BANDEJA ORO 1/2K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-17": {
+    "nombre": "BANDEJA ORO 1/4K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-18": {
+    "nombre": "BANDEJA ORO 16 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-19": {
+    "nombre": "BANDEJA ORO 18 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-20": {
+    "nombre": "BANDEJA ORO 1K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-21": {
+    "nombre": "BANDEJA ORO 20 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-22": {
+    "nombre": "BANDEJA ORO 24-23 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-23": {
+    "nombre": "BANDEJA ORO 26 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-24": {
+    "nombre": "BANDEJA ORO 28 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-25": {
+    "nombre": "BANDEJA ORO 2K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-26": {
+    "nombre": "BANDEJA ORO 31 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-27": {
+    "nombre": "BANDEJA ORO 36 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-28": {
+    "nombre": "BANDEJA ORO 3K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-29": {
+    "nombre": "BANDEJA ORO 5K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "gast-30": {
+    "nombre": "BANDEJA X10 CON TAPA F75 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/BDA-F50-15-x-12-x-4-Con-Tapa-Completo-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-12-x-4-con-tapa",
+    "score": 75
+  },
+  "gast-31": {
+    "nombre": "BANDEJA X100 CON TAPA F75 OFERTA",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/BDA-F50-15-x-12-x-4-Con-Tapa-Completo-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-12-x-4-con-tapa",
+    "score": 75
+  },
+  "gast-32": {
+    "nombre": "BANDEJAS CARTON N12 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 80
+  },
+  "gast-33": {
+    "nombre": "BANDEJAS CARTON N13 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 80
+  },
+  "gast-34": {
+    "nombre": "BANDEJAS CARTON N14 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 80
+  },
+  "gast-35": {
+    "nombre": "BANDEJAS CARTON N16 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/02/Bandeja-carton-LOW-Photoroom-1-Photoroom.jpg",
+    "mpSlug": "bandeja-de-carton-blanca-n7-32cm-x-25-cm",
+    "score": 80
+  },
+  "gast-45": {
+    "nombre": "BANDEJAS DESCARTABLES PLASTICAS 105 C/TAPA OVAL XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/07/Mesa-de-trabajo-91-100-1-300x300.jpg",
+    "mpSlug": "bandejas-delivery-descartables-105-oval-micro",
+    "score": 60
+  },
+  "gast-46": {
+    "nombre": "BANDEJAS DESCARTABLES PLASTICAS 105 OVAL X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/07/Mesa-de-trabajo-91-100-1-300x300.jpg",
+    "mpSlug": "bandejas-delivery-descartables-105-oval-micro",
+    "score": 60
+  },
+  "gast-47": {
+    "nombre": "BANDEJAS DESCARTABLES PLASTICAS 105 REC/OVAL REFORZADA X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/07/Mesa-de-trabajo-91-100-1-300x300.jpg",
+    "mpSlug": "bandejas-delivery-descartables-105-oval-micro",
+    "score": 50
+  },
+  "gast-89": {
+    "nombre": "DISPENSER TOALLAS INTERCALADAS",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/ELEGANTE-09-300x300.jpg",
+    "mpSlug": "toallas-intercaladas-de-papel-blancas-elegante-19x24",
+    "score": 50
+  },
+  "gast-90": {
+    "nombre": "ENSALADERA CON PRECINTO XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Ensaladera-Negra-Descartable-Photoroom-300x300.jpg",
+    "mpSlug": "ensaladera-negra-descartable-con-tapa-900cc",
+    "score": 50
+  },
+  "gast-112": {
+    "nombre": "PALITOS BROCHETE 15CM X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/06cc73c6-b24e-d842-f759-b5036b0fa0b2/db8cd5e6e2ff48501cfe0aacf12c1d7b-650f4e970a347.jpg",
+    "tamSlug": "palitos-de-helado-x-50-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "gast-113": {
+    "nombre": "PALITOS BROCHETE 25CM X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/06cc73c6-b24e-d842-f759-b5036b0fa0b2/db8cd5e6e2ff48501cfe0aacf12c1d7b-650f4e970a347.jpg",
+    "tamSlug": "palitos-de-helado-x-50-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "gast-114": {
+    "nombre": "PALITOS HELADO NATURAL X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/06cc73c6-b24e-d842-f759-b5036b0fa0b2/db8cd5e6e2ff48501cfe0aacf12c1d7b-650f4e970a347.jpg",
+    "tamSlug": "palitos-de-helado-x-50-color",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "gast-138": {
+    "nombre": "POTES 1/2 CON TAPA X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/90102-web-300x300.jpeg",
+    "mpSlug": "pote-650cc-con-tapa-plastico-descartable",
+    "score": 52
+  },
+  "gast-139": {
+    "nombre": "POTES 1/4 CON TAPA X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/90102-web-300x300.jpeg",
+    "mpSlug": "pote-650cc-con-tapa-plastico-descartable",
+    "score": 52
+  },
+  "gast-140": {
+    "nombre": "POTES 1/8 CON TAPA X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/90102-web-300x300.jpeg",
+    "mpSlug": "pote-650cc-con-tapa-plastico-descartable",
+    "score": 52
+  },
+  "gast-148": {
+    "nombre": "SERVILLETAS 18X18 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/06/Untitled-design-2-300x300.png",
+    "mpSlug": "servilletas-de-papel-blancas-24x24cm",
+    "score": 50
+  },
+  "gast-149": {
+    "nombre": "SERVILLETAS 33X33 X CAJA",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/06/Untitled-design-2-300x300.png",
+    "mpSlug": "servilletas-de-papel-blancas-24x24cm",
+    "score": 50
+  },
+  "gast-157": {
+    "nombre": "SERVILLETAS ELEGANTE 33X33 X1000U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/79907-300x300.png",
+    "mpSlug": "servilletas-de-papel-tissue-elegante-32-x-32-cm",
+    "score": 67
+  },
+  "gast-158": {
+    "nombre": "SERVILLETAS ELEGANTE BIG X150U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/79907-300x300.png",
+    "mpSlug": "servilletas-de-papel-tissue-elegante-32-x-32-cm",
+    "score": 67
+  },
+  "gast-159": {
+    "nombre": "SERVILLETAS ELEGANTE X80U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/79907-300x300.png",
+    "mpSlug": "servilletas-de-papel-tissue-elegante-32-x-32-cm",
+    "score": 67
+  },
+  "gast-164": {
+    "nombre": "SERVILLETAS SERVETTE 24X24 X1000U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/06/Untitled-design-2-300x300.png",
+    "mpSlug": "servilletas-de-papel-blancas-24x24cm",
+    "score": 50
+  },
+  "gast-165": {
+    "nombre": "SERVILLETAS BOUQUET 33X33 X25U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/06/Untitled-design-2-300x300.png",
+    "mpSlug": "servilletas-de-papel-blancas-24x24cm",
+    "score": 50
+  },
+  "gast-175": {
+    "nombre": "TOALLAS INTERCALADAS ECONOMICAS X200",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/ELEGANTE-09-300x300.jpg",
+    "mpSlug": "toallas-intercaladas-de-papel-blancas-elegante-19x24",
+    "score": 50
+  },
+  "gast-176": {
+    "nombre": "TOALLAS INTERCALADAS AZUL X CAJA",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/ELEGANTE-09-300x300.jpg",
+    "mpSlug": "toallas-intercaladas-de-papel-blancas-elegante-19x24",
+    "score": 50
+  },
+  "esc-2": {
+    "nombre": "AVON BLOCK A6 LISO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/6e198acb-c201-6557-6439-e8950fd59f6d/2f37337048977d0ac393f37c971aa4de-6504b2a38c306.jpg",
+    "tamSlug": "block-a5-esquela-husares-avon-liso",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "esc-4": {
+    "nombre": "CARTELES DE GOMA EVA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7e65f937-cb8c-b46d-de7d-7c7d5765ce7b/ae347e6b1b4e8a45ef9ea91d899c8555-650f4de4dc9d5.jpg",
+    "tamSlug": "goma-eva-40x60-2-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-5": {
+    "nombre": "CARTULINA BLANCA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb77e11e-7def-4354-ab70-7a4ec68ab394/d5d34ef29f04b45aa84fd71403ec9c97-650f4de2cf8fe.jpg",
+    "tamSlug": "cartulina-color-x-1-44-x-63",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-6": {
+    "nombre": "CARTULINA COLOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb77e11e-7def-4354-ab70-7a4ec68ab394/d5d34ef29f04b45aa84fd71403ec9c97-650f4de2cf8fe.jpg",
+    "tamSlug": "cartulina-color-x-1-44-x-63",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-7": {
+    "nombre": "CARTULINA IMPRESA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb77e11e-7def-4354-ab70-7a4ec68ab394/d5d34ef29f04b45aa84fd71403ec9c97-650f4de2cf8fe.jpg",
+    "tamSlug": "cartulina-color-x-1-44-x-63",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-8": {
+    "nombre": "CIF REPUESTO LIMPIA VIDRIO 450CC XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/cceb3497-dee8-1a8a-e13c-5b29b5e10369/4762da4e45a4ea548256736b55dca6cd-650f4c472a233.jpg",
+    "tamSlug": "limpiador-cif-antigrasa-repuesto-900ml",
+    "score": 65,
+    "fuente": "tam"
+  },
+  "esc-9": {
+    "nombre": "COMPAS STUDY XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/96558223-fd53-2b63-b34b-2475c45d9c59/ea72a6bc815431939f58d547be2723e5-650f4e1629e69.jpg",
+    "tamSlug": "compas-metalico-escolar",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-12": {
+    "nombre": "CRAYONES X6 JUMBO SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/30c905aa-c003-ee7b-c627-caa56a26a1d7/filgo-jumbo-65be53dd0543b.jpg",
+    "tamSlug": "crayones-filgo-sta-jumbo-x-12",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-15": {
+    "nombre": "CUADERNO EXITO 16X21 X48H T/DURA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "esc-16": {
+    "nombre": "CUADERNO EXITO AB3 X48H T/DURA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-17": {
+    "nombre": "CUADERNO EXITO ESPIRALADO N7 X100H XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "esc-19": {
+    "nombre": "CUADERNO LAPRIDA AB3 X50H (EXITO)",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-21": {
+    "nombre": "CUADERNO LAPRIDA N3 50H (EXITO)",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "esc-24": {
+    "nombre": "CUADERNO RIVADAVIA ABC X50H (EXITO)",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-27": {
+    "nombre": "CUADERNO RIVADAVIA X50H (EXITO)",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "esc-28": {
+    "nombre": "CUADERNO RIVADAVIA X96H (EXITO)",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/31a442cb-2f62-4b00-3aae-6edb3816f693/5781b643fca9b297c79935570fcdb875-6504b665ac265.jpg",
+    "tamSlug": "cuaderno-de-caligrafia-19-x-24-exito-24-hs-103614",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "esc-30": {
+    "nombre": "CUADERNO T/FLEXIBLE X48H AMERICA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/06f5ae18-afc7-ce27-e8fc-d530819bdbfa/288f9c0331b649369b8a7afb1581877d-6504b672f0132.jpg",
+    "tamSlug": "cuaderno-tapa-flexible-america-rayado-16x21-24-hojas",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-32": {
+    "nombre": "CUTER REPUESTO CHICO X10U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-33": {
+    "nombre": "CUTER REPUESTO GRANDE X10U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-36": {
+    "nombre": "FABER LAPIZ CORRECTOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "esc-37": {
+    "nombre": "FILGO REPUESTO JUMP GO! BORRABLE XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/bba07ba1-f851-e3a0-9ce6-3ac6b9ef97ae/repuesto-borrax-caja-y-unidad-666337712319e.jpg",
+    "tamSlug": "repuesto-borrable-filgo-borrax-se-azul",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "esc-40": {
+    "nombre": "GENIO-FILGO REPUESTO ROLLER GEL BORRABLE",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/bba07ba1-f851-e3a0-9ce6-3ac6b9ef97ae/repuesto-borrax-caja-y-unidad-666337712319e.jpg",
+    "tamSlug": "repuesto-borrable-filgo-borrax-se-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-43": {
+    "nombre": "GOMA EVA GLITER A4 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7e65f937-cb8c-b46d-de7d-7c7d5765ce7b/ae347e6b1b4e8a45ef9ea91d899c8555-650f4de4dc9d5.jpg",
+    "tamSlug": "goma-eva-40x60-2-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-45": {
+    "nombre": "GOMA EVA METALIZADA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7e65f937-cb8c-b46d-de7d-7c7d5765ce7b/ae347e6b1b4e8a45ef9ea91d899c8555-650f4de4dc9d5.jpg",
+    "tamSlug": "goma-eva-40x60-2-mm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-46": {
+    "nombre": "GOMA EVA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7e65f937-cb8c-b46d-de7d-7c7d5765ce7b/ae347e6b1b4e8a45ef9ea91d899c8555-650f4de4dc9d5.jpg",
+    "tamSlug": "goma-eva-40x60-2-mm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-50": {
+    "nombre": "LAPICES COLOR CORTO X6 SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/ccd54bed-d03a-f670-f43b-16e96e9fe667/LAPICES-FILGO-PINTO-CORTOS-12-COLORES-66c4ad87b6b11-O.jpg",
+    "tamSlug": "lapices-de-colores-x-12-cortos-filgo",
+    "score": 53,
+    "fuente": "tam"
+  },
+  "esc-55": {
+    "nombre": "LAPRIDA REPUESTO 480H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/74bc4ca3-9a30-7474-2bfc-3ded29594508/5f3e77ce7288b0694369c69e29005572-650f4e5cdc026.jpg",
+    "tamSlug": "repuesto-laprida-x-288-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-56": {
+    "nombre": "LAPRIDA REPUESTO 48H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/74bc4ca3-9a30-7474-2bfc-3ded29594508/5f3e77ce7288b0694369c69e29005572-650f4e5cdc026.jpg",
+    "tamSlug": "repuesto-laprida-x-288-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-57": {
+    "nombre": "LAPRIDA REPUESTO A4 X48H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/74bc4ca3-9a30-7474-2bfc-3ded29594508/5f3e77ce7288b0694369c69e29005572-650f4e5cdc026.jpg",
+    "tamSlug": "repuesto-laprida-x-288-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-58": {
+    "nombre": "LAPRIDA REPUESTO N3 24H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/74bc4ca3-9a30-7474-2bfc-3ded29594508/5f3e77ce7288b0694369c69e29005572-650f4e5cdc026.jpg",
+    "tamSlug": "repuesto-laprida-x-288-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-60": {
+    "nombre": "PAPEL CREPE XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/e442c711-a29c-b946-c8ef-122679f317cf/1a71e488200d957060000ca298c2e85a-650f4de04c891.jpg",
+    "tamSlug": "papel-crepe-color",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-61": {
+    "nombre": "PINCEL 12 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/de3ad2dc-8ce1-d352-0415-4b7de3a6eeba/3625456a12e4d9a31e0c3d46cd9454ab-650f4e08376c8.jpg",
+    "tamSlug": "pincel-fino",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-62": {
+    "nombre": "PINCEL 8 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/de3ad2dc-8ce1-d352-0415-4b7de3a6eeba/3625456a12e4d9a31e0c3d46cd9454ab-650f4e08376c8.jpg",
+    "tamSlug": "pincel-fino",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-63": {
+    "nombre": "PINCEL N-10",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/de3ad2dc-8ce1-d352-0415-4b7de3a6eeba/3625456a12e4d9a31e0c3d46cd9454ab-650f4e08376c8.jpg",
+    "tamSlug": "pincel-fino",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-64": {
+    "nombre": "PINCEL N6 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/de3ad2dc-8ce1-d352-0415-4b7de3a6eeba/3625456a12e4d9a31e0c3d46cd9454ab-650f4e08376c8.jpg",
+    "tamSlug": "pincel-fino",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-69": {
+    "nombre": "REGLA 15CM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/395dcfc5-0632-8a7a-b9a3-394edf5f6a1e/REGLA-ACERO-30-CM-970-11-6590559347a26.jpg",
+    "tamSlug": "regla-de-acero-30-cm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-70": {
+    "nombre": "REGLA 20CM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/395dcfc5-0632-8a7a-b9a3-394edf5f6a1e/REGLA-ACERO-30-CM-970-11-6590559347a26.jpg",
+    "tamSlug": "regla-de-acero-30-cm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-71": {
+    "nombre": "REGLA 30CM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/395dcfc5-0632-8a7a-b9a3-394edf5f6a1e/REGLA-ACERO-30-CM-970-11-6590559347a26.jpg",
+    "tamSlug": "regla-de-acero-30-cm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-72": {
+    "nombre": "REGLA FLEXIBLE 20CM",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/ea6fa537-c3b8-a267-c089-51041dcfaccd/Regla-30-cm-flexible-674b290e2a5d1-O.webp",
+    "tamSlug": "regla-flexible-x-30-cm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-73": {
+    "nombre": "REGLA METAL 30CM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/395dcfc5-0632-8a7a-b9a3-394edf5f6a1e/REGLA-ACERO-30-CM-970-11-6590559347a26.jpg",
+    "tamSlug": "regla-de-acero-30-cm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-74": {
+    "nombre": "REGLA METAL 40CM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/395dcfc5-0632-8a7a-b9a3-394edf5f6a1e/REGLA-ACERO-30-CM-970-11-6590559347a26.jpg",
+    "tamSlug": "regla-de-acero-30-cm",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-75": {
+    "nombre": "REPUESTO CANSON N6 BLANCO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-76": {
+    "nombre": "REPUESTO CANSON N3 BLANCO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-77": {
+    "nombre": "REPUESTO CANSON N3 COLOR-NEGRO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-78": {
+    "nombre": "REPUESTO CANSON N5 BLANCO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-79": {
+    "nombre": "REPUESTO CANSON N5 COLOR-NEGRO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-80": {
+    "nombre": "REPUESTO CANSON N6 NEGRO-COLOR",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/df4abbbd-6e2c-070f-fc01-97155b6ff41d/Luma-RepNo3-blanco-655x655-65b00ed037425.jpg",
+    "tamSlug": "repuesto-canson-n-3-blanco",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-81": {
+    "nombre": "RIVADAVIA REPUESTO 24H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1535/Repuesto-Rivadavia-x480-hojas-con-banda-protectora-696ea26662286-O.webp",
+    "tamSlug": "repuesto-rivadavia-x-480-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-82": {
+    "nombre": "RIVADAVIA REPUESTO 480H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1535/Repuesto-Rivadavia-x480-hojas-con-banda-protectora-696ea26662286-O.webp",
+    "tamSlug": "repuesto-rivadavia-x-480-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-83": {
+    "nombre": "RIVADAVIA REPUESTO 48H",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1535/Repuesto-Rivadavia-x480-hojas-con-banda-protectora-696ea26662286-O.webp",
+    "tamSlug": "repuesto-rivadavia-x-480-hojas-rayado",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-84": {
+    "nombre": "SACAPUNTAS CON GOMA 2EN1 XU MAPED",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/1a7f4411-ac65-f0a8-d83f-bbf3685e9503/fb216c6274391b3a2e6292db85a441d2-650f4e80b4720.jpg",
+    "tamSlug": "sacapuntas-con-deposito",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "esc-85": {
+    "nombre": "SACAPUNTAS DE METAL XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/b7988b8b-884e-9b8a-e6c3-2c0a759a3bc9/536c7fdf0e6bba65eb8814611326a8b8-650f4e8460970.jpg",
+    "tamSlug": "sacapuntas-metalico",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-88": {
+    "nombre": "SACAPUNTAS METAL DOBLE XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/b7988b8b-884e-9b8a-e6c3-2c0a759a3bc9/536c7fdf0e6bba65eb8814611326a8b8-650f4e8460970.jpg",
+    "tamSlug": "sacapuntas-metalico",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "esc-96": {
+    "nombre": "TIJERA XU ESCOLAR SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/94946881-e63a-f721-4494-2fa6d36b349b/41072f15fbe8dbd4d6bf5f269262ba79-650f4e90669c3.jpg",
+    "tamSlug": "tijera-escolar-ezco-filgo-12-cm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-0": {
+    "nombre": "ABROCHADORA KARTEC 50 PINZA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/0a244f68-1ad7-7045-e1d8-a0e8a386ffdf/10-50-azul-1-65df738d47836.jpg",
+    "tamSlug": "abrochadora-grap-10-50-pinza-pintada",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-1": {
+    "nombre": "ABROCHADORA MAPED MINI METAL 10H XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/a7f0eb43-05cb-e29e-cc5a-8c128faf262d/2e2d7c145001b1aceb9739f5b847139f-6501b965456e0.jpg",
+    "tamSlug": "abrochadora-kangaro-hp-435-24-6-24-8-26-6-y-26-8",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-4": {
+    "nombre": "ABROCHADORA METAL E-352",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/a7f0eb43-05cb-e29e-cc5a-8c128faf262d/2e2d7c145001b1aceb9739f5b847139f-6501b965456e0.jpg",
+    "tamSlug": "abrochadora-kangaro-hp-435-24-6-24-8-26-6-y-26-8",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-5": {
+    "nombre": "ABROCHADORA MIT 50 PINZA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/89d24c74-a04f-bb24-94bc-e31cbd738e3e/1527b3ba410be4f401c8b556898791e1-6501b96bbb48c.jpg",
+    "tamSlug": "abrochadora-mit-64-pinza-pintada",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "lib-7": {
+    "nombre": "ABROCHADORA SIMBALL CONFORT PINZA N10 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/0a244f68-1ad7-7045-e1d8-a0e8a386ffdf/10-50-azul-1-65df738d47836.jpg",
+    "tamSlug": "abrochadora-grap-10-50-pinza-pintada",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-9": {
+    "nombre": "ACRILICO XU COLORES EN PROMO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/0ea2d522-37f5-4ed1-78a6-fbf1ab3c0ed2/ACRILICOS-COLORES-ETERNA-50-ML-67951a1ae4546-O.webp",
+    "tamSlug": "acrilico-eterna-ad-50-ml-colores-varios",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-11": {
+    "nombre": "AFICHE XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c64fc4d2-a7d9-5c92-81c4-c6040030345d/9f9a3931fa28bbdb7c8d261b5c62b8c1-6508561c14561.jpg",
+    "tamSlug": "papel-afiche-color-x1",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-14": {
+    "nombre": "APRIETA PAPEL COLOR 19MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-15": {
+    "nombre": "APRIETA PAPEL COLOR 25MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-16": {
+    "nombre": "APRIETA PAPEL COLOR 32MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-17": {
+    "nombre": "APRIETA PAPEL COLOR 41MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-18": {
+    "nombre": "APRIETA PAPEL COLOR 51MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-19": {
+    "nombre": "APRIETA PAPEL METALIZADO 19MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-20": {
+    "nombre": "APRIETA PAPEL METALIZADO 25MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-21": {
+    "nombre": "APRIETA PAPEL METALIZADO 32MM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/199fd600-bc0f-599f-11f4-05585d1699c3/cf2e814e0d7ae591054b6aad3865123a-6501ee63ba02c.jpg",
+    "tamSlug": "aprieta-papel-niquelado-40-chico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-28": {
+    "nombre": "BANDAS ELASTICAS X100G",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/03455fb5-48d1-1bd9-72b1-8fbbeeb90569/bd70198da6431316f1db4b3fcd45f1c9-6501ee6de288f.jpg",
+    "tamSlug": "bandas-elasticas-consul-x100-gramos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-29": {
+    "nombre": "BANDAS ELASTICAS X500G",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/03455fb5-48d1-1bd9-72b1-8fbbeeb90569/bd70198da6431316f1db4b3fcd45f1c9-6501ee6de288f.jpg",
+    "tamSlug": "bandas-elasticas-consul-x100-gramos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-34": {
+    "nombre": "BIBLIORATO GRIS OFICIO XU THE PEL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/0835a53e-1b8a-12aa-4120-d4a2ecb630f2/df3d55e0fc3a652430216c4571dee032-65086550a0724.jpg",
+    "tamSlug": "bibliorato-avios-medoro-oficio-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-41": {
+    "nombre": "BLOCK DE HOJAS RAYADAS/CUADRICULADAS A4 80H AMERICA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/95cb370c-140c-cbc0-c283-79f8092f7703/886617199c0561633ae06e3e08ffab48-6504b29e560ed.jpg",
+    "tamSlug": "block-a4-avon-america-80-hojas-cuadriculado",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-42": {
+    "nombre": "BLOCK DE HOJAS RAYADAS/CUADRICULADAS A5 80H AMERICA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/95cb370c-140c-cbc0-c283-79f8092f7703/886617199c0561633ae06e3e08ffab48-6504b29e560ed.jpg",
+    "tamSlug": "block-a4-avon-america-80-hojas-cuadriculado",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-43": {
+    "nombre": "BLOCK OFICIO AMERICA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/27f34b3a-2a40-96b6-4c23-e2eb78910072/5d80f04662ccd37e5f40f50c5dda4af0-650f4cef632a6.jpg",
+    "tamSlug": "block-a4-america-x-80-hojas-liso",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-45": {
+    "nombre": "BROCHES ABROCHADORA MAPED/SIMBAL 24/6 X1000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/da8d3b7f-7bd8-f8b7-c064-91766509dc63/fef8c6206244186166559547dc3ef14e-6501b9694a093.jpg",
+    "tamSlug": "abrochadora-kangaro-hp-65-para-broches-65",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-52": {
+    "nombre": "BROCHES MIT ABROCHADORA 21/6 X1000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-53": {
+    "nombre": "BROCHES MIT ABROCHADORA 21/6 X5000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-54": {
+    "nombre": "BROCHES MIT ABROCHADORA 24/6 X1000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-55": {
+    "nombre": "BROCHES MIT ABROCHADORA 24/6 X5000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-56": {
+    "nombre": "BROCHES MIT ABROCHADORA 50 X5000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-57": {
+    "nombre": "BROCHES MIT ABROCHADORA 64 X1000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-58": {
+    "nombre": "BROCHES MIT ABROCHADORA 64 X5000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-59": {
+    "nombre": "BROCHES MIT ABROCHADORA N50/10 X1000U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4efb1061-232f-daab-abb0-6e86e38dfeed/timthumb-inc-3-68476e81c810f-O.png",
+    "tamSlug": "broches-mit-23-8-x-1000",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-60": {
+    "nombre": "CARPETA 3 SOLAPAS X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/44897abd-f06d-4f82-3dac-d226a0e54b45/5e5880963b8a35bf47b5ba704f753082-6508658edff7b.jpg",
+    "tamSlug": "carpeta-interna-2-solapas-abierta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-62": {
+    "nombre": "CARPETA BASE OPACA CLIP OFICIO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/1e066657-2268-335f-99bd-af99e0888a6d/1a033d02fbf536f752f3c3b156756fd9-650865768f086.jpg",
+    "tamSlug": "carpeta-base-opaca-tapa-transparente-oficio-avios",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-63": {
+    "nombre": "CARPETA CARATULA X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/9a5b2d54-44fd-6509-562c-9e8e98f6bec0/CARPETA-CARTULINA-CARATULA-OFICIO-CELESTE-6622b77787c2d.webp",
+    "tamSlug": "carpeta-cartulina-caratula-oficio-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-64": {
+    "nombre": "CARPETA DE FIBRA TRANSP N3",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/245a06ed-bd7a-3834-fe13-048fff33788f/bdb8374130812a8a729b1e19b5c6a04e-6508658a936fb.jpg",
+    "tamSlug": "carpeta-fibra-negra-a4-2-anillos",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-65": {
+    "nombre": "CARPETA INTERNA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/44897abd-f06d-4f82-3dac-d226a0e54b45/5e5880963b8a35bf47b5ba704f753082-6508658edff7b.jpg",
+    "tamSlug": "carpeta-interna-2-solapas-abierta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-66": {
+    "nombre": "CARPETA KRAFT 3 SOLAPAS N6 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/44897abd-f06d-4f82-3dac-d226a0e54b45/5e5880963b8a35bf47b5ba704f753082-6508658edff7b.jpg",
+    "tamSlug": "carpeta-interna-2-solapas-abierta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-67": {
+    "nombre": "CARPETA KRAFT 3 SOLAPAS XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/44897abd-f06d-4f82-3dac-d226a0e54b45/5e5880963b8a35bf47b5ba704f753082-6508658edff7b.jpg",
+    "tamSlug": "carpeta-interna-2-solapas-abierta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-78": {
+    "nombre": "CLIPS 3 X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-79": {
+    "nombre": "CLIPS 4 X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-80": {
+    "nombre": "CLIPS 5 X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-81": {
+    "nombre": "CLIPS 6 X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-82": {
+    "nombre": "CLIPS PLASTICO N3 X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-83": {
+    "nombre": "CLIPS PLASTICO N-6 X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-84": {
+    "nombre": "CLIPS PLASTICO N4 X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/9d3b59f3-32a0-4ca9-5392-0f42a1f6c85f/e596c0d75fe29df78cef06a9c94ed81b-6504b2bf7f680.jpg",
+    "tamSlug": "broches-clips-n-7-8-78mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-129": {
+    "nombre": "EZCO ROLLO BLANCO XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-131": {
+    "nombre": "FABER BIROMES XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-134": {
+    "nombre": "FABER RESALTADOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-135": {
+    "nombre": "FABER TRILUX BIROMES X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/db0aff4b-c25a-5b97-c1ac-64c567ddbd00/15128c93c97e910ad51f2dd64994f970-6504b73dad490.jpg",
+    "tamSlug": "boligrafo-faber-trilux-azul",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-142": {
+    "nombre": "FILGO BORRABLE JUMP GO! XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/2170af86-49d1-f7f6-616c-94e7cc19047c/lapicera-borrable-filgo-jump-unidad-686fd2d8bb2f0-O.webp",
+    "tamSlug": "lapicera-roller-filgo-jump-borrable",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-143": {
+    "nombre": "FILGO BORRABLE ROLLER GEL + REPUESTO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-144": {
+    "nombre": "FILGO BORRAX ROLLER GEL BORRABLE",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1819/lapicer-roller-borrable-borrax-se-cuerpo-azul-696bcb451f663.webp",
+    "tamSlug": "lapicera-roller-borrable-borrax-se-filgo-cuerpo-azul",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-146": {
+    "nombre": "FILGO LAPIZ CORRECTOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4503f250-d287-cc18-7715-3ea42587eb4a/goma-lapiz-filgo-669fbf05f28c9-O.jpg",
+    "tamSlug": "goma-de-borrar-lapiz-filgo",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-147": {
+    "nombre": "FILGO MAR 040 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/334/minas-hb-07-filgo-para-portaminas-69737fe46d1ce.webp",
+    "tamSlug": "minas-filgo-0-7-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-148": {
+    "nombre": "FILGO MAR 041 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/334/minas-hb-07-filgo-para-portaminas-69737fe46d1ce.webp",
+    "tamSlug": "minas-filgo-0-7-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-149": {
+    "nombre": "FILGO MAR 042 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/334/minas-hb-07-filgo-para-portaminas-69737fe46d1ce.webp",
+    "tamSlug": "minas-filgo-0-7-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-150": {
+    "nombre": "FILGO MARCADOR 050 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/2e3698f5-67e1-325a-cdef-dd143492f767/CM2210-E20-SUR-658714112311c.jpg",
+    "tamSlug": "marcadores-filgo-x-20-colores",
+    "score": 80,
+    "fuente": "tam"
+  },
+  "lib-151": {
+    "nombre": "FILGO MARCADOR 051 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/2e3698f5-67e1-325a-cdef-dd143492f767/CM2210-E20-SUR-658714112311c.jpg",
+    "tamSlug": "marcadores-filgo-x-20-colores",
+    "score": 80,
+    "fuente": "tam"
+  },
+  "lib-152": {
+    "nombre": "FILGO MARCADOR 058 PIZARRA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/254a428a-4a16-2b2e-7d0e-c42e53782b55/3652733ed318e9a575e5b93984165d1f-6504b7c88c87a.jpg",
+    "tamSlug": "marcador-trabi-450-filgo-058-para-pizarra-azul",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-153": {
+    "nombre": "FILGO MARCADOR X8 PINCEL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/f586b990-f401-7a3c-7e0f-e8da479c2774/marcadores-filgo-x-10-66e2ee6a1cf55-O.jpg",
+    "tamSlug": "marcadores-filgo-x-10-largos-colores",
+    "score": 53,
+    "fuente": "tam"
+  },
+  "lib-155": {
+    "nombre": "FILGO MARCADORES STRONG METAL X6",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/f586b990-f401-7a3c-7e0f-e8da479c2774/marcadores-filgo-x-10-66e2ee6a1cf55-O.jpg",
+    "tamSlug": "marcadores-filgo-x-10-largos-colores",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-157": {
+    "nombre": "FILGO RESALTADOR FINE XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/d63ba80a-2ae9-0cf3-c929-45c04f50a39a/resaltador-lighter-fine-celeste-669fbb6954ecf-O.jpg",
+    "tamSlug": "resaltador-filgo-lighter-fine-fino-celeste",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-158": {
+    "nombre": "FILGO RESALTADOR PASTEL XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/88be2414-3a12-6731-ac13-0c11b3a8f3c2/resaltador-trabi-amarillo-pastel-669fb34563862-O.jpg",
+    "tamSlug": "resaltador-trabi-amarillo-pastel",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-159": {
+    "nombre": "FILGO RESALTADOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/334/minas-hb-07-filgo-para-portaminas-69737fe46d1ce.webp",
+    "tamSlug": "minas-filgo-0-7-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-160": {
+    "nombre": "FILGO RETRACTIL FASTGRIP XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/a6ddbc2c-5e16-5c7d-aa38-529ab8ebf4ff/FG10-003-prod-1-65b102765eed4.jpg",
+    "tamSlug": "boligrafo-retractil-filgo-fastgrip-azul-oferta",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "lib-161": {
+    "nombre": "FILGO RETRACTIL GINZA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/367eaa7b-34d5-6114-9ed1-b98835c4d0eb/b7f1c20f8ef5e1ed45e99ecb0c694b36-6504b746e14c3.jpg",
+    "tamSlug": "boligrafo-filgo-retractil-ginza-azul",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "lib-162": {
+    "nombre": "FILGO RETRACTIL ONE XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/367eaa7b-34d5-6114-9ed1-b98835c4d0eb/b7f1c20f8ef5e1ed45e99ecb0c694b36-6504b746e14c3.jpg",
+    "tamSlug": "boligrafo-filgo-retractil-ginza-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-163": {
+    "nombre": "FILGO ROLLER GEL POP 0.7 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "lib-164": {
+    "nombre": "FILGO ROLLER GEL SUPER 1.0 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "lib-165": {
+    "nombre": "FILGO TNT MARCADORES ROLLER GLAM X4U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 52,
+    "fuente": "tam"
+  },
+  "lib-176": {
+    "nombre": "GLASE COMUN XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/5f18c0d8-2532-5319-c5f2-5535c92a95bf/cbeb683183cbcbd7c0c2a2342e2296b2-650f4df0adffc.jpg",
+    "tamSlug": "papel-glase-metal-x-10-unidades",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-177": {
+    "nombre": "GLASE METALIZADO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/5f18c0d8-2532-5319-c5f2-5535c92a95bf/cbeb683183cbcbd7c0c2a2342e2296b2-650f4df0adffc.jpg",
+    "tamSlug": "papel-glase-metal-x-10-unidades",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-178": {
+    "nombre": "GLOBO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/2ff4afe4-aec7-ccd3-4469-aa6cfc3056b9/c169335e6eda2f3920f085bd566b716c-650f4e9f17e95.jpg",
+    "tamSlug": "globo-color",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-181": {
+    "nombre": "GOTITA GEL XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/19ef4010-1528-dd0f-9803-02ad5f9e0a62/a6109a24233134690f0cce90546c386e-65085653cdf0c.jpg",
+    "tamSlug": "pegamento-la-gotita-gel-3-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-182": {
+    "nombre": "GOTITA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/b9a349ba-6428-5976-074c-282f0d3886d9/ed6b8dfff7d60a811fa3c42eaf9f3e3f-65085655671fa.jpg",
+    "tamSlug": "pegamento-la-gotita-x-2ml",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-198": {
+    "nombre": "LAMA CARPETA COLOR 3 SOLAPAS XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/919806c7-f2f2-083b-0294-f0369215f9dd/e72c6047cdece0e66c53e80d22e6e433-6508658807353.jpg",
+    "tamSlug": "carpeta-e18-clip-lateral-a4-lama",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-201": {
+    "nombre": "LAMA SEPARADORES X5U A4-OFICIO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/b2aecdb3-b119-b97a-58d3-73f88e813635/bb6c171a028b6a84aff53db038dec02d-650850be55afc.jpg",
+    "tamSlug": "separadores-plasticos-oficio-5-posiciones",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-205": {
+    "nombre": "LAPIZ NEGRO GOMA MAPED",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-206": {
+    "nombre": "LAPIZ NEGRO MAPED",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-207": {
+    "nombre": "LAPIZ NEGRO NAVY XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-208": {
+    "nombre": "LAPIZ NEGRO NORIS STAEDTLER 2HB XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c0edd8a7-ae4c-4507-b4ba-d426b7de61c8/8d2b42c4f566018e65feb5aba92132db-650f4dc390f3b.jpg",
+    "tamSlug": "lapiz-staedtler-noris-b-n-2",
+    "score": 75,
+    "fuente": "tam"
+  },
+  "lib-209": {
+    "nombre": "LAPIZ PORTA MINA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/c149252c-a1a2-cc8f-e522-f663269dae45/porta-lapiz-alambre-negro-values-68b998a245711.webp",
+    "tamSlug": "porta-lapiz-alambre-negro-values",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-210": {
+    "nombre": "LAPIZ TRADITION 2B STAEDTLER XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/d8a5aea9-d3f1-d21f-543b-436d14b81a49/lapiz-negro-staedtler-tradition-2B-artistico-67952375cc7a6.jpg",
+    "tamSlug": "lapiz-staedtler-tradition-2b",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-216": {
+    "nombre": "LFABER MARCADOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-218": {
+    "nombre": "LSF0713 SOBRES X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-219": {
+    "nombre": "LSF0915 SOBRES X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-223": {
+    "nombre": "MARCADOR EDDING 1200 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-224": {
+    "nombre": "MARCADOR EDDING 160 PIZARRA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-225": {
+    "nombre": "MARCADOR EDDING 180 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-226": {
+    "nombre": "MARCADOR 450 PIZARRA XU TRABI",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/254a428a-4a16-2b2e-7d0e-c42e53782b55/3652733ed318e9a575e5b93984165d1f-6504b7c88c87a.jpg",
+    "tamSlug": "marcador-trabi-450-filgo-058-para-pizarra-azul",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-227": {
+    "nombre": "MARCADOR 710/711 XU TRABI OFERTA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-228": {
+    "nombre": "MARCADOR AL AGUA XU TRABI",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/0e53fd46-80c8-66bb-ecdf-e3cc4e454508/marcador-trabi-420-negro-al-agua-673de7f3db239-O.jpg",
+    "tamSlug": "marcador-al-agua-trabi-420-negro-punta-redonda",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-230": {
+    "nombre": "MARCADOR X10U SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-231": {
+    "nombre": "MARCADOR X10U TRABI",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-232": {
+    "nombre": "MARCADOR X6U TRABI",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-233": {
+    "nombre": "MARCADOR XU TRABI",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-234": {
+    "nombre": "MINAS CAJA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/334/minas-hb-07-filgo-para-portaminas-69737fe46d1ce.webp",
+    "tamSlug": "minas-filgo-0-7-mm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-249": {
+    "nombre": "MURESCO SOBRE 30X40 X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/ea1b46f6-d148-cda2-8214-ae9194a1ff08/4294c8030a8c8b01c3dceb536baf2193-6509f7d8668a3.jpg",
+    "tamSlug": "sobre-blanco-19x24-x10-unidades-3890",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-255": {
+    "nombre": "MYD CARPETA 3 SOLAPAS X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/44897abd-f06d-4f82-3dac-d226a0e54b45/5e5880963b8a35bf47b5ba704f753082-6508658edff7b.jpg",
+    "tamSlug": "carpeta-interna-2-solapas-abierta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-256": {
+    "nombre": "MYD CARPETA 3 SOLAPAS XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/44897abd-f06d-4f82-3dac-d226a0e54b45/5e5880963b8a35bf47b5ba704f753082-6508658edff7b.jpg",
+    "tamSlug": "carpeta-interna-2-solapas-abierta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-257": {
+    "nombre": "MYD CARPETA CARATULA PREMIUM XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/9a5b2d54-44fd-6509-562c-9e8e98f6bec0/CARPETA-CARTULINA-CARATULA-OFICIO-CELESTE-6622b77787c2d.webp",
+    "tamSlug": "carpeta-cartulina-caratula-oficio-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-258": {
+    "nombre": "MYD CARPETA CARATULA X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/9a5b2d54-44fd-6509-562c-9e8e98f6bec0/CARPETA-CARTULINA-CARATULA-OFICIO-CELESTE-6622b77787c2d.webp",
+    "tamSlug": "carpeta-cartulina-caratula-oficio-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-259": {
+    "nombre": "MYD CARPETA CARATULA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/9a5b2d54-44fd-6509-562c-9e8e98f6bec0/CARPETA-CARTULINA-CARATULA-OFICIO-CELESTE-6622b77787c2d.webp",
+    "tamSlug": "carpeta-cartulina-caratula-oficio-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-260": {
+    "nombre": "MYD CARPETA CARATULA REFORZADA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/9a5b2d54-44fd-6509-562c-9e8e98f6bec0/CARPETA-CARTULINA-CARATULA-OFICIO-CELESTE-6622b77787c2d.webp",
+    "tamSlug": "carpeta-cartulina-caratula-oficio-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-261": {
+    "nombre": "MYD CARPETA FOLIOS 10 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/82eb9014-8a3f-284b-2189-eba60df509e7/342969b2761bacd90bf66d40cb2c80bc-650888a6985b6.jpg",
+    "tamSlug": "carpeta-plastica-a4-x-10-folios",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-262": {
+    "nombre": "MYD CARPETA FOLIOS 20 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/82eb9014-8a3f-284b-2189-eba60df509e7/342969b2761bacd90bf66d40cb2c80bc-650888a6985b6.jpg",
+    "tamSlug": "carpeta-plastica-a4-x-10-folios",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-263": {
+    "nombre": "MYD CARPETA FOLIOS 30 T/DURA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/82eb9014-8a3f-284b-2189-eba60df509e7/342969b2761bacd90bf66d40cb2c80bc-650888a6985b6.jpg",
+    "tamSlug": "carpeta-plastica-a4-x-10-folios",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-264": {
+    "nombre": "MYD CARPETA FOLIOS 40 T/DURA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/82eb9014-8a3f-284b-2189-eba60df509e7/342969b2761bacd90bf66d40cb2c80bc-650888a6985b6.jpg",
+    "tamSlug": "carpeta-plastica-a4-x-10-folios",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-265": {
+    "nombre": "MYD CARPETA FOLIOS 40 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/82eb9014-8a3f-284b-2189-eba60df509e7/342969b2761bacd90bf66d40cb2c80bc-650888a6985b6.jpg",
+    "tamSlug": "carpeta-plastica-a4-x-10-folios",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-273": {
+    "nombre": "MYD TACO 9X9 BLANCO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c80ee13f-ceeb-eec2-4c9b-970690f3f3cc/838554068ec9fd304263da3ffd86a3a4-6509f80362638.jpg",
+    "tamSlug": "taco-notas-9-x-9-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-274": {
+    "nombre": "MYD TACO 9X9 COLOR X400U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c80ee13f-ceeb-eec2-4c9b-970690f3f3cc/838554068ec9fd304263da3ffd86a3a4-6509f80362638.jpg",
+    "tamSlug": "taco-notas-9-x-9-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-275": {
+    "nombre": "MYD TACO COLOR 9X9 X300U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c80ee13f-ceeb-eec2-4c9b-970690f3f3cc/838554068ec9fd304263da3ffd86a3a4-6509f80362638.jpg",
+    "tamSlug": "taco-notas-9-x-9-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-276": {
+    "nombre": "MYD TACO MADERA 9X9 X300U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c80ee13f-ceeb-eec2-4c9b-970690f3f3cc/838554068ec9fd304263da3ffd86a3a4-6509f80362638.jpg",
+    "tamSlug": "taco-notas-9-x-9-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-282": {
+    "nombre": "PALITOS DE HELADO COLOR X50U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/06cc73c6-b24e-d842-f759-b5036b0fa0b2/db8cd5e6e2ff48501cfe0aacf12c1d7b-650f4e970a347.jpg",
+    "tamSlug": "palitos-de-helado-x-50-color",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-291": {
+    "nombre": "PAPEL PARA REGALO T/KRAFT 2 HOJAS",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/12/Caja-torta-kraft-comprimida-4-300x300.jpg",
+    "mpSlug": "caja-para-torta-de-papel-kraft-34x34x15",
+    "score": 50
+  },
+  "lib-306": {
+    "nombre": "PELIKAN CARBONICO 1010-200H XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/03f3cf8f-d322-d6d1-a2a2-96063d04c07b/PLENTI-X-10-662121e797145.jpg",
+    "tamSlug": "carbonico-pelikan-plenticopy-x-10-azul",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-310": {
+    "nombre": "PELIKAN MARCADOR 710 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-311": {
+    "nombre": "PELIKAN MARCADOR 711 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-313": {
+    "nombre": "PELIKAN PIZARRA BORRADOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/b6dfb937-2af8-aca0-420f-9b3a621d1c66/f9cc5e73e1e0b5f2c79ad3aaeee83d81-6508565d64132.jpg",
+    "tamSlug": "borrador-para-pizarra-blanca",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lib-329": {
+    "nombre": "PORTA TACO METAL XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c80ee13f-ceeb-eec2-4c9b-970690f3f3cc/838554068ec9fd304263da3ffd86a3a4-6509f80362638.jpg",
+    "tamSlug": "taco-notas-9-x-9-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-330": {
+    "nombre": "PORTA TACO NEGRO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c80ee13f-ceeb-eec2-4c9b-970690f3f3cc/838554068ec9fd304263da3ffd86a3a4-6509f80362638.jpg",
+    "tamSlug": "taco-notas-9-x-9-color",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-338": {
+    "nombre": "RECIBO DUPLICADO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/d1ff37da-fce1-f844-80bb-c2abfe4caeee/TALONARIO-DE-RECIBO-DUPLICADO-HUSARES-6697e469b2e50-O.jpg",
+    "tamSlug": "talonario-husares-recibo-duplicado-1825",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-339": {
+    "nombre": "RESALTADOR XU TRABI",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/02499c36-05e4-f996-af83-e05f41d0d457/dbbfa5421382c8f65a8eb9e9663e110c-6504bb0c02ebc.jpg",
+    "tamSlug": "resaltador-trabi-celeste",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lib-340": {
+    "nombre": "RESMA PAPEL A4 75GR XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/marketpaper-productos-ecommerce-93-300x300.jpg",
+    "mpSlug": "resma-de-papel-sulfito-10-kg-60x90",
+    "score": 50
+  },
+  "lib-341": {
+    "nombre": "RESMA PAPEL AUTOR OFICIO 80G XU PROMO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/bea2efe7-67a0-884f-2788-5c530a352e80/Resma-Ledesma-Autor-Oficio-75-Gramos-6890d5e202cfc.jpg",
+    "tamSlug": "resma-ledesma-autor-75-grs-oficio",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lib-342": {
+    "nombre": "RESMA PAPEL PUNAX A4 75G XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/marketpaper-productos-ecommerce-93-300x300.jpg",
+    "mpSlug": "resma-de-papel-sulfito-10-kg-60x90",
+    "score": 50
+  },
+  "lib-343": {
+    "nombre": "RESMA PAPEL PUNAX A4 75G XU PROMO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/2cd00554-fd5f-4639-b58c-6ebad889fcb4/resma-punax-671a9b6705ec5-O.webp",
+    "tamSlug": "resma-punax-75-grs-ledesma-a4-oferta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-344": {
+    "nombre": "ROLLER GEL CENTRO 1.0 XU SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-345": {
+    "nombre": "ROLLER GEL POWER 1MM SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-346": {
+    "nombre": "ROLLER GEL TANKPEN 0.7 XU SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1308/boligrafo-roller-gel-filgo-azul-69e6646c4db2f-O.webp",
+    "tamSlug": "marcador-roller-gel-filgo-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-353": {
+    "nombre": "ROLLO ARRANQUE 1520 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-354": {
+    "nombre": "ROLLO ARRANQUE 1525 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-356": {
+    "nombre": "ROLLO ARRANQUE 2025 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-357": {
+    "nombre": "ROLLO ARRANQUE 2030 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-358": {
+    "nombre": "ROLLO ARRANQUE 2535 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-359": {
+    "nombre": "ROLLO ARRANQUE 3040 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-360": {
+    "nombre": "ROLLO ARRANQUE 3545 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-361": {
+    "nombre": "ROLLO ARRANQUE 4050 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-362": {
+    "nombre": "ROLLO ARRANQUE 5070 X1.3KG-U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-363": {
+    "nombre": "ROLLO ARRANQUE 6090 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-364": {
+    "nombre": "ROLLO ARRANQUE VERDE 2030-2535-3040-3545 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-366": {
+    "nombre": "ROLLO CARACOL XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-367": {
+    "nombre": "ROLLO OBRA 75X30 X10",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-368": {
+    "nombre": "ROLLO PAPEL QUIMICO 75 40M X10",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "lib-369": {
+    "nombre": "ROLLOS COCINA 6 DE 200 PAÑOS PANDA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/431b97f5-a780-5ced-f4f5-969578b64561/36ca98f87db80be8ec1a1ac012c74095-650f4c70927a1.jpg",
+    "tamSlug": "rollos-de-cocina-sussex-clasico-3-rollos-x-60-panos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-384": {
+    "nombre": "SACAPUNTAS MAPED",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/b7988b8b-884e-9b8a-e6c3-2c0a759a3bc9/536c7fdf0e6bba65eb8814611326a8b8-650f4e8460970.jpg",
+    "tamSlug": "sacapuntas-metalico",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-392": {
+    "nombre": "SHARPIE MARCADOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/387e4762-a31a-fb04-a81a-b6233c7fbcbc/b96bb7c1d0b50b41fba8d9f6632220ac-6504b7daabe3d.png",
+    "tamSlug": "marcador-edding-1200-azul",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-405": {
+    "nombre": "SKYCOLOR GOMA LAPIZ XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7bf40542-9689-982a-fc2c-9e9a93845a30/a0f727f8c3e486cb99440042b58779f2-6504b7c573dc8.jpg",
+    "tamSlug": "lapiz-faber-n-2-negro",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lib-409": {
+    "nombre": "SOBRES 07 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-411": {
+    "nombre": "SOBRES CARTA X20U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-412": {
+    "nombre": "SOBRES INFANT X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-413": {
+    "nombre": "SOBRES NAVIDAD XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-414": {
+    "nombre": "SOBRES OFICIO INGLES X20U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/64d56644-138b-3285-add3-87e776c53fbd/a66347d40059b5616fdad3079300e24d-6509f7f884038.jpg",
+    "tamSlug": "sobre-blanco-oficio-ingles-12x23-5-x-10-unidades",
+    "score": 65,
+    "fuente": "tam"
+  },
+  "lib-415": {
+    "nombre": "SOBRES SULFITO N7 19X34 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lib-416": {
+    "nombre": "SOBRES XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "lim-1": {
+    "nombre": "ALA DETERGENTE X750CC XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c6e808e4-f653-b6dd-27fe-3e20ceec38d4/5eee8bf477af977d4ac8f8761716c2cd-650f4c0214b17.jpg",
+    "tamSlug": "detergente-ala-esencial-x-750-cc",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-17": {
+    "nombre": "CIF ANTIGRASA X450ML XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/cceb3497-dee8-1a8a-e13c-5b29b5e10369/4762da4e45a4ea548256736b55dca6cd-650f4c472a233.jpg",
+    "tamSlug": "limpiador-cif-antigrasa-repuesto-900ml",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-19": {
+    "nombre": "DESENGRASANTE FORTE PREMIUM X5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/36f3b9b2-7079-0a89-8d7e-0f67fa9d17dc/cecc49ad610a7d4e6fa1e65d3921d5df-650f4c06666fb.jpg",
+    "tamSlug": "limpiador-desengrasante-emerel-x-5-litros",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-20": {
+    "nombre": "DESODORANTE DESINFECTANTE X5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/715fbb8b-b867-8054-7ada-ae50b5d0f9be/b84f0e57f8c651cf851aa502206d5cee-650f4c34bfbcc.jpg",
+    "tamSlug": "desodorante-procenex-x-5-litros",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-22": {
+    "nombre": "DESODORANTE X5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/715fbb8b-b867-8054-7ada-ae50b5d0f9be/b84f0e57f8c651cf851aa502206d5cee-650f4c34bfbcc.jpg",
+    "tamSlug": "desodorante-procenex-x-5-litros",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-24": {
+    "nombre": "DETERGENTE 1 CALIDAD 5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/a1aaf977-a23c-8b9f-43a4-9d8c38108f63/LD0520005-6587313a156f6.jpg",
+    "tamSlug": "detergente-x-5-litros-acento-gigante",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-25": {
+    "nombre": "DETERGENTE PREMIUM 5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/a1aaf977-a23c-8b9f-43a4-9d8c38108f63/LD0520005-6587313a156f6.jpg",
+    "tamSlug": "detergente-x-5-litros-acento-gigante",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-27": {
+    "nombre": "DISPENSER JABON/GEL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3ce13dca-8772-0056-968e-2a23e5062c36/2c6e6d718bc68ddc7afd000212d7571d-650f4c24ca316.jpg",
+    "tamSlug": "dispenser-para-jabon-liquido-o-alcohol-en-gel-500-cc",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-35": {
+    "nombre": "ESPONJA MORTIMER XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/0c23695c-d208-2444-4233-f04468298a80/f007490fa350bc94e1b18cf94edfd8e5-650f4c1774775.jpg",
+    "tamSlug": "esponja-doble-cara-mortimer-sed-metal",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-39": {
+    "nombre": "GUANTES GOMA S/M/XL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1153/guantes-de-nitrilo-negros-696e5ba00b52a.webp",
+    "tamSlug": "guantes-de-nitrilo-negro-x-100",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-40": {
+    "nombre": "GUANTES LATEX S/M/G X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/19d5c7c3-0340-740d-cdbd-a2c291dc82d3/67b222ae3ba18abd01f57fb95d496c1f-650f4c1f51fa7.jpg",
+    "tamSlug": "guantes-descartables-latex-x-100",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-41": {
+    "nombre": "GUANTES NITRILO S/M/G X CAJA",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1153/guantes-de-nitrilo-negros-696e5ba00b52a.webp",
+    "tamSlug": "guantes-de-nitrilo-negro-x-100",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-42": {
+    "nombre": "HILO ALGODON CHICO 50GRS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3e98ba5c-5e47-3497-156e-eb9e67254c4c/729e075df4717a8ed0a17f743375532f-650f4cc17ac10.jpg",
+    "tamSlug": "hilo-algodon-ovillo-x-50-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-43": {
+    "nombre": "HILO ALGODON 250G XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3e98ba5c-5e47-3497-156e-eb9e67254c4c/729e075df4717a8ed0a17f743375532f-650f4cc17ac10.jpg",
+    "tamSlug": "hilo-algodon-ovillo-x-50-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-44": {
+    "nombre": "HILO ALGODON 27H X100M",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3e98ba5c-5e47-3497-156e-eb9e67254c4c/729e075df4717a8ed0a17f743375532f-650f4cc17ac10.jpg",
+    "tamSlug": "hilo-algodon-ovillo-x-50-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-45": {
+    "nombre": "HILO ALGODON 8/20 MACRAME COLORES X30",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3e98ba5c-5e47-3497-156e-eb9e67254c4c/729e075df4717a8ed0a17f743375532f-650f4cc17ac10.jpg",
+    "tamSlug": "hilo-algodon-ovillo-x-50-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-46": {
+    "nombre": "HILO ALGODON AMARILLO X250G XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3e98ba5c-5e47-3497-156e-eb9e67254c4c/729e075df4717a8ed0a17f743375532f-650f4cc17ac10.jpg",
+    "tamSlug": "hilo-algodon-ovillo-x-50-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-47": {
+    "nombre": "HILO ALGODON VARIEDAD COLORES X33G",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3e98ba5c-5e47-3497-156e-eb9e67254c4c/729e075df4717a8ed0a17f743375532f-650f4cc17ac10.jpg",
+    "tamSlug": "hilo-algodon-ovillo-x-50-grs",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-55": {
+    "nombre": "LAVANDINA AYUDIN GEL 750CC XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/e0979a5c-d28e-8cf4-b183-a3a91101a5f2/cecd186d5d423d847461d222c4b601d7-650f4c3907138.jpg",
+    "tamSlug": "lavandina-ayudin-x-1-litro",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-56": {
+    "nombre": "LAVANDINA AYUDIN X1L",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/e0979a5c-d28e-8cf4-b183-a3a91101a5f2/cecd186d5d423d847461d222c4b601d7-650f4c3907138.jpg",
+    "tamSlug": "lavandina-ayudin-x-1-litro",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-57": {
+    "nombre": "LAVANDINA AYUDIN X2L XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/e0979a5c-d28e-8cf4-b183-a3a91101a5f2/cecd186d5d423d847461d222c4b601d7-650f4c3907138.jpg",
+    "tamSlug": "lavandina-ayudin-x-1-litro",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-58": {
+    "nombre": "LAVANDINA CONCENTRADA X1 LITRO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/e0979a5c-d28e-8cf4-b183-a3a91101a5f2/cecd186d5d423d847461d222c4b601d7-650f4c3907138.jpg",
+    "tamSlug": "lavandina-ayudin-x-1-litro",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-59": {
+    "nombre": "LAVANDINA GEL 5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/8b71303d-41e9-cba1-6d54-54a13b3c808d/aa125a7b510c591927c2caef655284ff-650f4c3d39771.jpg",
+    "tamSlug": "lavandina-ayudin-x-4-litros",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-61": {
+    "nombre": "LAVANDINA X5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/8b71303d-41e9-cba1-6d54-54a13b3c808d/aa125a7b510c591927c2caef655284ff-650f4c3d39771.jpg",
+    "tamSlug": "lavandina-ayudin-x-4-litros",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-64": {
+    "nombre": "LIMPIA VIDRIOS X5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/8f83d65b-9188-4092-dd45-248f21e798bd/28bcfac31a6c2068df0f81cf49dc4177-650f4c3f478dc.jpg",
+    "tamSlug": "limpia-vidrio-x-5-litros-view",
+    "score": 65,
+    "fuente": "tam"
+  },
+  "lim-65": {
+    "nombre": "LIMPIADOR CREMOSO 5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c2115358-cdb8-c634-8ead-4fe0b3da757b/fbc03a341c4f658cee3a85ccd3d77249-650f4c4f30537.jpg",
+    "tamSlug": "limpiador-cif-cremoso-750cc",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-66": {
+    "nombre": "LIMPIADOR CREMOSO T/CIF X1L",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c2115358-cdb8-c634-8ead-4fe0b3da757b/fbc03a341c4f658cee3a85ccd3d77249-650f4c4f30537.jpg",
+    "tamSlug": "limpiador-cif-cremoso-750cc",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lim-67": {
+    "nombre": "LYSOFORM AEROSOL XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/d233daab-e0d4-2059-423f-15b8b84a475c/0693be5535e21227a2a82827873a36e2-6509faa297ef5.jpg",
+    "tamSlug": "lysoform-aerosol-original",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lim-69": {
+    "nombre": "MISTER MUSCULO LIMPIA VIDRIO 450ML XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/8f83d65b-9188-4092-dd45-248f21e798bd/28bcfac31a6c2068df0f81cf49dc4177-650f4c3f478dc.jpg",
+    "tamSlug": "limpia-vidrio-x-5-litros-view",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-73": {
+    "nombre": "MULTIMAX DESODORANTE P/1 LITRO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/715fbb8b-b867-8054-7ada-ae50b5d0f9be/b84f0e57f8c651cf851aa502206d5cee-650f4c34bfbcc.jpg",
+    "tamSlug": "desodorante-procenex-x-5-litros",
+    "score": 53,
+    "fuente": "tam"
+  },
+  "lim-74": {
+    "nombre": "MULTIMAX DESODORANTE P/5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/715fbb8b-b867-8054-7ada-ae50b5d0f9be/b84f0e57f8c651cf851aa502206d5cee-650f4c34bfbcc.jpg",
+    "tamSlug": "desodorante-procenex-x-5-litros",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-80": {
+    "nombre": "RAID AEROSOL CUCARACHAS ACCION XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/7fe1744c-e284-702e-2f6f-7d8942cf83be/5d5392336a17d27035c02ec21b0a59cb-6509fa9b778d6.jpg",
+    "tamSlug": "insecticida-en-aerosol-raid-mata-cucarachas",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lim-84": {
+    "nombre": "REJILLA P/COCHE MISTER TRAPO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/a92dae8c-4af6-a7cd-fc2f-f1fa7bf5fdea/b09e909d4652039560afa5898fef5d3d-650f4c80c80a7.jpg",
+    "tamSlug": "trapo-rejilla-media-naranja-okey-oferta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-85": {
+    "nombre": "REJILLA P/COCINA MISTER TRAPO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/a92dae8c-4af6-a7cd-fc2f-f1fa7bf5fdea/b09e909d4652039560afa5898fef5d3d-650f4c80c80a7.jpg",
+    "tamSlug": "trapo-rejilla-media-naranja-okey-oferta",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-87": {
+    "nombre": "SECADOR DE GOMA 26CM NEGRO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/fbb50123-57be-5f18-f71b-2ad8b284f036/98724c75dbb8d3c418017fc66e447a7c-650f4c6caf865.jpg",
+    "tamSlug": "secador-x-40-cm-goma",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lim-88": {
+    "nombre": "SECADOR DE GOMA 50CM NEGRO XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/fbb50123-57be-5f18-f71b-2ad8b284f036/98724c75dbb8d3c418017fc66e447a7c-650f4c6caf865.jpg",
+    "tamSlug": "secador-x-40-cm-goma",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "lim-91": {
+    "nombre": "SUAVIZANTE P/ROPA T/VIVERE X1L",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/04a50df4-05ee-b8b9-a99b-4d2264abba84/3514f4538e731d9d4de39c6d0455477e-650f4c912abf8.jpg",
+    "tamSlug": "suavizante-para-ropa-vivere-x-5-litros",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lim-92": {
+    "nombre": "SUAVIZANTE P/ROPA X5 LITROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/04a50df4-05ee-b8b9-a99b-4d2264abba84/3514f4538e731d9d4de39c6d0455477e-650f4c912abf8.jpg",
+    "tamSlug": "suavizante-para-ropa-vivere-x-5-litros",
+    "score": 60,
+    "fuente": "tam"
+  },
+  "lim-93": {
+    "nombre": "TRAPO PISO BLANCO 55X60 CCLEAN XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/f51bd12a-c6e7-31c1-e40a-9bbaee48f282/5976943dca2b2e804cb796abcc01767f-650f4c7ef3fff.jpg",
+    "tamSlug": "trapo-de-piso-profesional-gris-media-naranja",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "lim-94": {
+    "nombre": "TRAPO PISO BLANCO GRANDE REFORZADO 60X70 CCLEAN XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/5862e500-7b4f-83f5-60ae-2d1feec30f3b/4200-658738cfa6722.jpg",
+    "tamSlug": "trapo-de-piso-blanco-1-2-naranja-alpargata-okey",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "lim-95": {
+    "nombre": "TRAPO PISO GRIS 50X60 SUPER COTTON XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/f51bd12a-c6e7-31c1-e40a-9bbaee48f282/5976943dca2b2e804cb796abcc01767f-650f4c7ef3fff.jpg",
+    "tamSlug": "trapo-de-piso-profesional-gris-media-naranja",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "des-5": {
+    "nombre": "BANDEJA PLATO ALUMINIO P29 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-4-100-300x300.jpg",
+    "mpSlug": "plato-de-aluminio-redondo-de-13cm",
+    "score": 67
+  },
+  "des-19": {
+    "nombre": "KOVAL BANDEJA XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "des-20": {
+    "nombre": "KOVAL BANDEJA X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f50-15-x-13-x-4",
+    "score": 50
+  },
+  "des-32": {
+    "nombre": "KOVAL PLATO CHICO XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/180B-300x300.jpg",
+    "mpSlug": "plato-polipapel-blanco-185cm",
+    "score": 50
+  },
+  "des-35": {
+    "nombre": "KOVAL PLATO GRANDE XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/180B-300x300.jpg",
+    "mpSlug": "plato-polipapel-blanco-185cm",
+    "score": 50
+  },
+  "des-42": {
+    "nombre": "KOVAL VASO TUBOS CRISTAL",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Vaso-plastico-300x300.jpg",
+    "mpSlug": "vaso-plastico-descartable-cristal-transparente-180cc",
+    "score": 50
+  },
+  "des-50": {
+    "nombre": "PLATO BANDEJA ALUMINIO P21 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-4-100-300x300.jpg",
+    "mpSlug": "plato-de-aluminio-redondo-de-13cm",
+    "score": 67
+  },
+  "des-51": {
+    "nombre": "PLATO BANDEJA ALUMINIO P23 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-4-100-300x300.jpg",
+    "mpSlug": "plato-de-aluminio-redondo-de-13cm",
+    "score": 67
+  },
+  "des-52": {
+    "nombre": "PLATO DESCARTABLE BLANCO 22CM X50",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Plato-Blanco-LOW-Photoroom-4-300x300.jpg",
+    "mpSlug": "plato-de-plastico-descartable-blanco-22cm",
+    "score": 67
+  },
+  "des-53": {
+    "nombre": "PLATO PLASTICO DESCARTABLE BLANCO 17CM X50",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Plato-Blanco-LOW-Photoroom-4-300x300.jpg",
+    "mpSlug": "plato-de-plastico-descartable-blanco-22cm",
+    "score": 100
+  },
+  "des-54": {
+    "nombre": "PLATO PLASTICO DESCARTABLE BLANCO 22CM XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Plato-Blanco-LOW-Photoroom-4-300x300.jpg",
+    "mpSlug": "plato-de-plastico-descartable-blanco-22cm",
+    "score": 100
+  },
+  "des-55": {
+    "nombre": "PLATO TERMICO X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/180B-300x300.jpg",
+    "mpSlug": "plato-polipapel-blanco-185cm",
+    "score": 50
+  },
+  "des-59": {
+    "nombre": "PORTA VASO DOBLE XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/ecovaso6oz-300x300.jpg",
+    "mpSlug": "vaso-180cc-polipapel-blanco",
+    "score": 50
+  },
+  "des-61": {
+    "nombre": "POTE VENECIANA CON TAPA 12OZ DARNEL X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/90102-web-300x300.jpeg",
+    "mpSlug": "pote-650cc-con-tapa-plastico-descartable",
+    "score": 50
+  },
+  "des-62": {
+    "nombre": "POTE VENECIANA CON TAPA 12OZ DARNEL XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/90102-web-300x300.jpeg",
+    "mpSlug": "pote-650cc-con-tapa-plastico-descartable",
+    "score": 50
+  },
+  "des-63": {
+    "nombre": "SACAPUNTAS CONTENEDOR XU SIMBAL",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/1a7f4411-ac65-f0a8-d83f-bbf3685e9503/fb216c6274391b3a2e6292db85a441d2-650f4e80b4720.jpg",
+    "tamSlug": "sacapuntas-con-deposito",
+    "score": 53,
+    "fuente": "tam"
+  },
+  "des-69": {
+    "nombre": "VASO CONICO X500CC X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/ecovaso6oz-300x300.jpg",
+    "mpSlug": "vaso-180cc-polipapel-blanco",
+    "score": 50
+  },
+  "des-75": {
+    "nombre": "VASOS PLASTICOS DESCARTABLES 50ML X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Vaso-Blanco-Photoroom-300x300.jpg",
+    "mpSlug": "vaso-plastico-descartable-blanco-300cc",
+    "score": 60
+  },
+  "des-76": {
+    "nombre": "VASOS PLASTICOS DESCARTABLES 80ML X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/Vaso-Blanco-Photoroom-300x300.jpg",
+    "mpSlug": "vaso-plastico-descartable-blanco-300cc",
+    "score": 60
+  },
+  "des-77": {
+    "nombre": "VASOS PLASTICOS NEON X25",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/c36a0226-b3b9-22c1-85b9-3df98d0481de/4163b29606a14810fbcd4298dae38b54-6509fa712148f.jpg",
+    "tamSlug": "vasos-de-plastico-180-cc-x-100-unidades",
+    "score": 53,
+    "fuente": "tam"
+  },
+  "des-78": {
+    "nombre": "VASOS POLIPAPEL C/TAPA 12OZ X30U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/vaso-kraft-360cc-LOW-Photoroom-1-300x300.jpg",
+    "mpSlug": "vasos-360cc-polipapel-kraft-sin-tapa",
+    "score": 60
+  },
+  "des-79": {
+    "nombre": "VASOS POLIPAPEL C/TAPA 8OZ X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/07/vaso-kraft-360cc-LOW-Photoroom-1-300x300.jpg",
+    "mpSlug": "vasos-360cc-polipapel-kraft-sin-tapa",
+    "score": 60
+  },
+  "des-80": {
+    "nombre": "VASOS TERMICO 120CC X25",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/08/Vaso-telgopor-low-Photoroom-300x300.jpg",
+    "mpSlug": "vaso-240cc-telgopor-termico-blanco",
+    "score": 53
+  },
+  "des-81": {
+    "nombre": "VASOS TERMICO 180CC X25",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/08/Vaso-telgopor-low-Photoroom-300x300.jpg",
+    "mpSlug": "vaso-240cc-telgopor-termico-blanco",
+    "score": 53
+  },
+  "des-82": {
+    "nombre": "VASOS TERMICO 240CC X25",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/08/Vaso-telgopor-low-Photoroom-300x300.jpg",
+    "mpSlug": "vaso-240cc-telgopor-termico-blanco",
+    "score": 53
+  },
+  "des-83": {
+    "nombre": "VASOS TERMICO 300CC X25",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/08/Vaso-telgopor-low-Photoroom-300x300.jpg",
+    "mpSlug": "vaso-240cc-telgopor-termico-blanco",
+    "score": 53
+  },
+  "emb-0": {
+    "nombre": "BANDEJA ALUMINIO F100 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f200-31cm-x-21cm-x-4cm",
+    "score": 67
+  },
+  "emb-1": {
+    "nombre": "BANDEJA ALUMINIO F200 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f200-31cm-x-21cm-x-4cm",
+    "score": 100
+  },
+  "emb-2": {
+    "nombre": "BANDEJA ALUMINIO REDONDA P14 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/D_NQ_NP_2X_687633-MLA75847039553_042024-F-300x303.webp",
+    "mpSlug": "bandeja-de-carton-gris-redonda-n14-27cm-x-2cm",
+    "score": 67
+  },
+  "emb-3": {
+    "nombre": "BANDEJA ALUMINIO REDONDA P26 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/D_NQ_NP_2X_687633-MLA75847039553_042024-F-300x303.webp",
+    "mpSlug": "bandeja-de-carton-gris-redonda-n14-27cm-x-2cm",
+    "score": 67
+  },
+  "emb-4": {
+    "nombre": "BANDEJA ALUMINIO REDONDA P33 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/D_NQ_NP_2X_687633-MLA75847039553_042024-F-300x303.webp",
+    "mpSlug": "bandeja-de-carton-gris-redonda-n14-27cm-x-2cm",
+    "score": 67
+  },
+  "emb-5": {
+    "nombre": "BOBINA AZUL ELEGANTE 20X400 X2U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-6": {
+    "nombre": "BOBINA AZUL ELEGANTE 20X400 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-7": {
+    "nombre": "BOBINA MOVAR 60CM K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-10": {
+    "nombre": "BOBINA MOVECO 40CM K",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-11": {
+    "nombre": "BOBINA MURESCO 100MT DORADA",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-12": {
+    "nombre": "BOBINA ROJA ELEGANTE 25X400M X2U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-13": {
+    "nombre": "BOBINA ROJA ELEGANTE 25X400M XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bobina-kraft-300x300.jpg",
+    "mpSlug": "bobina-de-papel-madera-60-cm",
+    "score": 50
+  },
+  "emb-14": {
+    "nombre": "BOBINA ROLLO CONTINUO PAPEL X200 MTS",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/79846-web-300x300.jpg",
+    "mpSlug": "rollo-bobina-para-limpieza-25cm-x-400mt-d-h",
+    "score": 50
+  },
+  "emb-15": {
+    "nombre": "BUDINERA ALUMINIO 1/2K XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.56.15-3-300x300.jpeg",
+    "mpSlug": "budinera-mediana-de-aluminio",
+    "score": 67
+  },
+  "emb-16": {
+    "nombre": "BUDINERA ALUMINIO KG XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.56.15-3-300x300.jpeg",
+    "mpSlug": "budinera-mediana-de-aluminio",
+    "score": 67
+  },
+  "emb-18": {
+    "nombre": "C200 BANDEJA ALUMINIO XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/BA-2-300x300.jpg",
+    "mpSlug": "bandeja-de-aluminio-f200-31cm-x-21cm-x-4cm",
+    "score": 67
+  },
+  "emb-19": {
+    "nombre": "CELOFAN COLOR 50X70 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/4042f2c1-ff79-97d5-c59c-a6a2a3c76392/papel-celofan-varios-colores-673de9c9d12fd-O.webp",
+    "tamSlug": "papel-celofan-color-55x90-cm-x-u",
+    "score": 100,
+    "fuente": "tam"
+  },
+  "emb-20": {
+    "nombre": "CELOFAN HOJA 70X100 XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/c4b499fe-e43e-2c33-4bf1-6e97d5e033d8/celofan-x10-659038d8aa860.jpg",
+    "tamSlug": "papel-celofan-color-x-10-unidades-55x90-cm",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-21": {
+    "nombre": "CINTA ADHESIVA 10M",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/03/Cintas.jpg",
+    "mpSlug": "cinta-adhesiva-fragil-transparente-48mm-x-50mts",
+    "score": 67
+  },
+  "emb-22": {
+    "nombre": "CINTA ADHESIVA 12X30M",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/03/Cintas.jpg",
+    "mpSlug": "cinta-adhesiva-fragil-transparente-48mm-x-50mts",
+    "score": 67
+  },
+  "emb-23": {
+    "nombre": "CINTA ADHESIVA 12X60M XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-24": {
+    "nombre": "CINTA ADHESIVA 18X25 MAGICA XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-25": {
+    "nombre": "CINTA ADHESIVA 18X25M",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/03/Cintas.jpg",
+    "mpSlug": "cinta-adhesiva-fragil-transparente-48mm-x-50mts",
+    "score": 67
+  },
+  "emb-26": {
+    "nombre": "CINTA ADHESIVA 18X50 AZUL XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-27": {
+    "nombre": "CINTA ADHESIVA 18X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-28": {
+    "nombre": "CINTA ADHESIVA 24X50 AZUL XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-29": {
+    "nombre": "CINTA ADHESIVA 24X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-30": {
+    "nombre": "CINTA ADHESIVA 48MMX100M X36ROLLOS STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-31": {
+    "nombre": "CINTA ADHESIVA 48X50 COLOR STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-32": {
+    "nombre": "CINTA ADHESIVA 72X50M XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-33": {
+    "nombre": "CINTA ADHESIVA CP12X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-34": {
+    "nombre": "CINTA ADHESIVA CP18X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-35": {
+    "nombre": "CINTA ADHESIVA CP24X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-36": {
+    "nombre": "CINTA ADHESIVA CP36X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-37": {
+    "nombre": "CINTA ADHESIVA CP48X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-38": {
+    "nombre": "CINTA ADHESIVA FRAGIL 48X50 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/03/Cintas.jpg",
+    "mpSlug": "cinta-adhesiva-fragil-transparente-48mm-x-50mts",
+    "score": 75
+  },
+  "emb-39": {
+    "nombre": "CINTA ADHESIVA STIKO 48X50 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-40": {
+    "nombre": "CINTA ADHESIVA STIKO 48X100M",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-41": {
+    "nombre": "CINTA ADHESIVA STIKO STRAP 12X7",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-42": {
+    "nombre": "CINTA ADHESIVA TELA 9 MTS XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 75
+  },
+  "emb-43": {
+    "nombre": "CINTA ADHESIVA TELA PYTHON",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2025/03/Cintas.jpg",
+    "mpSlug": "cinta-adhesiva-fragil-transparente-48mm-x-50mts",
+    "score": 67
+  },
+  "emb-44": {
+    "nombre": "CINTA ADHESIVA 12X30 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-45": {
+    "nombre": "CINTA ADHESIVA 18X25 XU STIKO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/12mmx30m-01-300x300.jpg",
+    "mpSlug": "cinta-adhesiva-transparente-stiko-12mm-x-30mts",
+    "score": 100
+  },
+  "emb-46": {
+    "nombre": "CINTA BIFAZ 18X30 POLIETILENO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1f8f9694-80e9-7a1e-8355-9faa442692d0/4c1474e627bab736944513948665ff0d-650f4ca60e366-658738f5ed66c.jpg",
+    "tamSlug": "cinta-adhesiva-bifaz-18mm-x-25-m",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "emb-47": {
+    "nombre": "CINTA BIFAZ 24X30 POLIETILENO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1f8f9694-80e9-7a1e-8355-9faa442692d0/4c1474e627bab736944513948665ff0d-650f4ca60e366-658738f5ed66c.jpg",
+    "tamSlug": "cinta-adhesiva-bifaz-18mm-x-25-m",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "emb-48": {
+    "nombre": "CINTA BIFAZ 36X30 POLIETILENO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1f8f9694-80e9-7a1e-8355-9faa442692d0/4c1474e627bab736944513948665ff0d-650f4ca60e366-658738f5ed66c.jpg",
+    "tamSlug": "cinta-adhesiva-bifaz-18mm-x-25-m",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "emb-49": {
+    "nombre": "CINTA BIFAZ 48X30 POLIETILENO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1f8f9694-80e9-7a1e-8355-9faa442692d0/4c1474e627bab736944513948665ff0d-650f4ca60e366-658738f5ed66c.jpg",
+    "tamSlug": "cinta-adhesiva-bifaz-18mm-x-25-m",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "emb-50": {
+    "nombre": "CINTA BIFAZ PAPEL 18MM",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1f8f9694-80e9-7a1e-8355-9faa442692d0/4c1474e627bab736944513948665ff0d-650f4ca60e366-658738f5ed66c.jpg",
+    "tamSlug": "cinta-adhesiva-bifaz-18mm-x-25-m",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "emb-51": {
+    "nombre": "CINTA BIFAZ PAPEL 24MM",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1f8f9694-80e9-7a1e-8355-9faa442692d0/4c1474e627bab736944513948665ff0d-650f4ca60e366-658738f5ed66c.jpg",
+    "tamSlug": "cinta-adhesiva-bifaz-18mm-x-25-m",
+    "score": 67,
+    "fuente": "tam"
+  },
+  "emb-69": {
+    "nombre": "CINTA PARA FLORES",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/96c8f816-98d5-d672-f1fa-e06f786e2480/920-1-659051ec7a147.jpg",
+    "tamSlug": "porta-rollo-para-cinta-12x30-y-18x25-898-s",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-71": {
+    "nombre": "FILGO CINTA CORRECTORA XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/f3f6a9e3-0a36-51ca-2dd3-a5b22641fb58/corrector-cinta-669fa137e3a81-O.jpg",
+    "tamSlug": "corrector-cinta-filgo-line-506-6-mts",
+    "score": 52,
+    "fuente": "tam"
+  },
+  "emb-73": {
+    "nombre": "GUANTES POLIETILENO X100U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/1153/guantes-de-nitrilo-negros-696e5ba00b52a.webp",
+    "tamSlug": "guantes-de-nitrilo-negro-x-100",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-75": {
+    "nombre": "HILO CINTA RECUPERADO X20 METROS",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/70b0a73d-80ca-3a2e-a466-f0a361ede9d9/CINTA-METRICA-RETRACTIL-1-5-METROS-68fd1535a965a-O.webp",
+    "tamSlug": "cinta-metrica-retractil-1-5-metros",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-77": {
+    "nombre": "KENDRA PORTA CINTA CHICO",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/img/Producto/96c8f816-98d5-d672-f1fa-e06f786e2480/920-1-659051ec7a147.jpg",
+    "tamSlug": "porta-rollo-para-cinta-12x30-y-18x25-898-s",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-78": {
+    "nombre": "KRAFT X KG",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/e3f12269-9db5-9aa9-0a1a-318adfc47aa4/f091a650af406fc21363c5a55bdcb098-650f4c9784694.jpg",
+    "tamSlug": "bobina-de-papel-kraft-de-100-cm-18-kg",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-84": {
+    "nombre": "MURESCO SOBRES 16X22",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-85": {
+    "nombre": "MURESCO SOBRES 24X30 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-86": {
+    "nombre": "MURESCO SOBRES 30X40 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-92": {
+    "nombre": "PAPEL SULFITO BOBINA X KG",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/marketpaper-productos-ecommerce-98-1-300x300.jpg",
+    "mpSlug": "bobina-de-papel-sulfito-40-cm-de-ancho-x3",
+    "score": 67
+  },
+  "emb-93": {
+    "nombre": "PAPEL SULFITO X KG",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/marketpaper-productos-ecommerce-93-300x300.jpg",
+    "mpSlug": "resma-de-papel-sulfito-10-kg-60x90",
+    "score": 50
+  },
+  "emb-96": {
+    "nombre": "RESMA SEDA 75X100M X350U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/marketpaper-productos-ecommerce-93-300x300.jpg",
+    "mpSlug": "resma-de-papel-sulfito-10-kg-60x90",
+    "score": 50
+  },
+  "emb-97": {
+    "nombre": "RESMA SEDA X400U 50X70",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/marketpaper-productos-ecommerce-93-300x300.jpg",
+    "mpSlug": "resma-de-papel-sulfito-10-kg-60x90",
+    "score": 50
+  },
+  "emb-98": {
+    "nombre": "ROLLO ALUMINIO 1/2K UPROLL",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 67
+  },
+  "emb-99": {
+    "nombre": "ROLLO ALUMINIO SUR PACK 1KG XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "emb-100": {
+    "nombre": "ROLLO ALUMINIO UPROLL/WEST X1KG",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "emb-101": {
+    "nombre": "ROLLO FILM 100M OFERTA XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "emb-102": {
+    "nombre": "ROLLO FILM 30CM X1000MTS RESIMAX",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3c730034-bb0e-0076-0102-2322ffd99d06/62b0350f1c7b804c9f1403e357a8bb22-650f4cca3c1ed.jpg",
+    "tamSlug": "rollo-10-cm-film-strech-resinite",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-103": {
+    "nombre": "ROLLO FILM 38 X300M NARANJA XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "emb-104": {
+    "nombre": "ROLLO FILM 38CM X1000MTS RESIMAX",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3c730034-bb0e-0076-0102-2322ffd99d06/62b0350f1c7b804c9f1403e357a8bb22-650f4cca3c1ed.jpg",
+    "tamSlug": "rollo-10-cm-film-strech-resinite",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-105": {
+    "nombre": "ROLLO FILM 45CM X1000MTS RESIMAX",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/3c730034-bb0e-0076-0102-2322ffd99d06/62b0350f1c7b804c9f1403e357a8bb22-650f4cca3c1ed.jpg",
+    "tamSlug": "rollo-10-cm-film-strech-resinite",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "emb-106": {
+    "nombre": "ROLLO PAPEL ALUMINIO 5M XU MAR DE FLOR",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Rollo-Papel-Aluminio-low-Photoroom-300x300.jpg",
+    "mpSlug": "rollo-de-papel-aluminio-profesional-38cm-x-15",
+    "score": 50
+  },
+  "emb-108": {
+    "nombre": "ROLLO PAPEL MANTECA X1KG",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/73017-300x185.webp",
+    "mpSlug": "rollo-de-papel-manteca-1-kg",
+    "score": 100
+  },
+  "emb-112": {
+    "nombre": "SOBRES BLANCOS 1 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-113": {
+    "nombre": "SOBRES BLANCOS 1623 SUELTOS",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-114": {
+    "nombre": "SOBRES BLANCOS 1L X100",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-115": {
+    "nombre": "SOBRES BLANCOS 2 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-116": {
+    "nombre": "SOBRES BLANCOS 2L X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-117": {
+    "nombre": "SOBRES BLANCOS 3 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-118": {
+    "nombre": "SOBRES BLANCOS 3L X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-119": {
+    "nombre": "SOBRES BLANCOS 4 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-120": {
+    "nombre": "SOBRES BLANCOS 4A X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-121": {
+    "nombre": "SOBRES BLANCOS 5 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-122": {
+    "nombre": "SOBRES BLANCOS 6 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-123": {
+    "nombre": "SOBRES BLANCOS 7 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-124": {
+    "nombre": "SOBRES BLANCOS 8 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-125": {
+    "nombre": "SOBRES FANTASIA 12X18 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-126": {
+    "nombre": "SOBRES FANTASIA 14X21 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-127": {
+    "nombre": "SOBRES FANTASIA 15X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-128": {
+    "nombre": "SOBRES FANTASIA 20X26 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-129": {
+    "nombre": "SOBRES FANTASIA 20X29 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-130": {
+    "nombre": "SOBRES FANTASIA 25X35 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-131": {
+    "nombre": "SOBRES FANTASIA 29X39 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-132": {
+    "nombre": "SOBRES FANTASIA 33X41 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-133": {
+    "nombre": "SOBRES FANTASIA 37X45 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-134": {
+    "nombre": "SOBRES FANTASIA 7X13 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-135": {
+    "nombre": "SOBRES FANTASIA 7X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-136": {
+    "nombre": "SOBRES FANTASIA 8X26 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-137": {
+    "nombre": "SOBRES FANTASIA 9X15 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-138": {
+    "nombre": "SOBRES FARMACIA 7X13 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-139": {
+    "nombre": "SOBRES FARMACIA 12X18 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-140": {
+    "nombre": "SOBRES MANILA 13X19 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-141": {
+    "nombre": "SOBRES MANILA 14X21 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-142": {
+    "nombre": "SOBRES MANILA 16X23 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-143": {
+    "nombre": "SOBRES MANILA 19X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-144": {
+    "nombre": "SOBRES MANILA 20X28 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-145": {
+    "nombre": "SOBRES MANILA 23X32 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-146": {
+    "nombre": "SOBRES MANILA 25X35 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-147": {
+    "nombre": "SOBRES MANILA 27X37 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-148": {
+    "nombre": "SOBRES MANILA 27X37 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-149": {
+    "nombre": "SOBRES MANILA 30X40 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-150": {
+    "nombre": "SOBRES MANILA 30X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-151": {
+    "nombre": "SOBRES MANILA 37X45 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-152": {
+    "nombre": "SOBRES MANILA A4 SUELTO XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 67
+  },
+  "emb-153": {
+    "nombre": "SOBRES MANILA CHICOS XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 67
+  },
+  "emb-154": {
+    "nombre": "SOBRES MANILA GRANDE XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-155": {
+    "nombre": "SOBRES MANILA 37X45 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 100
+  },
+  "emb-156": {
+    "nombre": "SOBRES METALIZADO C/ADHESIVO 10X15 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-157": {
+    "nombre": "SOBRES METALIZADO C/ADHESIVO 20X30 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-158": {
+    "nombre": "SOBRES METALIZADO C/ADHESIVO 7X10 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/sobre-25x35-09-300x300.jpg",
+    "mpSlug": "sobres-manila-de-papel-madera-25-x-35-cm",
+    "score": 50
+  },
+  "emb-159": {
+    "nombre": "SOBRES OBRA 13X19 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-160": {
+    "nombre": "SOBRES OBRA 14X21 X100",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-161": {
+    "nombre": "SOBRES OBRA 16X23 X100",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-162": {
+    "nombre": "SOBRES OBRA 20X28 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-163": {
+    "nombre": "SOBRES OBRA 20X28 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-164": {
+    "nombre": "SOBRES OBRA 23X32 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-165": {
+    "nombre": "SOBRES OBRA 27X37 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-166": {
+    "nombre": "SOBRES OBRA 27X37 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-167": {
+    "nombre": "SOBRES OBRA 37X45 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-168": {
+    "nombre": "SOBRES OBRA 37X45 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "emb-169": {
+    "nombre": "SOBRES OBRA BLANCO 23X32 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/obra30x40-80-300x300.jpg",
+    "mpSlug": "sobres-obra-blancos-30-x-40-cm",
+    "score": 67
+  },
+  "caj-42": {
+    "nombre": "CAJA ARCHIVO 40X30X17 C205",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/50c24f62-a01a-a06d-8a38-3716350b56f8/d16a8b9392a325d5b6f1da6d8c93c3c4-6504b2c64e36a.jpg",
+    "tamSlug": "caja-archivo-americana-alta-42x32x25-403",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "caj-43": {
+    "nombre": "CAJA ARCHIVO 42X32X25 ART.403",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/50c24f62-a01a-a06d-8a38-3716350b56f8/d16a8b9392a325d5b6f1da6d8c93c3c4-6504b2c64e36a.jpg",
+    "tamSlug": "caja-archivo-americana-alta-42x32x25-403",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "caj-44": {
+    "nombre": "CAJA ARCHIVO 42X32X25 REFORZADA ART.406",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-45": {
+    "nombre": "CAJA ARCHIVO T/VOLCADA PLASTICO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/20210723_1140031-411b1c2b2ff115711316270514372858-640-0-300x314.png",
+    "mpSlug": "cajas-de-archivo-plastico-azul-oficio",
+    "score": 50
+  },
+  "caj-46": {
+    "nombre": "CAJA ARCHIVO TAPA VOLCADA OF-9-12-LEG XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/38-300x300.jpg",
+    "mpSlug": "cajas-de-archivo-con-tapa-volcada-oficio-37x26x12",
+    "score": 50
+  },
+  "caj-62": {
+    "nombre": "CAJA DE EMPANADAS X6 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2022/10/136-001-300x300.png",
+    "mpSlug": "caja-para-empanadas-30-4-x-24-4-x-5-5",
+    "score": 67
+  },
+  "caj-65": {
+    "nombre": "CAJA ENSALADERA CARTON XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/Caja-Navidena-Carton1-300x300.jpg",
+    "mpSlug": "caja-navidena-carton-27x175x33-roja",
+    "score": 67
+  },
+  "caj-76": {
+    "nombre": "CAJA PIZZA COMUN XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/137-300x181.webp",
+    "mpSlug": "caja-para-pizzas-31-x-16-x-5",
+    "score": 53
+  },
+  "caj-77": {
+    "nombre": "CAJA REFORZADA 35X25X15 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-78": {
+    "nombre": "CAJA REFORZADA 35X25X25 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-79": {
+    "nombre": "CAJA REFORZADA 40X30X30 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-80": {
+    "nombre": "CAJA REFORZADA 40X40X40 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-81": {
+    "nombre": "CAJA REFORZADA ENVIO XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-85": {
+    "nombre": "CAJA TRIPLE REFORZADA 40X30X30 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-86": {
+    "nombre": "CAJA TRIPLE REFORZADA 60X40X40 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2020/11/Respaldo-min-1-300x300.jpg",
+    "mpSlug": "caja-de-carton-corrugado-doble-reforzada-60x40x40",
+    "score": 50
+  },
+  "caj-90": {
+    "nombre": "CAJAS DE EMPANADAS 12/18 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2022/10/136-001-300x300.png",
+    "mpSlug": "caja-para-empanadas-30-4-x-24-4-x-5-5",
+    "score": 53
+  },
+  "caj-91": {
+    "nombre": "CAJAS PARA PIZZA X1000U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/137-300x181.webp",
+    "mpSlug": "caja-para-pizzas-31-x-16-x-5",
+    "score": 73
+  },
+  "caj-92": {
+    "nombre": "CAJAS PARA PIZZA X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/137-300x181.webp",
+    "mpSlug": "caja-para-pizzas-31-x-16-x-5",
+    "score": 73
+  },
+  "caj-93": {
+    "nombre": "CAJAS PIZZAS CHICA/GRANDE XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/137-300x181.webp",
+    "mpSlug": "caja-para-pizzas-31-x-16-x-5",
+    "score": 53
+  },
+  "caj-144": {
+    "nombre": "PLANCHA CARTON 50X70 2MM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-145": {
+    "nombre": "PLANCHA CARTON 50X70 X1MM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-146": {
+    "nombre": "PLANCHA CARTON 70X100 0.5MM XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-147": {
+    "nombre": "PLANCHA CARTON 70X100 1-1.5MM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-148": {
+    "nombre": "PLANCHA CARTON 70X100 2MM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-149": {
+    "nombre": "PLANCHA CARTON 70X100 3MM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-150": {
+    "nombre": "PLANCHA CARTON GRIS 35X50 1MM XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.31.55-3-300x300.jpeg",
+    "mpSlug": "planchas-de-carton-70x50-cm-4mm",
+    "score": 80
+  },
+  "caj-152": {
+    "nombre": "PLANCHA CORCHO 45X60X3MM",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb207a9b-830f-0615-0434-3ef15267f2c9/2b9a23e3944f5ab6cff59e89c3f6fda7-650f4d9beefde.jpg",
+    "tamSlug": "plancha-de-ojalillos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "caj-153": {
+    "nombre": "PLANCHA CORCHO 60X90X2MM",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb207a9b-830f-0615-0434-3ef15267f2c9/2b9a23e3944f5ab6cff59e89c3f6fda7-650f4d9beefde.jpg",
+    "tamSlug": "plancha-de-ojalillos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "caj-154": {
+    "nombre": "PLANCHA MICRO COLOR XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb207a9b-830f-0615-0434-3ef15267f2c9/2b9a23e3944f5ab6cff59e89c3f6fda7-650f4d9beefde.jpg",
+    "tamSlug": "plancha-de-ojalillos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "caj-155": {
+    "nombre": "PLANCHA MICRO NATURAL XU",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/eb207a9b-830f-0615-0434-3ef15267f2c9/2b9a23e3944f5ab6cff59e89c3f6fda7-650f4d9beefde.jpg",
+    "tamSlug": "plancha-de-ojalillos",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "caj-170": {
+    "nombre": "SOBRES OFICIO INGLES X CAJA 500U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/64d56644-138b-3285-add3-87e776c53fbd/a66347d40059b5616fdad3079300e24d-6509f7f884038.jpg",
+    "tamSlug": "sobre-blanco-oficio-ingles-12x23-5-x-10-unidades",
+    "score": 65,
+    "fuente": "tam"
+  },
+  "caj-171": {
+    "nombre": "TELGOPOR 1MX1M 2CM XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.56.16-300x300.jpeg",
+    "mpSlug": "conservadora-telgopor-254cm-x-143cm-x-14cm",
+    "score": 50
+  },
+  "caj-172": {
+    "nombre": "TELGOPOR 50CMX1M 2CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.56.16-300x300.jpeg",
+    "mpSlug": "conservadora-telgopor-254cm-x-143cm-x-14cm",
+    "score": 50
+  },
+  "caj-173": {
+    "nombre": "TELGOPOR 50X50 2CM XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-20-at-14.56.16-300x300.jpeg",
+    "mpSlug": "conservadora-telgopor-254cm-x-143cm-x-14cm",
+    "score": 50
+  },
+  "caj-174": {
+    "nombre": "TOALLAS INTERCALADAS X CAJA 2000U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/ELEGANTE-09-300x300.jpg",
+    "mpSlug": "toallas-intercaladas-de-papel-blancas-elegante-19x24",
+    "score": 50
+  },
+  "bol-0": {
+    "nombre": "BOLSA ASA 25X35 X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-1": {
+    "nombre": "BOLSA ASA 30X40 X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-2": {
+    "nombre": "BOLSA ASA 35X45 X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-3": {
+    "nombre": "BOLSA ASA 60X54 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-4": {
+    "nombre": "BOLSA ASA 60X54 X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-7": {
+    "nombre": "BOLSA CAMISETA 4050 X BULTO 2000U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 67
+  },
+  "bol-8": {
+    "nombre": "BOLSA CAMISETA 3040 X BULTO",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 67
+  },
+  "bol-9": {
+    "nombre": "BOLSA CAMISETA 3040 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-10": {
+    "nombre": "BOLSA CAMISETA 4050 NEGRA X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-11": {
+    "nombre": "BOLSA CAMISETA 4050 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-12": {
+    "nombre": "BOLSA CAMISETA 4555 NEGRA X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-13": {
+    "nombre": "BOLSA CAMISETA 5060 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-14": {
+    "nombre": "BOLSA CAMISETA 5070 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-15": {
+    "nombre": "BOLSA CAMISETA 6080 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/04/combosaMesa-de-trabajo-7-100-Photoroom-300x300.jpg",
+    "mpSlug": "bolsa-camiseta-blanca-45cm-x-60cm",
+    "score": 100
+  },
+  "bol-16": {
+    "nombre": "BOLSA CHANNEL 14X15 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-17": {
+    "nombre": "BOLSA CHANNEL 15X20 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-18": {
+    "nombre": "BOLSA CHANNEL 20X28 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-19": {
+    "nombre": "BOLSA COLOR 20X18X8 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-20": {
+    "nombre": "BOLSA COLOR 30X22X10 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-21": {
+    "nombre": "BOLSA COLOR 32X30X10 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-22": {
+    "nombre": "BOLSA COLOR 41X30X12 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-23": {
+    "nombre": "BOLSA DELIVERY KRAFT FM3 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-16-at-14.16.30-300x300.jpeg",
+    "mpSlug": "bolsas-de-papel-kraft-delivery-26x17x38",
+    "score": 65
+  },
+  "bol-24": {
+    "nombre": "BOLSA E-COMMERCE 20X30 XU XS",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-25": {
+    "nombre": "BOLSA E-COMMERCE 25X35 XU S",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-26": {
+    "nombre": "BOLSA E-COMMERCE 30X40 XU M",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-27": {
+    "nombre": "BOLSA E-COMMERCE 32X45 XU NEGRA",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-28": {
+    "nombre": "BOLSA E-COMMERCE 35X45 XU L",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-29": {
+    "nombre": "BOLSA HORNO X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-31": {
+    "nombre": "BOLSA METALIZADA TERLIZZI 30X30",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-32": {
+    "nombre": "BOLSA POLIPROPILENO 05X30 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-33": {
+    "nombre": "BOLSA POLIPROPILENO 06X10 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-34": {
+    "nombre": "BOLSA POLIPROPILENO 06X20 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-35": {
+    "nombre": "BOLSA POLIPROPILENO 06X25 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-36": {
+    "nombre": "BOLSA POLIPROPILENO 06X30 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-37": {
+    "nombre": "BOLSA POLIPROPILENO 08X15 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-38": {
+    "nombre": "BOLSA POLIPROPILENO 08X20 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-39": {
+    "nombre": "BOLSA POLIPROPILENO 08X25 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-40": {
+    "nombre": "BOLSA POLIPROPILENO 08X30 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-41": {
+    "nombre": "BOLSA POLIPROPILENO 10X15 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-42": {
+    "nombre": "BOLSA POLIPROPILENO 10X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-43": {
+    "nombre": "BOLSA POLIPROPILENO 10X15 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-44": {
+    "nombre": "BOLSA POLIPROPILENO 10X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-45": {
+    "nombre": "BOLSA POLIPROPILENO 10X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-46": {
+    "nombre": "BOLSA POLIPROPILENO 12.5X13 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-47": {
+    "nombre": "BOLSA POLIPROPILENO 12X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-48": {
+    "nombre": "BOLSA POLIPROPILENO 12X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-49": {
+    "nombre": "BOLSA POLIPROPILENO 12X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-50": {
+    "nombre": "BOLSA POLIPROPILENO 15X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-51": {
+    "nombre": "BOLSA POLIPROPILENO 15X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-52": {
+    "nombre": "BOLSA POLIPROPILENO 15X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-53": {
+    "nombre": "BOLSA POLIPROPILENO 15X20 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-54": {
+    "nombre": "BOLSA POLIPROPILENO 17X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-55": {
+    "nombre": "BOLSA POLIPROPILENO 20X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-56": {
+    "nombre": "BOLSA POLIPROPILENO 20X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-57": {
+    "nombre": "BOLSA POLIPROPILENO 20X35 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-58": {
+    "nombre": "BOLSA POLIPROPILENO 20X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-59": {
+    "nombre": "BOLSA POLIPROPILENO 20X30 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-60": {
+    "nombre": "BOLSA POLIPROPILENO 22X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-61": {
+    "nombre": "BOLSA POLIPROPILENO 25X35 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-62": {
+    "nombre": "BOLSA POLIPROPILENO 25X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-63": {
+    "nombre": "BOLSA POLIPROPILENO 25X35 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-64": {
+    "nombre": "BOLSA POLIPROPILENO 30X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-65": {
+    "nombre": "BOLSA POLIPROPILENO 30X40 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-66": {
+    "nombre": "BOLSA POLIPROPILENO 35X45 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-67": {
+    "nombre": "BOLSA POLIPROPILENO 35X45 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-68": {
+    "nombre": "BOLSA POLIPROPILENO 40X50 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-69": {
+    "nombre": "BOLSA POLIPROPILENO 50X60 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-70": {
+    "nombre": "BOLSA POLIPROPILENO 5X5 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-71": {
+    "nombre": "BOLSA POLIPROPILENO 5X8 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-72": {
+    "nombre": "BOLSA POLIPROPILENO 60X75 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 100
+  },
+  "bol-73": {
+    "nombre": "BOLSA POLIPROPILENO 6X14 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 75
+  },
+  "bol-74": {
+    "nombre": "BOLSA RIÑON 15X25 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-75": {
+    "nombre": "BOLSA RIÑON 20X30 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-76": {
+    "nombre": "BOLSA RIÑON 25X35 X50",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-77": {
+    "nombre": "BOLSA RIÑON 30X40 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-78": {
+    "nombre": "BOLSA RIÑON 35X45 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-79": {
+    "nombre": "BOLSA RIÑON 40X50 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-80": {
+    "nombre": "BOLSA RIÑON 50X60 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-81": {
+    "nombre": "BOLSA RIÑON 60X70 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-82": {
+    "nombre": "BOLSA RIÑON 70X90 X25U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-84": {
+    "nombre": "BOLSA RIÑON GRANDE XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-86": {
+    "nombre": "BOLSA SONRISA 30X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-87": {
+    "nombre": "BOLSA SONRISA 40X50 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-88": {
+    "nombre": "BOLSA SONRISA 45X60 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-89": {
+    "nombre": "BOLSA SONRISA 50X60 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-90": {
+    "nombre": "BOLSA SONRISA 50X70 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-91": {
+    "nombre": "BOLSA SONRISA 60X80 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-92": {
+    "nombre": "BOLSA SUELTA XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-93": {
+    "nombre": "BOLSA VINO X2 XU TERLIZZI",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/Bolsa-Blanca-Vino-300x300.jpg",
+    "mpSlug": "bolsa-de-papel-blanca-para-botella-de-vino-14x08x40",
+    "score": 50
+  },
+  "bol-94": {
+    "nombre": "BOLSA VINO XU TERLIZZI",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/Bolsa-Blanca-Vino-300x300.jpg",
+    "mpSlug": "bolsa-de-papel-blanca-para-botella-de-vino-14x08x40",
+    "score": 50
+  },
+  "bol-95": {
+    "nombre": "BOLSA ZODIACO AZUL 18X23X11",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-96": {
+    "nombre": "BOLSA ZODIACO AZUL 23X30X11",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  },
+  "bol-97": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 01 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-98": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 01L X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-99": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 02 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-100": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 02L X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-101": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 03 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-102": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 03L X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-103": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 04 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-104": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 04A X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-105": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 05 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-106": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 06 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-107": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 07 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-108": {
+    "nombre": "BOLSAS AMERICANAS SOBRES KRAFT 08 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/10/COMBO20-bolsas-Photoroom-2-300x300.jpg",
+    "mpSlug": "250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija",
+    "score": 50
+  },
+  "bol-109": {
+    "nombre": "BOLSAS ANIMALES 21X15 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-110": {
+    "nombre": "BOLSAS ANIMALES 27X22 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-111": {
+    "nombre": "BOLSAS ASA COLOR/TRANSPARENTE 4050 X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-112": {
+    "nombre": "BOLSAS ASA COLOR/TRANSPARENTE 4050 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-144": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 16X24CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-145": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 22X30CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-146": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 26X35CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-147": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 30X45CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-148": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 9X16CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-149": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 12X19CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-150": {
+    "nombre": "BOLSAS DE PAPEL BLANCAS C/MANIJA 30X41CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-151": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 8X12CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-152": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 10X15CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-153": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 12X20CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-154": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 15X24CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-155": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 18X28CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-156": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 20X32CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-157": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 30X45CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-158": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 35X50CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-159": {
+    "nombre": "BOLSAS DE PAPEL C/MANIJA 40X60CM",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/bolsa-BLANCA-Photoroom-300x300.jpg",
+    "mpSlug": "bolsas-papel-blanca-con-manija-14x08x20",
+    "score": 67
+  },
+  "bol-160": {
+    "nombre": "BOLSAS DELIVERY KRAFT FM5 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-16-at-14.16.30-300x300.jpeg",
+    "mpSlug": "bolsas-de-papel-kraft-delivery-26x17x38",
+    "score": 75
+  },
+  "bol-161": {
+    "nombre": "BOLSAS DELIVERY KRAFT FM7 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-16-at-14.16.30-300x300.jpeg",
+    "mpSlug": "bolsas-de-papel-kraft-delivery-26x17x38",
+    "score": 75
+  },
+  "bol-162": {
+    "nombre": "BOLSAS DELIVERY KRAFT FM8 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-16-at-14.16.30-300x300.jpeg",
+    "mpSlug": "bolsas-de-papel-kraft-delivery-26x17x38",
+    "score": 75
+  },
+  "bol-163": {
+    "nombre": "BOLSAS DELIVERY KRAFT FM9 X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/05/WhatsApp-Image-2021-09-16-at-14.16.30-300x300.jpeg",
+    "mpSlug": "bolsas-de-papel-kraft-delivery-26x17x38",
+    "score": 75
+  },
+  "bol-164": {
+    "nombre": "BOLSAS ESCOMBROS 100M X10U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-171": {
+    "nombre": "BOLSAS LUNARES 27X22 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-173": {
+    "nombre": "BOLSAS POLIPROPILENO 05X30 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-174": {
+    "nombre": "BOLSAS POLIPROPILENO 06X30 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-175": {
+    "nombre": "BOLSAS POLIPROPILENO 06X10 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-176": {
+    "nombre": "BOLSAS POLIPROPILENO 06X20 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-177": {
+    "nombre": "BOLSAS POLIPROPILENO 06X25 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-178": {
+    "nombre": "BOLSAS POLIPROPILENO 08X15 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-179": {
+    "nombre": "BOLSAS POLIPROPILENO 08X20 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-180": {
+    "nombre": "BOLSAS POLIPROPILENO 08X25 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-181": {
+    "nombre": "BOLSAS POLIPROPILENO 08X30 X200U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-182": {
+    "nombre": "BOLSAS POLIPROPILENO 10X15 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-183": {
+    "nombre": "BOLSAS POLIPROPILENO 10X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-184": {
+    "nombre": "BOLSAS POLIPROPILENO 10X15 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-185": {
+    "nombre": "BOLSAS POLIPROPILENO 10X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-186": {
+    "nombre": "BOLSAS POLIPROPILENO 12.5X13 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-187": {
+    "nombre": "BOLSAS POLIPROPILENO 12X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-188": {
+    "nombre": "BOLSAS POLIPROPILENO 12X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-189": {
+    "nombre": "BOLSAS POLIPROPILENO 12X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-190": {
+    "nombre": "BOLSAS POLIPROPILENO 15X20 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-191": {
+    "nombre": "BOLSAS POLIPROPILENO 15X20 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-192": {
+    "nombre": "BOLSAS POLIPROPILENO 15X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-193": {
+    "nombre": "BOLSAS POLIPROPILENO 15X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-194": {
+    "nombre": "BOLSAS POLIPROPILENO 17X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-195": {
+    "nombre": "BOLSAS POLIPROPILENO 20X30 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-196": {
+    "nombre": "BOLSAS POLIPROPILENO 20X25 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-197": {
+    "nombre": "BOLSAS POLIPROPILENO 20X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-198": {
+    "nombre": "BOLSAS POLIPROPILENO 20X35 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-199": {
+    "nombre": "BOLSAS POLIPROPILENO 20X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-200": {
+    "nombre": "BOLSAS POLIPROPILENO 22X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-201": {
+    "nombre": "BOLSAS POLIPROPILENO 25X35 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-202": {
+    "nombre": "BOLSAS POLIPROPILENO 25X35 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-203": {
+    "nombre": "BOLSAS POLIPROPILENO 25X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-204": {
+    "nombre": "BOLSAS POLIPROPILENO 30X40 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-205": {
+    "nombre": "BOLSAS POLIPROPILENO 30X40 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-206": {
+    "nombre": "BOLSAS POLIPROPILENO 35X45 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-207": {
+    "nombre": "BOLSAS POLIPROPILENO 35X45 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-208": {
+    "nombre": "BOLSAS POLIPROPILENO 40X50 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-209": {
+    "nombre": "BOLSAS POLIPROPILENO 50X60 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-210": {
+    "nombre": "BOLSAS POLIPROPILENO 5X5 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-211": {
+    "nombre": "BOLSAS POLIPROPILENO 5X8 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-212": {
+    "nombre": "BOLSAS POLIPROPILENO 60X75 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-213": {
+    "nombre": "BOLSAS POLIPROPILENO 6X14 ADHESIVO X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-con-adhesivo-10cm-x-20cm",
+    "score": 65
+  },
+  "bol-214": {
+    "nombre": "BOLSAS POLIPROPILENO 10X30 X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 80
+  },
+  "bol-224": {
+    "nombre": "BOLSAS TELA METALIZADA TERLIZZI 15X20 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-225": {
+    "nombre": "BOLSAS TELA METALIZADA TERLIZZI 20X30 XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-226": {
+    "nombre": "BOLSAS XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-250": {
+    "nombre": "FUNDAS 50X70 X10U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/420c89c9-d5e1-c50a-5faa-51863fbf3ea3/bd28c5da94aca9ff502015743075d00d-650f4d9301e22.jpg",
+    "tamSlug": "fundas-cubrecuaderno-16x21",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "bol-251": {
+    "nombre": "FUNDAS 60X120 X10U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/420c89c9-d5e1-c50a-5faa-51863fbf3ea3/bd28c5da94aca9ff502015743075d00d-650f4d9301e22.jpg",
+    "tamSlug": "fundas-cubrecuaderno-16x21",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "bol-252": {
+    "nombre": "FUNDAS 60X90 X10U",
+    "imagen": "https://cdn.billowshop.com/f48f79d8-a9de-3b13/productos/420c89c9-d5e1-c50a-5faa-51863fbf3ea3/bd28c5da94aca9ff502015743075d00d-650f4d9301e22.jpg",
+    "tamSlug": "fundas-cubrecuaderno-16x21",
+    "score": 50,
+    "fuente": "tam"
+  },
+  "bol-253": {
+    "nombre": "LB2030 BOLSAS X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-254": {
+    "nombre": "LB3040 BOLSAS X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-255": {
+    "nombre": "LB4050 BOLSAS X100U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-256": {
+    "nombre": "LB6075 BOLSAS X50U",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2023/01/61CnmmqOXQL-300x300.jpg",
+    "mpSlug": "bolsas-de-arranque-15x25",
+    "score": 50
+  },
+  "bol-269": {
+    "nombre": "VIRUTA BOLSA XU",
+    "imagen": "https://marketpaper.com.ar/wp-content/uploads/2024/01/Bolsa-Polipropileno-Photoroom-300x281.jpg",
+    "mpSlug": "bolsa-de-polipropileno-5cm-x-10cm",
+    "score": 50
+  }
+}

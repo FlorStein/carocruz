@@ -15,8 +15,8 @@
   <!-- ░░ BARRA DE ANUNCIO ░░ -->
   <div class="announcement-bar">
     <p>
-      ENVÍOS A TODO EL PAÍS — COMPRA MÍNIMA $80.000
-      <span class="announcement-hide-mobile"> | CABA $11.000 · GBA PRIMER CORDÓN $22.000</span>
+      <span id="announcementMainText">ENVÍOS A TODO EL PAÍS — COMPRA MÍNIMA $50.000 — ENVÍOS A CABA EN 24 HS</span>
+      <span id="announcementExtraText" class="announcement-hide-mobile"> | CABA $11.000 · GBA PRIMER CORDÓN $22.000</span>
     </p>
   </div>
 
@@ -25,16 +25,18 @@
     <div class="container header-inner">
 
       <!-- Logo -->
-      <a href="#" class="logo-wrap">
-        <span class="logo-name">Caro Cruz</span>
-        <span class="logo-sub">PAPELERA MAYORISTA</span>
+      <a href="#" class="logo-wrap" aria-label="Caro Cruz Papelera">
+        <img src="logo.png" alt="Caro Cruz Papelera" class="logo-img" />
       </a>
 
       <!-- Buscador -->
       <form class="search-box" onsubmit="return false;">
         <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input id="searchInput" type="text" placeholder="Buscar productos..." class="search-input" autocomplete="off" />
-        <button type="submit" class="search-btn" onclick="buscar()">Buscar</button>
+        <button type="submit" class="search-btn" onclick="buscar()" aria-label="Buscar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="search-btn-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span class="search-btn-text">Buscar</span>
+        </button>
       </form>
 
       <!-- Iconos derecha -->
@@ -76,38 +78,65 @@
   </header>
 
   <!-- ░░ NAV CATEGORÍAS ░░ -->
-  <nav class="cat-nav" aria-label="Categorías">
-    <div class="container cat-nav-inner">
-      <a href="#" class="cat-item" data-cat="LIMPIEZA"     onclick="mostrarCategoria('LIMPIEZA','Limpieza');return false;">Limpieza</a>
-      <a href="#" class="cat-item" data-cat="LIBRERÍA"    onclick="mostrarCategoria('LIBRERÍA','Librería');return false;">Librería</a>
-      <a href="#" class="cat-item" data-cat="ESCOLAR"      onclick="mostrarCategoria('ESCOLAR','Escolar');return false;">Escolar</a>
-      <a href="#" class="cat-item" data-cat="EMBALAJE"     onclick="mostrarCategoria('EMBALAJE','Embalaje');return false;">Embalaje</a>
-      <a href="#" class="cat-item" data-cat="BOLSAS"       onclick="mostrarCategoria('BOLSAS','Bolsas');return false;">Bolsas</a>
-      <a href="#" class="cat-item" data-cat="DESCARTABLES" onclick="mostrarCategoria('DESCARTABLES','Descartables');return false;">Descartables</a>
-      <a href="#" class="cat-item" data-cat="CAJAS"        onclick="mostrarCategoria('CAJAS','Cajas');return false;">Cajas</a>
-      <a href="#" class="cat-item" data-cat="GASTRONÓMICO" onclick="mostrarCategoria('GASTRONÓMICO','Gastronómico');return false;">Gastronómico</a>
-      <a href="#novedades" class="cat-item" onclick="volverAlHome('novedades');return false;">Novedades</a>
-      <a href="#ofertas"   class="cat-item cat-item--ofertas" onclick="volverAlHome('ofertas');return false;">Ofertas</a>
-      <a href="#" class="cat-item">Lista de Precios</a>
+  <nav class="cat-nav" id="catNav" aria-label="Categorías">
+    <button id="catMenuToggle" class="cat-menu-toggle" type="button" onclick="toggleMobileCatMenu()" aria-controls="catMenuList" aria-expanded="false">
+      <span>Categorías</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="container cat-nav-inner" id="catMenuList">
+      <div class="cat-list" id="catList">
+        <a href="#" class="cat-item" onclick="volverAlHome('heroSection');return false;">Inicio</a>
+        <div class="cat-entry" data-cat="LIMPIEZA">
+          <a href="#" class="cat-item" data-cat="LIMPIEZA" onclick="mostrarCategoria('LIMPIEZA','Limpieza');return false;">Limpieza</a>
+        </div>
+        <div class="cat-entry" data-cat="LIBRERÍA">
+          <a href="#" class="cat-item" data-cat="LIBRERÍA" onclick="mostrarCategoria('LIBRERÍA','Librería');return false;">Librería</a>
+        </div>
+        <div class="cat-entry" data-cat="ESCOLAR">
+          <a href="#" class="cat-item" data-cat="ESCOLAR" onclick="mostrarCategoria('ESCOLAR','Escolar');return false;">Escolar</a>
+        </div>
+        <div class="cat-entry" data-cat="EMBALAJE">
+          <a href="#" class="cat-item" data-cat="EMBALAJE" onclick="mostrarCategoria('EMBALAJE','Embalaje');return false;">Embalaje</a>
+        </div>
+        <div class="cat-entry" data-cat="BOLSAS">
+          <a href="#" class="cat-item" data-cat="BOLSAS" onclick="mostrarCategoria('BOLSAS','Bolsas');return false;">Bolsas</a>
+        </div>
+        <div class="cat-entry" data-cat="DESCARTABLES">
+          <a href="#" class="cat-item" data-cat="DESCARTABLES" onclick="mostrarCategoria('DESCARTABLES','Descartables');return false;">Descartables</a>
+        </div>
+        <div class="cat-entry" data-cat="CAJAS">
+          <a href="#" class="cat-item" data-cat="CAJAS" onclick="mostrarCategoria('CAJAS','Cajas');return false;">Cajas</a>
+        </div>
+        <div class="cat-entry" data-cat="GASTRONÓMICO">
+          <a href="#" class="cat-item" data-cat="GASTRONÓMICO" onclick="mostrarCategoria('GASTRONÓMICO','Gastronómico');return false;">Gastronómico</a>
+        </div>
+        <a href="#" class="cat-item" data-cat="NOVEDADES" onclick="mostrarCategoria('NOVEDADES','Novedades');return false;">Novedades</a>
+        <a href="#" class="cat-item cat-item--ofertas" data-cat="OFERTA" onclick="mostrarCategoria('OFERTA','Ofertas');return false;">Ofertas</a>
+        <a href="#" class="cat-item" onclick="volverAlHome('lista-mayorista');return false;">Lista de Precios</a>
+      </div>
     </div>
   </nav>
+  <button id="catNavBackdrop" class="cat-nav-backdrop" type="button" onclick="cerrarMobileCatMenu()" aria-label="Cerrar categorías"></button>
 
   <!-- ░░ HERO ░░ -->
   <section id="heroSection" class="hero">
     <div class="container hero-inner">
       <div class="hero-content">
-        <span class="hero-badge">¡TEMPORADA ESCOLAR 2026!</span>
-        <h1 class="hero-title">Todo para tu negocio<br />en un solo lugar</h1>
-        <p class="hero-sub">Artículos de papelería, librería y más<br class="hidden sm:block" />a precios mayoristas imbatibles.</p>
+        <span id="heroBadgeText" class="hero-badge">¡TEMPORADA ESCOLAR 2026!</span>
+        <h1 id="heroTitleText" class="hero-title">Todo para tu negocio<br />en un solo lugar</h1>
+        <p id="heroSubText" class="hero-sub">Artículos de papelería, librería y más<br class="hidden sm:block" />a precios mayoristas imbatibles.</p>
         <div class="hero-btns">
           <a href="#novedades" class="btn btn-primary">VER CATÁLOGO</a>
-          <a href="#" class="btn btn-outline-white">LISTA DE PRECIOS</a>
+          <a href="#lista-mayorista" class="btn btn-outline-white">LISTA DE PRECIOS</a>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <div class="hero-img-placeholder">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          <p>Productos de calidad<br />para tu negocio</p>
+        <div class="hero-img-placeholder" id="heroBannerBox">
+          <img id="heroBannerImg" class="hero-banner-img" alt="Banner principal" loading="lazy" />
+          <div id="heroBannerFallback" class="hero-banner-fallback">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <p>Productos de calidad<br />para tu negocio</p>
+          </div>
         </div>
         <div class="hero-dots">
           <span class="dot dot--active"></span>
@@ -115,6 +144,118 @@
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lista-mayorista" class="info-section bg-white" aria-label="Lista mayorista y comerciantes">
+    <div class="container">
+      <div class="section-header section-header--stack">
+        <div class="section-title-wrap">
+          <span class="section-bar"></span>
+          <h2>LISTA MAYORISTA Y COMERCIANTES</h2>
+        </div>
+        <p class="info-sub">Si tenés comercio, sos revendedor o comprás por volumen, te enviamos una lista exclusiva.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>¿Sos mayorista? ¿Querés trabajar nuestros productos?</h3>
+        <p>Dejá tu correo y nos pondremos en contacto a la brevedad.</p>
+        <form class="mayorista-form" onsubmit="solicitarListaMayorista(event)">
+          <label for="mayoristaEmail">Correo electrónico</label>
+          <div class="mayorista-form-row">
+            <input id="mayoristaEmail" type="email" placeholder="tuempresa@email.com" required />
+            <button type="submit" class="btn btn-primary">Quiero la lista</button>
+            <a href="https://wa.me/541178270004?text=Hola%2C%20quiero%20recibir%20la%20lista%20mayorista%20y%20comerciantes." class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp mayorista</a>
+          </div>
+        </form>
+        <p class="info-note">Atención mayoristas: administracion@papeleracarocruz.com · Asunto sugerido: VENTA EMPRESA</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Comprá inteligente, comprá con beneficios en CAROCRUZ PAPELERA</h3>
+        <p>Si sos una empresa, colegio, librería o institución y necesitás abastecerte en cantidad, te ofrecemos calidad, precios competitivos por volumen, stock permanente y entrega rápida y segura.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="info-section bg-gray" aria-label="Preguntas frecuentes">
+    <div class="container">
+      <div class="section-header section-header--stack">
+        <div class="section-title-wrap">
+          <span class="section-bar"></span>
+          <h2>PREGUNTAS FRECUENTES</h2>
+        </div>
+        <p class="info-sub">Información de envíos, retiros, cambios y contacto.</p>
+      </div>
+
+      <div class="faq-grid">
+        <details class="faq-item">
+          <summary>¿Dónde están ubicados?</summary>
+          <div class="faq-answer">
+            <p>Tucumán 1575, CABA.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo retirar mi pedido?</summary>
+          <div class="faq-answer">
+            <p>Sí, sin costo. Modalidad Pickup (gratis): lunes a viernes de 9:00 a 18:00 hs en Tucumán 1575, CABA.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Hacen envíos?</summary>
+          <div class="faq-answer">
+            <p>Sí, a todo el país.</p>
+            <p>CABA: $6.372,85 (referencia Shipnow estándar)</p>
+            <p>GBA: $7.688,90 (referencia Andreani a domicilio)</p>
+            <p>Interior: se cotiza según peso, volumen y destino (Vía Cargo / Integral Pack / Buspack / MD Cargas, a agencia o terminal).</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cuánto tarda en llegar mi pedido?</summary>
+          <div class="faq-answer">
+            <p>Hasta 48 horas hábiles desde la confirmación de compra para CABA y GBA.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo cambiar o devolver un producto?</summary>
+          <div class="faq-answer">
+            <p>Sí, dentro de los 7 días corridos desde que recibís tu pedido, cumpliendo las condiciones.</p>
+            <p>Por higiene, los productos de la categoría papelería no tienen cambio ni devolución.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Condiciones para cambios y devoluciones</summary>
+          <div class="faq-answer">
+            <p>El producto debe conservar empaque original, accesorios completos y no presentar uso, daños ni desgaste.</p>
+            <p>Nos reservamos el derecho de rechazar solicitudes si no se cumplen estas condiciones.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo solicito un cambio o devolución?</summary>
+          <div class="faq-answer">
+            <p>Enviá mail a administracion@papeleracarocruz.com con asunto: DEVOLUCIÓN/CAMBIO PEDIDO [Número de Pedido].</p>
+            <p>Incluí motivo y fotos del producto (empaque, etiqueta y factura). Respuesta en hasta 7 días hábiles.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Quién paga el envío en cambios o devoluciones?</summary>
+          <div class="faq-answer">
+            <p>El envío corre por cuenta del cliente y no se reembolsa el costo de envío original.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo funcionan los reembolsos?</summary>
+          <div class="faq-answer">
+            <p>Si se aprueba la devolución, se realiza por el mismo medio de pago utilizado, descontando costos de envío cuando corresponda.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo cancelar mi compra?</summary>
+          <div class="faq-answer">
+            <p>Sí. Si el pedido ya fue controlado y empaquetado, puede aplicarse recargo por gastos de gestión.</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -142,7 +283,7 @@
         <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <div>
           <h3>Retirá gratis</h3>
-          <p>En nuestros locales del país</p>
+          <p>Pickup en Tucumán 1575, CABA</p>
         </div>
       </div>
       <div class="benefit-divider"></div>
@@ -150,7 +291,7 @@
         <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         <div>
           <h3>Precios mayoristas</h3>
-          <p>Compra mínima desde $80.000</p>
+          <p id="benefitMinimoText">Compra mínima desde $80.000</p>
         </div>
       </div>
     </div>
@@ -164,7 +305,7 @@
           <span class="section-bar"></span>
           <h2>NOVEDADES</h2>
         </div>
-        <a href="#" class="btn-outline-nav">Ver todos <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#" class="btn-outline-nav" onclick="mostrarCategoria('NOVEDADES','Novedades');return false;">Ver todos <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="products-grid" id="novedadesGrid">
         <!-- Se genera con JS -->
@@ -184,7 +325,7 @@
             HOT
           </span>
         </div>
-        <a href="#" class="btn-outline-nav">Ver todas las ofertas <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#" class="btn-outline-nav" onclick="mostrarCategoria('OFERTA','Ofertas');return false;">Ver todas las ofertas <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="products-grid" id="ofertasGrid">
         <!-- Se genera con JS -->
@@ -206,7 +347,59 @@
           Volver al inicio
         </button>
       </div>
+
+      <!-- Barra de filtros y ordenamiento -->
+      <div class="catalogo-filtros" id="catalogoFiltros">
+        <div class="filtro-group">
+          <label class="filtro-label" for="ordenarPor">Ordenar:</label>
+          <select id="ordenarPor" class="filtro-select" onchange="aplicarOrdenYFiltro()">
+            <option value="">Relevancia</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="nombre-asc">Nombre: A → Z</option>
+            <option value="nombre-desc">Nombre: Z → A</option>
+          </select>
+        </div>
+        <div class="filtro-group" id="filtroCategoriaWrap" style="display:none">
+          <label class="filtro-label" for="filtroCategoria">Categoría:</label>
+          <select id="filtroCategoria" class="filtro-select" onchange="aplicarOrdenYFiltro()">
+            <option value="">Todas</option>
+          </select>
+        </div>
+        <div class="filtro-group filtro-group--stock">
+          <label class="filtro-toggle">
+            <input type="checkbox" id="filtroConStock" onchange="aplicarOrdenYFiltro()" />
+            <span>Solo con stock</span>
+          </label>
+        </div>
+        <button id="filtroBtnLimpiar" class="filtro-limpiar" onclick="limpiarFiltros()" style="display:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Limpiar filtros
+        </button>
+
+        <!-- Selector de tamaño de grilla -->
+        <div class="filtro-zoom" role="group" aria-label="Tamaño de imágenes">
+          <button class="zoom-btn" id="zoomBtnCompacto" onclick="setZoomGrid('compacto')" title="Vista compacta (4 columnas)" aria-label="Vista compacta 4 columnas">
+            <!-- 4 columnas -->
+            <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="2.7" height="14" rx="0.8"/><rect x="4.8" y="1" width="2.7" height="14" rx="0.8"/><rect x="8.5" y="1" width="2.7" height="14" rx="0.8"/><rect x="12.2" y="1" width="2.7" height="14" rx="0.8"/></svg>
+          </button>
+          <button class="zoom-btn zoom-btn--active" id="zoomBtnNormal" onclick="setZoomGrid('normal')" title="Vista normal (3 columnas)" aria-label="Vista normal 3 columnas">
+            <!-- 3 columnas -->
+            <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="4.3" height="14" rx="1"/><rect x="5.85" y="1" width="4.3" height="14" rx="1"/><rect x="10.7" y="1" width="4.3" height="14" rx="1"/></svg>
+          </button>
+          <button class="zoom-btn" id="zoomBtnGrande" onclick="setZoomGrid('grande')" title="Vista ampliada (2 columnas)" aria-label="Vista ampliada 2 columnas">
+            <!-- 2 columnas -->
+            <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="6.5" height="14" rx="1.2"/><rect x="8.5" y="1" width="6.5" height="14" rx="1.2"/></svg>
+          </button>
+        </div>
+      </div>
+
       <div class="products-grid" id="categoriaGrid"></div>
+      <div id="catalogPagination" class="catalog-pagination hidden">
+        <button type="button" class="btn-outline-nav" onclick="cambiarPaginaCatalogo(-1)">Anterior</button>
+        <span id="catalogPageInfo" class="catalog-page-info">Página 1 de 1</span>
+        <button type="button" class="btn-outline-nav" onclick="cambiarPaginaCatalogo(1)">Siguiente</button>
+      </div>
     </div>
   </section>
 
@@ -222,7 +415,7 @@
         </div>
         <p class="footer-desc">Artículos de papelería, librería y útiles a precios mayoristas. Más de 10 años en el mercado.</p>
         <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="Instagram">
+          <a href="https://www.instagram.com/carocruzpapelera" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
           <a href="#" class="social-btn" aria-label="WhatsApp">
@@ -238,6 +431,7 @@
       <div class="footer-col">
         <h4>CATEGORÍAS</h4>
         <ul>
+          <li><a href="#" onclick="volverAlHome('heroSection');return false;">Inicio</a></li>
           <li><a href="#" onclick="mostrarCategoria('LIMPIEZA','Limpieza');return false;">Limpieza</a></li>
           <li><a href="#" onclick="mostrarCategoria('LIBRERÍA','Librería');return false;">Librería</a></li>
           <li><a href="#" onclick="mostrarCategoria('ESCOLAR','Escolar');return false;">Escolar</a></li>
@@ -246,7 +440,7 @@
           <li><a href="#" onclick="mostrarCategoria('DESCARTABLES','Descartables');return false;">Descartables</a></li>
           <li><a href="#" onclick="mostrarCategoria('CAJAS','Cajas');return false;">Cajas</a></li>
           <li><a href="#" onclick="mostrarCategoria('GASTRONÓMICO','Gastronómico');return false;">Gastronómico</a></li>
-          <li><a href="#ofertas" class="text-yellow" onclick="volverAlHome('ofertas');return false;">Ofertas</a></li>
+          <li><a href="#" class="text-yellow" onclick="mostrarCategoria('OFERTA','Ofertas');return false;">Ofertas</a></li>
         </ul>
       </div>
 
@@ -254,11 +448,11 @@
       <div class="footer-col">
         <h4>INFORMACIÓN</h4>
         <ul>
-          <li><a href="#">Lista de precios</a></li>
-          <li><a href="#">Cómo comprar</a></li>
-          <li><a href="#">Medios de pago</a></li>
-          <li><a href="#">Envíos y retiros</a></li>
-          <li><a href="#">Preguntas frecuentes</a></li>
+          <li><a href="#" onclick="volverAlHome('lista-mayorista');return false;">Lista de precios</a></li>
+          <li><a href="#" onclick="volverAlHome('faq');return false;">Cómo comprar</a></li>
+          <li><a href="#" onclick="volverAlHome('faq');return false;">Medios de pago</a></li>
+          <li><a href="#" onclick="volverAlHome('faq');return false;">Envíos y retiros</a></li>
+          <li><a href="#" onclick="volverAlHome('faq');return false;">Preguntas frecuentes</a></li>
         </ul>
       </div>
 
@@ -268,19 +462,23 @@
         <ul>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Buenos Aires, Argentina
+            Tucumán 1575, C1050 Cdad. Autónoma de Buenos Aires
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.63a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +54 11 0000-0000
+            11-7827-0004
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            ventas@caracruz.com.ar
+            ventas@papeleracarocruz.com
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             Lun–Vie: 9:00 a 18:00 hs
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>
+            @carocruzpapelera
           </li>
         </ul>
       </div>
@@ -307,7 +505,7 @@
     <div class="cart-summary">
       <div class="cart-progress-wrap">
         <div class="cart-progress-track"><div id="cartProgressBar" class="cart-progress-bar"></div></div>
-        <p id="cartProgressText" class="cart-progress-text">Compra mínima $80.000</p>
+        <p id="cartProgressText" class="cart-progress-text">Compra mínima $50.000</p>
       </div>
       <div class="cart-total">
         <span>Total (<span id="cartItemsCount">0 productos</span>)</span>
@@ -416,8 +614,7 @@
   <div id="adminModal" class="admin-modal" role="dialog" aria-modal="true" aria-label="Panel de administración">
     <div class="admin-modal-head">
       <div>
-        <p class="admin-kicker">Administración</p>
-        <h3>Cargar producto</h3>
+        <h3 id="adminModalTitle">Configuración</h3>
       </div>
       <button class="auth-close-btn" onclick="cerrarAdminPanel()" aria-label="Cerrar panel de administración">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -425,55 +622,220 @@
     </div>
 
     <div class="admin-modal-body">
-      <form id="adminForm" class="admin-form" onsubmit="handleAltaProductoAdmin(event)" novalidate>
-        <h4 class="admin-section-title">Nueva publicación</h4>
-        <div class="auth-field">
-          <label for="adminNombre">Nombre del producto</label>
-          <input id="adminNombre" type="text" placeholder="Ej: Cuaderno universitario x 10" />
-        </div>
-        <div class="admin-form-grid">
-          <div class="auth-field">
-            <label for="adminPrecio">Precio</label>
-            <input id="adminPrecio" type="number" min="1" step="1" placeholder="12500" />
-          </div>
-          <div class="auth-field">
-            <label for="adminStock">Stock</label>
-            <input id="adminStock" type="number" min="0" step="1" placeholder="100" />
-          </div>
-        </div>
-        <div class="admin-form-grid">
-          <div class="auth-field">
-            <label for="adminCategoria">Categoría</label>
-            <select id="adminCategoria" class="admin-select">
-              <option value="LIMPIEZA">Limpieza</option>
-              <option value="LIBRERÍA">Librería</option>
-              <option value="ESCOLAR">Escolar</option>
-              <option value="EMBALAJE">Embalaje</option>
-              <option value="BOLSAS">Bolsas</option>
-              <option value="DESCARTABLES">Descartables</option>
-              <option value="CAJAS">Cajas</option>
-              <option value="GASTRONÓMICO">Gastronómico</option>
-              <option value="OFERTA">Oferta</option>
-            </select>
-          </div>
-        </div>
-        <div class="auth-field">
-          <label for="adminImagen">URL de imagen (opcional)</label>
-          <input id="adminImagen" type="url" placeholder="https://..." />
-        </div>
-        <div class="auth-field">
-          <label for="adminImagenArchivo">O subir imagen (opcional)</label>
-          <input id="adminImagenArchivo" type="file" accept="image/*" />
+      <div class="admin-main-tabs" role="tablist" aria-label="Secciones principales de administración">
+        <button type="button" class="admin-main-tab-btn admin-main-tab-btn--active" data-main-tab-id="config" onclick="setAdminMainTab('config')">Configuración</button>
+        <button type="button" class="admin-main-tab-btn" data-main-tab-id="gestion" onclick="setAdminMainTab('gestion')">Gestión de publicaciones</button>
+      </div>
+
+      <form id="adminForm" class="admin-form admin-main-panel admin-main-panel--active" data-main-panel-id="config" onsubmit="handleAltaProductoAdmin(event)" novalidate>
+        <div class="admin-tabs" role="tablist" aria-label="Secciones de configuración admin">
+          <button type="button" class="admin-tab-btn admin-tab-btn--active" data-scope="form" data-tab-id="publicaciones" onclick="setAdminTab('form','publicaciones')">Publicaciones</button>
+          <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="comercial" onclick="setAdminTab('form','comercial')">Comercial</button>
+          <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="banners" onclick="setAdminTab('form','banners')">Banners</button>
+          <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="promociones" onclick="setAdminTab('form','promociones')">Promociones</button>
         </div>
 
-        <p class="admin-help">Podés usar URL o archivo. Si hay archivo, se prioriza ese. Con Firestore activo se sincroniza para todos.</p>
-        <span id="adminError" class="auth-field-error"></span>
+        <div id="adminTabForm-publicaciones" class="admin-tab-panel admin-tab-panel--active" data-scope="form" data-tab-id="publicaciones">
+          <h4 class="admin-section-title">Nueva publicación</h4>
+          <div class="auth-field">
+            <label for="adminNombre">Nombre del producto</label>
+            <input id="adminNombre" type="text" placeholder="Ej: Cuaderno universitario x 10" />
+          </div>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminPrecio">Precio</label>
+              <input id="adminPrecio" type="number" min="1" step="1" placeholder="12500" />
+            </div>
+            <div class="auth-field">
+              <label for="adminStock">Stock</label>
+              <input id="adminStock" type="number" min="0" step="1" placeholder="100" />
+            </div>
+          </div>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminCategoria">Categoría</label>
+              <select id="adminCategoria" class="admin-select">
+                <option value="LIMPIEZA">Limpieza</option>
+                <option value="LIBRERÍA">Librería</option>
+                <option value="ESCOLAR">Escolar</option>
+                <option value="EMBALAJE">Embalaje</option>
+                <option value="BOLSAS">Bolsas</option>
+                <option value="DESCARTABLES">Descartables</option>
+                <option value="CAJAS">Cajas</option>
+                <option value="GASTRONÓMICO">Gastronómico</option>
+                <option value="OFERTA">Oferta</option>
+              </select>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="adminImagen">URL de imagen (opcional)</label>
+            <input id="adminImagen" type="url" placeholder="https://..." />
+          </div>
+          <div class="auth-field">
+            <label for="adminImagenArchivo">O subir imagen (opcional)</label>
+            <input id="adminImagenArchivo" type="file" accept="image/*" />
+          </div>
 
-        <button id="btnAdminGuardar" type="submit" class="auth-submit">Guardar producto</button>
+          <p class="admin-help">Podés usar URL o archivo. Si hay archivo, se prioriza ese. Con Firestore activo se sincroniza para todos.</p>
+          <span id="adminError" class="auth-field-error"></span>
+
+          <button id="btnAdminGuardar" type="submit" class="auth-submit">Guardar producto</button>
+        </div>
+
+        <div id="adminTabForm-comercial" class="admin-tab-panel" data-scope="form" data-tab-id="comercial">
+          <h4 class="admin-section-title">Configuración comercial</h4>
+          <div class="admin-config-box">
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminMinCompra">Compra mínima ($)</label>
+              <input id="adminMinCompra" type="number" min="1" step="1" placeholder="50000" />
+            </div>
+            <div class="auth-field">
+              <label for="adminMinEnvioCaba">Envío CABA ($)</label>
+              <input id="adminMinEnvioCaba" type="number" min="0" step="1" placeholder="11000" />
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="adminMinEnvioGba">Envío GBA 1er cordón ($)</label>
+            <input id="adminMinEnvioGba" type="number" min="0" step="1" placeholder="22000" />
+          </div>
+
+          <div class="auth-field">
+            <label for="adminAnnouncementMain">Banner superior (línea principal)</label>
+            <input id="adminAnnouncementMain" type="text" placeholder="ENVÍOS A TODO EL PAÍS — COMPRA MÍNIMA $50.000 — ENVÍOS A CABA EN 24 HS" />
+          </div>
+          <div class="auth-field">
+            <label for="adminAnnouncementExtra">Banner superior (línea secundaria)</label>
+            <input id="adminAnnouncementExtra" type="text" placeholder="| CABA $11.000 · GBA PRIMER CORDÓN $22.000" />
+          </div>
+          <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar configuración comercial</button>
+          </div>
+        </div>
+
+        <div id="adminTabForm-banners" class="admin-tab-panel" data-scope="form" data-tab-id="banners">
+          <h4 class="admin-section-title">Banners</h4>
+          <div class="admin-config-box">
+          <div class="auth-field">
+            <label for="adminHeroBadge">Hero: badge</label>
+            <input id="adminHeroBadge" type="text" placeholder="¡TEMPORADA ESCOLAR 2026!" />
+          </div>
+          <div class="auth-field">
+            <label for="adminHeroTitle">Hero: título (usar salto de línea con Enter)</label>
+            <textarea id="adminHeroTitle" rows="2" placeholder="Todo para tu negocio\nen un solo lugar"></textarea>
+          </div>
+          <div class="auth-field">
+            <label for="adminHeroSub">Hero: subtítulo (usar salto de línea con Enter)</label>
+            <textarea id="adminHeroSub" rows="2" placeholder="Artículos de papelería, librería y más\na precios mayoristas imbatibles."></textarea>
+          </div>
+          <div class="auth-field">
+            <label for="adminHeroBannerUrl">Hero: URL imagen banner (opcional)</label>
+            <input id="adminHeroBannerUrl" type="url" placeholder="https://..." />
+          </div>
+          <div class="auth-field">
+            <label for="adminHeroBannerArchivo">Hero: o subir imagen banner (opcional)</label>
+            <input id="adminHeroBannerArchivo" type="file" accept="image/*" />
+          </div>
+          <div id="adminHeroBannerPreview" class="admin-hero-preview">
+            <img id="adminHeroBannerPreviewImg" alt="Vista previa banner hero" />
+            <p id="adminHeroBannerPreviewEmpty">Sin imagen de banner hero</p>
+          </div>
+          <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar banners</button>
+          </div>
+        </div>
+
+        <div id="adminTabForm-promociones" class="admin-tab-panel" data-scope="form" data-tab-id="promociones">
+          <h4 class="admin-section-title">Promociones</h4>
+          <div class="admin-config-box">
+          <h5 class="admin-mini-title">Descuento por categoría (%)</h5>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminOfertaLimpieza">Limpieza</label>
+              <input id="adminOfertaLimpieza" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+            <div class="auth-field">
+              <label for="adminOfertaLibreria">Librería</label>
+              <input id="adminOfertaLibreria" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+          </div>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminOfertaEscolar">Escolar</label>
+              <input id="adminOfertaEscolar" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+            <div class="auth-field">
+              <label for="adminOfertaEmbalaje">Embalaje</label>
+              <input id="adminOfertaEmbalaje" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+          </div>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminOfertaBolsas">Bolsas</label>
+              <input id="adminOfertaBolsas" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+            <div class="auth-field">
+              <label for="adminOfertaDescartables">Descartables</label>
+              <input id="adminOfertaDescartables" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+          </div>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminOfertaCajas">Cajas</label>
+              <input id="adminOfertaCajas" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+            <div class="auth-field">
+              <label for="adminOfertaGastronomico">Gastronómico</label>
+              <input id="adminOfertaGastronomico" type="number" min="0" max="90" step="1" placeholder="0" />
+            </div>
+          </div>
+
+          <h5 class="admin-mini-title">Promoción por marca</h5>
+          <div class="auth-field">
+            <label for="adminMarcasPromo">Marcas en promoción (separadas por coma)</label>
+            <input id="adminMarcasPromo" type="text" placeholder="Ej: Filgo, Rivadavia, BIC" />
+          </div>
+          <div class="auth-field">
+            <label for="adminDescuentoMarca">Descuento por marca (%)</label>
+            <input id="adminDescuentoMarca" type="number" min="0" max="90" step="1" placeholder="0" />
+          </div>
+
+          <h5 class="admin-mini-title">Promoción 2x1</h5>
+          <div class="admin-form-grid">
+            <div class="auth-field">
+              <label for="adminPromo2x1Categoria">Filtrar por categoría</label>
+              <select id="adminPromo2x1Categoria" class="admin-select" onchange="adminCambiarFiltro2x1()">
+                <option value="TODAS">Todas</option>
+                <option value="LIMPIEZA">Limpieza</option>
+                <option value="LIBRERÍA">Librería</option>
+                <option value="ESCOLAR">Escolar</option>
+                <option value="EMBALAJE">Embalaje</option>
+                <option value="BOLSAS">Bolsas</option>
+                <option value="DESCARTABLES">Descartables</option>
+                <option value="CAJAS">Cajas</option>
+                <option value="GASTRONÓMICO">Gastronómico</option>
+                <option value="OFERTA">Oferta</option>
+              </select>
+            </div>
+            <div class="auth-field">
+              <label>Selección rápida</label>
+              <div class="admin-bulk-selection-actions">
+                <button type="button" class="admin-item-btn" onclick="adminSeleccionarFiltrados2x1(true)">Seleccionar filtrados</button>
+                <button type="button" class="admin-item-btn" onclick="adminSeleccionarFiltrados2x1(false)">Limpiar filtrados</button>
+              </div>
+            </div>
+          </div>
+          <div id="adminPromo2x1Selector" class="admin-promo-2x1-selector"></div>
+          <div id="adminPromo2x1List" class="admin-promo-2x1-list"></div>
+
+          <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar ofertas</button>
+          </div>
+        </div>
       </form>
 
-      <section class="admin-gestion" aria-label="Gestión de publicaciones">
-        <h4 class="admin-section-title">Gestión de publicaciones</h4>
+      <section class="admin-gestion admin-main-panel" data-main-panel-id="gestion" aria-label="Gestión de publicaciones">
+        <div class="admin-tabs admin-tabs--gestion" role="tablist" aria-label="Pestañas de gestión">
+          <button type="button" class="admin-tab-btn admin-tab-btn--active" data-scope="gestion" data-tab-id="listado" onclick="setAdminTab('gestion','listado')">Listado</button>
+          <button type="button" class="admin-tab-btn" data-scope="gestion" data-tab-id="masivo" onclick="setAdminTab('gestion','masivo')">Masivo</button>
+        </div>
         <div class="auth-field">
           <label for="adminGestionBuscar">Buscar por nombre o categoría</label>
           <input id="adminGestionBuscar" type="text" placeholder="Ej: cuaderno, limpieza, oferta" oninput="adminResetGestionPage();renderAdminGestionList()" />
@@ -508,15 +870,96 @@
             <input id="adminGestionUmbral" type="number" min="1" step="1" value="10" oninput="adminResetGestionPage();renderAdminGestionList()" />
           </div>
         </div>
-        <div id="adminGestionList" class="admin-gestion-list"></div>
-        <div class="admin-gestion-pagination">
-          <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(-1)">Anterior</button>
-          <span id="adminGestionPageInfo" class="admin-gestion-page-info">Página 1 de 1</span>
-          <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(1)">Siguiente</button>
+
+        <div id="adminTabGestion-listado" class="admin-tab-panel admin-tab-panel--active" data-scope="gestion" data-tab-id="listado">
+          <div id="adminGestionList" class="admin-gestion-list"></div>
+          <div class="admin-gestion-pagination">
+            <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(-1)">Anterior</button>
+            <span id="adminGestionPageInfo" class="admin-gestion-page-info">Página 1 de 1</span>
+            <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(1)">Siguiente</button>
+          </div>
+        </div>
+
+        <div id="adminTabGestion-masivo" class="admin-tab-panel" data-scope="gestion" data-tab-id="masivo">
+          <div class="admin-bulk-box">
+          <h5 class="admin-mini-title">Cambios masivos sobre publicaciones filtradas</h5>
+          <div class="admin-form-grid">
+            <div class="admin-item-field">
+              <label for="adminBulkScope">Alcance</label>
+              <select id="adminBulkScope" class="admin-select">
+                <option value="FILTRADOS">Todas las filtradas</option>
+                <option value="SELECCIONADOS">Solo seleccionadas</option>
+              </select>
+            </div>
+            <div class="admin-item-field">
+              <label>Selección manual</label>
+              <div class="admin-bulk-selection-actions">
+                <button type="button" class="admin-item-btn" onclick="adminSeleccionarVisibles(true)">Seleccionar visibles</button>
+                <button type="button" class="admin-item-btn" onclick="adminSeleccionarVisibles(false)">Limpiar visibles</button>
+              </div>
+            </div>
+          </div>
+          <p id="adminBulkSelectedInfo" class="admin-bulk-selected-info">0 publicaciones seleccionadas</p>
+          <div class="admin-form-grid">
+            <div class="admin-item-field">
+              <label for="adminBulkPrecioPct">Ajuste de precio (%)</label>
+              <input id="adminBulkPrecioPct" type="number" step="1" placeholder="Ej: -10 o 15" />
+            </div>
+            <div class="admin-item-field">
+              <label for="adminBulkStockDelta">Ajuste de stock (+/-)</label>
+              <input id="adminBulkStockDelta" type="number" step="1" placeholder="Ej: 5 o -3" />
+            </div>
+          </div>
+          <div class="admin-item-field">
+            <label for="adminBulkCategoriaDestino">Cambiar categoría (opcional)</label>
+            <select id="adminBulkCategoriaDestino" class="admin-select">
+              <option value="">No cambiar categoría</option>
+              <option value="LIMPIEZA">Limpieza</option>
+              <option value="LIBRERÍA">Librería</option>
+              <option value="ESCOLAR">Escolar</option>
+              <option value="EMBALAJE">Embalaje</option>
+              <option value="BOLSAS">Bolsas</option>
+              <option value="DESCARTABLES">Descartables</option>
+              <option value="CAJAS">Cajas</option>
+              <option value="GASTRONÓMICO">Gastronómico</option>
+              <option value="OFERTA">Oferta</option>
+            </select>
+          </div>
+          <button type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminAplicarCambiosMasivos()">Aplicar cambios masivos</button>
+          </div>
+
+          <div class="admin-bulk-box admin-bulk-box--csv">
+            <h5 class="admin-mini-title">Importar CSV masivo</h5>
+            <div class="admin-form-grid">
+              <div class="admin-item-field">
+                <label for="adminBulkCsvFile">Archivo CSV</label>
+                <input id="adminBulkCsvFile" type="file" accept=".csv,text/csv" />
+              </div>
+              <div class="admin-item-field">
+                <label for="adminBulkCsvMode">Modo de carga</label>
+                <select id="adminBulkCsvMode" class="admin-select">
+                  <option value="UPSERT">Crear nuevos y actualizar por ID</option>
+                  <option value="SOLO_NUEVOS">Solo crear nuevos (ignora IDs existentes)</option>
+                </select>
+              </div>
+            </div>
+            <p class="admin-help">Encabezados requeridos: nombre, precio e imagen (id/stock/categoria opcionales). También acepta alias como producto/descripcion, price, cantidad, rubro, image/foto/url_imagen.</p>
+            <button id="adminBulkCsvImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarCsvMasivo()">Importar CSV</button>
+            <div id="adminBulkCsvResult" class="admin-bulk-csv-result" aria-live="polite"></div>
+          </div>
         </div>
       </section>
     </div>
   </div>
+
+  <div id="adminImageZoomOverlay" class="admin-image-zoom-overlay hidden" onclick="cerrarAdminImageZoom()" aria-hidden="true">
+    <div class="admin-image-zoom-box" onclick="event.stopPropagation()">
+      <button type="button" class="admin-image-zoom-close" onclick="cerrarAdminImageZoom()" aria-label="Cerrar zoom">×</button>
+      <img id="adminImageZoomImg" alt="Zoom de imagen del producto" />
+    </div>
+  </div>
+
+  <button id="backToTopBtn" class="back-to-top" type="button" onclick="scrollToTop()" aria-label="Volver arriba">↑ Top</button>
 
   <script src="catalogo-gastronomico.js"></script>
   <script src="catalogo-escolar.js"></script>

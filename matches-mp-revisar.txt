@@ -1,0 +1,196 @@
+# Matches MP con score 50-64% — revisar si la imagen es correcta
+# Formato: [score] id  nombre_local  →  slug_MarketPaper
+
+[50%] gast-15      BANDEJA HORNO RECTANGULAR 4000ML XU           → bandeja-rectangular-de-cartulina-satinada-n3-21-x-17-x-2
+[50%] gast-16      BANDEJA ORO 1/2K                              → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-17      BANDEJA ORO 1/4K                              → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-18      BANDEJA ORO 16 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-19      BANDEJA ORO 18 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-20      BANDEJA ORO 1K                                → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-21      BANDEJA ORO 20 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-22      BANDEJA ORO 24-23 XU                          → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-23      BANDEJA ORO 26 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-24      BANDEJA ORO 28 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-25      BANDEJA ORO 2K                                → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-26      BANDEJA ORO 31 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-27      BANDEJA ORO 36 XU                             → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-28      BANDEJA ORO 3K                                → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] gast-29      BANDEJA ORO 5K                                → bandeja-de-aluminio-f50-15-x-13-x-4
+[60%] gast-45      BANDEJAS DESCARTABLES PLASTICAS 105 C/TAPA OVAL XU → bandejas-delivery-descartables-105-oval-micro
+[60%] gast-46      BANDEJAS DESCARTABLES PLASTICAS 105 OVAL X50U → bandejas-delivery-descartables-105-oval-micro
+[50%] gast-47      BANDEJAS DESCARTABLES PLASTICAS 105 REC/OVAL REFORZADA X100U → bandejas-delivery-descartables-105-oval-micro
+[50%] gast-89      DISPENSER TOALLAS INTERCALADAS                → toallas-intercaladas-de-papel-blancas-elegante-19x24
+[50%] gast-90      ENSALADERA CON PRECINTO XU                    → ensaladera-negra-descartable-con-tapa-900cc
+[52%] gast-138     POTES 1/2 CON TAPA X50U                       → pote-650cc-con-tapa-plastico-descartable
+[52%] gast-139     POTES 1/4 CON TAPA X50U                       → pote-650cc-con-tapa-plastico-descartable
+[52%] gast-140     POTES 1/8 CON TAPA X50U                       → pote-650cc-con-tapa-plastico-descartable
+[50%] gast-148     SERVILLETAS 18X18 X100U                       → servilletas-de-papel-blancas-24x24cm
+[50%] gast-149     SERVILLETAS 33X33 X CAJA                      → servilletas-de-papel-blancas-24x24cm
+[50%] gast-164     SERVILLETAS SERVETTE 24X24 X1000U             → servilletas-de-papel-blancas-24x24cm
+[50%] gast-165     SERVILLETAS BOUQUET 33X33 X25U                → servilletas-de-papel-blancas-24x24cm
+[50%] gast-175     TOALLAS INTERCALADAS ECONOMICAS X200          → toallas-intercaladas-de-papel-blancas-elegante-19x24
+[50%] gast-176     TOALLAS INTERCALADAS AZUL X CAJA              → toallas-intercaladas-de-papel-blancas-elegante-19x24
+[50%] lib-129      EZCO ROLLO BLANCO XU                          → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-218      LSF0713 SOBRES X100U                          → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-219      LSF0915 SOBRES X100U                          → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-291      PAPEL PARA REGALO T/KRAFT 2 HOJAS             → caja-para-torta-de-papel-kraft-34x34x15
+[50%] lib-340      RESMA PAPEL A4 75GR XU                        → resma-de-papel-sulfito-10-kg-60x90
+[50%] lib-342      RESMA PAPEL PUNAX A4 75G XU                   → resma-de-papel-sulfito-10-kg-60x90
+[50%] lib-353      ROLLO ARRANQUE 1520 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-354      ROLLO ARRANQUE 1525 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-356      ROLLO ARRANQUE 2025 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-357      ROLLO ARRANQUE 2030 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-358      ROLLO ARRANQUE 2535 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-359      ROLLO ARRANQUE 3040 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-360      ROLLO ARRANQUE 3545 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-361      ROLLO ARRANQUE 4050 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-362      ROLLO ARRANQUE 5070 X1.3KG-U                  → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-363      ROLLO ARRANQUE 6090 XU                        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-364      ROLLO ARRANQUE VERDE 2030-2535-3040-3545 XU   → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-366      ROLLO CARACOL XU                              → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-367      ROLLO OBRA 75X30 X10                          → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-368      ROLLO PAPEL QUIMICO 75 40M X10                → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] lib-409      SOBRES 07 X100U                               → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-411      SOBRES CARTA X20U                             → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-412      SOBRES INFANT X10U                            → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-413      SOBRES NAVIDAD XU                             → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-415      SOBRES SULFITO N7 19X34 X100U                 → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] lib-416      SOBRES XU                                     → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] des-19       KOVAL BANDEJA XU                              → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] des-20       KOVAL BANDEJA X10U                            → bandeja-de-aluminio-f50-15-x-13-x-4
+[50%] des-32       KOVAL PLATO CHICO XU                          → plato-polipapel-blanco-185cm
+[50%] des-35       KOVAL PLATO GRANDE XU                         → plato-polipapel-blanco-185cm
+[50%] des-42       KOVAL VASO TUBOS CRISTAL                      → vaso-plastico-descartable-cristal-transparente-180cc
+[50%] des-55       PLATO TERMICO X10U                            → plato-polipapel-blanco-185cm
+[50%] des-59       PORTA VASO DOBLE XU                           → vaso-180cc-polipapel-blanco
+[50%] des-61       POTE VENECIANA CON TAPA 12OZ DARNEL X10U      → pote-650cc-con-tapa-plastico-descartable
+[50%] des-62       POTE VENECIANA CON TAPA 12OZ DARNEL XU        → pote-650cc-con-tapa-plastico-descartable
+[50%] des-69       VASO CONICO X500CC X10U                       → vaso-180cc-polipapel-blanco
+[60%] des-75       VASOS PLASTICOS DESCARTABLES 50ML X100U       → vaso-plastico-descartable-blanco-300cc
+[60%] des-76       VASOS PLASTICOS DESCARTABLES 80ML X100U       → vaso-plastico-descartable-blanco-300cc
+[60%] des-78       VASOS POLIPAPEL C/TAPA 12OZ X30U              → vasos-360cc-polipapel-kraft-sin-tapa
+[60%] des-79       VASOS POLIPAPEL C/TAPA 8OZ X50U               → vasos-360cc-polipapel-kraft-sin-tapa
+[53%] des-80       VASOS TERMICO 120CC X25                       → vaso-240cc-telgopor-termico-blanco
+[53%] des-81       VASOS TERMICO 180CC X25                       → vaso-240cc-telgopor-termico-blanco
+[53%] des-82       VASOS TERMICO 240CC X25                       → vaso-240cc-telgopor-termico-blanco
+[53%] des-83       VASOS TERMICO 300CC X25                       → vaso-240cc-telgopor-termico-blanco
+[50%] emb-5        BOBINA AZUL ELEGANTE 20X400 X2U               → bobina-de-papel-madera-60-cm
+[50%] emb-6        BOBINA AZUL ELEGANTE 20X400 XU                → bobina-de-papel-madera-60-cm
+[50%] emb-7        BOBINA MOVAR 60CM K                           → bobina-de-papel-madera-60-cm
+[50%] emb-10       BOBINA MOVECO 40CM K                          → bobina-de-papel-madera-60-cm
+[50%] emb-11       BOBINA MURESCO 100MT DORADA                   → bobina-de-papel-madera-60-cm
+[50%] emb-12       BOBINA ROJA ELEGANTE 25X400M X2U              → bobina-de-papel-madera-60-cm
+[50%] emb-13       BOBINA ROJA ELEGANTE 25X400M XU               → bobina-de-papel-madera-60-cm
+[50%] emb-14       BOBINA ROLLO CONTINUO PAPEL X200 MTS          → rollo-bobina-para-limpieza-25cm-x-400mt-d-h
+[50%] emb-84       MURESCO SOBRES 16X22                          → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-85       MURESCO SOBRES 24X30 XU                       → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-86       MURESCO SOBRES 30X40 XU                       → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-93       PAPEL SULFITO X KG                            → resma-de-papel-sulfito-10-kg-60x90
+[50%] emb-96       RESMA SEDA 75X100M X350U                      → resma-de-papel-sulfito-10-kg-60x90
+[50%] emb-97       RESMA SEDA X400U 50X70                        → resma-de-papel-sulfito-10-kg-60x90
+[50%] emb-99       ROLLO ALUMINIO SUR PACK 1KG XU                → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] emb-100      ROLLO ALUMINIO UPROLL/WEST X1KG               → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] emb-101      ROLLO FILM 100M OFERTA XU                     → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] emb-103      ROLLO FILM 38 X300M NARANJA XU                → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] emb-106      ROLLO PAPEL ALUMINIO 5M XU MAR DE FLOR        → rollo-de-papel-aluminio-profesional-38cm-x-15
+[50%] emb-125      SOBRES FANTASIA 12X18 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-126      SOBRES FANTASIA 14X21 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-127      SOBRES FANTASIA 15X25 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-128      SOBRES FANTASIA 20X26 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-129      SOBRES FANTASIA 20X29 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-130      SOBRES FANTASIA 25X35 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-131      SOBRES FANTASIA 29X39 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-132      SOBRES FANTASIA 33X41 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-133      SOBRES FANTASIA 37X45 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-134      SOBRES FANTASIA 7X13 X100U                    → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-135      SOBRES FANTASIA 7X20 X100U                    → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-136      SOBRES FANTASIA 8X26 X100U                    → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-137      SOBRES FANTASIA 9X15 X100U                    → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-138      SOBRES FARMACIA 7X13 X100U                    → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-139      SOBRES FARMACIA 12X18 X100U                   → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-156      SOBRES METALIZADO C/ADHESIVO 10X15 X100U      → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-157      SOBRES METALIZADO C/ADHESIVO 20X30 X50U       → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] emb-158      SOBRES METALIZADO C/ADHESIVO 7X10 X100U       → sobres-manila-de-papel-madera-25-x-35-cm
+[50%] caj-44       CAJA ARCHIVO 42X32X25 REFORZADA ART.406       → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-45       CAJA ARCHIVO T/VOLCADA PLASTICO               → cajas-de-archivo-plastico-azul-oficio
+[50%] caj-46       CAJA ARCHIVO TAPA VOLCADA OF-9-12-LEG XU      → cajas-de-archivo-con-tapa-volcada-oficio-37x26x12
+[53%] caj-76       CAJA PIZZA COMUN XU                           → caja-para-pizzas-31-x-16-x-5
+[50%] caj-77       CAJA REFORZADA 35X25X15 XU                    → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-78       CAJA REFORZADA 35X25X25 XU                    → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-79       CAJA REFORZADA 40X30X30 XU                    → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-80       CAJA REFORZADA 40X40X40 XU                    → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-81       CAJA REFORZADA ENVIO XU                       → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-85       CAJA TRIPLE REFORZADA 40X30X30 XU             → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[50%] caj-86       CAJA TRIPLE REFORZADA 60X40X40 XU             → caja-de-carton-corrugado-doble-reforzada-60x40x40
+[53%] caj-90       CAJAS DE EMPANADAS 12/18 XU                   → caja-para-empanadas-30-4-x-24-4-x-5-5
+[53%] caj-93       CAJAS PIZZAS CHICA/GRANDE XU                  → caja-para-pizzas-31-x-16-x-5
+[50%] caj-171      TELGOPOR 1MX1M 2CM XU                         → conservadora-telgopor-254cm-x-143cm-x-14cm
+[50%] caj-172      TELGOPOR 50CMX1M 2CM                          → conservadora-telgopor-254cm-x-143cm-x-14cm
+[50%] caj-173      TELGOPOR 50X50 2CM XU                         → conservadora-telgopor-254cm-x-143cm-x-14cm
+[50%] caj-174      TOALLAS INTERCALADAS X CAJA 2000U             → toallas-intercaladas-de-papel-blancas-elegante-19x24
+[50%] bol-0        BOLSA ASA 25X35 X10U                          → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-1        BOLSA ASA 30X40 X10U                          → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-2        BOLSA ASA 35X45 X10U                          → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-3        BOLSA ASA 60X54 XU                            → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-4        BOLSA ASA 60X54 X10U                          → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-16       BOLSA CHANNEL 14X15 XU                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-17       BOLSA CHANNEL 15X20 XU                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-18       BOLSA CHANNEL 20X28 XU                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-19       BOLSA COLOR 20X18X8 XU                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-20       BOLSA COLOR 30X22X10 XU                       → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-21       BOLSA COLOR 32X30X10 XU                       → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-22       BOLSA COLOR 41X30X12 XU                       → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-24       BOLSA E-COMMERCE 20X30 XU XS                  → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-25       BOLSA E-COMMERCE 25X35 XU S                   → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-26       BOLSA E-COMMERCE 30X40 XU M                   → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-27       BOLSA E-COMMERCE 32X45 XU NEGRA               → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-28       BOLSA E-COMMERCE 35X45 XU L                   → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-29       BOLSA HORNO X10U                              → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-31       BOLSA METALIZADA TERLIZZI 30X30               → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-74       BOLSA RIÑON 15X25 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-75       BOLSA RIÑON 20X30 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-76       BOLSA RIÑON 25X35 X50                         → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-77       BOLSA RIÑON 30X40 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-78       BOLSA RIÑON 35X45 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-79       BOLSA RIÑON 40X50 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-80       BOLSA RIÑON 50X60 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-81       BOLSA RIÑON 60X70 X50U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-82       BOLSA RIÑON 70X90 X25U                        → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-84       BOLSA RIÑON GRANDE XU                         → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-86       BOLSA SONRISA 30X40 X100U                     → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-87       BOLSA SONRISA 40X50 X100U                     → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-88       BOLSA SONRISA 45X60 X100U                     → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-89       BOLSA SONRISA 50X60 X100U                     → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-90       BOLSA SONRISA 50X70 X100U                     → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-91       BOLSA SONRISA 60X80 X100U                     → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-92       BOLSA SUELTA XU                               → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-93       BOLSA VINO X2 XU TERLIZZI                     → bolsa-de-papel-blanca-para-botella-de-vino-14x08x40
+[50%] bol-94       BOLSA VINO XU TERLIZZI                        → bolsa-de-papel-blanca-para-botella-de-vino-14x08x40
+[50%] bol-95       BOLSA ZODIACO AZUL 18X23X11                   → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-96       BOLSA ZODIACO AZUL 23X30X11                   → bolsa-de-polipropileno-5cm-x-10cm
+[50%] bol-97       BOLSAS AMERICANAS SOBRES KRAFT 01 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-98       BOLSAS AMERICANAS SOBRES KRAFT 01L X100U      → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-99       BOLSAS AMERICANAS SOBRES KRAFT 02 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-100      BOLSAS AMERICANAS SOBRES KRAFT 02L X100U      → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-101      BOLSAS AMERICANAS SOBRES KRAFT 03 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-102      BOLSAS AMERICANAS SOBRES KRAFT 03L X100U      → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-103      BOLSAS AMERICANAS SOBRES KRAFT 04 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-104      BOLSAS AMERICANAS SOBRES KRAFT 04A X100U      → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-105      BOLSAS AMERICANAS SOBRES KRAFT 05 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-106      BOLSAS AMERICANAS SOBRES KRAFT 06 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-107      BOLSAS AMERICANAS SOBRES KRAFT 07 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-108      BOLSAS AMERICANAS SOBRES KRAFT 08 X100U       → 250-bolsas-38x26x17-250-bolsas-36x26x13-madera-kraft-manija
+[50%] bol-109      BOLSAS ANIMALES 21X15 XU                      → bolsas-de-arranque-15x25
+[50%] bol-110      BOLSAS ANIMALES 27X22 XU                      → bolsas-de-arranque-15x25
+[50%] bol-111      BOLSAS ASA COLOR/TRANSPARENTE 4050 X10U       → bolsas-de-arranque-15x25
+[50%] bol-112      BOLSAS ASA COLOR/TRANSPARENTE 4050 XU         → bolsas-de-arranque-15x25
+[50%] bol-164      BOLSAS ESCOMBROS 100M X10U                    → bolsas-de-arranque-15x25
+[50%] bol-171      BOLSAS LUNARES 27X22 XU                       → bolsas-de-arranque-15x25
+[50%] bol-224      BOLSAS TELA METALIZADA TERLIZZI 15X20 XU      → bolsas-de-arranque-15x25
+[50%] bol-225      BOLSAS TELA METALIZADA TERLIZZI 20X30 XU      → bolsas-de-arranque-15x25
+[50%] bol-226      BOLSAS XU                                     → bolsas-de-arranque-15x25
+[50%] bol-253      LB2030 BOLSAS X100U                           → bolsas-de-arranque-15x25
+[50%] bol-254      LB3040 BOLSAS X100U                           → bolsas-de-arranque-15x25
+[50%] bol-255      LB4050 BOLSAS X100U                           → bolsas-de-arranque-15x25
+[50%] bol-256      LB6075 BOLSAS X50U                            → bolsas-de-arranque-15x25
+[50%] bol-269      VIRUTA BOLSA XU                               → bolsa-de-polipropileno-5cm-x-10cm
