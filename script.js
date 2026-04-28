@@ -1499,6 +1499,51 @@ function _adminIdCsvUnico(baseId, usados) {
   return out;
 }
 
+function _adminCodigoCsvKeys(value) {
+  const base = String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+  if (!base) return [];
+
+  const keys = [
+    base,
+    base.replace(/\s+/g, ''),
+    base.replace(/[^a-z0-9_-]/g, ''),
+    base.replace(/[^a-z0-9]/g, ''),
+    base.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+  ].filter(Boolean);
+
+  return Array.from(new Set(keys));
+}
+
+function _adminConstruirIndiceImagenes(files) {
+  const indice = new Map();
+  (files || []).forEach(function(file) {
+    const nombre = String(file?.name || '');
+    const esImagen = /^image\//i.test(String(file?.type || ''))
+      || /\.(png|jpe?g|webp|gif|avif|bmp|svg)$/i.test(nombre);
+    if (!esImagen) return;
+
+    const baseName = nombre.replace(/\.[^.]+$/, '');
+    _adminCodigoCsvKeys(baseName).forEach(function(key) {
+      if (!indice.has(key)) indice.set(key, file);
+    });
+  });
+  return indice;
+}
+
+function _adminBuscarImagenCarpetaPorCodigo(indice, codigo) {
+  if (!indice || !indice.size) return null;
+  const keys = _adminCodigoCsvKeys(codigo);
+  for (let i = 0; i < keys.length; i += 1) {
+    const file = indice.get(keys[i]);
+    if (file) return file;
+  }
+  return null;
+}
+
 function adminDescargarPlantillaCsv() {
   if (!usuarioAdminActivo) {
     mostrarToast('Solo usuarios admin pueden descargar la plantilla CSV.');
@@ -1533,9 +1578,12 @@ async function adminImportarCsvMasivo() {
   }
 
   const fileInput = document.getElementById('adminBulkCsvFile');
+  const folderInput = document.getElementById('adminBulkImagesFolder');
   const mode = String(document.getElementById('adminBulkCsvMode')?.value || 'UPSERT');
   const btn = document.getElementById('adminBulkCsvImportBtn');
   const file = fileInput?.files?.[0] || null;
+  const folderFiles = Array.from(folderInput?.files || []);
+  const indiceImagenesCarpeta = _adminConstruirIndiceImagenes(folderFiles);
 
   if (!file) {
     _adminSetCsvImportResult('Seleccioná un archivo CSV para importar.', true);
@@ -1599,6 +1647,9 @@ async function adminImportarCsvMasivo() {
     let actualizadasAdmin = 0;
     let actualizadasCatalogo = 0;
     let ignoradas = 0;
+    let imagenesDesdeCarpeta = 0;
+    let imagenesSinMatch = 0;
+    let imagenesConError = 0;
 
     for (let i = 1; i < rows.length; i += 1) {
       const row = rows[i];
@@ -1619,12 +1670,35 @@ async function adminImportarCsvMasivo() {
       const nombre = rawNombre;
       const precio = _adminCsvToNumber(rawPrecio);
       const stock = hasStock ? _adminCsvToStock(rawStock) : 0;
+      const idPreferido = rawId ? rawId : `adm-csv-${Date.now()}-${i}`;
       const categoriaNormalizada = hasCategoria
         ? normalizarCategoria(rawCategoria)
         : 'LIMPIEZA';
       const categoria = CATEGORIA_UI[categoriaNormalizada] ? categoriaNormalizada : 'LIMPIEZA';
-      const imagen = rawImagen;
-      const imagenValida = !imagen || /^https?:\/\/.+/i.test(imagen) || imagen.startsWith('data:image/');
+      let imagen = rawImagen;
+      let imagenValida = !imagen || /^https?:\/\/.+/i.test(imagen) || imagen.startsWith('data:image/');
+
+      if (indiceImagenesCarpeta.size && (!imagen || !imagenValida)) {
+        const codigoMatch = rawId || nombre;
+        const archivoImagen = _adminBuscarImagenCarpetaPorCodigo(indiceImagenesCarpeta, codigoMatch);
+        if (archivoImagen) {
+          try {
+            imagen = await obtenerImagenFinalAdmin('', archivoImagen, {
+              maxWidth: 1200,
+              maxHeight: 1200,
+              quality: 0.85
+            });
+            imagenValida = !!imagen;
+            if (imagenValida) imagenesDesdeCarpeta += 1;
+            else imagenesConError += 1;
+          } catch (err) {
+            if (errores.length < 8) errores.push(`Fila ${i + 1}: no se pudo subir imagen de carpeta para "${codigoMatch}".`);
+            imagenesConError += 1;
+          }
+        } else if (!imagen) {
+          imagenesSinMatch += 1;
+        }
+      }
 
       if (!nombre || nombre.length < 2) {
         if (errores.length < 8) errores.push(`Fila ${i + 1}: nombre inválido.`);
@@ -1639,7 +1713,6 @@ async function adminImportarCsvMasivo() {
       }
 
       const estilo = obtenerEstiloCategoria(categoria);
-      const idPreferido = rawId ? rawId : `adm-csv-${Date.now()}-${i}`;
       const existenteAdminIdx = PRODUCTOS_ADMIN.findIndex(function(p) { return p.id === idPreferido; });
       const existenteGlobal = todosLosProductos().find(function(p) { return p.id === idPreferido; });
 
@@ -1770,10 +1843,17 @@ async function adminImportarCsvMasivo() {
       `Ignoradas: ${ignoradas}`,
       `Con incidencias: ${errores.length}`
     ];
+    if (indiceImagenesCarpeta.size) {
+      resumen.push(`Imágenes detectadas en carpeta: ${indiceImagenesCarpeta.size}`);
+      resumen.push(`Imágenes matcheadas/subidas: ${imagenesDesdeCarpeta}`);
+      resumen.push(`Sin match por código: ${imagenesSinMatch}`);
+      resumen.push(`Fallas de subida/proceso: ${imagenesConError}`);
+    }
     if (errores.length) resumen.push('', errores.join('\n'));
     _adminSetCsvImportResult(resumen.join('\n'), false);
 
     if (fileInput) fileInput.value = '';
+    if (folderInput) folderInput.value = '';
     adminResetGestionPage();
     renderAdminGestionList();
     mostrarToast(`CSV importado: ${creadas + actualizadasAdmin + actualizadasCatalogo} publicaciones impactadas.`);

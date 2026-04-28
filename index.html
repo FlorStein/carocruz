@@ -1009,7 +1009,11 @@
                 </select>
               </div>
             </div>
-            <p class="admin-help">Encabezados requeridos: nombre, precio e imagen (id/stock/categoria opcionales). También acepta alias como producto/descripcion, price, cantidad, rubro, image/foto/url_imagen.</p>
+            <div class="admin-item-field">
+              <label for="adminBulkImagesFolder">Carpeta de imágenes (opcional)</label>
+              <input id="adminBulkImagesFolder" type="file" accept="image/*" webkitdirectory directory multiple />
+            </div>
+            <p class="admin-help">Encabezados requeridos: nombre, precio e imagen (id/stock/categoria opcionales). También acepta alias como producto/descripcion, price, cantidad, rubro, image/foto/url_imagen. Si subís una carpeta, el sistema busca imágenes por código/ID (nombre del archivo sin extensión).</p>
             <button id="adminBulkCsvTemplateBtn" type="button" class="admin-item-btn" onclick="adminDescargarPlantillaCsv()">Descargar plantilla CSV</button>
             <button id="adminBulkCsvImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarCsvMasivo()">Importar CSV</button>
             <div id="adminBulkCsvResult" class="admin-bulk-csv-result" aria-live="polite"></div>
