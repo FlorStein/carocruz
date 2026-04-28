@@ -109,6 +109,7 @@ const PRODUCTOS_OFERTAS = [
 const STORAGE_ADMIN_PRODUCTOS = 'carocruz_admin_productos';
 const STORAGE_ADMIN_OVERRIDES = 'carocruz_admin_overrides';
 const STORAGE_ADMIN_CONFIG = 'carocruz_admin_config';
+const FORZAR_CATALOGO_VACIO = true;
 const FIRESTORE_ADMIN_COLLECTION = 'productos_admin';
 const FIRESTORE_OVERRIDES_COLLECTION = 'productos_overrides';
 const FIRESTORE_CONFIG_COLLECTION = 'config_admin';
@@ -613,6 +614,24 @@ function refrescarCatalogoPrincipal() {
   renderGrid(productosNovedadesVisibles(), 'novedadesGrid');
   renderGrid(productosOfertasVisibles(), 'ofertasGrid');
   renderAdminGestionList();
+}
+
+function vaciarCatalogoCompletoLocal() {
+  listasCatalogoBase().forEach(function(lista) {
+    if (Array.isArray(lista)) lista.length = 0;
+  });
+
+  PRODUCTOS_ADMIN.length = 0;
+  Object.keys(PRODUCTOS_OVERRIDES).forEach(function(k) { delete PRODUCTOS_OVERRIDES[k]; });
+  Object.keys(PRODUCTOS_BASE_ORIG).forEach(function(k) { delete PRODUCTOS_BASE_ORIG[k]; });
+  if (window.IMAGENES_MAP && typeof window.IMAGENES_MAP === 'object') {
+    Object.keys(window.IMAGENES_MAP).forEach(function(k) { delete window.IMAGENES_MAP[k]; });
+  }
+
+  localStorage.removeItem(STORAGE_ADMIN_PRODUCTOS);
+  localStorage.removeItem(STORAGE_ADMIN_OVERRIDES);
+  localStorage.removeItem('carocruz_carrito');
+  carrito = [];
 }
 
 function stockDisponibleProducto(prod) {
@@ -3502,14 +3521,21 @@ function inicializarBotonVolverArriba() {
 // ── Enter en buscador ─────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
-  capturarBaseCatalogoOriginal();
-  cargarOverridesLocal();
-  aplicarOverridesCatalogo();
+  if (!FORZAR_CATALOGO_VACIO) {
+    capturarBaseCatalogoOriginal();
+    cargarOverridesLocal();
+    aplicarOverridesCatalogo();
+  }
   cargarConfigComercialLocal();
   aplicarConfigComercialUI();
   inicializarStorageAdmin();
-  usaFirestoreAdmin = inicializarFirestoreAdmin();
-  cargarProductosAdmin();
+  if (FORZAR_CATALOGO_VACIO) {
+    usaFirestoreAdmin = false;
+    vaciarCatalogoCompletoLocal();
+  } else {
+    usaFirestoreAdmin = inicializarFirestoreAdmin();
+    cargarProductosAdmin();
+  }
   refrescarCatalogoPrincipal();
   cargarCarrito();
   actualizarUI();
