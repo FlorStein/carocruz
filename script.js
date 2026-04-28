@@ -1499,6 +1499,33 @@ function _adminIdCsvUnico(baseId, usados) {
   return out;
 }
 
+function adminDescargarPlantillaCsv() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden descargar la plantilla CSV.');
+    return;
+  }
+
+  const lineas = [
+    'id;nombre;precio;stock;categoria;imagen',
+    'lapicera-azul;Lapicera azul x1;1200;50;LIBRERIA;https://ejemplo.com/imagenes/lapicera-azul.jpg',
+    'cuaderno-a4;Cuaderno A4 tapa dura;8500;20;ESCOLAR;https://ejemplo.com/imagenes/cuaderno-a4.jpg'
+  ];
+
+  // BOM UTF-8 para que Excel abra acentos correctamente.
+  const contenido = '\uFEFF' + lineas.join('\n');
+  const blob = new Blob([contenido], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'plantilla_productos_carocruz.csv';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  mostrarToast('Plantilla CSV descargada.');
+}
+window.adminDescargarPlantillaCsv = adminDescargarPlantillaCsv;
+
 async function adminImportarCsvMasivo() {
   if (!usuarioAdminActivo) {
     mostrarToast('Solo usuarios admin pueden importar CSV.');
