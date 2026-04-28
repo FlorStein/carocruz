@@ -22,7 +22,8 @@ const FIREBASE_CONFIG = {
 
 // Emails con permisos de administración (en minúsculas)
 const ADMIN_EMAILS = [
-  'admin@caracruz.com.ar'
+  'admin@caracruz.com.ar',
+  'admin@carocruz.com.ar'
 ];
 
 // Inicializar Firebase solo si la config fue reemplazada
@@ -47,11 +48,15 @@ function iniciarAuth() {
     const btnMiCuenta = document.getElementById('btnMiCuenta');
     const userDisplay  = document.getElementById('userDisplay');
     const userNameEl   = document.getElementById('userNameDisplay');
+    const userProfileItem = document.getElementById('userProfileItem');
     const adminMenuItem = document.getElementById('adminMenuItem');
+    const tabUser = document.getElementById('tabUser');
 
     if (user) {
       if (btnMiCuenta) btnMiCuenta.style.display = 'none';
       if (userDisplay) userDisplay.style.display = 'flex';
+      if (userProfileItem) userProfileItem.style.display = 'flex';
+      if (tabUser) tabUser.style.display = '';
       const nombre = user.displayName || user.email.split('@')[0];
       if (userNameEl) userNameEl.textContent = nombre;
 
@@ -61,10 +66,14 @@ function iniciarAuth() {
         window.actualizarEstadoAdmin(esAdmin, user);
       }
 
+      cargarPerfilUsuario(user);
+
       cerrarModalAuth();
     } else {
       if (btnMiCuenta) btnMiCuenta.style.display = 'flex';
       if (userDisplay) userDisplay.style.display = 'none';
+      if (userProfileItem) userProfileItem.style.display = 'none';
+      if (tabUser) tabUser.style.display = 'none';
       if (adminMenuItem) adminMenuItem.style.display = 'none';
       if (typeof window.actualizarEstadoAdmin === 'function') {
         window.actualizarEstadoAdmin(false, null);
@@ -81,6 +90,10 @@ function iniciarAuth() {
    ===================================================== */
 function abrirModalAuth(tab) {
   tab = tab || 'login';
+  var user = window._auth ? window._auth.currentUser : null;
+  if (user && (tab === 'login' || tab === 'register')) {
+    tab = 'user';
+  }
   document.getElementById('authModal').classList.add('open');
   document.getElementById('authOverlay').classList.remove('hidden');
   cambiarTabAuth(tab);
@@ -99,23 +112,54 @@ window.cerrarModalAuth = cerrarModalAuth;
 function cambiarTabAuth(tab) {
   var tabLogin     = document.getElementById('tabLogin');
   var tabRegister  = document.getElementById('tabRegister');
+  var tabUser      = document.getElementById('tabUser');
   var formLogin    = document.getElementById('formLogin');
   var formRegister = document.getElementById('formRegister');
+  var formUser     = document.getElementById('formUser');
 
-  if (tab === 'login') {
-    tabLogin.classList.add('auth-tab--active');
-    tabRegister.classList.remove('auth-tab--active');
-    formLogin.classList.remove('hidden');
-    formRegister.classList.add('hidden');
-  } else {
-    tabRegister.classList.add('auth-tab--active');
-    tabLogin.classList.remove('auth-tab--active');
-    formRegister.classList.remove('hidden');
-    formLogin.classList.add('hidden');
+  var user = window._auth ? window._auth.currentUser : null;
+  var puedeVerUsuario = !!user;
+  var puedeVerAuth = !user;
+  if (tab === 'user' && !puedeVerUsuario) {
+    tab = 'login';
   }
+  if (tab === 'password') {
+    tab = puedeVerUsuario ? 'user' : 'login';
+  }
+
+  if (tabLogin) {
+    tabLogin.style.display = puedeVerAuth ? '' : 'none';
+  }
+  if (tabRegister) {
+    tabRegister.style.display = puedeVerAuth ? '' : 'none';
+  }
+  if (tabUser) {
+    tabUser.style.display = puedeVerUsuario ? '' : 'none';
+  }
+
+  tabLogin.classList.toggle('auth-tab--active', tab === 'login');
+  tabRegister.classList.toggle('auth-tab--active', tab === 'register');
+  if (tabUser) tabUser.classList.toggle('auth-tab--active', tab === 'user');
+
+  formLogin.classList.toggle('hidden', tab !== 'login');
+  formRegister.classList.toggle('hidden', tab !== 'register');
+  if (formUser) formUser.classList.toggle('hidden', tab !== 'user');
+
   limpiarErroresAuth();
 }
 window.cambiarTabAuth = cambiarTabAuth;
+
+function abrirModalUsuario() {
+  cerrarUserDropdown();
+  abrirModalAuth('user');
+}
+window.abrirModalUsuario = abrirModalUsuario;
+
+function abrirModalCambioPassword() {
+  cerrarUserDropdown();
+  abrirModalAuth('password');
+}
+window.abrirModalCambioPassword = abrirModalCambioPassword;
 
 /* =====================================================
    REGISTRO
@@ -188,6 +232,191 @@ async function handleLogin(e) {
   }
 }
 window.handleLogin = handleLogin;
+
+async function handleForgotPassword() {
+  limpiarErroresAuth();
+
+  var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  if (!emailValido(email)) {
+    mostrarErrorAuth('loginEmailError', 'Ingresá tu email para recuperar la contraseña.');
+    return;
+  }
+
+  var btn = document.getElementById('btnForgotPassword');
+  if (btn) btnCargando(btn, 'Enviando...');
+
+  try {
+    await window._auth.sendPasswordResetEmail(email);
+    var ok = document.getElementById('loginPasswordError');
+    if (ok) {
+      ok.textContent = 'Te enviamos un email para restablecer la contraseña.';
+      ok.style.display = 'block';
+      ok.style.color = '#16A34A';
+    }
+  } catch (err) {
+    if (err && err.code === 'auth/user-not-found') {
+      var regEmail = document.getElementById('regEmail');
+      if (regEmail) regEmail.value = email;
+      cambiarTabAuth('register');
+      mostrarErrorAuth('regEmailError', 'Ese email no tiene cuenta todavía. Completá el registro para crearla.');
+    } else {
+      mostrarErrorAuth('loginPasswordError', mensajeFirebase(err.code));
+    }
+  } finally {
+    if (btn) btnReset(btn, 'Olvidé mi contraseña');
+  }
+}
+window.handleForgotPassword = handleForgotPassword;
+
+async function handleUserProfileSave(e) {
+  e.preventDefault();
+  limpiarErroresAuth();
+
+  var user = window._auth ? window._auth.currentUser : null;
+  if (!user) {
+    mostrarErrorAuth('userGeneralMsg', 'Iniciá sesión para editar tu usuario.');
+    return;
+  }
+
+  var nombre = document.getElementById('userNombre').value.trim();
+  var direccion = document.getElementById('userDireccion').value.trim();
+
+  var pwdCurrent = document.getElementById('userPwdCurrent').value;
+  var pwdNew = document.getElementById('userPwdNew').value;
+  var pwdConfirm = document.getElementById('userPwdConfirm').value;
+  var quiereCambiarPw = !!(pwdCurrent || pwdNew || pwdConfirm);
+
+  var valido = true;
+  if (!nombre) {
+    mostrarErrorAuth('userNombreError', 'Ingresá tu nombre.'); valido = false;
+  }
+  if (direccion.length > 180) {
+    mostrarErrorAuth('userDireccionError', 'La dirección es demasiado larga.'); valido = false;
+  }
+
+  if (quiereCambiarPw) {
+    var providers = (user.providerData || []).map(function(p) { return p.providerId; });
+    if (providers.indexOf('password') === -1) {
+      mostrarErrorAuth('userGeneralMsg', 'Tu cuenta no usa contraseña. Ingresá con tu proveedor habitual.');
+      valido = false;
+    }
+    if (!pwdCurrent) {
+      mostrarErrorAuth('userPwdCurrentError', 'Ingresá tu contraseña actual.'); valido = false;
+    }
+    if (!passwordSegura(pwdNew)) {
+      mostrarErrorAuth('userPwdNewError', 'Mínimo 8 caracteres, una mayúscula y un número.'); valido = false;
+    }
+    if (pwdNew !== pwdConfirm) {
+      mostrarErrorAuth('userPwdConfirmError', 'Las contraseñas no coinciden.'); valido = false;
+    }
+    if (pwdCurrent && pwdNew && pwdCurrent === pwdNew) {
+      mostrarErrorAuth('userPwdNewError', 'La nueva contraseña debe ser distinta de la actual.'); valido = false;
+    }
+  }
+
+  if (!valido) return;
+
+  var btn = document.getElementById('btnUserSave');
+  btnCargando(btn, 'Guardando...');
+
+  try {
+    if (nombre !== (user.displayName || '')) {
+      await user.updateProfile({ displayName: nombre });
+    }
+    await guardarPerfilUsuario(user, {
+      nombre: nombre,
+      email: user.email || '',
+      direccion: direccion
+    });
+
+    if (quiereCambiarPw) {
+      var credential = firebase.auth.EmailAuthProvider.credential(user.email, pwdCurrent);
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(pwdNew);
+    }
+
+    var userNameEl = document.getElementById('userNameDisplay');
+    if (userNameEl) userNameEl.textContent = nombre || (user.email || '').split('@')[0];
+
+    document.getElementById('userPwdCurrent').value = '';
+    document.getElementById('userPwdNew').value = '';
+    document.getElementById('userPwdConfirm').value = '';
+
+    var ok = document.getElementById('userGeneralMsg');
+    if (ok) {
+      ok.textContent = 'Datos de usuario guardados correctamente.';
+      ok.style.display = 'block';
+      ok.style.color = '#16A34A';
+    }
+  } catch (err) {
+    mostrarErrorAuth('userGeneralMsg', mensajeFirebase(err.code));
+  } finally {
+    btnReset(btn, 'Guardar usuario');
+  }
+}
+window.handleUserProfileSave = handleUserProfileSave;
+
+/* =====================================================
+   CAMBIAR CONTRASEÑA (ADMIN)
+   ===================================================== */
+async function handleChangePassword(e) {
+  e.preventDefault();
+  limpiarErroresAuth();
+
+  var user = window._auth ? window._auth.currentUser : null;
+  if (!user || !esUsuarioAdmin(user)) {
+    mostrarErrorAuth('pwdGeneralMsg', 'Solo un admin autenticado puede cambiar la contraseña.');
+    return;
+  }
+
+  var providers = (user.providerData || []).map(function(p) { return p.providerId; });
+  if (providers.indexOf('password') === -1) {
+    mostrarErrorAuth('pwdGeneralMsg', 'Esta cuenta no usa contraseña. Ingresá con tu proveedor habitual.');
+    return;
+  }
+
+  var current = document.getElementById('pwdCurrent').value;
+  var nextPw  = document.getElementById('pwdNew').value;
+  var confirm = document.getElementById('pwdConfirm').value;
+
+  var valido = true;
+  if (!current) {
+    mostrarErrorAuth('pwdCurrentError', 'Ingresá tu contraseña actual.'); valido = false;
+  }
+  if (!passwordSegura(nextPw)) {
+    mostrarErrorAuth('pwdNewError', 'Mínimo 8 caracteres, una mayúscula y un número.'); valido = false;
+  }
+  if (nextPw !== confirm) {
+    mostrarErrorAuth('pwdConfirmError', 'Las contraseñas no coinciden.'); valido = false;
+  }
+  if (current && nextPw && current === nextPw) {
+    mostrarErrorAuth('pwdNewError', 'La nueva contraseña debe ser distinta de la actual.'); valido = false;
+  }
+  if (!valido) return;
+
+  var btn = document.getElementById('btnChangePassword');
+  btnCargando(btn, 'Actualizando…');
+
+  try {
+    var credential = firebase.auth.EmailAuthProvider.credential(user.email, current);
+    await user.reauthenticateWithCredential(credential);
+    await user.updatePassword(nextPw);
+    var msg = document.getElementById('pwdGeneralMsg');
+    if (msg) {
+      msg.textContent = 'Contraseña actualizada correctamente.';
+      msg.style.display = 'block';
+      msg.style.color = '#16A34A';
+    }
+    document.getElementById('pwdCurrent').value = '';
+    document.getElementById('pwdNew').value = '';
+    document.getElementById('pwdConfirm').value = '';
+    btnReset(btn, 'Actualizar contraseña');
+  } catch (err) {
+    btnReset(btn, 'Actualizar contraseña');
+    mostrarErrorAuth('pwdGeneralMsg', mensajeFirebase(err.code));
+  }
+}
+window.handleChangePassword = handleChangePassword;
 
 /* =====================================================
    LOGIN CON GOOGLE
@@ -299,6 +528,65 @@ function esUsuarioAdmin(user) {
   return !!email && ADMIN_EMAILS.includes(email);
 }
 
+function _perfilUsuarioStorageKey(user) {
+  var uid = user && user.uid ? String(user.uid) : '';
+  return 'carocruz_user_profile_' + uid;
+}
+
+async function cargarPerfilUsuario(user) {
+  var nombreEl = document.getElementById('userNombre');
+  var emailEl = document.getElementById('userEmail');
+  var dirEl = document.getElementById('userDireccion');
+  if (!user || !nombreEl || !emailEl || !dirEl) return;
+
+  nombreEl.value = user.displayName || '';
+  emailEl.value = user.email || '';
+  dirEl.value = '';
+
+  try {
+    var db = firebase.firestore();
+    var snap = await db.collection('usuarios').doc(user.uid).get();
+    if (snap.exists) {
+      var data = snap.data() || {};
+      if (typeof data.nombre === 'string' && data.nombre.trim()) nombreEl.value = data.nombre.trim();
+      if (typeof data.direccion === 'string') dirEl.value = data.direccion;
+      localStorage.setItem(_perfilUsuarioStorageKey(user), JSON.stringify(data));
+      return;
+    }
+  } catch (err) {
+    // fallback local
+  }
+
+  try {
+    var raw = localStorage.getItem(_perfilUsuarioStorageKey(user));
+    if (!raw) return;
+    var localData = JSON.parse(raw);
+    if (localData && typeof localData.nombre === 'string' && localData.nombre.trim()) nombreEl.value = localData.nombre.trim();
+    if (localData && typeof localData.direccion === 'string') dirEl.value = localData.direccion;
+  } catch (err) {
+    // ignore local parse errors
+  }
+}
+
+async function guardarPerfilUsuario(user, perfil) {
+  if (!user) return;
+  var payload = {
+    nombre: String(perfil?.nombre || ''),
+    email: String(perfil?.email || user.email || ''),
+    direccion: String(perfil?.direccion || ''),
+    updatedAt: Date.now()
+  };
+
+  try {
+    var db = firebase.firestore();
+    await db.collection('usuarios').doc(user.uid).set(payload, { merge: true });
+  } catch (err) {
+    // fallback local
+  }
+
+  localStorage.setItem(_perfilUsuarioStorageKey(user), JSON.stringify(payload));
+}
+
 /* =====================================================
    HELPERS
    ===================================================== */
@@ -319,12 +607,15 @@ function limpiarErroresAuth() {
   document.querySelectorAll('.auth-field-error').forEach(function(el) {
     el.textContent = '';
     el.style.display = 'none';
+    el.style.color = '';
   });
   // Resetear botones
   var btnL = document.getElementById('btnLogin');
   var btnR = document.getElementById('btnRegister');
+  var btnU = document.getElementById('btnUserSave');
   if (btnL && btnL.disabled) btnReset(btnL, 'Ingresar');
   if (btnR && btnR.disabled) btnReset(btnR, 'Crear cuenta');
+  if (btnU && btnU.disabled) btnReset(btnU, 'Guardar usuario');
 }
 
 function btnCargando(btn, texto) {
@@ -348,6 +639,9 @@ function mensajeFirebase(code) {
     'auth/too-many-requests':      'Demasiados intentos fallidos. Esperá unos minutos.',
     'auth/network-request-failed': 'Error de red. Verificá tu conexión.',
     'auth/user-disabled':          'Esta cuenta fue desactivada.',
+    'auth/requires-recent-login':  'Por seguridad, cerrá sesión e iniciá de nuevo para continuar.',
+    'auth/operation-not-allowed':  'Operación no permitida para esta cuenta.',
+    'auth/missing-email':          'Ingresá un email para continuar.',
   };
   return msgs[code] || 'Ocurrió un error. Intentá de nuevo.';
 }

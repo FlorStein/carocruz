@@ -850,8 +850,7 @@ function inicializarFirestoreAdmin() {
 
 function actualizarMenuAdmin() {
   const adminMenu = document.getElementById('adminMenuItem');
-  if (!adminMenu) return;
-  adminMenu.style.display = usuarioAdminActivo ? 'flex' : 'none';
+  if (adminMenu) adminMenu.style.display = usuarioAdminActivo ? 'flex' : 'none';
 }
 
 function cargarFormularioConfigComercialAdmin() {

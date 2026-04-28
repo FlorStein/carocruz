@@ -56,6 +56,10 @@
             <svg class="user-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div id="userDropdown" class="user-dropdown" role="menu">
+            <button id="userProfileItem" class="user-dropdown-item" onclick="abrirModalUsuario()" role="menuitem" style="display:none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Usuario
+            </button>
             <button id="adminMenuItem" class="user-dropdown-item user-dropdown-item--admin" onclick="abrirAdminPanel()" role="menuitem" style="display:none">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
               Panel admin
@@ -527,6 +531,8 @@
       <div class="auth-tabs" role="tablist">
         <button id="tabLogin"    class="auth-tab auth-tab--active" role="tab" onclick="cambiarTabAuth('login')">Iniciar sesión</button>
         <button id="tabRegister" class="auth-tab"                  role="tab" onclick="cambiarTabAuth('register')">Crear cuenta</button>
+        <button id="tabUser" class="auth-tab" role="tab" onclick="cambiarTabAuth('user')" style="display:none">Usuario</button>
+
       </div>
       <button class="auth-close-btn" onclick="cerrarModalAuth()" aria-label="Cerrar">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -551,6 +557,7 @@
         </div>
         <span id="loginPasswordError" class="auth-field-error"></span>
       </div>
+      <button id="btnForgotPassword" type="button" class="auth-forgot-btn" onclick="handleForgotPassword()">Olvidé mi contraseña</button>
       <button id="btnLogin" type="submit" class="auth-submit">Ingresar</button>
       <div class="auth-divider"><span>o</span></div>
       <button type="button" class="btn-google" onclick="handleGoogle()">
@@ -606,6 +613,65 @@
       </button>
       <p class="auth-switch-link">¿Ya tenés cuenta? <button type="button" onclick="cambiarTabAuth('login')">Iniciar sesión</button></p>
     </form>
+
+    <!-- FORM: USUARIO (COMÚN Y ADMIN) -->
+    <form id="formUser" class="auth-form hidden" onsubmit="handleUserProfileSave(event)" novalidate>
+      <div class="auth-field">
+        <label for="userNombre">Nombre</label>
+        <input id="userNombre" type="text" placeholder="Tu nombre" autocomplete="name" />
+        <span id="userNombreError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="userEmail">Email</label>
+        <input id="userEmail" type="email" readonly />
+      </div>
+      <div class="auth-field">
+        <label for="userDireccion">Dirección</label>
+        <input id="userDireccion" type="text" placeholder="Ej: Tucumán 1575, CABA" autocomplete="street-address" />
+        <span id="userDireccionError" class="auth-field-error"></span>
+      </div>
+
+      <div class="auth-divider"><span>Contraseña</span></div>
+
+      <div class="auth-field">
+        <label for="userPwdCurrent">Contraseña actual</label>
+        <div class="pw-wrap">
+          <input id="userPwdCurrent" type="password" placeholder="Solo si querés cambiarla" autocomplete="current-password" />
+          <button type="button" class="pw-toggle" onclick="togglePw('userPwdCurrent', this)" aria-label="Mostrar contraseña actual">
+            <svg class="eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-on" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <span id="userPwdCurrentError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="userPwdNew">Nueva contraseña</label>
+        <div class="pw-wrap">
+          <input id="userPwdNew" type="password" placeholder="Mín. 8 caracteres, 1 mayúscula, 1 número" autocomplete="new-password" />
+          <button type="button" class="pw-toggle" onclick="togglePw('userPwdNew', this)" aria-label="Mostrar nueva contraseña">
+            <svg class="eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-on" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <span id="userPwdNewError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="userPwdConfirm">Confirmar nueva contraseña</label>
+        <div class="pw-wrap">
+          <input id="userPwdConfirm" type="password" placeholder="Repetí la nueva contraseña" autocomplete="new-password" />
+          <button type="button" class="pw-toggle" onclick="togglePw('userPwdConfirm', this)" aria-label="Mostrar confirmación de contraseña">
+            <svg class="eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-on" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <span id="userPwdConfirmError" class="auth-field-error"></span>
+      </div>
+
+      <span id="userGeneralMsg" class="auth-field-error"></span>
+      <button id="btnUserSave" type="submit" class="auth-submit">Guardar usuario</button>
+    </form>
+
+
   </div>
 
   <!-- ░░ MODAL ADMIN PRODUCTOS ░░ -->

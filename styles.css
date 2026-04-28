@@ -1473,6 +1473,7 @@ ul { list-style: none; }
   flex-direction: column;
   gap: 16px;
 }
+.auth-form.hidden { display: none; }
 
 /* Campo */
 .auth-field {
@@ -1591,6 +1592,19 @@ ul { list-style: none; }
 }
 .auth-submit:hover:not(:disabled) { background: var(--blue-dk); }
 .auth-submit:disabled { opacity: .55; cursor: not-allowed; }
+
+.auth-forgot-btn {
+  border: none;
+  background: transparent;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+  text-align: left;
+  padding: 2px 0 0;
+  cursor: pointer;
+}
+.auth-forgot-btn:hover { color: #bc4e04; }
+.auth-forgot-btn:disabled { opacity: .65; cursor: wait; }
 
 /* Link cambiar form */
 .auth-switch-link {
