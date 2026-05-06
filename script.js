@@ -12,99 +12,9 @@ if (typeof window.IMAGENES_MAP === 'undefined') window.IMAGENES_MAP = {};
 
 // ── Catálogo ─────────────────────────────────────────────────────────────────
 
-const PRODUCTOS_NOVEDADES = [
-  {
-    id: 'nov-1',
-    nombre: 'Cuaderno Rivadavia tapa dura A4',
-    precio: 1250,
-    categoria: 'LIMPIEZA',
-    categColor: '#EEF2FF',
-    categText: '#17516e',
-    bgImg: '#EEF2FF',
-    iconColor: '#93B4E8',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`
-  },
-  {
-    id: 'nov-2',
-    nombre: 'Resaltador FILGO Grueso colores Fluo x unidad',
-    precio: 786,
-    categoria: 'LIBRERÍA',
-    categColor: '#FFF3E0',
-    categText: '#92400E',
-    bgImg: '#FFF3E0',
-    iconColor: '#F4A460',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>`
-  },
-  {
-    id: 'nov-3',
-    nombre: 'Tijera escolar punta redonda mango plástico x 12 u.',
-    precio: 4320,
-    categoria: 'OFICINA',
-    categColor: '#F0FDF4',
-    categText: '#166534',
-    bgImg: '#F0FDF4',
-    iconColor: '#4ADE80',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`
-  },
-  {
-    id: 'nov-4',
-    nombre: 'Cinta adhesiva transparente 48mm x 100m caja x 6 u.',
-    precio: 3800,
-    categoria: 'EMBALAJE',
-    categColor: '#FFF1F2',
-    categText: '#9F1239',
-    bgImg: '#FFF1F2',
-    iconColor: '#F87171',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`
-  }
-];
+const PRODUCTOS_NOVEDADES = [];
 
-const PRODUCTOS_OFERTAS = [
-  {
-    id: 'of-1',
-    nombre: 'Marcador permanente PILOT BPS-GP negro caja x 12 u.',
-    precio: 6480,
-    categoria: 'OFERTA',
-    categColor: '#FEF3C7',
-    categText: '#92400E',
-    bgImg: '#FEF3C7',
-    iconColor: '#D97706',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`
-  },
-  {
-    id: 'of-2',
-    nombre: 'Set bolígrafos BIC Crystal colores surtidos x 50 u.',
-    precio: 9250,
-    categoria: 'OFERTA',
-    categColor: '#F0FFF4',
-    categText: '#166534',
-    bgImg: '#F0FFF4',
-    iconColor: '#16A34A',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`
-  },
-  {
-    id: 'of-3',
-    nombre: 'Cuaderno LEDESMA espiral 48 hojas rayado x 10 unidades',
-    precio: 14600,
-    categoria: 'OFERTA',
-    categColor: '#FEF2F2',
-    categText: '#991B1B',
-    bgImg: '#FEF2F2',
-    iconColor: '#EF4444',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
-  },
-  {
-    id: 'of-4',
-    nombre: 'Set geométrico escolar completo 4 piezas x 12 sets',
-    precio: 5100,
-    categoria: 'OFERTA',
-    categColor: '#EFF6FF',
-    categText: '#1E40AF',
-    bgImg: '#EFF6FF',
-    iconColor: '#2563EB',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.3 15.3a2.4 2.4 0 0 1-3.4 3.4L2.5 3.4A2.4 2.4 0 0 1 5.9 0l15.4 15.3z"/><path d="M11.9 11.9l2 6-6-2"/></svg>`
-  }
-];
+const PRODUCTOS_OFERTAS = [];
 
 const STORAGE_ADMIN_PRODUCTOS = 'carocruz_admin_productos';
 const STORAGE_ADMIN_OVERRIDES = 'carocruz_admin_overrides';
@@ -461,16 +371,7 @@ function normalizarCategoria(categoria) {
 }
 
 function listasCatalogoBase() {
-  const listas = [PRODUCTOS_NOVEDADES, PRODUCTOS_OFERTAS];
-  if (typeof PRODUCTOS_GASTRONOMICO !== 'undefined') listas.push(PRODUCTOS_GASTRONOMICO);
-  if (typeof PRODUCTOS_ESCOLAR      !== 'undefined') listas.push(PRODUCTOS_ESCOLAR);
-  if (typeof PRODUCTOS_LIBRERIA     !== 'undefined') listas.push(PRODUCTOS_LIBRERIA);
-  if (typeof PRODUCTOS_LIMPIEZA     !== 'undefined') listas.push(PRODUCTOS_LIMPIEZA);
-  if (typeof PRODUCTOS_DESCARTABLES !== 'undefined') listas.push(PRODUCTOS_DESCARTABLES);
-  if (typeof PRODUCTOS_EMBALAJE     !== 'undefined') listas.push(PRODUCTOS_EMBALAJE);
-  if (typeof PRODUCTOS_CAJAS        !== 'undefined') listas.push(PRODUCTOS_CAJAS);
-  if (typeof PRODUCTOS_BOLSAS       !== 'undefined') listas.push(PRODUCTOS_BOLSAS);
-  return listas;
+  return [];
 }
 
 function capturarBaseCatalogoOriginal() {
@@ -544,7 +445,8 @@ function cargarOverridesLocal() {
         stock: Number(item.stock),
         categoria: normalizarCategoria(item.categoria),
         imagenSet: item.imagenSet === true,
-        imagen: typeof item.imagen === 'string' ? item.imagen : ''
+        imagen: typeof item.imagen === 'string' ? item.imagen : '',
+        deletado: item.deletado === true
       };
     });
   } catch {
@@ -557,11 +459,11 @@ function obtenerEstiloCategoria(categoria) {
 }
 
 function productosNovedadesVisibles() {
-  return PRODUCTOS_NOVEDADES.concat(PRODUCTOS_ADMIN.filter(p => p.categoria !== 'OFERTA'));
+  return PRODUCTOS_ADMIN.filter(p => p.categoria !== 'OFERTA');
 }
 
 function productosOfertasVisibles() {
-  return PRODUCTOS_OFERTAS.concat(PRODUCTOS_ADMIN.filter(p => p.categoria === 'OFERTA'));
+  return PRODUCTOS_ADMIN.filter(p => p.categoria === 'OFERTA');
 }
 
 function guardarProductosAdmin() {
@@ -863,7 +765,8 @@ function inicializarFirestoreAdmin() {
             stock: Number(data.stock),
             categoria: normalizarCategoria(data.categoria),
             imagenSet: data.imagenSet === true,
-            imagen: typeof data.imagen === 'string' ? data.imagen : ''
+            imagen: typeof data.imagen === 'string' ? data.imagen : '',
+            deletado: data.deletado === true
           };
         });
         guardarOverridesLocal();
@@ -1317,7 +1220,29 @@ async function adminEliminarSeleccionados() {
   const errores = [];
   for (const id of ids) {
     const idx = PRODUCTOS_ADMIN.findIndex(function(p) { return p.id === id; });
-    if (idx === -1) continue;
+    if (idx === -1) {
+      // Producto del catálogo base — persistir eliminación en overrides
+      if (buscarProductoCatalogoPorId(id)) {
+        const prev = PRODUCTOS_OVERRIDES[id] || {};
+        PRODUCTOS_OVERRIDES[id] = Object.assign({}, prev, { deletado: true });
+        if (usaFirestoreAdmin && firestoreDb) {
+          try {
+            await withTimeout(
+              firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set(
+                { deletado: true },
+                { merge: true }
+              ),
+              8000,
+              'Timeout Firestore'
+            );
+          } catch (err) {
+            errores.push(id);
+            console.warn('[Admin] No se pudo marcar como eliminado en Firestore:', id, err);
+          }
+        }
+      }
+      continue;
+    }
     PRODUCTOS_ADMIN.splice(idx, 1);
     delete window.IMAGENES_MAP[id];
     if (usaFirestoreAdmin && firestoreDb && !productoEsSoloLocal(id)) {
@@ -1336,6 +1261,7 @@ async function adminEliminarSeleccionados() {
 
   adminSeleccionados.clear();
   guardarProductosAdmin();
+  guardarOverridesLocal();
   refrescarCatalogoPrincipal();
   adminResetGestionPage();
   renderAdminGestionList();
@@ -2228,6 +2154,13 @@ async function adminImportarCsvMasivo() {
       }
 
       const idNuevo = _adminIdCsvUnico(idPreferido, usados);
+
+      // Si el ID existía y estaba marcado como eliminado, limpiar el flag
+      if (PRODUCTOS_OVERRIDES[idNuevo] && PRODUCTOS_OVERRIDES[idNuevo].deletado) {
+        PRODUCTOS_OVERRIDES[idNuevo] = Object.assign({}, PRODUCTOS_OVERRIDES[idNuevo], { deletado: false });
+        overridesIdsSync.add(idNuevo);
+      }
+
       const nuevo = {
         id: idNuevo,
         nombre,
@@ -2988,10 +2921,47 @@ async function adminRestaurarPublicacionCatalogo(id) {
 window.adminRestaurarPublicacionCatalogo = adminRestaurarPublicacionCatalogo;
 
 async function adminEliminarPublicacion(id) {
-  const prod = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
-  if (!prod) return;
+  const prodAdmin = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
 
-  const ok = window.confirm(`Eliminar la publicación "${prod.nombre}"?`);
+  if (!prodAdmin) {
+    // Producto del catálogo base — persistir eliminación en overrides
+    const prodCatalogo = buscarProductoCatalogoPorId(id);
+    if (!prodCatalogo) return;
+
+    const ok = window.confirm(`Eliminar la publicación "${prodCatalogo.nombre}"?`);
+    if (!ok) return;
+
+    const prev = PRODUCTOS_OVERRIDES[id] || {};
+    PRODUCTOS_OVERRIDES[id] = Object.assign({}, prev, { deletado: true });
+    guardarOverridesLocal();
+
+    if (usaFirestoreAdmin && firestoreDb) {
+      try {
+        await withTimeout(
+          firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set(
+            { deletado: true },
+            { merge: true }
+          ),
+          8000,
+          'No se pudo guardar en Firestore.'
+        );
+      } catch (err) {
+        console.warn('[Admin] No se pudo guardar override en Firestore:', err);
+      }
+    }
+
+    adminSeleccionados.delete(id);
+    _actualizarInfoSeleccionMasivaAdmin();
+    adminResetGestionPage();
+    refrescarCatalogoPrincipal();
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim()) buscar();
+    renderAdminGestionList();
+    mostrarToast('Publicación eliminada.');
+    return;
+  }
+
+  const ok = window.confirm(`Eliminar la publicación "${prodAdmin.nombre}"?`);
   if (!ok) return;
 
   const idx = PRODUCTOS_ADMIN.findIndex(function(p) { return p.id === id; });
@@ -3048,6 +3018,12 @@ async function adminEliminarTodosProductosAdmin() {
   if (btn) { btn.disabled = true; btn.textContent = 'Eliminando…'; }
 
   try {
+    // Recopilar IDs del catálogo base ANTES de limpiar
+    const catalogIds = [];
+    listasCatalogoBase().forEach(function(lista) {
+      lista.forEach(function(p) { if (p && p.id) catalogIds.push(p.id); });
+    });
+
     if (usaFirestoreAdmin && firestoreDb) {
       const snapshot = await withTimeout(
         firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).get(),
@@ -3064,9 +3040,31 @@ async function adminEliminarTodosProductosAdmin() {
         });
         await withTimeout(batch.commit(), 15000, 'Error al eliminar lote de Firestore.');
       }
+
+      // Marcar todos los productos del catálogo como eliminados en Firestore overrides
+      if (catalogIds.length > 0) {
+        for (let i = 0; i < catalogIds.length; i += CHUNK) {
+          const batch = firestoreDb.batch();
+          catalogIds.slice(i, i + CHUNK).forEach(function(pid) {
+            batch.set(
+              firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(pid),
+              { deletado: true },
+              { merge: true }
+            );
+          });
+          await withTimeout(batch.commit(), 15000, 'Error al guardar overrides de catálogo.');
+        }
+      }
     }
 
     vaciarCatalogoCompletoLocal();
+    // Restaurar overrides de eliminación localmente (vaciarCatalogoCompletoLocal los borra)
+    if (catalogIds.length > 0) {
+      catalogIds.forEach(function(pid) {
+        PRODUCTOS_OVERRIDES[pid] = { precio: 0, stock: 0, categoria: '', imagenSet: false, imagen: '', deletado: true };
+      });
+      guardarOverridesLocal();
+    }
     refrescarCatalogoPrincipal();
     renderAdminGestionList();
     mostrarToast(`${total} publicaciones eliminadas.`);
@@ -3324,16 +3322,7 @@ function guardarCarrito() {
 }
 
 function todosLosProductos() {
-  const listas = [PRODUCTOS_NOVEDADES, PRODUCTOS_OFERTAS, PRODUCTOS_ADMIN];
-  if (typeof PRODUCTOS_GASTRONOMICO !== 'undefined') listas.push(PRODUCTOS_GASTRONOMICO);
-  if (typeof PRODUCTOS_ESCOLAR      !== 'undefined') listas.push(PRODUCTOS_ESCOLAR);
-  if (typeof PRODUCTOS_LIBRERIA     !== 'undefined') listas.push(PRODUCTOS_LIBRERIA);
-  if (typeof PRODUCTOS_LIMPIEZA     !== 'undefined') listas.push(PRODUCTOS_LIMPIEZA);
-  if (typeof PRODUCTOS_DESCARTABLES !== 'undefined') listas.push(PRODUCTOS_DESCARTABLES);
-  if (typeof PRODUCTOS_EMBALAJE     !== 'undefined') listas.push(PRODUCTOS_EMBALAJE);
-  if (typeof PRODUCTOS_CAJAS        !== 'undefined') listas.push(PRODUCTOS_CAJAS);
-  if (typeof PRODUCTOS_BOLSAS       !== 'undefined') listas.push(PRODUCTOS_BOLSAS);
-  return listas.flat();
+  return PRODUCTOS_ADMIN.slice();
 }
 
 function agregarAlCarrito(id) {
