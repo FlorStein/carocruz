@@ -228,7 +228,7 @@ ul { list-style: none; }
    HERO
    ====================================================== */
 .hero {
-  background: linear-gradient(135deg, var(--blue) 0%, #6f858f 100%);
+  background: var(--blue);
   overflow: hidden;
   position: relative;
 }
