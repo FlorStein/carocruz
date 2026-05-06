@@ -465,8 +465,22 @@
         <h4>CONTACTO</h4>
         <ul>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Tucumán 1575, C1050 Cdad. Autónoma de Buenos Aires
+            <a href="https://www.google.com/maps/search/?api=1&query=Tucum%C3%A1n+1575+Buenos+Aires" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:8px;color:inherit;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Tucumán 1575, C1050 Cdad. Autónoma de Buenos Aires
+            </a>
+          </li>
+          <li style="padding:0;list-style:none;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8!2d-58.3817!3d-34.6025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb267c8b0aa9%3A0x1!2sTucum%C3%A1n%201575%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+              width="100%"
+              height="160"
+              style="border:0;border-radius:8px;display:block;margin-top:8px;filter:grayscale(20%)"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación Papelera Caro Cruz"
+            ></iframe>
           </li>
           <li>
             <a href="https://wa.me/541178270004?text=Hola%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none;">
@@ -1042,6 +1056,15 @@
             <button id="adminBulkCsvTemplateBtn" type="button" class="admin-item-btn" onclick="adminDescargarPlantillaCsv()">Descargar plantilla CSV</button>
             <button id="adminBulkCsvBackupBtn" type="button" class="admin-item-btn" onclick="adminDescargarRespaldoCsv()">Descargar respaldo CSV</button>
             <button id="adminBulkCsvImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarCsvMasivo()">Importar CSV</button>
+            <div id="adminCsvProgressWrap" class="admin-csv-progress-wrap" style="display:none">
+              <div class="admin-csv-progress-header">
+                <span id="adminCsvProgressText">Procesando…</span>
+                <span id="adminCsvProgressCount">0 / 0</span>
+              </div>
+              <div class="admin-csv-progress-track">
+                <div id="adminCsvProgressBar" class="admin-csv-progress-bar" style="width:0%"></div>
+              </div>
+            </div>
             <div id="adminBulkCsvResult" class="admin-bulk-csv-result" aria-live="polite"></div>
           </div>
 

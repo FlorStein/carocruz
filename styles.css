@@ -1900,6 +1900,30 @@ ul { list-style: none; }
   line-height: 1.45;
   white-space: pre-line;
 }
+.admin-csv-progress-wrap {
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+.admin-csv-progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 5px;
+}
+.admin-csv-progress-track {
+  background: #E2E8F0;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+.admin-csv-progress-bar {
+  height: 100%;
+  background: #17516e;
+  border-radius: 999px;
+  transition: width .12s linear;
+}
 .admin-promo-2x1-list {
   display: flex;
   flex-direction: column;
@@ -2282,6 +2306,7 @@ ul { list-style: none; }
   gap: 12px;
   flex-wrap: wrap;
 }
+.catalog-pagination.hidden { display: none; }
 .catalog-page-info {
   font-size: 13px;
   color: #475569;

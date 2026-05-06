@@ -1553,15 +1553,43 @@ function _adminParseCsv(texto, separador) {
   return rows;
 }
 
+function _adminCsvActualizarProgreso(actual, total) {
+  const wrap = document.getElementById('adminCsvProgressWrap');
+  const bar = document.getElementById('adminCsvProgressBar');
+  const countEl = document.getElementById('adminCsvProgressCount');
+  const textEl = document.getElementById('adminCsvProgressText');
+  if (!wrap) return;
+  const pct = total > 0 ? Math.min(100, Math.round((actual / total) * 100)) : 0;
+  if (bar) bar.style.width = pct + '%';
+  if (countEl) countEl.textContent = `${actual} / ${total}`;
+  if (textEl) textEl.textContent = pct < 100 ? `Procesando… (${pct}%)` : '¡Importación completa!';
+}
+
 function _adminCsvToNumber(raw) {
   const txt = String(raw || '').trim();
   if (!txt) return NaN;
 
   let clean = txt.replace(/\$/g, '').replace(/\s+/g, '');
   if (clean.includes('.') && clean.includes(',')) {
+    // Formato: 1.200,50 → 1200.50
     clean = clean.replace(/\./g, '').replace(/,/g, '.');
-  } else if (clean.includes(',')) {
-    clean = clean.replace(/,/g, '.');
+  } else if (clean.includes(',') && !clean.includes('.')) {
+    // Formato: 1200,50 → 1200.50 o 1,200 (miles) → depende de dígitos
+    const partesDespuesComa = clean.split(',').pop() || '';
+    if (partesDespuesComa.length === 3) {
+      // Separador de miles: 1,200 → 1200
+      clean = clean.replace(/,/g, '');
+    } else {
+      // Decimal: 1200,50 → 1200.50
+      clean = clean.replace(/,/g, '.');
+    }
+  } else if (clean.includes('.') && !clean.includes(',')) {
+    // Solo puntos: puede ser separador de miles (1.200) o decimal (1.5)
+    if (/^\d+(\.\d{3})+$/.test(clean)) {
+      // Patrón tipo 1.200 o 1.200.300 → miles
+      clean = clean.replace(/\./g, '');
+    }
+    // Si no (1.5, 12.50) → dejarlo como decimal
   }
   clean = clean.replace(/[^0-9.-]/g, '');
   return Number(clean);
@@ -1989,6 +2017,12 @@ async function adminImportarCsvMasivo() {
     btn.textContent = 'Importando…';
   }
 
+  const progressWrap = document.getElementById('adminCsvProgressWrap');
+  const progressResult = document.getElementById('adminBulkCsvResult');
+  if (progressWrap) { progressWrap.style.display = 'block'; }
+  if (progressResult) { progressResult.textContent = ''; }
+  _adminCsvActualizarProgreso(0, 0);
+
   try {
     const texto = await file.text();
     if (!String(texto || '').trim()) {
@@ -2019,8 +2053,8 @@ async function adminImportarCsvMasivo() {
     const idxCategoria = _adminFindCsvHeaderIndex(headersNorm, ['categoria', 'rubro', 'familia', 'categoria_producto']);
     const idxImagen = _adminFindCsvHeaderIndex(headersNorm, ['imagen', 'image', 'foto', 'imagen_url', 'url_imagen']);
 
-    if (idxNombre < 0 || idxPrecio < 0 || idxImagen < 0) {
-      _adminSetCsvImportResult('Faltan columnas obligatorias. Debe incluir nombre/producto, precio e imagen.', true);
+    if (idxNombre < 0 || idxPrecio < 0) {
+      _adminSetCsvImportResult('Faltan columnas obligatorias. Debe incluir nombre/producto y precio.', true);
       mostrarToast('No se encontraron columnas obligatorias en el CSV.');
       return;
     }
@@ -2028,14 +2062,17 @@ async function adminImportarCsvMasivo() {
     const hasId = idxId >= 0;
     const hasStock = idxStock >= 0;
     const hasCategoria = idxCategoria >= 0;
-    const hasImagen = true;
+    const hasImagen = idxImagen >= 0;
 
+    const totalFilas = rows.length - 1;
     const usados = new Set(todosLosProductos().map(function(p) { return p.id; }));
     const errores = [];
     const adminIdsSync = new Set();
     const overridesIdsSync = new Set();
 
     let procesadas = 0;
+    let rechazadasPrecio = 0;
+    let rechazadasNombre = 0;
     let creadas = 0;
     let actualizadasAdmin = 0;
     let actualizadasCatalogo = 0;
@@ -2055,10 +2092,16 @@ async function adminImportarCsvMasivo() {
 
       if (!rawNombre && !rawPrecio && !rawId) {
         ignoradas += 1;
+        _adminCsvActualizarProgreso(i, totalFilas);
         continue;
       }
 
       procesadas += 1;
+      // Actualizar progreso cada 5 filas o en la última para no saturar el DOM
+      if (procesadas % 5 === 0 || i === rows.length - 1) {
+        _adminCsvActualizarProgreso(i, totalFilas);
+        await new Promise(function(r) { setTimeout(r, 0); });
+      }
 
       const nombre = rawNombre;
       const precio = _adminCsvToNumber(rawPrecio);
@@ -2094,15 +2137,17 @@ async function adminImportarCsvMasivo() {
       }
 
       if (!nombre || nombre.length < 2) {
-        if (errores.length < 8) errores.push(`Fila ${i + 1}: nombre inválido.`);
+        rechazadasNombre += 1;
+        if (errores.length < 20) errores.push(`Fila ${i + 1}: nombre inválido "${rawNombre || '(vacío)'}".`);
         continue;
       }
       if (!Number.isFinite(precio) || precio <= 0) {
-        if (errores.length < 8) errores.push(`Fila ${i + 1}: precio inválido.`);
+        rechazadasPrecio += 1;
+        if (errores.length < 20) errores.push(`Fila ${i + 1}: precio inválido "${rawPrecio || '(vacío)'}".`);
         continue;
       }
       if (!imagenValida) {
-        if (errores.length < 8) errores.push(`Fila ${i + 1}: imagen ignorada por URL inválida.`);
+        if (errores.length < 20) errores.push(`Fila ${i + 1}: imagen ignorada por URL inválida.`);
       }
 
       const estilo = obtenerEstiloCategoria(categoria);
@@ -2237,11 +2282,13 @@ async function adminImportarCsvMasivo() {
     const resumen = [
       `Archivo: ${file.name}`,
       `Filas procesadas: ${procesadas}`,
-      `Creadas: ${creadas}`,
-      `Actualizadas (manual): ${actualizadasAdmin}`,
-      `Actualizadas (catálogo): ${actualizadasCatalogo}`,
-      `Ignoradas: ${ignoradas}`,
-      `Con incidencias: ${errores.length}`
+      `Total filas en CSV: ${totalFilas}`,
+      `✅ Creadas: ${creadas}`,
+      `✅ Actualizadas (manual): ${actualizadasAdmin}`,
+      `✅ Actualizadas (catálogo): ${actualizadasCatalogo}`,
+      `⏭ Ignoradas (vacías/duplicadas): ${ignoradas}`,
+      `❌ Rechazadas por precio inválido: ${rechazadasPrecio}`,
+      `❌ Rechazadas por nombre inválido: ${rechazadasNombre}`
     ];
     if (indiceImagenesCarpeta.size) {
       resumen.push(`Imágenes detectadas en carpeta: ${indiceImagenesCarpeta.size}`);
@@ -2249,14 +2296,18 @@ async function adminImportarCsvMasivo() {
       resumen.push(`Sin match por código: ${imagenesSinMatch}`);
       resumen.push(`Fallas de subida/proceso: ${imagenesConError}`);
     }
-    if (errores.length) resumen.push('', errores.join('\n'));
+    if (errores.length) {
+      resumen.push('', `Detalle de primeras ${errores.length} incidencias:`, errores.join('\n'));
+    }
     _adminSetCsvImportResult(resumen.join('\n'), false);
+    _adminCsvActualizarProgreso(totalFilas, totalFilas);
 
     if (fileInput) fileInput.value = '';
     if (folderInput) folderInput.value = '';
     adminResetGestionPage();
     renderAdminGestionList();
-    mostrarToast(`CSV importado: ${creadas + actualizadasAdmin + actualizadasCatalogo} publicaciones impactadas.`);
+    const impactadas = creadas + actualizadasAdmin + actualizadasCatalogo;
+    mostrarToast(`CSV importado: ${impactadas} cargadas${rechazadasPrecio + rechazadasNombre > 0 ? `, ${rechazadasPrecio + rechazadasNombre} rechazadas (ver detalle)` : ''}.`);
   } catch (err) {
     console.warn('[Admin] Error importando CSV:', err);
     _adminSetCsvImportResult(err?.message || 'No se pudo importar el CSV.', true);
