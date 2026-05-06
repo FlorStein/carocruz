@@ -2017,8 +2017,9 @@ ul { list-style: none; }
   margin-bottom: 8px;
   transition: opacity .2s ease, transform .2s ease;
 }
-.admin-listado-bulk-bar--hidden {
-  display: none;
+.admin-listado-bulk-bar--hidden .admin-listado-bulk-actions {
+  opacity: .4;
+  pointer-events: none;
 }
 .admin-listado-bulk-left {
   display: flex;
