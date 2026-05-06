@@ -19,7 +19,7 @@ const PRODUCTOS_NOVEDADES = [
     precio: 1250,
     categoria: 'LIMPIEZA',
     categColor: '#EEF2FF',
-    categText: '#4b616c',
+    categText: '#17516e',
     bgImg: '#EEF2FF',
     iconColor: '#93B4E8',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`
@@ -157,7 +157,7 @@ const CONFIG_COMERCIAL_DEFAULT = {
 let configComercial = JSON.parse(JSON.stringify(CONFIG_COMERCIAL_DEFAULT));
 
 const CATEGORIA_UI = {
-  'LIMPIEZA':     { categColor: '#EEF2FF', categText: '#4b616c', bgImg: '#EEF2FF', iconColor: '#93B4E8' },
+  'LIMPIEZA':     { categColor: '#EEF2FF', categText: '#17516e', bgImg: '#EEF2FF', iconColor: '#93B4E8' },
   'LIBRERÍA':    { categColor: '#FFF3E0', categText: '#92400E', bgImg: '#FFF3E0', iconColor: '#F4A460' },
   'ESCOLAR':      { categColor: '#F0FDF4', categText: '#166534', bgImg: '#F0FDF4', iconColor: '#4ADE80' },
   'EMBALAJE':     { categColor: '#FFF1F2', categText: '#9F1239', bgImg: '#FFF1F2', iconColor: '#F87171' },
@@ -332,10 +332,25 @@ function _limpiarAdminHeroBannerObjectUrl() {
 }
 
 function _actualizarInfoSeleccionMasivaAdmin() {
-  const el = document.getElementById('adminBulkSelectedInfo');
-  if (!el) return;
   const n = adminSeleccionados.size;
-  el.textContent = `${n} publicación${n === 1 ? '' : 'es'} seleccionada${n === 1 ? '' : 's'}`;
+
+  // Barra del tab Masivo (info text)
+  const elMasivo = document.getElementById('adminBulkSelectedInfo');
+  if (elMasivo) elMasivo.textContent = `${n} publicación${n === 1 ? '' : 'es'} seleccionada${n === 1 ? '' : 's'}`;
+
+  // Barra del tab Listado
+  const bar = document.getElementById('adminListadoBulkBar');
+  const count = document.getElementById('adminListadoBulkCount');
+  const chkTodos = document.getElementById('adminChkSelTodos');
+  if (bar) bar.classList.toggle('admin-listado-bulk-bar--hidden', n === 0);
+  if (count) count.textContent = `${n} seleccionado${n === 1 ? '' : 's'}`;
+
+  // Sincronizar estado del checkbox "seleccionar todo"
+  if (chkTodos) {
+    const totalFiltrados = obtenerProductosAdminFiltrados().length;
+    chkTodos.indeterminate = n > 0 && n < totalFiltrados;
+    chkTodos.checked = n > 0 && n >= totalFiltrados;
+  }
 }
 
 function setAdminMainTab(tabId) {
@@ -1267,6 +1282,143 @@ function adminToggleSeleccionPublicacion(id, checked) {
   _actualizarInfoSeleccionMasivaAdmin();
 }
 window.adminToggleSeleccionPublicacion = adminToggleSeleccionPublicacion;
+
+function adminToggleSeleccionarTodos(checked) {
+  const todos = obtenerProductosAdminFiltrados();
+  todos.forEach(function(p) {
+    if (checked) adminSeleccionados.add(p.id);
+    else adminSeleccionados.delete(p.id);
+  });
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+}
+window.adminToggleSeleccionarTodos = adminToggleSeleccionarTodos;
+
+function adminDeseleccionarTodo() {
+  adminSeleccionados.clear();
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+}
+window.adminDeseleccionarTodo = adminDeseleccionarTodo;
+
+async function adminEliminarSeleccionados() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden eliminar publicaciones.');
+    return;
+  }
+  const ids = Array.from(adminSeleccionados);
+  if (!ids.length) {
+    mostrarToast('No hay publicaciones seleccionadas.');
+    return;
+  }
+  const ok = window.confirm(`¿Eliminar las ${ids.length} publicaciones seleccionadas? Esta acción no se puede deshacer.`);
+  if (!ok) return;
+
+  const errores = [];
+  for (const id of ids) {
+    const idx = PRODUCTOS_ADMIN.findIndex(function(p) { return p.id === id; });
+    if (idx === -1) continue;
+    PRODUCTOS_ADMIN.splice(idx, 1);
+    delete window.IMAGENES_MAP[id];
+    if (usaFirestoreAdmin && firestoreDb && !productoEsSoloLocal(id)) {
+      try {
+        await withTimeout(
+          firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).delete(),
+          8000,
+          'Timeout Firestore'
+        );
+      } catch (err) {
+        errores.push(id);
+        console.warn('[Admin] No se pudo eliminar en Firestore:', id, err);
+      }
+    }
+  }
+
+  adminSeleccionados.clear();
+  guardarProductosAdmin();
+  refrescarCatalogoPrincipal();
+  adminResetGestionPage();
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput && searchInput.value.trim()) buscar();
+
+  if (errores.length) {
+    mostrarToast(`${ids.length - errores.length} eliminados. ${errores.length} no pudieron borrarse de Firestore.`);
+  } else {
+    mostrarToast(`${ids.length} publicación${ids.length === 1 ? '' : 'es'} eliminada${ids.length === 1 ? '' : 's'}.`);
+  }
+}
+window.adminEliminarSeleccionados = adminEliminarSeleccionados;
+
+async function adminOcultarSeleccionados() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden ocultar publicaciones.');
+    return;
+  }
+  const ids = Array.from(adminSeleccionados);
+  if (!ids.length) {
+    mostrarToast('No hay publicaciones seleccionadas.');
+    return;
+  }
+  const ok = window.confirm(`¿Poner stock en 0 para ${ids.length} publicación${ids.length === 1 ? '' : 'es'} seleccionada${ids.length === 1 ? '' : 's'}? Se ocultarán del catálogo.`);
+  if (!ok) return;
+
+  const actualizadosAdmin = [];
+  const actualizadosOverrides = [];
+
+  ids.forEach(function(id) {
+    const prod = todosLosProductos().find(function(p) { return p.id === id; });
+    if (!prod) return;
+    prod.stock = 0;
+    const esManual = PRODUCTOS_ADMIN.some(function(p) { return p.id === id; });
+    if (!esManual) {
+      const prev = PRODUCTOS_OVERRIDES[id] || {};
+      PRODUCTOS_OVERRIDES[id] = { ...prev, stock: 0 };
+    }
+    if (usaFirestoreAdmin && firestoreDb && !productoEsSoloLocal(id)) {
+      if (esManual) actualizadosAdmin.push(id);
+      else actualizadosOverrides.push(id);
+    }
+  });
+
+  guardarProductosAdmin();
+  guardarOverridesLocal();
+  refrescarCatalogoPrincipal();
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput && searchInput.value.trim()) buscar();
+
+  if (usaFirestoreAdmin && firestoreDb && (actualizadosAdmin.length || actualizadosOverrides.length)) {
+    try {
+      const jobs = [];
+      actualizadosAdmin.forEach(function(id) {
+        jobs.push(withTimeout(
+          firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).update({ stock: 0, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp() }),
+          8000, 'Timeout Firestore'
+        ));
+      });
+      actualizadosOverrides.forEach(function(id) {
+        jobs.push(withTimeout(
+          firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set(
+            { stock: 0, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(), updatedBy: window._authCurrentUser?.email || '' },
+            { merge: true }
+          ),
+          8000, 'Timeout Firestore'
+        ));
+      });
+      await Promise.all(jobs);
+    } catch (err) {
+      console.warn('[Admin] Ocultar masivo: sync parcial:', err);
+      mostrarToast('Ocultados localmente. Firestore no respondió para algunos ítems.');
+      return;
+    }
+  }
+
+  mostrarToast(`${ids.length} publicación${ids.length === 1 ? '' : 'es'} ocultada${ids.length === 1 ? '' : 's'} (stock=0).`);
+}
+window.adminOcultarSeleccionados = adminOcultarSeleccionados;
 
 function adminSeleccionarVisibles(select) {
   const visibles = obtenerProductosAdminFiltrados().slice(
@@ -2881,7 +3033,7 @@ async function adminEliminarTodosProductosAdmin() {
     return;
   }
 
-  const total = PRODUCTOS_ADMIN.length;
+  const total = obtenerItemsGestionAdmin().length;
   if (total === 0) {
     mostrarToast('No hay publicaciones para eliminar.');
     return;
@@ -3818,7 +3970,7 @@ function mostrarToast(msg) {
     toast.id = 'toast';
     toast.style.cssText = `
       position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-      background:#4b616c; color:#fff; padding:12px 24px; border-radius:8px;
+      background:#17516e; color:#fff; padding:12px 24px; border-radius:8px;
       font-size:13px; font-weight:600; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,.2);
       transition:opacity .3s ease; max-width:90vw; text-align:center;
     `;

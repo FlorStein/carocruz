@@ -26,7 +26,7 @@
 
       <!-- Logo -->
       <a href="#" class="logo-wrap" aria-label="Caro Cruz Papelera">
-        <img src="logo.png" alt="Caro Cruz Papelera" class="logo-img" />
+        <img src="LOGOS.png" alt="Caro Cruz Papelera" class="logo-img" />
       </a>
 
       <!-- Buscador -->
@@ -938,6 +938,27 @@
         </div>
 
         <div id="adminTabGestion-listado" class="admin-tab-panel admin-tab-panel--active" data-scope="gestion" data-tab-id="listado">
+          <!-- Barra de selección masiva -->
+          <div id="adminListadoBulkBar" class="admin-listado-bulk-bar admin-listado-bulk-bar--hidden">
+            <div class="admin-listado-bulk-left">
+              <label class="admin-listado-bulk-check-all">
+                <input type="checkbox" id="adminChkSelTodos" onchange="adminToggleSeleccionarTodos(this.checked)" />
+                Seleccionar todo
+              </label>
+              <span id="adminListadoBulkCount" class="admin-listado-bulk-count">0 seleccionados</span>
+            </div>
+            <div class="admin-listado-bulk-actions">
+              <button type="button" class="admin-item-btn admin-item-btn--danger" onclick="adminEliminarSeleccionados()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                Eliminar
+              </button>
+              <button type="button" class="admin-item-btn" onclick="adminOcultarSeleccionados()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                Ocultar (stock=0)
+              </button>
+              <button type="button" class="admin-item-btn" onclick="adminDeseleccionarTodo()">Limpiar selección</button>
+            </div>
+          </div>
           <div id="adminGestionList" class="admin-gestion-list"></div>
           <div class="admin-gestion-pagination">
             <button type="button" class="admin-item-btn" onclick="adminCambiarPagina(-1)">Anterior</button>

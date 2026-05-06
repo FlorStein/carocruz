@@ -16,7 +16,7 @@ const PRODUCTOS_NOVEDADES = [
     precio: 1250,
     categoria: 'LIMPIEZA',
     categColor: '#EEF2FF',
-    categText: '#4b616c',
+    categText: '#17516e',
     bgImg: '#EEF2FF',
     iconColor: '#93B4E8',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`
@@ -332,7 +332,7 @@ function mostrarToast(msg) {
     toast.id = 'toast';
     toast.style.cssText = `
       position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-      background:#4b616c; color:#fff; padding:12px 24px; border-radius:8px;
+      background:#17516e; color:#fff; padding:12px 24px; border-radius:8px;
       font-size:13px; font-weight:600; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,.2);
       transition:opacity .3s ease; max-width:90vw; text-align:center;
     `;

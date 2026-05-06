@@ -1,9 +1,9 @@
-﻿/* ======================================================
-   PAPELERA CARO CRUZ — styles.css
-   Paleta: Base #f2e8d5 · Arena #c9a96e · Coral #fb844f · Pizarra #4b616c · Carbón #2c2c2e
+/* ======================================================
+   PAPELERA CARO CRUZ � styles.css
+   Paleta: Base #f2e8d5 � Arena #c9a96e � Coral #fb844f � Pizarra #17516e � Carb�n #2c2c2e
    ====================================================== */
 
-/* ── Reset & base ── */
+/* -- Reset & base -- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -18,9 +18,9 @@ img, svg { display: block; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 ul { list-style: none; }
 
-/* ── Variables ── */
+/* -- Variables -- */
 :root {
-  --blue:    #4b616c;
+  --blue:    #17516e;
   --blue-dk: #2c2c2e;
   --orange:  #fb844f;
   --warm:    #c9a96e;
@@ -33,7 +33,7 @@ ul { list-style: none; }
   --transition: .18s ease;
 }
 
-/* ── Util ── */
+/* -- Util -- */
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -186,7 +186,7 @@ ul { list-style: none; }
 .cart-badge.hidden { display: none; }
 
 /* ======================================================
-   NAV CATEGORÍAS
+   NAV CATEGOR�AS
    ====================================================== */
 .cat-nav { background: var(--blue); }
 .cat-nav-inner {
@@ -500,7 +500,7 @@ ul { list-style: none; }
   line-height: 1;
 }
 .faq-item[open] summary::after {
-  content: '−';
+  content: '-';
 }
 .faq-answer {
   margin-top: 8px;
@@ -575,18 +575,18 @@ ul { list-style: none; }
 @media (max-width: 768px)  { .products-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 420px)  { .products-grid { grid-template-columns: 1fr; } }
 
-/* Grilla compacta: más columnas, imágenes chicas */
+/* Grilla compacta: m�s columnas, im�genes chicas */
 .products-grid--compacto { grid-template-columns: repeat(4, 1fr) !important; gap: 12px !important; }
 @media (max-width: 1100px) { .products-grid--compacto { grid-template-columns: repeat(3, 1fr) !important; } }
 @media (max-width: 768px)  { .products-grid--compacto { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; } }
 @media (max-width: 420px)  { .products-grid--compacto { grid-template-columns: repeat(2, 1fr) !important; } }
 
-/* Grilla normal: equilibrio entre tamaño y cantidad */
+/* Grilla normal: equilibrio entre tama�o y cantidad */
 .products-grid--normal { grid-template-columns: repeat(3, 1fr) !important; }
 @media (max-width: 768px)  { .products-grid--normal { grid-template-columns: repeat(2, 1fr) !important; } }
 @media (max-width: 420px)  { .products-grid--normal { grid-template-columns: 1fr !important; } }
 
-/* Grilla grande: menos columnas, imágenes grandes */
+/* Grilla grande: menos columnas, im�genes grandes */
 .products-grid--grande { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
 @media (max-width: 768px)  { .products-grid--grande { grid-template-columns: 1fr !important; } }
 
@@ -785,7 +785,7 @@ ul { list-style: none; }
   text-align: center;
 }
 
-/* Botón agregar */
+/* Bot�n agregar */
 .add-btn {
   display: flex;
   align-items: center;
@@ -1062,7 +1062,7 @@ ul { list-style: none; }
 }
 .cart-min-note { font-size: 11px; color: var(--text-muted); text-align: center; }
 
-/* Barra de progreso mínimo */
+/* Barra de progreso m�nimo */
 .cart-progress-wrap { display: flex; flex-direction: column; gap: 5px; }
 .cart-progress-track {
   height: 6px;
@@ -1093,7 +1093,7 @@ ul { list-style: none; }
 .cart-seguir-btn:hover { color: var(--orange); }
 
 /* ======================================================
-   RESPONSIVE — TABLET (≤900px)
+   RESPONSIVE � TABLET (=900px)
    ====================================================== */
 @media (max-width: 900px) {
   .header-inner { flex-wrap: wrap; height: auto; padding: 14px 0; gap: 12px; }
@@ -1101,7 +1101,7 @@ ul { list-style: none; }
 }
 
 /* ======================================================
-   RESPONSIVE — MOBILE (≤640px)
+   RESPONSIVE � MOBILE (=640px)
    ====================================================== */
 @media (max-width: 640px) {
 
@@ -1287,7 +1287,7 @@ ul { list-style: none; }
   .qty-btn { width: 30px; height: 30px; }
   .add-btn { height: 38px; font-size: 12px; }
 
-  /* Cart panel — full width */
+  /* Cart panel � full width */
   .cart-panel { width: 100vw; }
 
   /* Footer */
@@ -1298,7 +1298,7 @@ ul { list-style: none; }
 }
 
 /* ======================================================
-   RESPONSIVE — SMALL PHONES (≤390px)
+   RESPONSIVE � SMALL PHONES (=390px)
    ====================================================== */
 @media (max-width: 390px) {
   .hero-title { font-size: 26px; }
@@ -1384,14 +1384,14 @@ ul { list-style: none; }
 .user-dropdown-item svg { width: 15px; height: 15px; flex-shrink: 0; }
 .user-dropdown-item--admin:hover { background: #EFF6FF; color: #1E40AF; }
 
-/* — Mobile: ocultar user-name — */
+/* � Mobile: ocultar user-name � */
 @media (max-width: 640px) {
   .user-name { display: none; }
   .user-trigger { padding: 6px; }
 }
 
 /* ======================================================
-   MODAL DE AUTENTICACIÓN
+   MODAL DE AUTENTICACI�N
    ====================================================== */
 .auth-overlay {
   position: fixed;
@@ -1529,7 +1529,7 @@ ul { list-style: none; }
   display: none;
 }
 
-/* Input contraseña con botón ojo */
+/* Input contrase�a con bot�n ojo */
 .pw-wrap { position: relative; }
 .pw-wrap input { padding-right: 46px; }
 .pw-toggle {
@@ -1576,7 +1576,7 @@ ul { list-style: none; }
   text-align: right;
 }
 
-/* Botón de enviar */
+/* Bot�n de enviar */
 .auth-submit {
   height: 46px;
   background: var(--blue);
@@ -1642,7 +1642,7 @@ ul { list-style: none; }
 }
 .auth-divider span { color: var(--text-muted); }
 
-/* Botón Google */
+/* Bot�n Google */
 .btn-google {
   display: flex;
   align-items: center;
@@ -1978,6 +1978,79 @@ ul { list-style: none; }
   overflow: auto;
   padding-right: 4px;
 }
+
+/* -- Barra de selecci�n masiva en Listado ------------------------------------- */
+.admin-listado-bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.admin-listado-bulk-bar--hidden {
+  display: none;
+}
+.admin-listado-bulk-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-listado-bulk-check-all {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1E40AF;
+  cursor: pointer;
+  user-select: none;
+}
+.admin-listado-bulk-check-all input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #17516e;
+  cursor: pointer;
+}
+.admin-listado-bulk-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1E40AF;
+  background: #DBEAFE;
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+.admin-listado-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.admin-listado-bulk-actions .admin-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+@media (max-width: 600px) {
+  .admin-listado-bulk-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .admin-listado-bulk-actions {
+    flex-direction: column;
+  }
+  .admin-listado-bulk-actions .admin-item-btn {
+    justify-content: center;
+  }
+}
+
 .admin-gestion-empty {
   border: 1px dashed #CBD5E1;
   border-radius: 10px;
@@ -2278,7 +2351,7 @@ ul { list-style: none; }
   .admin-gestion { border-top: 1px solid #E5E7EB; }
 }
 
-/* ── Barra de filtros del catálogo público ─────────────────────────────────── */
+/* -- Barra de filtros del cat�logo p�blico ----------------------------------- */
 .catalogo-filtros {
   display: flex;
   align-items: center;
@@ -2317,7 +2390,7 @@ ul { list-style: none; }
   transition: border-color .2s;
 }
 .filtro-select:focus {
-  border-color: #4b616c;
+  border-color: #17516e;
   background: #fff;
 }
 
@@ -2334,7 +2407,7 @@ ul { list-style: none; }
 .filtro-toggle input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  accent-color: #4b616c;
+  accent-color: #17516e;
   cursor: pointer;
 }
 
@@ -2380,7 +2453,7 @@ ul { list-style: none; }
   }
 }
 
-/* ── Botones de zoom de grilla ─────────────────────────────────────────────── */
+/* -- Botones de zoom de grilla ----------------------------------------------- */
 .filtro-zoom {
   display: flex;
   align-items: center;
@@ -2412,7 +2485,7 @@ ul { list-style: none; }
 }
 .zoom-btn--active {
   background: #fff;
-  color: #4b616c;
+  color: #17516e;
   box-shadow: 0 1px 3px rgba(0,0,0,.12);
 }
 .zoom-btn svg {
