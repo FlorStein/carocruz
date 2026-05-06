@@ -2875,6 +2875,58 @@ async function adminEliminarPublicacion(id) {
 }
 window.adminEliminarPublicacion = adminEliminarPublicacion;
 
+async function adminEliminarTodosProductosAdmin() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden eliminar todas las publicaciones.');
+    return;
+  }
+
+  const total = PRODUCTOS_ADMIN.length;
+  if (total === 0) {
+    mostrarToast('No hay publicaciones para eliminar.');
+    return;
+  }
+
+  const ok = window.confirm(
+    `¿Eliminar TODAS las ${total} publicaciones?\nEsta acción no se puede deshacer.`
+  );
+  if (!ok) return;
+
+  const btn = document.getElementById('adminBtnEliminarTodos');
+  if (btn) { btn.disabled = true; btn.textContent = 'Eliminando…'; }
+
+  try {
+    if (usaFirestoreAdmin && firestoreDb) {
+      const snapshot = await withTimeout(
+        firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).get(),
+        15000,
+        'No se pudo leer la colección de Firestore.'
+      );
+
+      const docs = snapshot.docs;
+      const CHUNK = 400;
+      for (let i = 0; i < docs.length; i += CHUNK) {
+        const batch = firestoreDb.batch();
+        docs.slice(i, i + CHUNK).forEach(function(doc) {
+          batch.delete(doc.ref);
+        });
+        await withTimeout(batch.commit(), 15000, 'Error al eliminar lote de Firestore.');
+      }
+    }
+
+    vaciarCatalogoCompletoLocal();
+    refrescarCatalogoPrincipal();
+    renderAdminGestionList();
+    mostrarToast(`${total} publicaciones eliminadas.`);
+  } catch (err) {
+    console.warn('[Admin] Error al eliminar todas las publicaciones:', err);
+    mostrarToast('No se pudieron eliminar todas las publicaciones. Revisá la consola.');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Eliminar todas las publicaciones'; }
+  }
+}
+window.adminEliminarTodosProductosAdmin = adminEliminarTodosProductosAdmin;
+
 async function handleAltaProductoAdmin(e) {
   e.preventDefault();
 

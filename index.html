@@ -1030,6 +1030,12 @@
             <button id="adminBulkJsonBackupBtn" type="button" class="admin-item-btn" onclick="adminDescargarRespaldoJson()">Descargar respaldo JSON</button>
             <button id="adminBulkJsonImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarRespaldoJson()">Importar respaldo JSON</button>
           </div>
+
+          <div class="admin-bulk-box admin-bulk-box--danger">
+            <h5 class="admin-mini-title">Zona peligrosa</h5>
+            <p class="admin-help">Elimina <strong>todas</strong> las publicaciones cargadas manualmente, tanto localmente como en Firestore. Esta acción no se puede deshacer.</p>
+            <button id="adminBtnEliminarTodos" type="button" class="admin-item-btn admin-item-btn--danger" onclick="adminEliminarTodosProductosAdmin()">Eliminar todas las publicaciones</button>
+          </div>
         </div>
       </section>
     </div>
