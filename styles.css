@@ -2288,6 +2288,32 @@ ul { list-style: none; }
   font-weight: 700;
 }
 
+.whatsapp-bubble {
+  position: fixed;
+  right: 18px;
+  bottom: 70px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37,211,102,.45);
+  z-index: 261;
+  transition: transform .18s ease, box-shadow .18s ease;
+  text-decoration: none;
+}
+.whatsapp-bubble svg {
+  width: 30px;
+  height: 30px;
+}
+.whatsapp-bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 28px rgba(37,211,102,.55);
+}
+
 .back-to-top {
   position: fixed;
   right: 18px;
