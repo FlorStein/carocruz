@@ -1362,6 +1362,18 @@ function adminSeleccionarVisibles(select) {
 }
 window.adminSeleccionarVisibles = adminSeleccionarVisibles;
 
+function adminSeleccionarTodos(select) {
+  const todos = obtenerProductosAdminFiltrados();
+  todos.forEach(function(p) {
+    if (select) adminSeleccionados.add(p.id);
+    else adminSeleccionados.delete(p.id);
+  });
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+  if (select) mostrarToast(todos.length + ' publicaciones seleccionadas.');
+}
+window.adminSeleccionarTodos = adminSeleccionarTodos;
+
 function renderAdminGestionList() {
   const list = document.getElementById('adminGestionList');
   if (!list) return;
