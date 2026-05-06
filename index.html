@@ -344,7 +344,7 @@
         <div class="section-title-wrap">
           <span class="section-bar"></span>
           <h2 id="categoriaTitulo">CATEGORÍA</h2>
-          <span id="categoriaConteo" style="font-size:13px;color:#6B7280;font-weight:400;margin-left:8px"></span>
+          <span id="categoriaConteo" style="font-size:13px;color:#5f6468;font-weight:400;margin-left:8px"></span>
         </div>
         <button class="btn-outline-nav" onclick="volverAlHome()" style="border:none;cursor:pointer;background:none">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -1015,6 +1015,7 @@
             </div>
             <p class="admin-help">Encabezados requeridos: nombre, precio e imagen (id/stock/categoria opcionales). También acepta alias como producto/descripcion, price, cantidad, rubro, image/foto/url_imagen. Si subís una carpeta, el sistema busca imágenes por código/ID (nombre del archivo sin extensión).</p>
             <button id="adminBulkCsvTemplateBtn" type="button" class="admin-item-btn" onclick="adminDescargarPlantillaCsv()">Descargar plantilla CSV</button>
+            <button id="adminBulkCsvBackupBtn" type="button" class="admin-item-btn" onclick="adminDescargarRespaldoCsv()">Descargar respaldo CSV</button>
             <button id="adminBulkCsvImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarCsvMasivo()">Importar CSV</button>
             <div id="adminBulkCsvResult" class="admin-bulk-csv-result" aria-live="polite"></div>
           </div>

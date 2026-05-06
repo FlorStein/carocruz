@@ -19,7 +19,7 @@ const PRODUCTOS_NOVEDADES = [
     precio: 1250,
     categoria: 'LIMPIEZA',
     categColor: '#EEF2FF',
-    categText: '#1B3A6B',
+    categText: '#4b616c',
     bgImg: '#EEF2FF',
     iconColor: '#93B4E8',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`
@@ -109,7 +109,7 @@ const PRODUCTOS_OFERTAS = [
 const STORAGE_ADMIN_PRODUCTOS = 'carocruz_admin_productos';
 const STORAGE_ADMIN_OVERRIDES = 'carocruz_admin_overrides';
 const STORAGE_ADMIN_CONFIG = 'carocruz_admin_config';
-const FORZAR_CATALOGO_VACIO = true;
+const FORZAR_CATALOGO_VACIO = false;
 const FIRESTORE_ADMIN_COLLECTION = 'productos_admin';
 const FIRESTORE_OVERRIDES_COLLECTION = 'productos_overrides';
 const FIRESTORE_CONFIG_COLLECTION = 'config_admin';
@@ -157,7 +157,7 @@ const CONFIG_COMERCIAL_DEFAULT = {
 let configComercial = JSON.parse(JSON.stringify(CONFIG_COMERCIAL_DEFAULT));
 
 const CATEGORIA_UI = {
-  'LIMPIEZA':     { categColor: '#EEF2FF', categText: '#1B3A6B', bgImg: '#EEF2FF', iconColor: '#93B4E8' },
+  'LIMPIEZA':     { categColor: '#EEF2FF', categText: '#4b616c', bgImg: '#EEF2FF', iconColor: '#93B4E8' },
   'LIBRERÍA':    { categColor: '#FFF3E0', categText: '#92400E', bgImg: '#FFF3E0', iconColor: '#F4A460' },
   'ESCOLAR':      { categColor: '#F0FDF4', categText: '#166534', bgImg: '#F0FDF4', iconColor: '#4ADE80' },
   'EMBALAJE':     { categColor: '#FFF1F2', categText: '#9F1239', bgImg: '#FFF1F2', iconColor: '#F87171' },
@@ -1589,6 +1589,78 @@ function adminDescargarPlantillaCsv() {
   mostrarToast('Plantilla CSV descargada.');
 }
 window.adminDescargarPlantillaCsv = adminDescargarPlantillaCsv;
+
+function _adminCsvEscape(val) {
+  const s = String(val == null ? '' : val);
+  if (/[";\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+
+function adminDescargarRespaldoCsv() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden descargar el respaldo CSV.');
+    return;
+  }
+
+  const rows = [];
+  const vistos = new Set();
+
+  PRODUCTOS_ADMIN.forEach(function(p) {
+    if (!p || !p.id) return;
+    vistos.add(p.id);
+    rows.push({
+      tipo_registro: 'ADMIN_PRODUCTO',
+      id: p.id,
+      nombre: p.nombre || '',
+      precio: Number.isFinite(Number(p.precio)) ? Number(p.precio) : '',
+      stock: Number.isFinite(Number(p.stock)) ? Math.max(0, Math.floor(Number(p.stock))) : '',
+      categoria: p.categoria || '',
+      imagen: (window.IMAGENES_MAP && window.IMAGENES_MAP[p.id]) || '',
+      creado_por: p.creadoPor || '',
+      estado_sync: usaFirestoreAdmin ? (productoEsSoloLocal(p.id) ? 'PENDIENTE_FIRESTORE' : 'ID_REMOTO_O_CSV') : 'LOCAL'
+    });
+  });
+
+  Object.keys(PRODUCTOS_OVERRIDES).forEach(function(id) {
+    if (!id || vistos.has(id)) return;
+    const prod = buscarProductoCatalogoPorId(id);
+    const ov = PRODUCTOS_OVERRIDES[id] || {};
+    rows.push({
+      tipo_registro: 'CATALOGO_OVERRIDE',
+      id: id,
+      nombre: prod?.nombre || '',
+      precio: Number.isFinite(Number(ov.precio)) ? Number(ov.precio) : (Number.isFinite(Number(prod?.precio)) ? Number(prod.precio) : ''),
+      stock: Number.isFinite(Number(ov.stock)) ? Math.max(0, Math.floor(Number(ov.stock))) : (Number.isFinite(Number(prod?.stock)) ? Math.max(0, Math.floor(Number(prod.stock))) : ''),
+      categoria: ov.categoria || prod?.categoria || '',
+      imagen: (ov.imagenSet ? (ov.imagen || '') : ((window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || '')),
+      creado_por: '',
+      estado_sync: usaFirestoreAdmin ? 'SINCRONIZABLE' : 'LOCAL'
+    });
+  });
+
+  if (!rows.length) {
+    mostrarToast('No hay datos para exportar en el respaldo.');
+    return;
+  }
+
+  const headers = ['tipo_registro', 'id', 'nombre', 'precio', 'stock', 'categoria', 'imagen', 'creado_por', 'estado_sync'];
+  const lines = [headers.join(';')].concat(rows.map(function(row) {
+    return headers.map(function(h) { return _adminCsvEscape(row[h]); }).join(';');
+  }));
+
+  const contenido = '\uFEFF' + lines.join('\n');
+  const blob = new Blob([contenido], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'respaldo_publicaciones_carocruz.csv';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  mostrarToast('Respaldo CSV descargado.');
+}
+window.adminDescargarRespaldoCsv = adminDescargarRespaldoCsv;
 
 async function adminImportarCsvMasivo() {
   if (!usuarioAdminActivo) {
@@ -3274,7 +3346,7 @@ function aplicarOrdenYFiltro(keepPage) {
   // Renderizar
   const grid = document.getElementById('categoriaGrid');
   if (prods.length === 0) {
-    if (grid) grid.innerHTML = `<p style="color:#6B7280;grid-column:1/-1;padding:24px 0">No hay productos que coincidan con los filtros aplicados.</p>`;
+    if (grid) grid.innerHTML = `<p style="color:#5f6468;grid-column:1/-1;padding:24px 0">No hay productos que coincidan con los filtros aplicados.</p>`;
     _actualizarPaginacionCatalogo(0, 1);
   } else {
     renderGrid(pageItems, 'categoriaGrid');
@@ -3350,7 +3422,7 @@ function mostrarCategoria(cat, titulo) {
     const catCount = document.getElementById('categoriaConteo');
     if (catCount) catCount.textContent = '';
     const grid = document.getElementById('categoriaGrid');
-    if (grid) grid.innerHTML = `<p style="color:#6B7280;grid-column:1/-1;padding:24px 0">Cargando productos de esta categoría…</p>`;
+    if (grid) grid.innerHTML = `<p style="color:#5f6468;grid-column:1/-1;padding:24px 0">Cargando productos de esta categoría…</p>`;
   } else {
     aplicarOrdenYFiltro();
   }
@@ -3452,7 +3524,7 @@ function buscar() {
     const catCount = document.getElementById('categoriaConteo');
     const grid = document.getElementById('categoriaGrid');
     if (catCount) catCount.textContent = 'sin resultados';
-    if (grid) grid.innerHTML = `<p style="color:#6B7280;grid-column:1/-1;padding:24px 0">No se encontraron productos para "<strong>${String(qRaw || '').trim()}</strong>".</p>`;
+    if (grid) grid.innerHTML = `<p style="color:#5f6468;grid-column:1/-1;padding:24px 0">No se encontraron productos para "<strong>${String(qRaw || '').trim()}</strong>".</p>`;
   } else {
     aplicarOrdenYFiltro();
   }
@@ -3470,7 +3542,7 @@ function mostrarToast(msg) {
     toast.id = 'toast';
     toast.style.cssText = `
       position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-      background:#1B3A6B; color:#fff; padding:12px 24px; border-radius:8px;
+      background:#4b616c; color:#fff; padding:12px 24px; border-radius:8px;
       font-size:13px; font-weight:600; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,.2);
       transition:opacity .3s ease; max-width:90vw; text-align:center;
     `;
