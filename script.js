@@ -1662,6 +1662,230 @@ function adminDescargarRespaldoCsv() {
 }
 window.adminDescargarRespaldoCsv = adminDescargarRespaldoCsv;
 
+function _adminNormalizarOverride(raw) {
+  const data = raw || {};
+  const precio = Number(data.precio);
+  const stock = Number(data.stock);
+  return {
+    precio: Number.isFinite(precio) ? Math.max(0, Math.floor(precio)) : 0,
+    stock: Number.isFinite(stock) ? Math.max(0, Math.floor(stock)) : 0,
+    categoria: normalizarCategoria(data.categoria),
+    imagenSet: data.imagenSet === true,
+    imagen: typeof data.imagen === 'string' ? data.imagen : ''
+  };
+}
+
+function _adminConstruirPayloadRespaldoJson() {
+  const adminProductos = PRODUCTOS_ADMIN.map(function(p) {
+    return {
+      id: p.id,
+      nombre: p.nombre,
+      precio: p.precio,
+      stock: Number.isFinite(p.stock) ? p.stock : 0,
+      categoria: p.categoria,
+      imagen: (window.IMAGENES_MAP && window.IMAGENES_MAP[p.id]) || '',
+      creadoPor: p.creadoPor || ''
+    };
+  });
+
+  const overrides = {};
+  Object.keys(PRODUCTOS_OVERRIDES).forEach(function(id) {
+    if (!id) return;
+    overrides[id] = _adminNormalizarOverride(PRODUCTOS_OVERRIDES[id]);
+  });
+
+  const imagenesMap = {};
+  if (window.IMAGENES_MAP && typeof window.IMAGENES_MAP === 'object') {
+    Object.keys(window.IMAGENES_MAP).forEach(function(id) {
+      const val = window.IMAGENES_MAP[id];
+      if (typeof val === 'string' && val.trim()) imagenesMap[id] = val;
+    });
+  }
+
+  return {
+    meta: {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      usaFirestoreAdmin: !!usaFirestoreAdmin,
+      exportadoPor: window._authCurrentUser?.email || ''
+    },
+    productos_admin: adminProductos,
+    productos_overrides: overrides,
+    imagenes_map: imagenesMap,
+    config_comercial: clonarConfigComercial(configComercial)
+  };
+}
+
+function adminDescargarRespaldoJson() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden descargar el respaldo JSON.');
+    return;
+  }
+
+  const payload = _adminConstruirPayloadRespaldoJson();
+  const contenido = JSON.stringify(payload, null, 2);
+  const blob = new Blob([contenido], { type: 'application/json;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'respaldo_publicaciones_carocruz.json';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  mostrarToast('Respaldo JSON descargado.');
+}
+window.adminDescargarRespaldoJson = adminDescargarRespaldoJson;
+
+async function adminImportarRespaldoJson() {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden importar respaldo JSON.');
+    return;
+  }
+
+  const fileInput = document.getElementById('adminBulkBackupFile');
+  const btn = document.getElementById('adminBulkJsonImportBtn');
+  const file = fileInput?.files?.[0] || null;
+  if (!file) {
+    mostrarToast('Seleccioná un archivo JSON de respaldo.');
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Importando…';
+  }
+
+  try {
+    const texto = await file.text();
+    const payload = JSON.parse(texto || '{}');
+    if (!payload || typeof payload !== 'object') {
+      throw new Error('Formato de respaldo inválido.');
+    }
+
+    const listaAdmin = Array.isArray(payload.productos_admin) ? payload.productos_admin : [];
+    const rawOverrides = payload.productos_overrides && typeof payload.productos_overrides === 'object'
+      ? payload.productos_overrides
+      : {};
+    const rawImagenes = payload.imagenes_map && typeof payload.imagenes_map === 'object'
+      ? payload.imagenes_map
+      : {};
+
+    PRODUCTOS_ADMIN.length = 0;
+    Object.keys(PRODUCTOS_OVERRIDES).forEach(function(id) { delete PRODUCTOS_OVERRIDES[id]; });
+
+    const importadasAdmin = [];
+    listaAdmin.forEach(function(item) {
+      const id = String(item?.id || '').trim();
+      if (!id) return;
+      const prod = productoAdminDesdeData(id, item || {});
+      if (!prod) return;
+      PRODUCTOS_ADMIN.push(prod);
+      importadasAdmin.push(id);
+    });
+
+    Object.keys(rawOverrides).forEach(function(id) {
+      const cleanId = String(id || '').trim();
+      if (!cleanId) return;
+      PRODUCTOS_OVERRIDES[cleanId] = _adminNormalizarOverride(rawOverrides[id]);
+    });
+
+    if (window.IMAGENES_MAP && typeof window.IMAGENES_MAP === 'object') {
+      Object.keys(rawImagenes).forEach(function(id) {
+        const cleanId = String(id || '').trim();
+        const val = rawImagenes[id];
+        if (!cleanId || typeof val !== 'string' || !val.trim()) return;
+        window.IMAGENES_MAP[cleanId] = val;
+      });
+    }
+
+    if (payload.config_comercial && typeof payload.config_comercial === 'object') {
+      configComercial = clonarConfigComercial(payload.config_comercial);
+      guardarConfigComercialLocal();
+      aplicarConfigComercialUI();
+    }
+
+    guardarProductosAdmin();
+    guardarOverridesLocal();
+    aplicarOverridesCatalogo();
+    refrescarCatalogoPrincipal();
+    actualizarUI();
+    renderAdminGestionList();
+    adminRenderSelectorProductos2x1();
+    adminRenderProductos2x1();
+    if (_modoVistaActual) aplicarOrdenYFiltro();
+
+    let syncWarn = false;
+    if (usaFirestoreAdmin && firestoreDb) {
+      try {
+        const jobs = [];
+        importadasAdmin.forEach(function(id) {
+          const prod = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
+          if (!prod) return;
+          jobs.push(withTimeout(
+            firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).set({
+              nombre: prod.nombre,
+              precio: prod.precio,
+              stock: Number.isFinite(prod.stock) ? prod.stock : 0,
+              categoria: prod.categoria,
+              imagen: String((window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || ''),
+              creadoPor: prod.creadoPor || (window._authCurrentUser?.email || ''),
+              updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
+              updatedBy: window._authCurrentUser?.email || ''
+            }, { merge: true }),
+            8000,
+            'No se pudo sincronizar un producto del respaldo.'
+          ));
+        });
+
+        Object.keys(PRODUCTOS_OVERRIDES).forEach(function(id) {
+          const ov = PRODUCTOS_OVERRIDES[id];
+          jobs.push(withTimeout(
+            firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set({
+              ...ov,
+              updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
+              updatedBy: window._authCurrentUser?.email || ''
+            }, { merge: true }),
+            8000,
+            'No se pudo sincronizar un override del respaldo.'
+          ));
+        });
+
+        jobs.push(withTimeout(
+          firestoreDb.collection(FIRESTORE_CONFIG_COLLECTION).doc(FIRESTORE_CONFIG_DOC).set({
+            ...configComercial,
+            updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
+            updatedBy: window._authCurrentUser?.email || ''
+          }, { merge: true }),
+          8000,
+          'No se pudo sincronizar la configuración comercial del respaldo.'
+        ));
+
+        await Promise.all(jobs);
+      } catch (err) {
+        syncWarn = true;
+        console.warn('[Admin] Respaldo JSON importado localmente; sync Firestore parcial/fallida:', err);
+      }
+    }
+
+    if (fileInput) fileInput.value = '';
+    if (syncWarn) {
+      mostrarToast('Respaldo importado localmente. Firestore no respondió para algunos ítems.');
+    } else {
+      mostrarToast('Respaldo JSON importado correctamente.');
+    }
+  } catch (err) {
+    console.warn('[Admin] Error importando respaldo JSON:', err);
+    mostrarToast(err?.message || 'No se pudo importar el respaldo JSON.');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Importar respaldo JSON';
+    }
+  }
+}
+window.adminImportarRespaldoJson = adminImportarRespaldoJson;
+
 async function adminImportarCsvMasivo() {
   if (!usuarioAdminActivo) {
     mostrarToast('Solo usuarios admin pueden importar CSV.');

@@ -1019,6 +1019,17 @@
             <button id="adminBulkCsvImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarCsvMasivo()">Importar CSV</button>
             <div id="adminBulkCsvResult" class="admin-bulk-csv-result" aria-live="polite"></div>
           </div>
+
+          <div class="admin-bulk-box admin-bulk-box--csv">
+            <h5 class="admin-mini-title">Respaldo completo JSON</h5>
+            <div class="admin-item-field">
+              <label for="adminBulkBackupFile">Archivo de respaldo JSON</label>
+              <input id="adminBulkBackupFile" type="file" accept=".json,application/json" />
+            </div>
+            <p class="admin-help">Incluye publicaciones manuales, overrides de catálogo, imágenes referenciadas y configuración comercial. Ideal para mover trabajo entre máquinas.</p>
+            <button id="adminBulkJsonBackupBtn" type="button" class="admin-item-btn" onclick="adminDescargarRespaldoJson()">Descargar respaldo JSON</button>
+            <button id="adminBulkJsonImportBtn" type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminImportarRespaldoJson()">Importar respaldo JSON</button>
+          </div>
         </div>
       </section>
     </div>
