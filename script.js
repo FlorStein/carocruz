@@ -2019,7 +2019,10 @@ async function adminImportarCsvMasivo() {
 
   const progressWrap = document.getElementById('adminCsvProgressWrap');
   const progressResult = document.getElementById('adminBulkCsvResult');
-  if (progressWrap) { progressWrap.style.display = 'block'; }
+  if (progressWrap) {
+    progressWrap.style.display = 'block';
+    setTimeout(function() { progressWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+  }
   if (progressResult) { progressResult.textContent = ''; }
   _adminCsvActualizarProgreso(0, 0);
 
