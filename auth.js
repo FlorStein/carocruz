@@ -357,6 +357,69 @@ async function handleUserProfileSave(e) {
 window.handleUserProfileSave = handleUserProfileSave;
 
 /* =====================================================
+   GUARDAR CONTRASEÑA (PERFIL DE USUARIO)
+   ===================================================== */
+async function handleGuardarPassword() {
+  limpiarErroresAuth();
+
+  var user = window._auth ? window._auth.currentUser : null;
+  if (!user) {
+    mostrarErrorAuth('userGeneralMsg', 'Iniciá sesión para cambiar tu contraseña.');
+    return;
+  }
+
+  var providers = (user.providerData || []).map(function(p) { return p.providerId; });
+  if (providers.indexOf('password') === -1) {
+    mostrarErrorAuth('userGeneralMsg', 'Tu cuenta no usa contraseña. Ingresá con tu proveedor habitual.');
+    return;
+  }
+
+  var pwdCurrent = document.getElementById('userPwdCurrent').value;
+  var pwdNew     = document.getElementById('userPwdNew').value;
+  var pwdConfirm = document.getElementById('userPwdConfirm').value;
+
+  var valido = true;
+  if (!pwdCurrent) {
+    mostrarErrorAuth('userPwdCurrentError', 'Ingresá tu contraseña actual.'); valido = false;
+  }
+  if (!passwordSegura(pwdNew)) {
+    mostrarErrorAuth('userPwdNewError', 'Mínimo 8 caracteres, una mayúscula y un número.'); valido = false;
+  }
+  if (pwdNew !== pwdConfirm) {
+    mostrarErrorAuth('userPwdConfirmError', 'Las contraseñas no coinciden.'); valido = false;
+  }
+  if (pwdCurrent && pwdNew && pwdCurrent === pwdNew) {
+    mostrarErrorAuth('userPwdNewError', 'La nueva contraseña debe ser distinta de la actual.'); valido = false;
+  }
+  if (!valido) return;
+
+  var btn = document.getElementById('btnGuardarPassword');
+  btnCargando(btn, 'Guardando…');
+
+  try {
+    var credential = firebase.auth.EmailAuthProvider.credential(user.email, pwdCurrent);
+    await user.reauthenticateWithCredential(credential);
+    await user.updatePassword(pwdNew);
+
+    document.getElementById('userPwdCurrent').value = '';
+    document.getElementById('userPwdNew').value = '';
+    document.getElementById('userPwdConfirm').value = '';
+
+    var ok = document.getElementById('userGeneralMsg');
+    if (ok) {
+      ok.textContent = 'Contraseña actualizada correctamente.';
+      ok.style.display = 'block';
+      ok.style.color = '#16A34A';
+    }
+  } catch (err) {
+    mostrarErrorAuth('userGeneralMsg', mensajeFirebase(err.code));
+  } finally {
+    btnReset(btn, 'Guardar contraseña');
+  }
+}
+window.handleGuardarPassword = handleGuardarPassword;
+
+/* =====================================================
    CAMBIAR CONTRASEÑA (ADMIN)
    ===================================================== */
 async function handleChangePassword(e) {
