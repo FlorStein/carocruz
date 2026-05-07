@@ -679,10 +679,10 @@ async function obtenerImagenFinalAdmin(imagenUrl, archivo, opciones) {
         const payload = procesada?.blob || archivo;
         const task = await withTimeout(
           firebaseStorageRef.ref(ruta).put(payload, { contentType: 'image/jpeg' }),
-          15000,
+          45000,
           'La subida de imagen tardó demasiado.'
         );
-        return withTimeout(task.ref.getDownloadURL(), 8000, 'No se pudo obtener la URL de la imagen.');
+        return withTimeout(task.ref.getDownloadURL(), 15000, 'No se pudo obtener la URL de la imagen.');
       } catch (err) {
         console.warn('[Admin] Fallback imagen local por error de Storage:', err);
       }
@@ -964,7 +964,7 @@ async function guardarConfigComercialAdmin() {
     try {
       heroBannerFinal = await withTimeout(
         obtenerImagenFinalAdmin(heroBannerUrlInput, archivoBanner),
-        12000,
+        30000,
         'La imagen del banner hero tardó demasiado en procesarse.'
       );
     } catch (err) {
