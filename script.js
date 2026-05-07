@@ -49,6 +49,7 @@ const CONFIG_COMERCIAL_DEFAULT = {
   heroTitle: 'Todo para tu negocio\nen un solo lugar',
   heroSub: 'Artículos de papelería, librería y más\na precios mayoristas imbatibles.',
   heroBannerImage: '',
+  heroBannerImageMobile: '',
   marcasPromocion: [],
   descuentoMarca: 0,
   productos2x1: [],
@@ -127,6 +128,7 @@ function clonarConfigComercial(raw) {
     heroTitle: String(src.heroTitle || base.heroTitle).trim(),
     heroSub: String(src.heroSub || base.heroSub).trim(),
     heroBannerImage: String(src.heroBannerImage || '').trim(),
+    heroBannerImageMobile: String(src.heroBannerImageMobile || '').trim(),
     marcasPromocion: marcasRaw
       .map(function(m) { return String(m || '').trim(); })
       .filter(Boolean),
@@ -190,12 +192,14 @@ function aplicarConfigComercialUI() {
   _setTextoConSaltos('heroSubText', configComercial.heroSub || CONFIG_COMERCIAL_DEFAULT.heroSub);
 
   const heroImg = document.getElementById('heroBannerImg');
+  const heroImgMobile = document.getElementById('heroBannerImgMobile');
   const heroFallback = document.getElementById('heroBannerFallback');
   const heroSrc = String(configComercial.heroBannerImage || '').trim();
+  const heroSrcMobile = String(configComercial.heroBannerImageMobile || '').trim();
   if (heroImg) {
     heroImg.onerror = function() {
       heroImg.style.display = 'none';
-      if (heroFallback) heroFallback.style.display = 'flex';
+      if (!heroSrcMobile && heroFallback) heroFallback.style.display = 'flex';
     };
     if (heroSrc) {
       heroImg.src = heroSrc;
@@ -205,8 +209,17 @@ function aplicarConfigComercialUI() {
       heroImg.style.display = 'none';
     }
   }
+  if (heroImgMobile) {
+    if (heroSrcMobile) {
+      heroImgMobile.src = heroSrcMobile;
+      heroImgMobile.style.display = 'block';
+    } else {
+      heroImgMobile.removeAttribute('src');
+      heroImgMobile.style.display = 'none';
+    }
+  }
   if (heroFallback) {
-    heroFallback.style.display = heroSrc ? 'none' : 'flex';
+    heroFallback.style.display = (heroSrc || heroSrcMobile) ? 'none' : 'flex';
   }
 }
 
@@ -297,18 +310,22 @@ window.setAdminTab = setAdminTab;
 function actualizarPreviewHeroBannerAdmin() {
   const previewImg = document.getElementById('adminHeroBannerPreviewImg');
   const previewEmpty = document.getElementById('adminHeroBannerPreviewEmpty');
+  const previewImgM = document.getElementById('adminHeroBannerPreviewImgMobile');
+  const previewEmptyM = document.getElementById('adminHeroBannerPreviewEmptyMobile');
   const inputUrl = document.getElementById('adminHeroBannerUrl');
   const inputFile = document.getElementById('adminHeroBannerArchivo');
+  const inputFileMobile = document.getElementById('adminHeroBannerArchivoMobile');
   if (!previewImg || !previewEmpty) return;
 
   _limpiarAdminHeroBannerObjectUrl();
+
+  // Desktop
   let src = String(inputUrl?.value || '').trim();
   const file = inputFile?.files?.[0] || null;
   if (file && String(file.type || '').startsWith('image/')) {
     adminHeroBannerObjectUrl = URL.createObjectURL(file);
     src = adminHeroBannerObjectUrl;
   }
-
   if (src) {
     previewImg.src = src;
     previewImg.style.display = 'block';
@@ -317,6 +334,24 @@ function actualizarPreviewHeroBannerAdmin() {
     previewImg.removeAttribute('src');
     previewImg.style.display = 'none';
     previewEmpty.style.display = 'block';
+  }
+
+  // Mobile
+  if (previewImgM && previewEmptyM) {
+    const fileMobile = inputFileMobile?.files?.[0] || null;
+    let srcM = '';
+    if (fileMobile && String(fileMobile.type || '').startsWith('image/')) {
+      srcM = URL.createObjectURL(fileMobile);
+    }
+    if (srcM) {
+      previewImgM.src = srcM;
+      previewImgM.style.display = 'block';
+      previewEmptyM.style.display = 'none';
+    } else {
+      previewImgM.removeAttribute('src');
+      previewImgM.style.display = 'none';
+      previewEmptyM.style.display = 'block';
+    }
   }
 }
 
@@ -809,6 +844,8 @@ function cargarFormularioConfigComercialAdmin() {
   setVal('adminDescuentoMarca', _toPorcentajeOferta(configComercial.descuentoMarca));
   const bannerFile = document.getElementById('adminHeroBannerArchivo');
   if (bannerFile) bannerFile.value = '';
+  const bannerFileMobile = document.getElementById('adminHeroBannerArchivoMobile');
+  if (bannerFileMobile) bannerFileMobile.value = '';
 
   setVal('adminOfertaLimpieza', descuentoCategoriaActivo('LIMPIEZA'));
   setVal('adminOfertaLibreria', descuentoCategoriaActivo('LIBRERÍA'));
@@ -944,6 +981,7 @@ async function guardarConfigComercialAdmin() {
     return String(document.getElementById(id)?.value || '').trim();
   };
   const archivoBanner = document.getElementById('adminHeroBannerArchivo')?.files?.[0] || null;
+  const archivoBannerMobile = document.getElementById('adminHeroBannerArchivoMobile')?.files?.[0] || null;
   const heroBannerUrlInput = getVal('adminHeroBannerUrl');
   const marcasPromo = getVal('adminMarcasPromo')
     .split(',')
@@ -955,7 +993,11 @@ async function guardarConfigComercialAdmin() {
     return;
   }
   if (archivoBanner && !String(archivoBanner.type || '').startsWith('image/')) {
-    mostrarToast('El archivo del banner hero no es una imagen válida.');
+    mostrarToast('El archivo del banner desktop no es una imagen válida.');
+    return;
+  }
+  if (archivoBannerMobile && !String(archivoBannerMobile.type || '').startsWith('image/')) {
+    mostrarToast('El archivo del banner mobile no es una imagen válida.');
     return;
   }
 
@@ -963,13 +1005,28 @@ async function guardarConfigComercialAdmin() {
   if (archivoBanner) {
     try {
       heroBannerFinal = await withTimeout(
-        obtenerImagenFinalAdmin(heroBannerUrlInput, archivoBanner),
+        obtenerImagenFinalAdmin(heroBannerUrlInput, archivoBanner, { maxWidth: 1400, maxHeight: 700, quality: 0.85 }),
         30000,
-        'La imagen del banner hero tardó demasiado en procesarse.'
+        'La imagen del banner desktop tardó demasiado en procesarse.'
       );
     } catch (err) {
-      console.warn('[Admin] No se pudo procesar banner hero:', err);
-      mostrarToast('No se pudo procesar el banner hero.');
+      console.warn('[Admin] No se pudo procesar banner desktop:', err);
+      mostrarToast('No se pudo procesar el banner desktop.');
+      return;
+    }
+  }
+
+  let heroBannerMobileFinal = configComercial.heroBannerImageMobile || '';
+  if (archivoBannerMobile) {
+    try {
+      heroBannerMobileFinal = await withTimeout(
+        obtenerImagenFinalAdmin('', archivoBannerMobile, { maxWidth: 700, maxHeight: 700, quality: 0.85 }),
+        30000,
+        'La imagen del banner mobile tardó demasiado en procesarse.'
+      );
+    } catch (err) {
+      console.warn('[Admin] No se pudo procesar banner mobile:', err);
+      mostrarToast('No se pudo procesar el banner mobile.');
       return;
     }
   }
@@ -984,6 +1041,7 @@ async function guardarConfigComercialAdmin() {
     heroTitle: getVal('adminHeroTitle'),
     heroSub: getVal('adminHeroSub'),
     heroBannerImage: heroBannerFinal,
+    heroBannerImageMobile: heroBannerMobileFinal,
     marcasPromocion: marcasPromo,
     descuentoMarca: getVal('adminDescuentoMarca'),
     productos2x1: adminPromo2x1Draft,

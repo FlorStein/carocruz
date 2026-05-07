@@ -137,6 +137,7 @@
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-img-placeholder" id="heroBannerBox">
           <img id="heroBannerImg" class="hero-banner-img" alt="Banner principal" loading="lazy" />
+          <img id="heroBannerImgMobile" class="hero-banner-img hero-banner-img--mobile" alt="Banner principal" loading="lazy" />
           <div id="heroBannerFallback" class="hero-banner-fallback">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             <p>Productos de calidad<br />para tu negocio</p>
@@ -812,16 +813,30 @@
             <textarea id="adminHeroSub" rows="2" placeholder="Artículos de papelería, librería y más\na precios mayoristas imbatibles."></textarea>
           </div>
           <div class="auth-field">
-            <label for="adminHeroBannerUrl">Hero: URL imagen banner (opcional)</label>
+            <label for="adminHeroBannerUrl">Hero: URL imagen banner desktop (opcional)</label>
             <input id="adminHeroBannerUrl" type="url" placeholder="https://..." />
           </div>
           <div class="auth-field">
-            <label for="adminHeroBannerArchivo">Hero: o subir imagen banner (opcional)</label>
-            <input id="adminHeroBannerArchivo" type="file" accept="image/*" />
+            <label for="adminHeroBannerArchivo">Hero: subir imagen banner Desktop</label>
+            <p class="admin-help" style="margin-bottom:4px">📐 Recomendado: <strong>1200 × 600 px</strong> · Relación 2:1 · JPG/PNG · Máx 2 MB</p>
+            <input id="adminHeroBannerArchivo" type="file" accept="image/*" onchange="actualizarPreviewHeroBannerAdmin()" />
+          </div>
+          <div class="auth-field">
+            <label for="adminHeroBannerArchivoMobile">Hero: subir imagen banner Mobile</label>
+            <p class="admin-help" style="margin-bottom:4px">📐 Recomendado: <strong>600 × 600 px</strong> · Relación 1:1 · JPG/PNG · Máx 1 MB</p>
+            <input id="adminHeroBannerArchivoMobile" type="file" accept="image/*" onchange="actualizarPreviewHeroBannerAdmin()" />
           </div>
           <div id="adminHeroBannerPreview" class="admin-hero-preview">
-            <img id="adminHeroBannerPreviewImg" alt="Vista previa banner hero" />
-            <p id="adminHeroBannerPreviewEmpty">Sin imagen de banner hero</p>
+            <div style="flex:1;text-align:center">
+              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">DESKTOP</p>
+              <img id="adminHeroBannerPreviewImg" alt="Vista previa banner desktop" style="max-width:100%;border-radius:6px" />
+              <p id="adminHeroBannerPreviewEmpty" style="font-size:12px;color:#94a3b8">Sin imagen desktop</p>
+            </div>
+            <div style="flex:1;text-align:center">
+              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">MOBILE</p>
+              <img id="adminHeroBannerPreviewImgMobile" alt="Vista previa banner mobile" style="max-width:100%;border-radius:6px" />
+              <p id="adminHeroBannerPreviewEmptyMobile" style="font-size:12px;color:#94a3b8">Sin imagen mobile</p>
+            </div>
           </div>
           <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar banners</button>
           </div>

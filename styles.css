@@ -343,6 +343,14 @@ ul { list-style: none; }
   object-fit: cover;
   display: none;
 }
+/* El banner mobile se muestra solo en pantallas pequeñas */
+@media (max-width: 640px) {
+  .hero-banner-img--mobile { display: block; }
+  .hero-banner-img:not(.hero-banner-img--mobile) { display: none !important; }
+}
+@media (min-width: 641px) {
+  .hero-banner-img--mobile { display: none !important; }
+}
 .hero-banner-fallback {
   width: 100%;
   height: 100%;
