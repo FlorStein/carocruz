@@ -1098,10 +1098,21 @@ async function guardarConfigComercialAdmin() {
   if (_modoVistaActual) aplicarOrdenYFiltro();
 
   if (usaFirestoreAdmin && firestoreDb) {
+    // Los data URLs son demasiado grandes para Firestore (límite 1MB por documento).
+    // Si las imágenes no pudieron subirse a Storage y quedaron como data URL,
+    // las omitimos del payload de Firestore y quedan solo en localStorage.
+    const esDataUrl = function(v) { return String(v || '').startsWith('data:'); };
+    const payloadFirestore = { ...configComercial };
+    if (esDataUrl(payloadFirestore.heroBannerImage)) {
+      payloadFirestore.heroBannerImage = '';
+    }
+    if (esDataUrl(payloadFirestore.heroBannerImageMobile)) {
+      payloadFirestore.heroBannerImageMobile = '';
+    }
     try {
       await withTimeout(
         firestoreDb.collection(FIRESTORE_CONFIG_COLLECTION).doc(FIRESTORE_CONFIG_DOC).set({
-          ...configComercial,
+          ...payloadFirestore,
           updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
           updatedBy: window._authCurrentUser?.email || ''
         }, { merge: true }),
@@ -1111,6 +1122,10 @@ async function guardarConfigComercialAdmin() {
     } catch (err) {
       console.warn('[Admin] Config comercial guardada localmente; fallo Firestore:', err);
       mostrarToast('Guardado local OK. Firestore: ' + (err?.message || 'sin respuesta'));
+      return;
+    }
+    if (esDataUrl(configComercial.heroBannerImage) || esDataUrl(configComercial.heroBannerImageMobile)) {
+      mostrarToast('Config guardada. Banner solo en este dispositivo (CORS pendiente).');
       return;
     }
   }
