@@ -50,6 +50,10 @@ const CONFIG_COMERCIAL_DEFAULT = {
   heroSub: 'Artículos de papelería, librería y más\na precios mayoristas imbatibles.',
   heroBannerImage: '',
   heroBannerImageMobile: '',
+  heroBannerPositionX: 50,
+  heroBannerPositionY: 50,
+  heroBannerPositionXMobile: 50,
+  heroBannerPositionYMobile: 50,
   marcasPromocion: [],
   descuentoMarca: 0,
   productos2x1: [],
@@ -129,6 +133,10 @@ function clonarConfigComercial(raw) {
     heroSub: String(src.heroSub || base.heroSub).trim(),
     heroBannerImage: String(src.heroBannerImage || '').trim(),
     heroBannerImageMobile: String(src.heroBannerImageMobile || '').trim(),
+    heroBannerPositionX: Math.max(0, Math.min(100, Number.isFinite(+src.heroBannerPositionX) ? +src.heroBannerPositionX : 50)),
+    heroBannerPositionY: Math.max(0, Math.min(100, Number.isFinite(+src.heroBannerPositionY) ? +src.heroBannerPositionY : 50)),
+    heroBannerPositionXMobile: Math.max(0, Math.min(100, Number.isFinite(+src.heroBannerPositionXMobile) ? +src.heroBannerPositionXMobile : 50)),
+    heroBannerPositionYMobile: Math.max(0, Math.min(100, Number.isFinite(+src.heroBannerPositionYMobile) ? +src.heroBannerPositionYMobile : 50)),
     marcasPromocion: marcasRaw
       .map(function(m) { return String(m || '').trim(); })
       .filter(Boolean),
@@ -194,15 +202,18 @@ function aplicarConfigComercialUI() {
   const heroImg = document.getElementById('heroBannerImg');
   const heroImgMobile = document.getElementById('heroBannerImgMobile');
   const heroFallback = document.getElementById('heroBannerFallback');
+  const heroSection = document.getElementById('heroSection');
   const heroSrc = String(configComercial.heroBannerImage || '').trim();
   const heroSrcMobile = String(configComercial.heroBannerImageMobile || '').trim();
   if (heroImg) {
     heroImg.onerror = function() {
       heroImg.style.display = 'none';
       if (!heroSrcMobile && heroFallback) heroFallback.style.display = 'flex';
+      if (heroSection && !heroSrcMobile) heroSection.classList.remove('hero--has-banner');
     };
     if (heroSrc) {
       heroImg.src = heroSrc;
+      heroImg.style.objectPosition = (configComercial.heroBannerPositionX ?? 50) + '% ' + (configComercial.heroBannerPositionY ?? 50) + '%';
       heroImg.style.display = 'block';
     } else {
       heroImg.removeAttribute('src');
@@ -212,14 +223,17 @@ function aplicarConfigComercialUI() {
   if (heroImgMobile) {
     if (heroSrcMobile) {
       heroImgMobile.src = heroSrcMobile;
+      heroImgMobile.style.objectPosition = (configComercial.heroBannerPositionXMobile ?? 50) + '% ' + (configComercial.heroBannerPositionYMobile ?? 50) + '%';
       heroImgMobile.style.display = 'block';
     } else {
       heroImgMobile.removeAttribute('src');
       heroImgMobile.style.display = 'none';
     }
   }
+  const hasBanner = !!(heroSrc || heroSrcMobile);
+  if (heroSection) heroSection.classList.toggle('hero--has-banner', hasBanner);
   if (heroFallback) {
-    heroFallback.style.display = (heroSrc || heroSrcMobile) ? 'none' : 'flex';
+    heroFallback.style.display = hasBanner ? 'none' : 'flex';
   }
 }
 
@@ -319,6 +333,17 @@ function actualizarPreviewHeroBannerAdmin() {
 
   _limpiarAdminHeroBannerObjectUrl();
 
+  const posX = document.getElementById('adminHeroBannerPosX')?.value ?? 50;
+  const posY = document.getElementById('adminHeroBannerPosY')?.value ?? 50;
+  const posXm = document.getElementById('adminHeroBannerPosMobileX')?.value ?? 50;
+  const posYm = document.getElementById('adminHeroBannerPosMobileY')?.value ?? 50;
+
+  // Actualizar etiquetas de posición
+  const lbD = document.getElementById('adminHeroBannerPosLabel');
+  if (lbD) lbD.textContent = posX + '% / ' + posY + '%';
+  const lbM = document.getElementById('adminHeroBannerPosMobileLabel');
+  if (lbM) lbM.textContent = posXm + '% / ' + posYm + '%';
+
   // Desktop
   let src = String(inputUrl?.value || '').trim();
   const file = inputFile?.files?.[0] || null;
@@ -326,8 +351,11 @@ function actualizarPreviewHeroBannerAdmin() {
     adminHeroBannerObjectUrl = URL.createObjectURL(file);
     src = adminHeroBannerObjectUrl;
   }
+  const posWrap = document.getElementById('adminHeroBannerPosWrap');
+  if (posWrap) posWrap.style.display = src ? '' : 'none';
   if (src) {
     previewImg.src = src;
+    previewImg.style.objectPosition = posX + '% ' + posY + '%';
     previewImg.style.display = 'block';
     previewEmpty.style.display = 'none';
   } else {
@@ -342,9 +370,14 @@ function actualizarPreviewHeroBannerAdmin() {
     let srcM = '';
     if (fileMobile && String(fileMobile.type || '').startsWith('image/')) {
       srcM = URL.createObjectURL(fileMobile);
+    } else if (!src) {
+      srcM = '';
     }
+    const posMWrap = document.getElementById('adminHeroBannerPosMobileWrap');
+    if (posMWrap) posMWrap.style.display = srcM ? '' : 'none';
     if (srcM) {
       previewImgM.src = srcM;
+      previewImgM.style.objectPosition = posXm + '% ' + posYm + '%';
       previewImgM.style.display = 'block';
       previewEmptyM.style.display = 'none';
     } else {
@@ -846,6 +879,10 @@ function cargarFormularioConfigComercialAdmin() {
   if (bannerFile) bannerFile.value = '';
   const bannerFileMobile = document.getElementById('adminHeroBannerArchivoMobile');
   if (bannerFileMobile) bannerFileMobile.value = '';
+  setVal('adminHeroBannerPosX', configComercial.heroBannerPositionX ?? 50);
+  setVal('adminHeroBannerPosY', configComercial.heroBannerPositionY ?? 50);
+  setVal('adminHeroBannerPosMobileX', configComercial.heroBannerPositionXMobile ?? 50);
+  setVal('adminHeroBannerPosMobileY', configComercial.heroBannerPositionYMobile ?? 50);
 
   setVal('adminOfertaLimpieza', descuentoCategoriaActivo('LIMPIEZA'));
   setVal('adminOfertaLibreria', descuentoCategoriaActivo('LIBRERÍA'));
@@ -1004,14 +1041,10 @@ async function guardarConfigComercialAdmin() {
   let heroBannerFinal = heroBannerUrlInput;
   if (archivoBanner) {
     try {
-      heroBannerFinal = await withTimeout(
-        obtenerImagenFinalAdmin(heroBannerUrlInput, archivoBanner, { maxWidth: 1400, maxHeight: 700, quality: 0.85 }),
-        30000,
-        'La imagen del banner desktop tardó demasiado en procesarse.'
-      );
+      heroBannerFinal = await obtenerImagenFinalAdmin(heroBannerUrlInput, archivoBanner, { maxWidth: 1400, maxHeight: 700, quality: 0.85 });
     } catch (err) {
       console.warn('[Admin] No se pudo procesar banner desktop:', err);
-      mostrarToast('No se pudo procesar el banner desktop.');
+      mostrarToast('Error al procesar banner desktop: ' + (err?.message || 'error desconocido'));
       return;
     }
   }
@@ -1019,14 +1052,10 @@ async function guardarConfigComercialAdmin() {
   let heroBannerMobileFinal = configComercial.heroBannerImageMobile || '';
   if (archivoBannerMobile) {
     try {
-      heroBannerMobileFinal = await withTimeout(
-        obtenerImagenFinalAdmin('', archivoBannerMobile, { maxWidth: 700, maxHeight: 700, quality: 0.85 }),
-        30000,
-        'La imagen del banner mobile tardó demasiado en procesarse.'
-      );
+      heroBannerMobileFinal = await obtenerImagenFinalAdmin('', archivoBannerMobile, { maxWidth: 700, maxHeight: 700, quality: 0.85 });
     } catch (err) {
       console.warn('[Admin] No se pudo procesar banner mobile:', err);
-      mostrarToast('No se pudo procesar el banner mobile.');
+      mostrarToast('Error al procesar banner mobile: ' + (err?.message || 'error desconocido'));
       return;
     }
   }
@@ -1042,6 +1071,10 @@ async function guardarConfigComercialAdmin() {
     heroSub: getVal('adminHeroSub'),
     heroBannerImage: heroBannerFinal,
     heroBannerImageMobile: heroBannerMobileFinal,
+    heroBannerPositionX: Math.round(parseFloat(getVal('adminHeroBannerPosX')) || 50),
+    heroBannerPositionY: Math.round(parseFloat(getVal('adminHeroBannerPosY')) || 50),
+    heroBannerPositionXMobile: Math.round(parseFloat(getVal('adminHeroBannerPosMobileX')) || 50),
+    heroBannerPositionYMobile: Math.round(parseFloat(getVal('adminHeroBannerPosMobileY')) || 50),
     marcasPromocion: marcasPromo,
     descuentoMarca: getVal('adminDescuentoMarca'),
     productos2x1: adminPromo2x1Draft,
@@ -1072,12 +1105,12 @@ async function guardarConfigComercialAdmin() {
           updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
           updatedBy: window._authCurrentUser?.email || ''
         }, { merge: true }),
-        8000,
+        20000,
         'No se pudo sincronizar la configuración comercial.'
       );
     } catch (err) {
       console.warn('[Admin] Config comercial guardada localmente; fallo Firestore:', err);
-      mostrarToast('Configuración guardada localmente. Firestore no respondió.');
+      mostrarToast('Guardado local OK. Firestore: ' + (err?.message || 'sin respuesta'));
       return;
     }
   }

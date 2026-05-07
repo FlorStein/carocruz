@@ -242,7 +242,20 @@ ul { list-style: none; }
   top: -120px;
   right: 60px;
   pointer-events: none;
+  z-index: 0;
 }
+/* Overlay degradado cuando hay banner: oscurece el lado izquierdo para legibilidad del texto */
+.hero.hero--has-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,18,50,0.72) 0%, rgba(0,18,50,0.45) 55%, rgba(0,18,50,0.15) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Con banner: ocultar la decoración circular y el cuadro derecho */
+.hero.hero--has-banner::before { display: none; }
+.hero.hero--has-banner .hero-visual { display: none; }
 .hero-inner {
   display: flex;
   align-items: center;
@@ -250,6 +263,8 @@ ul { list-style: none; }
   gap: 48px;
   padding-top: 72px;
   padding-bottom: 72px;
+  position: relative;
+  z-index: 2;
 }
 .hero-content {
   max-width: 560px;
@@ -338,9 +353,12 @@ ul { list-style: none; }
   line-height: 1.5;
 }
 .hero-banner-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
   display: none;
 }
 /* El banner mobile se muestra solo en pantallas pequeñas */

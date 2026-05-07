@@ -7,7 +7,10 @@
   <meta name="description" content="Artículos de papelería, librería y útiles escolares a precios mayoristas. Envíos a todo el país." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="LOGOS.png" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-gray font-inter">
@@ -26,7 +29,7 @@
 
       <!-- Logo -->
       <a href="#" class="logo-wrap" aria-label="Caro Cruz Papelera">
-        <img src="LOGOS.png" alt="Caro Cruz Papelera" class="logo-img" />
+        <img src="LOGOS.png" alt="Caro Cruz Papelera" class="logo-img" fetchpriority="high" />
       </a>
 
       <!-- Buscador -->
@@ -124,6 +127,9 @@
 
   <!-- ░░ HERO ░░ -->
   <section id="heroSection" class="hero">
+    <!-- Banner de fondo: cubre todo el hero cuando está activo -->
+    <img id="heroBannerImg" class="hero-banner-img" alt="Banner principal" />
+    <img id="heroBannerImgMobile" class="hero-banner-img hero-banner-img--mobile" alt="Banner principal" />
     <div class="container hero-inner">
       <div class="hero-content">
         <span id="heroBadgeText" class="hero-badge">¡TEMPORADA ESCOLAR 2026!</span>
@@ -136,8 +142,6 @@
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-img-placeholder" id="heroBannerBox">
-          <img id="heroBannerImg" class="hero-banner-img" alt="Banner principal" loading="lazy" />
-          <img id="heroBannerImgMobile" class="hero-banner-img hero-banner-img--mobile" alt="Banner principal" loading="lazy" />
           <div id="heroBannerFallback" class="hero-banner-fallback">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             <p>Productos de calidad<br />para tu negocio</p>
@@ -821,21 +825,47 @@
             <p class="admin-help" style="margin-bottom:4px">📐 Recomendado: <strong>1200 × 600 px</strong> · Relación 2:1 · JPG/PNG · Máx 2 MB</p>
             <input id="adminHeroBannerArchivo" type="file" accept="image/*" onchange="actualizarPreviewHeroBannerAdmin()" />
           </div>
+          <div class="auth-field" id="adminHeroBannerPosWrap" style="display:none">
+            <label>Posición desktop: <strong id="adminHeroBannerPosLabel">50% / 50%</strong></label>
+            <div style="display:flex;gap:10px;align-items:center;margin-top:4px">
+              <span style="font-size:11px;color:#64748b;white-space:nowrap">← Horiz →</span>
+              <input type="range" id="adminHeroBannerPosX" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+              <span style="font-size:11px;color:#64748b;white-space:nowrap">↕ Vert ↕</span>
+              <input type="range" id="adminHeroBannerPosY" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
+            </div>
+          </div>
           <div class="auth-field">
             <label for="adminHeroBannerArchivoMobile">Hero: subir imagen banner Mobile</label>
             <p class="admin-help" style="margin-bottom:4px">📐 Recomendado: <strong>600 × 600 px</strong> · Relación 1:1 · JPG/PNG · Máx 1 MB</p>
             <input id="adminHeroBannerArchivoMobile" type="file" accept="image/*" onchange="actualizarPreviewHeroBannerAdmin()" />
           </div>
+          <div class="auth-field" id="adminHeroBannerPosMobileWrap" style="display:none">
+            <label>Posición mobile: <strong id="adminHeroBannerPosMobileLabel">50% / 50%</strong></label>
+            <div style="display:flex;gap:10px;align-items:center;margin-top:4px">
+              <span style="font-size:11px;color:#64748b;white-space:nowrap">← Horiz →</span>
+              <input type="range" id="adminHeroBannerPosMobileX" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+              <span style="font-size:11px;color:#64748b;white-space:nowrap">↕ Vert ↕</span>
+              <input type="range" id="adminHeroBannerPosMobileY" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
+            </div>
+          </div>
           <div id="adminHeroBannerPreview" class="admin-hero-preview">
-            <div style="flex:1;text-align:center">
-              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">DESKTOP</p>
-              <img id="adminHeroBannerPreviewImg" alt="Vista previa banner desktop" style="max-width:100%;border-radius:6px" />
-              <p id="adminHeroBannerPreviewEmpty" style="font-size:12px;color:#94a3b8">Sin imagen desktop</p>
+            <div style="flex:2;text-align:center">
+              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">DESKTOP (2:1)</p>
+              <div style="position:relative;width:100%;padding-bottom:50%;overflow:hidden;border-radius:6px;background:#e2e8f0">
+                <img id="adminHeroBannerPreviewImg" alt="Vista previa banner desktop" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px;display:none" />
+              </div>
+              <p id="adminHeroBannerPreviewEmpty" style="font-size:12px;color:#94a3b8;margin-top:4px">Sin imagen desktop</p>
             </div>
             <div style="flex:1;text-align:center">
-              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">MOBILE</p>
-              <img id="adminHeroBannerPreviewImgMobile" alt="Vista previa banner mobile" style="max-width:100%;border-radius:6px" />
-              <p id="adminHeroBannerPreviewEmptyMobile" style="font-size:12px;color:#94a3b8">Sin imagen mobile</p>
+              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">MOBILE (1:1)</p>
+              <div style="position:relative;width:100%;padding-bottom:100%;overflow:hidden;border-radius:6px;background:#e2e8f0">
+                <img id="adminHeroBannerPreviewImgMobile" alt="Vista previa banner mobile" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px;display:none" />
+              </div>
+              <p id="adminHeroBannerPreviewEmptyMobile" style="font-size:12px;color:#94a3b8;margin-top:4px">Sin imagen mobile</p>
             </div>
           </div>
           <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar banners</button>
@@ -1118,14 +1148,14 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.478.666 4.8 1.826 6.8L2 30l7.4-1.8A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.55 11.55 0 0 1-5.88-1.6l-.42-.25-4.39 1.07 1.1-4.27-.28-.44A11.56 11.56 0 0 1 4.4 16c0-6.394 5.206-11.6 11.6-11.6S27.6 9.606 27.6 16 22.394 27.6 16 27.6zm6.36-8.68c-.348-.174-2.06-1.016-2.38-1.132-.318-.116-.55-.174-.78.174-.232.348-.896 1.132-1.1 1.364-.202.23-.404.26-.752.086-.348-.174-1.47-.542-2.8-1.728-1.034-.922-1.732-2.062-1.936-2.41-.202-.348-.022-.536.152-.708.156-.156.348-.406.522-.608.174-.202.232-.348.348-.578.116-.232.058-.434-.028-.608-.087-.174-.78-1.882-1.07-2.578-.282-.676-.568-.584-.78-.594l-.664-.012c-.23 0-.608.086-.926.434-.318.348-1.214 1.186-1.214 2.892 0 1.706 1.244 3.354 1.418 3.586.174.232 2.448 3.738 5.932 5.242.83.358 1.476.572 1.982.732.832.266 1.59.228 2.188.138.668-.1 2.06-.842 2.35-1.656.29-.814.29-1.512.202-1.656-.086-.144-.318-.232-.666-.406z"/></svg>
   </a>
 
+  <!-- Firebase SDK (defer: descarga en paralelo, ejecuta en orden tras parseo HTML) -->
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
   <!-- Mapa de imágenes (generado por scraper-tam.js — opcional, carga si existe) -->
-  <script src="imagenes-map.js" onerror="console.info('Sin imagenes-map.js — se usan íconos de categoría')"></script>
-  <script src="script.js"></script>
-  <!-- Firebase Auth SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-  <script src="auth.js"></script>
+  <script defer src="imagenes-map.js" onerror="console.info('Sin imagenes-map.js — se usan íconos de categoría')"></script>
+  <script defer src="script.js"></script>
+  <script defer src="auth.js"></script>
 </body>
 </html>
