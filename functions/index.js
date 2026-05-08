@@ -19,6 +19,7 @@ const MP_WEBHOOK_SECRET = defineSecret('MP_WEBHOOK_SECRET');
 // ─── Orígenes permitidos ──────────────────────────────────────────────────────
 const CORS_ORIGINS = [
   'https://papeleracarocruz.com',
+  'https://www.papeleracarocruz.com',
   'http://localhost:5500',
   'http://127.0.0.1:5500',
 ];
