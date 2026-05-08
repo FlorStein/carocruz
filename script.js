@@ -4268,13 +4268,20 @@ function abrirCheckoutMP() {
   _resetCheckoutMPForm();
   overlay.classList.remove('hidden');
   modal.classList.remove('hidden');
+  // Forzar reflow para que la transición CSS funcione
+  modal.offsetHeight; // eslint-disable-line no-unused-expressions
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   document.getElementById('checkoutNombre')?.focus();
 }
 
 function cerrarCheckoutMP() {
   document.getElementById('checkoutMPOverlay')?.classList.add('hidden');
-  document.getElementById('checkoutMPModal')?.classList.add('hidden');
+  const modal = document.getElementById('checkoutMPModal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.classList.add('hidden');
+  }
   document.body.style.overflow = '';
 }
 
