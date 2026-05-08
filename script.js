@@ -4290,8 +4290,12 @@ async function abrirCheckoutMP() {
     window.location.href = data.initPoint;
 
   } catch (err) {
-    console.error('[CheckoutMP]', err);
-    mostrarToast('No se pudo conectar. Verificá tu conexión e intentá de nuevo.');
+    console.error('[CheckoutMP] Error tipo:', err?.name, '| mensaje:', err?.message, '| completo:', err);
+    const esCORS = err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network') || err.message.includes('Failed'));
+    const msg = esCORS
+      ? 'Error al conectar con el servidor de pagos. Recargá la página e intentá de nuevo.'
+      : 'No se pudo conectar. Verificá tu conexión e intentá de nuevo.';
+    mostrarToast(msg);
     if (btn) btn.disabled = false;
     if (text) text.textContent = 'Pagar con MercadoPago';
   }
