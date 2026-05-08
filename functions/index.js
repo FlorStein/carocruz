@@ -112,20 +112,11 @@ exports.crearPreferencia = onRequest(
       return;
     }
 
-    // ── Validar comprador ──────────────────────────────────────────────────
+    // ── Datos del comprador (opcionales — MP los solicita en su propio checkout) ──
     const comprador = body.comprador || {};
     const nombre   = String(comprador.nombre  || '').trim().slice(0, 100);
     const email    = String(comprador.email   || '').trim().toLowerCase().slice(0, 200);
     const telefono = String(comprador.telefono || '').trim().slice(0, 30);
-
-    if (!nombre) {
-      res.status(400).json({ error: 'Nombre del comprador requerido' });
-      return;
-    }
-    if (!email || !emailValido(email)) {
-      res.status(400).json({ error: 'Email inválido' });
-      return;
-    }
 
     try {
       // ── Leer config de descuentos desde Firestore (servidor) ─────────────
@@ -205,11 +196,13 @@ exports.crearPreferencia = onRequest(
             unit_price:  i.precioUnitario,
             currency_id: 'ARS',
           })),
-          payer: {
-            name:  nombre,
-            email,
-            ...(telefono && { phone: { number: telefono } }),
-          },
+          ...(nombre || email ? {
+            payer: {
+              ...(nombre   && { name: nombre }),
+              ...(email    && { email }),
+              ...(telefono && { phone: { number: telefono } }),
+            },
+          } : {}),
           back_urls: {
             success: `${SITE_URL}?pago=aprobado&pedido=${pedidoRef.id}`,
             failure: `${SITE_URL}?pago=rechazado&pedido=${pedidoRef.id}`,

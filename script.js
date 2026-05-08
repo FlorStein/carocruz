@@ -4247,7 +4247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const MP_CREAR_PREFERENCIA_URL = 'https://crearpreferencia-f2t74egmxa-uc.a.run.app';
 
-function abrirCheckoutMP() {
+async function abrirCheckoutMP() {
   const total = calcularTotal();
   const MIN   = minimoCompraActual();
 
@@ -4260,76 +4260,16 @@ function abrirCheckoutMP() {
     return;
   }
 
-  const overlay = document.getElementById('checkoutMPOverlay');
-  const modal   = document.getElementById('checkoutMPModal');
-  if (!overlay || !modal) return;
-
-  // Limpiar estado previo
-  _resetCheckoutMPForm();
-  overlay.classList.remove('hidden');
-  modal.classList.remove('hidden');
-  // Forzar reflow para que la transición CSS funcione
-  modal.offsetHeight; // eslint-disable-line no-unused-expressions
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('checkoutNombre')?.focus();
-}
-
-function cerrarCheckoutMP() {
-  document.getElementById('checkoutMPOverlay')?.classList.add('hidden');
-  const modal = document.getElementById('checkoutMPModal');
-  if (modal) {
-    modal.classList.remove('open');
-    modal.classList.add('hidden');
-  }
-  document.body.style.overflow = '';
-}
-
-function _resetCheckoutMPForm() {
-  const form = document.getElementById('checkoutMPForm');
-  if (form) form.reset();
-  _setCheckoutMPError('');
-  _setCheckoutMPLoading(false);
-}
-
-function _setCheckoutMPLoading(loading) {
-  const btn    = document.getElementById('checkoutMPSubmit');
-  const text   = document.getElementById('checkoutMPSubmitText');
-  const loader = document.getElementById('checkoutMPSubmitLoader');
-  if (btn)    btn.disabled = loading;
-  if (text)   text.style.display = loading ? 'none' : '';
-  if (loader) loader.style.display = loading ? '' : 'none';
-}
-
-function _setCheckoutMPError(msg) {
-  const el = document.getElementById('checkoutMPError');
-  if (!el) return;
-  el.textContent = msg || '';
-  el.style.display = msg ? 'block' : 'none';
-}
-
-async function enviarCheckoutMP(event) {
-  event.preventDefault();
-  _setCheckoutMPError('');
-
-  const nombre   = String(document.getElementById('checkoutNombre')?.value || '').trim();
-  const email    = String(document.getElementById('checkoutEmail')?.value  || '').trim();
-  const telefono = String(document.getElementById('checkoutTel')?.value    || '').trim();
-
-  if (!nombre) { _setCheckoutMPError('Ingresá tu nombre completo.'); return; }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    _setCheckoutMPError('Ingresá un email válido.'); return;
-  }
-
-  _setCheckoutMPLoading(true);
+  const btn  = document.getElementById('btnPagarMP');
+  const text = document.getElementById('btnPagarMPText');
+  if (btn) btn.disabled = true;
+  if (text) text.textContent = 'Generando enlace…';
 
   try {
     const payload = {
       items: carrito.map(function(i) {
-        // Solo enviamos ID y cantidad — los precios los calcula el servidor
         return { id: i.id, cantidad: i.cantidad };
       }),
-      comprador: { nombre, email, telefono },
     };
 
     const resp = await fetch(MP_CREAR_PREFERENCIA_URL, {
@@ -4341,20 +4281,23 @@ async function enviarCheckoutMP(event) {
     const data = await resp.json();
 
     if (!resp.ok) {
-      _setCheckoutMPError(data?.error || 'Error al generar el enlace de pago.');
-      _setCheckoutMPLoading(false);
+      mostrarToast(data?.error || 'Error al generar el enlace de pago.');
+      if (btn) btn.disabled = false;
+      if (text) text.textContent = 'Pagar con MercadoPago';
       return;
     }
 
-    // Redirigir a MercadoPago Checkout Pro
     window.location.href = data.initPoint;
 
   } catch (err) {
     console.error('[CheckoutMP]', err);
-    _setCheckoutMPError('No se pudo conectar. Verificá tu conexión e intentá de nuevo.');
-    _setCheckoutMPLoading(false);
+    mostrarToast('No se pudo conectar. Verificá tu conexión e intentá de nuevo.');
+    if (btn) btn.disabled = false;
+    if (text) text.textContent = 'Pagar con MercadoPago';
   }
 }
+
+function cerrarCheckoutMP() { /* sin uso */ }
 
 function _manejarRetornoMP() {
   const params = new URLSearchParams(window.location.search);
@@ -4380,4 +4323,3 @@ function _manejarRetornoMP() {
 
 window.abrirCheckoutMP  = abrirCheckoutMP;
 window.cerrarCheckoutMP = cerrarCheckoutMP;
-window.enviarCheckoutMP = enviarCheckoutMP;
