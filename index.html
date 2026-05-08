@@ -802,74 +802,103 @@
         </div>
 
         <div id="adminTabForm-banners" class="admin-tab-panel" data-scope="form" data-tab-id="banners">
-          <h4 class="admin-section-title">Banners</h4>
+          <h4 class="admin-section-title">Banners del hero</h4>
+
+          <!-- Texto de la portada -->
           <div class="admin-config-box">
-          <div class="auth-field">
-            <label for="adminHeroBadge">Hero: badge</label>
-            <input id="adminHeroBadge" type="text" placeholder="¡TEMPORADA ESCOLAR 2026!" />
-          </div>
-          <div class="auth-field">
-            <label for="adminHeroTitle">Hero: título (usar salto de línea con Enter)</label>
-            <textarea id="adminHeroTitle" rows="2" placeholder="Todo para tu negocio\nen un solo lugar"></textarea>
-          </div>
-          <div class="auth-field">
-            <label for="adminHeroSub">Hero: subtítulo (usar salto de línea con Enter)</label>
-            <textarea id="adminHeroSub" rows="2" placeholder="Artículos de papelería, librería y más\na precios mayoristas imbatibles."></textarea>
-          </div>
-          <div class="auth-field">
-            <label for="adminHeroBannerUrl">Hero: URL imagen banner desktop (opcional)</label>
-            <input id="adminHeroBannerUrl" type="url" placeholder="https://..." />
-          </div>
-          <div class="auth-field">
-            <label for="adminHeroBannerArchivo">Hero: subir imagen banner Desktop</label>
-            <p class="admin-help" style="margin-bottom:4px">📐 Recomendado: <strong>1200 × 600 px</strong> · Relación 2:1 · JPG/PNG · Máx 2 MB</p>
-            <input id="adminHeroBannerArchivo" type="file" accept="image/*" onchange="actualizarPreviewHeroBannerAdmin()" />
-          </div>
-          <div class="auth-field" id="adminHeroBannerPosWrap" style="display:none">
-            <label>Posición desktop: <strong id="adminHeroBannerPosLabel">50% / 50%</strong></label>
-            <div style="display:flex;gap:10px;align-items:center;margin-top:4px">
-              <span style="font-size:11px;color:#64748b;white-space:nowrap">← Horiz →</span>
-              <input type="range" id="adminHeroBannerPosX" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
+            <p class="admin-mini-title">Texto de la portada</p>
+            <div class="auth-field">
+              <label for="adminHeroBadge">Etiqueta / Badge</label>
+              <input id="adminHeroBadge" type="text" placeholder="¡TEMPORADA ESCOLAR 2026!" />
             </div>
-            <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
-              <span style="font-size:11px;color:#64748b;white-space:nowrap">↕ Vert ↕</span>
-              <input type="range" id="adminHeroBannerPosY" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
-            </div>
-          </div>
-          <div class="auth-field">
-            <label for="adminHeroBannerArchivoMobile">Hero: subir imagen banner Mobile</label>
-            <p class="admin-help" style="margin-bottom:4px">📐 Recomendado: <strong>600 × 600 px</strong> · Relación 1:1 · JPG/PNG · Máx 1 MB</p>
-            <input id="adminHeroBannerArchivoMobile" type="file" accept="image/*" onchange="actualizarPreviewHeroBannerAdmin()" />
-          </div>
-          <div class="auth-field" id="adminHeroBannerPosMobileWrap" style="display:none">
-            <label>Posición mobile: <strong id="adminHeroBannerPosMobileLabel">50% / 50%</strong></label>
-            <div style="display:flex;gap:10px;align-items:center;margin-top:4px">
-              <span style="font-size:11px;color:#64748b;white-space:nowrap">← Horiz →</span>
-              <input type="range" id="adminHeroBannerPosMobileX" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
-            </div>
-            <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
-              <span style="font-size:11px;color:#64748b;white-space:nowrap">↕ Vert ↕</span>
-              <input type="range" id="adminHeroBannerPosMobileY" min="0" max="100" value="50" style="flex:1" oninput="actualizarPreviewHeroBannerAdmin()" />
-            </div>
-          </div>
-          <div id="adminHeroBannerPreview" class="admin-hero-preview">
-            <div style="flex:2;text-align:center">
-              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">DESKTOP (2:1)</p>
-              <div style="position:relative;width:100%;padding-bottom:50%;overflow:hidden;border-radius:6px;background:#e2e8f0">
-                <img id="adminHeroBannerPreviewImg" alt="Vista previa banner desktop" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px;display:none" />
+            <div class="admin-form-grid">
+              <div class="auth-field">
+                <label for="adminHeroTitle">Título <span class="admin-help">(Enter = salto de línea)</span></label>
+                <textarea id="adminHeroTitle" rows="3" placeholder="Todo para tu negocio&#10;en un solo lugar"></textarea>
               </div>
-              <p id="adminHeroBannerPreviewEmpty" style="font-size:12px;color:#94a3b8;margin-top:4px">Sin imagen desktop</p>
-            </div>
-            <div style="flex:1;text-align:center">
-              <p style="font-size:11px;font-weight:600;color:#475569;margin-bottom:4px">MOBILE (1:1)</p>
-              <div style="position:relative;width:100%;padding-bottom:100%;overflow:hidden;border-radius:6px;background:#e2e8f0">
-                <img id="adminHeroBannerPreviewImgMobile" alt="Vista previa banner mobile" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px;display:none" />
+              <div class="auth-field">
+                <label for="adminHeroSub">Subtítulo <span class="admin-help">(Enter = salto de línea)</span></label>
+                <textarea id="adminHeroSub" rows="3" placeholder="Artículos de papelería y más&#10;a precios mayoristas."></textarea>
               </div>
-              <p id="adminHeroBannerPreviewEmptyMobile" style="font-size:12px;color:#94a3b8;margin-top:4px">Sin imagen mobile</p>
             </div>
           </div>
+
+          <!-- Imágenes banner: dos columnas -->
+          <div class="admin-banner-cols">
+
+            <!-- DESKTOP -->
+            <div class="admin-banner-col">
+              <div class="admin-banner-col-head">
+                <span class="admin-banner-col-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  Desktop
+                </span>
+                <span class="admin-banner-col-specs">2:1 · 1200×600 px</span>
+              </div>
+              <label for="adminHeroBannerArchivo" class="admin-banner-dropzone">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Subir imagen desktop</span>
+                <small>JPG / PNG · Máx 2 MB</small>
+              </label>
+              <input id="adminHeroBannerArchivo" type="file" accept="image/*" style="display:none" onchange="actualizarPreviewHeroBannerAdmin()" />
+              <div class="admin-banner-preview admin-banner-preview--2x1">
+                <img id="adminHeroBannerPreviewImg" alt="Vista previa desktop" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px;display:none" />
+                <p id="adminHeroBannerPreviewEmpty">Sin imagen desktop</p>
+              </div>
+              <div id="adminHeroBannerPosWrap" class="admin-banner-sliders" style="display:none">
+                <div class="admin-banner-sliders-title">Encuadre · <strong id="adminHeroBannerPosLabel">50% / 50%</strong></div>
+                <div class="admin-banner-slider-row">
+                  <span>← H →</span>
+                  <input type="range" id="adminHeroBannerPosX" min="0" max="100" value="50" oninput="actualizarPreviewHeroBannerAdmin()" />
+                </div>
+                <div class="admin-banner-slider-row">
+                  <span>↕ V ↕</span>
+                  <input type="range" id="adminHeroBannerPosY" min="0" max="100" value="50" oninput="actualizarPreviewHeroBannerAdmin()" />
+                </div>
+              </div>
+              <details class="admin-banner-url-details">
+                <summary>Usar URL externa en vez de archivo</summary>
+                <div class="auth-field" style="margin-top:8px;margin-bottom:0">
+                  <input id="adminHeroBannerUrl" type="url" placeholder="https://..." />
+                </div>
+              </details>
+            </div>
+
+            <!-- MOBILE -->
+            <div class="admin-banner-col">
+              <div class="admin-banner-col-head">
+                <span class="admin-banner-col-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                  Mobile
+                </span>
+                <span class="admin-banner-col-specs">1:1 · 600×600 px</span>
+              </div>
+              <label for="adminHeroBannerArchivoMobile" class="admin-banner-dropzone">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Subir imagen mobile</span>
+                <small>JPG / PNG · Máx 1 MB</small>
+              </label>
+              <input id="adminHeroBannerArchivoMobile" type="file" accept="image/*" style="display:none" onchange="actualizarPreviewHeroBannerAdmin()" />
+              <div class="admin-banner-preview admin-banner-preview--1x1">
+                <img id="adminHeroBannerPreviewImgMobile" alt="Vista previa mobile" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px;display:none" />
+                <p id="adminHeroBannerPreviewEmptyMobile">Sin imagen mobile</p>
+              </div>
+              <div id="adminHeroBannerPosMobileWrap" class="admin-banner-sliders" style="display:none">
+                <div class="admin-banner-sliders-title">Encuadre · <strong id="adminHeroBannerPosMobileLabel">50% / 50%</strong></div>
+                <div class="admin-banner-slider-row">
+                  <span>← H →</span>
+                  <input type="range" id="adminHeroBannerPosMobileX" min="0" max="100" value="50" oninput="actualizarPreviewHeroBannerAdmin()" />
+                </div>
+                <div class="admin-banner-slider-row">
+                  <span>↕ V ↕</span>
+                  <input type="range" id="adminHeroBannerPosMobileY" min="0" max="100" value="50" oninput="actualizarPreviewHeroBannerAdmin()" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
           <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar banners</button>
-          </div>
         </div>
 
         <div id="adminTabForm-promociones" class="admin-tab-panel" data-scope="form" data-tab-id="promociones">
