@@ -1118,6 +1118,34 @@ ul { list-style: none; }
 }
 .cart-seguir-btn:hover { color: var(--orange); }
 
+.cart-wsp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 10px 16px;
+  border: 1.5px solid #22C55E;
+  border-radius: var(--radius);
+  background: transparent;
+  color: #16A34A;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.cart-wsp-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+.cart-wsp-btn:hover { background: #F0FDF4; }
+
+/* ── Modal checkout MP ───────────────────────────────── */
+.checkout-mp-modal {
+  max-width: 420px;
+}
+.checkout-mp-modal .auth-modal-body {
+  padding: 20px 24px 24px;
+}
+
 /* ======================================================
    RESPONSIVE � TABLET (=900px)
    ====================================================== */
