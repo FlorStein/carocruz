@@ -4287,6 +4287,13 @@ async function abrirCheckoutMP() {
       return;
     }
 
+    // Guardar snapshot del carrito para mostrar en modal de éxito
+    localStorage.setItem('carocruz_pedido_snapshot', JSON.stringify({
+      items: carrito.map(i => ({ nombre: i.nombre, cantidad: i.cantidad, precio: i.precio, subtotal: i.subtotal || (i.precio * i.cantidad) })),
+      total: calcularTotal(),
+      pedidoId: data.pedidoId || '',
+    }));
+
     window.location.href = data.initPoint;
 
   } catch (err) {
@@ -4308,22 +4315,74 @@ function _manejarRetornoMP() {
   const estado = params.get('pago');
   if (!estado) return;
 
-  // Limpiar la URL sin recargar la página
-  const url = window.location.pathname;
-  window.history.replaceState({}, '', url);
+  // Limpiar la URL sin recargar
+  window.history.replaceState({}, '', window.location.pathname);
 
-  const msgs = {
-    aprobado: '¡Pago aprobado! Tu pedido fue registrado. Te llegará un mail de confirmación.',
-    rechazado: 'El pago fue rechazado. Podés intentarlo de nuevo o consultar por WhatsApp.',
-    pendiente:  'Tu pago está pendiente de acreditación. Te avisaremos cuando se confirme.',
-  };
-  const msg = msgs[estado];
-  if (msg) {
-    // Mostrar con un pequeño delay para que la página termine de cargar
-    setTimeout(function() { mostrarToast(msg, estado === 'aprobado' ? 5000 : 7000); }, 800);
-    if (estado === 'aprobado') vaciarCarrito();
+  if (estado === 'rechazado') {
+    mostrarToast('El pago fue rechazado. Podés intentarlo de nuevo o consultar por WhatsApp.', 7000);
+    return;
   }
+  if (estado === 'pendiente') {
+    mostrarToast('Tu pago está pendiente de acreditación. Te avisaremos cuando se confirme.', 7000);
+    return;
+  }
+
+  // Aprobado: mostrar modal con resumen
+  if (estado === 'aprobado') {
+    try {
+      const snapshot = JSON.parse(localStorage.getItem('carocruz_pedido_snapshot') || 'null');
+      localStorage.removeItem('carocruz_pedido_snapshot');
+      _mostrarModalExitoso(snapshot);
+    } catch (e) {
+      mostrarToast('¡Pago aprobado! Tu pedido fue registrado.', 5000);
+    }
+    vaciarCarrito();
+  }
+}
+
+function _mostrarModalExitoso(snapshot) {
+  const overlay = document.getElementById('pagoExitosoOverlay');
+  const modal   = document.getElementById('pagoExitosoModal');
+  if (!overlay || !modal) {
+    mostrarToast('¡Pago aprobado! Tu pedido fue registrado.', 5000);
+    return;
+  }
+
+  // Numero de pedido
+  const pedidoShort = snapshot?.pedidoId ? snapshot.pedidoId.slice(-8).toUpperCase() : '';
+  const numEl = document.getElementById('pagoExitosoNumero');
+  if (numEl) numEl.textContent = pedidoShort ? `Pedido #${pedidoShort}` : '';
+
+  // Total
+  const totalEl = document.getElementById('pagoExitosoTotal');
+  if (totalEl) totalEl.textContent = snapshot?.total ? formatPrecio(snapshot.total) : '';
+
+  // Items
+  const itemsEl = document.getElementById('pagoExitosoItems');
+  if (itemsEl && Array.isArray(snapshot?.items) && snapshot.items.length > 0) {
+    itemsEl.innerHTML = snapshot.items.map(i => `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #F1F5F9;font-size:13px;gap:12px">
+        <span style="color:#374151;line-height:1.4">${i.nombre} <span style="color:#94A3B8">×${i.cantidad}</span></span>
+        <span style="color:#1E293B;font-weight:600;white-space:nowrap">${formatPrecio(i.subtotal)}</span>
+      </div>`).join('');
+  } else if (itemsEl) {
+    itemsEl.innerHTML = '';
+  }
+
+  overlay.classList.remove('hidden');
+  modal.classList.remove('hidden');
+  modal.offsetHeight;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarPagoExitoso() {
+  const modal = document.getElementById('pagoExitosoModal');
+  if (modal) { modal.classList.remove('open'); modal.classList.add('hidden'); }
+  document.getElementById('pagoExitosoOverlay')?.classList.add('hidden');
+  document.body.style.overflow = '';
 }
 
 window.abrirCheckoutMP  = abrirCheckoutMP;
 window.cerrarCheckoutMP = cerrarCheckoutMP;
+window.cerrarPagoExitoso = cerrarPagoExitoso;

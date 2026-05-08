@@ -6,15 +6,18 @@ const { setGlobalOptions } = require('firebase-functions/v2');
 const admin = require('firebase-admin');
 const { MercadoPagoConfig, Preference, Payment } = require('mercadopago');
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 
 admin.initializeApp();
 setGlobalOptions({ region: 'us-central1', maxInstances: 10 });
 
 const db = admin.firestore();
 
-// ─── Secrets (configurar con: firebase functions:secrets:set MP_ACCESS_TOKEN) ─
-const MP_ACCESS_TOKEN  = defineSecret('MP_ACCESS_TOKEN');
+// ─── Secrets ───────────────────────────────────────────────────────────────────
+const MP_ACCESS_TOKEN   = defineSecret('MP_ACCESS_TOKEN');
 const MP_WEBHOOK_SECRET = defineSecret('MP_WEBHOOK_SECRET');
+const GMAIL_USER        = defineSecret('GMAIL_USER');
+const GMAIL_APP_PASS    = defineSecret('GMAIL_APP_PASS');
 
 // ─── Orígenes permitidos ──────────────────────────────────────────────────────
 const CORS_ORIGINS = [
@@ -88,7 +91,7 @@ exports.crearPreferencia = onRequest(
   {
     region: 'us-central1',
     cors: true,
-    secrets: [MP_ACCESS_TOKEN],
+    secrets: [MP_ACCESS_TOKEN, GMAIL_USER, GMAIL_APP_PASS],
     timeoutSeconds: 30,
   },
   async (req, res) => {
@@ -240,7 +243,7 @@ exports.crearPreferencia = onRequest(
 exports.webhookMP = onRequest(
   {
     region: 'us-central1',
-    secrets: [MP_ACCESS_TOKEN, MP_WEBHOOK_SECRET],
+    secrets: [MP_ACCESS_TOKEN, MP_WEBHOOK_SECRET, GMAIL_USER, GMAIL_APP_PASS],
     timeoutSeconds: 30,
   },
   async (req, res) => {
@@ -337,6 +340,19 @@ exports.webhookMP = onRequest(
       });
 
       console.log(`[Webhook] Pedido ${externalRef} → ${nuevoEstado} (${payment.status_detail})`);
+
+      // ── Enviar emails si el pago fue aprobado ──────────────────────────────
+      if (payment.status === 'approved') {
+        try {
+          const pedidoActualizado = (await pedidoRef.get()).data();
+          const payerEmail = payment.payer?.email || '';
+          await _enviarEmails(externalRef, pedidoActualizado, payerEmail);
+        } catch (emailErr) {
+          // No fallar el webhook por un error de email
+          console.error('[Webhook] Error enviando emails:', emailErr);
+        }
+      }
+
       res.status(200).send('ok');
 
     } catch (err) {
@@ -346,3 +362,120 @@ exports.webhookMP = onRequest(
     }
   }
 );
+
+// ─── Helper: formatear precio ARS ────────────────────────────────────────────
+function _formatARS(n) {
+  return '$' + Number(n || 0).toLocaleString('es-AR', { minimumFractionDigits: 2 });
+}
+
+// ─── Envío de emails post-pago ────────────────────────────────────────────────
+async function _enviarEmails(pedidoId, pedido, payerEmail) {
+  const gmailUser = GMAIL_USER.value();
+  const gmailPass = GMAIL_APP_PASS.value();
+  if (!gmailUser || !gmailPass) {
+    console.warn('[Email] Secrets de Gmail no configurados, omitiendo envío.');
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: gmailUser, pass: gmailPass },
+  });
+
+  const items    = pedido.items || [];
+  const total    = pedido.total || 0;
+  const pedidoShort = pedidoId.slice(-8).toUpperCase();
+
+  const itemsRowsHtml = items.map(i => `
+    <tr>
+      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9">${String(i.nombre || '').slice(0, 80)}</td>
+      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9;text-align:center">${i.cantidad}</td>
+      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9;text-align:right">${_formatARS(i.precioUnitario)}</td>
+      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9;text-align:right;font-weight:600">${_formatARS(i.subtotal)}</td>
+    </tr>`).join('');
+
+  const tableHtml = `
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <thead>
+        <tr style="background:#F8FAFC">
+          <th style="padding:8px 4px;text-align:left;color:#64748B;font-weight:600">Producto</th>
+          <th style="padding:8px 4px;text-align:center;color:#64748B;font-weight:600">Cant.</th>
+          <th style="padding:8px 4px;text-align:right;color:#64748B;font-weight:600">P. Unit.</th>
+          <th style="padding:8px 4px;text-align:right;color:#64748B;font-weight:600">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>${itemsRowsHtml}</tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="padding:12px 4px 4px;text-align:right;font-weight:700;font-size:15px">TOTAL</td>
+          <td style="padding:12px 4px 4px;text-align:right;font-weight:700;font-size:15px;color:#E67A2E">${_formatARS(total)}</td>
+        </tr>
+      </tfoot>
+    </table>`;
+
+  // ── Email a la tienda ──────────────────────────────────────────────────────
+  const compradorInfo = pedido.comprador || {};
+  const compradorHtml = [
+    compradorInfo.nombre   ? `<b>Nombre:</b> ${compradorInfo.nombre}` : '',
+    payerEmail             ? `<b>Email MP:</b> ${payerEmail}` : '',
+    compradorInfo.telefono ? `<b>Teléfono:</b> ${compradorInfo.telefono}` : '',
+  ].filter(Boolean).join('<br>');
+
+  await transporter.sendMail({
+    from:    `"Papelera Caro Cruz" <${gmailUser}>`,
+    to:      'papeleracarocruz@gmail.com',
+    subject: `🛒 Nuevo pedido #${pedidoShort} — ${_formatARS(total)}`,
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+        <div style="background:#E67A2E;padding:24px;border-radius:12px 12px 0 0;text-align:center">
+          <h1 style="color:#fff;margin:0;font-size:22px">🛒 Nuevo pedido recibido</h1>
+          <p style="color:rgba(255,255,255,.85);margin:6px 0 0;font-size:14px">Pedido #${pedidoShort}</p>
+        </div>
+        <div style="background:#fff;padding:24px;border:1px solid #E5E7EB;border-top:none;border-radius:0 0 12px 12px">
+          ${compradorHtml ? `<div style="background:#F8FAFC;border-radius:8px;padding:14px;margin-bottom:20px;font-size:14px;line-height:1.7">${compradorHtml}</div>` : ''}
+          <h3 style="color:#1E293B;margin:0 0 12px;font-size:15px">Detalle del pedido</h3>
+          ${tableHtml}
+          <p style="margin-top:20px;font-size:12px;color:#94A3B8;text-align:center">
+            ID completo: ${pedidoId}
+          </p>
+        </div>
+      </div>`,
+  });
+
+  // ── Email al comprador (si MP nos dio su email) ────────────────────────────
+  if (payerEmail && emailValido(payerEmail)) {
+    await transporter.sendMail({
+      from:    `"Papelera Caro Cruz" <${gmailUser}>`,
+      to:      payerEmail,
+      subject: `✅ Pedido #${pedidoShort} confirmado — Papelera Caro Cruz`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+          <div style="background:#166534;padding:24px;border-radius:12px 12px 0 0;text-align:center">
+            <div style="width:56px;height:56px;background:rgba(255,255,255,.15);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px">
+              <span style="color:#fff;font-size:28px">✓</span>
+            </div>
+            <h1 style="color:#fff;margin:0;font-size:22px">¡Pago confirmado!</h1>
+            <p style="color:rgba(255,255,255,.85);margin:6px 0 0;font-size:14px">Pedido #${pedidoShort}</p>
+          </div>
+          <div style="background:#fff;padding:24px;border:1px solid #E5E7EB;border-top:none;border-radius:0 0 12px 12px">
+            <p style="color:#374151;font-size:14px;line-height:1.6">
+              ¡Gracias por tu compra! Recibimos tu pago y estamos procesando tu pedido.
+              Nos pondremos en contacto para coordinar la entrega.
+            </p>
+            <h3 style="color:#1E293B;margin:20px 0 12px;font-size:15px">Tu pedido</h3>
+            ${tableHtml}
+            <div style="margin-top:24px;padding:16px;background:#F0FDF4;border-radius:8px;font-size:13px;color:#166534">
+              ¿Tenés alguna consulta? Escribinos a
+              <a href="mailto:papeleracarocruz@gmail.com" style="color:#166534">papeleracarocruz@gmail.com</a>
+              o por WhatsApp indicando tu número de pedido <b>#${pedidoShort}</b>.
+            </div>
+            <p style="margin-top:20px;font-size:11px;color:#94A3B8;text-align:center">
+              Papelera Caro Cruz · papeleracarocruz.com
+            </p>
+          </div>
+        </div>`,
+    });
+  }
+
+  console.log(`[Email] Emails enviados para pedido ${pedidoShort}`);
+}

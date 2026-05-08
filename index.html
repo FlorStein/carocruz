@@ -548,6 +548,29 @@
     </div>
   </aside>
 
+  <!-- ░░ MODAL COMPRA EXITOSA ░░ -->
+  <div id="pagoExitosoOverlay" class="auth-overlay hidden"></div>
+  <div id="pagoExitosoModal" class="auth-modal pago-exitoso-modal hidden" role="dialog" aria-modal="true" aria-label="Compra exitosa">
+    <div style="background:linear-gradient(135deg,#166534,#16a34a);padding:28px 24px 24px;border-radius:16px 16px 0 0;text-align:center">
+      <div style="width:60px;height:60px;background:rgba(255,255,255,.2);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 style="color:#fff;margin:0;font-size:20px;font-weight:800">¡Compra exitosa!</h2>
+      <p id="pagoExitosoNumero" style="color:rgba(255,255,255,.8);margin:6px 0 0;font-size:13px"></p>
+    </div>
+    <div class="auth-modal-body" style="padding:20px 24px 24px">
+      <div id="pagoExitosoItems" style="margin-bottom:16px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#F0FDF4;border-radius:10px;margin-bottom:16px">
+        <span style="font-size:14px;font-weight:700;color:#166534">Total pagado</span>
+        <span id="pagoExitosoTotal" style="font-size:18px;font-weight:800;color:#166534"></span>
+      </div>
+      <p style="font-size:12px;color:#64748B;text-align:center;margin-bottom:16px">
+        Te enviamos un mail de confirmación con los detalles del pedido.
+      </p>
+      <button class="auth-submit" onclick="cerrarPagoExitoso()" style="background:#166534">Seguir comprando →</button>
+    </div>
+  </div>
+
   <!-- ░░ MODAL DE AUTENTICACIÓN ░░ -->
   <div id="authOverlay" class="auth-overlay hidden" onclick="cerrarModalAuth()"></div>
 
