@@ -1,0 +1,24 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          'admin@caracruz.com.ar',
+          'admin@carocruz.com.ar'
+        ];
+    }
+
+    // Imágenes del hero banner y productos — lectura pública, escritura solo admin
+    match /productos-admin/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Bloquear todo lo demás
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
