@@ -4233,6 +4233,144 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       cerrarMobileCatMenu();
       cerrarAdminImageZoom();
+      cerrarCheckoutMP();
     }
   });
+
+  // Manejar retorno desde MercadoPago (?pago=aprobado|rechazado|pendiente)
+  _manejarRetornoMP();
 });
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  CHECKOUT MERCADOPAGO
+// ══════════════════════════════════════════════════════════════════════════════
+
+const MP_CREAR_PREFERENCIA_URL = 'https://crearpreferencia-f2t74egmxa-uc.a.run.app';
+
+function abrirCheckoutMP() {
+  const total = calcularTotal();
+  const MIN   = minimoCompraActual();
+
+  if (carrito.length === 0) {
+    mostrarToast('Tu carrito está vacío');
+    return;
+  }
+  if (total < MIN) {
+    mostrarToast(`El pedido mínimo es ${formatPrecio(MIN)}. Te faltan ${formatPrecio(MIN - total)}.`);
+    return;
+  }
+
+  const overlay = document.getElementById('checkoutMPOverlay');
+  const modal   = document.getElementById('checkoutMPModal');
+  if (!overlay || !modal) return;
+
+  // Limpiar estado previo
+  _resetCheckoutMPForm();
+  overlay.classList.remove('hidden');
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('checkoutNombre')?.focus();
+}
+
+function cerrarCheckoutMP() {
+  document.getElementById('checkoutMPOverlay')?.classList.add('hidden');
+  document.getElementById('checkoutMPModal')?.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function _resetCheckoutMPForm() {
+  const form = document.getElementById('checkoutMPForm');
+  if (form) form.reset();
+  _setCheckoutMPError('');
+  _setCheckoutMPLoading(false);
+}
+
+function _setCheckoutMPLoading(loading) {
+  const btn    = document.getElementById('checkoutMPSubmit');
+  const text   = document.getElementById('checkoutMPSubmitText');
+  const loader = document.getElementById('checkoutMPSubmitLoader');
+  if (btn)    btn.disabled = loading;
+  if (text)   text.style.display = loading ? 'none' : '';
+  if (loader) loader.style.display = loading ? '' : 'none';
+}
+
+function _setCheckoutMPError(msg) {
+  const el = document.getElementById('checkoutMPError');
+  if (!el) return;
+  el.textContent = msg || '';
+  el.style.display = msg ? 'block' : 'none';
+}
+
+async function enviarCheckoutMP(event) {
+  event.preventDefault();
+  _setCheckoutMPError('');
+
+  const nombre   = String(document.getElementById('checkoutNombre')?.value || '').trim();
+  const email    = String(document.getElementById('checkoutEmail')?.value  || '').trim();
+  const telefono = String(document.getElementById('checkoutTel')?.value    || '').trim();
+
+  if (!nombre) { _setCheckoutMPError('Ingresá tu nombre completo.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    _setCheckoutMPError('Ingresá un email válido.'); return;
+  }
+
+  _setCheckoutMPLoading(true);
+
+  try {
+    const payload = {
+      items: carrito.map(function(i) {
+        // Solo enviamos ID y cantidad — los precios los calcula el servidor
+        return { id: i.id, cantidad: i.cantidad };
+      }),
+      comprador: { nombre, email, telefono },
+    };
+
+    const resp = await fetch(MP_CREAR_PREFERENCIA_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+
+    const data = await resp.json();
+
+    if (!resp.ok) {
+      _setCheckoutMPError(data?.error || 'Error al generar el enlace de pago.');
+      _setCheckoutMPLoading(false);
+      return;
+    }
+
+    // Redirigir a MercadoPago Checkout Pro
+    window.location.href = data.initPoint;
+
+  } catch (err) {
+    console.error('[CheckoutMP]', err);
+    _setCheckoutMPError('No se pudo conectar. Verificá tu conexión e intentá de nuevo.');
+    _setCheckoutMPLoading(false);
+  }
+}
+
+function _manejarRetornoMP() {
+  const params = new URLSearchParams(window.location.search);
+  const estado = params.get('pago');
+  if (!estado) return;
+
+  // Limpiar la URL sin recargar la página
+  const url = window.location.pathname;
+  window.history.replaceState({}, '', url);
+
+  const msgs = {
+    aprobado: '¡Pago aprobado! Tu pedido fue registrado. Te llegará un mail de confirmación.',
+    rechazado: 'El pago fue rechazado. Podés intentarlo de nuevo o consultar por WhatsApp.',
+    pendiente:  'Tu pago está pendiente de acreditación. Te avisaremos cuando se confirme.',
+  };
+  const msg = msgs[estado];
+  if (msg) {
+    // Mostrar con un pequeño delay para que la página termine de cargar
+    setTimeout(function() { mostrarToast(msg, estado === 'aprobado' ? 5000 : 7000); }, 800);
+    if (estado === 'aprobado') vaciarCarrito();
+  }
+}
+
+window.abrirCheckoutMP  = abrirCheckoutMP;
+window.cerrarCheckoutMP = cerrarCheckoutMP;
+window.enviarCheckoutMP = enviarCheckoutMP;
