@@ -1,60 +1,92 @@
-[debug] [2026-05-08T17:29:15.642Z] ----------------------------------------------------------------------
-[debug] [2026-05-08T17:29:15.646Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mfrst\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions --project carocruz-4bccc
-[debug] [2026-05-08T17:29:15.646Z] CLI Version:   15.17.0
-[debug] [2026-05-08T17:29:15.646Z] Platform:      win32
-[debug] [2026-05-08T17:29:15.647Z] Node Version:  v24.12.0
-[debug] [2026-05-08T17:29:15.647Z] Time:          Fri May 08 2026 14:29:15 GMT-0300 (hora estándar de Argentina)
-[debug] [2026-05-08T17:29:15.647Z] ----------------------------------------------------------------------
+[debug] [2026-05-12T16:11:15.312Z] ----------------------------------------------------------------------
+[debug] [2026-05-12T16:11:15.316Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mfrst\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --project carocruz-4bccc
+[debug] [2026-05-12T16:11:15.317Z] CLI Version:   15.17.0
+[debug] [2026-05-12T16:11:15.317Z] Platform:      win32
+[debug] [2026-05-12T16:11:15.317Z] Node Version:  v24.12.0
+[debug] [2026-05-12T16:11:15.318Z] Time:          Tue May 12 2026 13:11:15 GMT-0300 (hora estándar de Argentina)
+[debug] [2026-05-12T16:11:15.318Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2026-05-08T17:29:18.467Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2026-05-08T17:29:18.468Z] > authorizing via signed-in user (mfrsteinfeld@gmail.com)
-[debug] [2026-05-08T17:29:18.468Z] [iam] checking project carocruz-4bccc for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
-[debug] [2026-05-08T17:29:18.469Z] Checked if tokens are valid: false, expires at: 1778261504205
-[debug] [2026-05-08T17:29:18.469Z] Checked if tokens are valid: false, expires at: 1778261504205
-[debug] [2026-05-08T17:29:18.470Z] > refreshing access token with scopes: []
-[debug] [2026-05-08T17:29:18.472Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
-[debug] [2026-05-08T17:29:18.472Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2026-05-08T17:29:18.608Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
-[debug] [2026-05-08T17:29:18.609Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
-[debug] [2026-05-08T17:29:18.628Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions [none]
-[debug] [2026-05-08T17:29:18.629Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions  x-goog-user-project=carocruz-4bccc
-[debug] [2026-05-08T17:29:18.629Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
-[debug] [2026-05-08T17:29:18.872Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions 200
-[debug] [2026-05-08T17:29:18.872Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
-[debug] [2026-05-08T17:29:18.872Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:18.872Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:18.872Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions [none]
-[debug] [2026-05-08T17:29:18.872Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
-[debug] [2026-05-08T17:29:19.739Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions 200
-[debug] [2026-05-08T17:29:19.739Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-05-12T16:11:15.322Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-05-12T16:11:18.099Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-12T16:11:18.099Z] > authorizing via signed-in user (mfrsteinfeld@gmail.com)
+[debug] [2026-05-12T16:11:18.099Z] [iam] checking project carocruz-4bccc for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2026-05-12T16:11:18.100Z] Checked if tokens are valid: false, expires at: 1778264957609
+[debug] [2026-05-12T16:11:18.101Z] Checked if tokens are valid: false, expires at: 1778264957609
+[debug] [2026-05-12T16:11:18.101Z] > refreshing access token with scopes: []
+[debug] [2026-05-12T16:11:18.102Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-05-12T16:11:18.103Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-12T16:11:18.205Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-05-12T16:11:18.205Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-12T16:11:18.223Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions [none]
+[debug] [2026-05-12T16:11:18.223Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions  x-goog-user-project=carocruz-4bccc
+[debug] [2026-05-12T16:11:18.223Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2026-05-12T16:11:18.473Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-05-12T16:11:18.473Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-05-12T16:11:19.068Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions 200
+[debug] [2026-05-12T16:11:19.068Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2026-05-12T16:11:19.069Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:19.069Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:19.069Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-05-12T16:11:19.069Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-05-12T16:11:19.943Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-05-12T16:11:19.943Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/carocruz-4bccc/serviceAccounts/carocruz-4bccc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
 [info] 
 [info] === Deploying to 'carocruz-4bccc'...
 [info] 
-[info] i  deploying functions 
-[debug] [2026-05-08T17:29:19.744Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:19.744Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:19.745Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc [none]
-[debug] [2026-05-08T17:29:19.967Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc 200
-[debug] [2026-05-08T17:29:19.967Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc {"projectNumber":"478517746609","projectId":"carocruz-4bccc","lifecycleState":"ACTIVE","name":"carocruz","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-04-20T18:43:29.914Z"}
+[info] i  deploying storage, firestore, functions 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2026-05-12T16:11:19.947Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:19.947Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:19.947Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/carocruz-4bccc/defaultBucket [none]
+[debug] [2026-05-12T16:11:21.405Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/carocruz-4bccc/defaultBucket 200
+[debug] [2026-05-12T16:11:21.406Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/carocruz-4bccc/defaultBucket {"name":"projects/carocruz-4bccc/defaultBucket","location":"SOUTHAMERICA-EAST1","bucket":{"name":"projects/carocruz-4bccc/buckets/carocruz-4bccc.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2026-05-12T16:11:21.407Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:21.407Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:21.408Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test [none]
+[debug] [2026-05-12T16:11:21.408Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test [omitted]
+[debug] [2026-05-12T16:11:22.612Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test 200
+[debug] [2026-05-12T16:11:22.612Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test {}
+[info] +  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-05-12T16:11:22.615Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:22.615Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:22.616Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/carocruz-4bccc/databases/(default) [none]
+[debug] [2026-05-12T16:11:22.973Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/carocruz-4bccc/databases/(default) 200
+[debug] [2026-05-12T16:11:22.973Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/carocruz-4bccc/databases/(default) {"name":"projects/carocruz-4bccc/databases/(default)","uid":"1957aca5-eeb4-4fc9-9206-5f11bd1a9496","createTime":"2026-04-22T19:13:37.856154Z","updateTime":"2026-04-22T19:13:37.856154Z","locationId":"southamerica-west1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-05-12T15:11:23.106670Z","appEngineIntegrationMode":"DISABLED","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IPL+n+qRtJQDMIqM1teWgpQD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-05-12T16:11:22.974Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:22.974Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:22.975Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test [none]
+[debug] [2026-05-12T16:11:22.975Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test [omitted]
+[debug] [2026-05-12T16:11:24.063Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test 200
+[debug] [2026-05-12T16:11:24.063Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/carocruz-4bccc:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-05-12T16:11:24.065Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:24.065Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:24.065Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc [none]
+[debug] [2026-05-12T16:11:24.278Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc 200
+[debug] [2026-05-12T16:11:24.278Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc {"projectNumber":"478517746609","projectId":"carocruz-4bccc","lifecycleState":"ACTIVE","name":"carocruz","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-04-20T18:43:29.914Z"}
 [info] i  functions: preparing codebase default for deployment 
 [info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
 [info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
 [info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
-[debug] [2026-05-08T17:29:19.971Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:19.971Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:19.971Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/carocruz-4bccc/adminSdkConfig [none]
-[debug] [2026-05-08T17:29:20.510Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/carocruz-4bccc/adminSdkConfig 200
-[debug] [2026-05-08T17:29:20.510Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/carocruz-4bccc/adminSdkConfig {"projectId":"carocruz-4bccc","storageBucket":"carocruz-4bccc.firebasestorage.app"}
-[debug] [2026-05-08T17:29:20.511Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:20.511Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:20.511Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/carocruz-4bccc/configs [none]
-[debug] [2026-05-08T17:29:20.872Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/carocruz-4bccc/configs 200
-[debug] [2026-05-08T17:29:20.873Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/carocruz-4bccc/configs {}
-[debug] [2026-05-08T17:29:20.875Z] Validating nodejs source
+[debug] [2026-05-12T16:11:24.283Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:24.283Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:24.283Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/carocruz-4bccc/adminSdkConfig [none]
+[debug] [2026-05-12T16:11:24.827Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/carocruz-4bccc/adminSdkConfig 200
+[debug] [2026-05-12T16:11:24.827Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/carocruz-4bccc/adminSdkConfig {"projectId":"carocruz-4bccc","storageBucket":"carocruz-4bccc.firebasestorage.app"}
+[debug] [2026-05-12T16:11:24.827Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:24.827Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:24.827Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/carocruz-4bccc/configs [none]
+[debug] [2026-05-12T16:11:25.257Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/carocruz-4bccc/configs 200
+[debug] [2026-05-12T16:11:25.257Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/carocruz-4bccc/configs {}
+[debug] [2026-05-12T16:11:25.258Z] Validating nodejs source
 [warn] !  functions: Runtime Node.js 20 was deprecated on 2026-04-30 and will be decommissioned on 2026-10-30, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
 [warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
 [warn] !  functions: Please note that there will be breaking changes when you upgrade. 
-[debug] [2026-05-08T17:29:22.338Z] > [functions] package.json contents: {
+[debug] [2026-05-12T16:11:27.019Z] > [functions] package.json contents: {
   "name": "carocruz-functions",
   "version": "1.0.0",
   "engines": {
@@ -72,68 +104,61 @@
   },
   "private": true
 }
-[debug] [2026-05-08T17:29:22.338Z] Building nodejs source
+[debug] [2026-05-12T16:11:27.020Z] Building nodejs source
 [info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
-[debug] [2026-05-08T17:29:22.340Z] Could not find functions.yaml. Must use http discovery
-[debug] [2026-05-08T17:29:22.351Z] Found firebase-functions binary at 'C:\Users\mfrst\Desktop\La pelpa\functions\node_modules\.bin\firebase-functions'
-[info] Serving at port 8762
+[debug] [2026-05-12T16:11:27.022Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-05-12T16:11:27.045Z] Found firebase-functions binary at 'C:\Users\mfrst\Desktop\La pelpa\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8280
 
-[debug] [2026-05-08T17:29:23.648Z] Got response from /__/functions.yaml {"endpoints":{"crearPreferencia":{"availableMemoryMb":null,"timeoutSeconds":30,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"MP_ACCESS_TOKEN"},{"key":"GMAIL_USER"},{"key":"GMAIL_APP_PASS"}],"labels":{},"httpsTrigger":{},"entryPoint":"crearPreferencia"},"webhookMP":{"availableMemoryMb":null,"timeoutSeconds":30,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"MP_ACCESS_TOKEN"},{"key":"MP_WEBHOOK_SECRET"},{"key":"GMAIL_USER"},{"key":"GMAIL_APP_PASS"}],"labels":{},"httpsTrigger":{},"entryPoint":"webhookMP"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{},"params":[{"type":"secret","name":"MP_ACCESS_TOKEN"},{"type":"secret","name":"MP_WEBHOOK_SECRET"},{"type":"secret","name":"GMAIL_USER"},{"type":"secret","name":"GMAIL_APP_PASS"}]}
+[debug] [2026-05-12T16:11:28.767Z] Got response from /__/functions.yaml {"endpoints":{"crearPreferencia":{"availableMemoryMb":null,"timeoutSeconds":30,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"MP_ACCESS_TOKEN"},{"key":"GMAIL_USER"},{"key":"GMAIL_APP_PASS"}],"labels":{},"httpsTrigger":{},"entryPoint":"crearPreferencia"},"webhookMP":{"availableMemoryMb":null,"timeoutSeconds":30,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"secretEnvironmentVariables":[{"key":"MP_ACCESS_TOKEN"},{"key":"MP_WEBHOOK_SECRET"},{"key":"GMAIL_USER"},{"key":"GMAIL_APP_PASS"}],"labels":{},"httpsTrigger":{},"entryPoint":"webhookMP"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{},"params":[{"type":"secret","name":"MP_ACCESS_TOKEN"},{"type":"secret","name":"MP_WEBHOOK_SECRET"},{"type":"secret","name":"GMAIL_USER"},{"type":"secret","name":"GMAIL_APP_PASS"}]}
 [info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
-[debug] [2026-05-08T17:29:27.696Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2026-05-08T17:29:27.696Z] > authorizing via signed-in user (mfrsteinfeld@gmail.com)
-[debug] [2026-05-08T17:29:27.696Z] [iam] checking project carocruz-4bccc for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
-[debug] [2026-05-08T17:29:27.697Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:27.697Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:27.697Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions [none]
-[debug] [2026-05-08T17:29:27.697Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions  x-goog-user-project=carocruz-4bccc
-[debug] [2026-05-08T17:29:27.697Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
-[debug] [2026-05-08T17:29:28.526Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions 200
-[debug] [2026-05-08T17:29:28.526Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
-[debug] [2026-05-08T17:29:28.527Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:28.527Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:28.527Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/carocruz-4bccc/instances pageSize=100&pageToken=
-[debug] [2026-05-08T17:29:29.578Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/carocruz-4bccc/instances 200
-[debug] [2026-05-08T17:29:29.578Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/carocruz-4bccc/instances {}
-[debug] [2026-05-08T17:29:29.579Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:29.579Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:29.579Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN [none]
-[debug] [2026-05-08T17:29:29.983Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN 200
-[debug] [2026-05-08T17:29:29.983Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN {"name":"projects/478517746609/secrets/MP_ACCESS_TOKEN","replication":{"automatic":{}},"createTime":"2026-05-08T15:02:24.585934Z","labels":{"firebase-managed":"functions"},"etag":"\"16514faf5ff629\""}
-[debug] [2026-05-08T17:29:29.984Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:29.984Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:29.984Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN/versions/latest [none]
-[debug] [2026-05-08T17:29:30.273Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN/versions/latest 200
-[debug] [2026-05-08T17:29:30.274Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN/versions/latest {"name":"projects/478517746609/secrets/MP_ACCESS_TOKEN/versions/1","createTime":"2026-05-08T15:06:18.841594Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"16514fbd3425fa\""}
-[debug] [2026-05-08T17:29:30.274Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:30.274Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:30.274Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET [none]
-[debug] [2026-05-08T17:29:30.498Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET 200
-[debug] [2026-05-08T17:29:30.498Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET {"name":"projects/478517746609/secrets/MP_WEBHOOK_SECRET","replication":{"automatic":{}},"createTime":"2026-05-08T15:06:48.168265Z","labels":{"firebase-managed":"functions"},"etag":"\"16514fbf0e0c41\""}
-[debug] [2026-05-08T17:29:30.498Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:30.498Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:30.499Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET/versions/latest [none]
-[debug] [2026-05-08T17:29:30.723Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET/versions/latest 200
-[debug] [2026-05-08T17:29:30.723Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET/versions/latest {"name":"projects/478517746609/secrets/MP_WEBHOOK_SECRET/versions/3","createTime":"2026-05-08T15:30:50.109351Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"16515014e5e9a7\""}
-[debug] [2026-05-08T17:29:30.723Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:30.723Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:29:30.723Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER [none]
-[debug] [2026-05-08T17:29:30.947Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER 404
-[debug] [2026-05-08T17:29:30.947Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER {"error":{"code":404,"message":"Secret [projects/478517746609/secrets/GMAIL_USER] not found.","status":"NOT_FOUND"}}
-[debug] [2026-05-08T17:32:22.180Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:32:22.181Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:32:22.181Z] >>> [apiv2][query] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets secretId=GMAIL_USER
-[debug] [2026-05-08T17:32:22.181Z] >>> [apiv2][body] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets {"name":"GMAIL_USER","replication":{"automatic":{}},"labels":{"firebase-managed":"functions"}}
-[debug] [2026-05-08T17:32:23.593Z] <<< [apiv2][status] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets 200
-[debug] [2026-05-08T17:32:23.593Z] <<< [apiv2][body] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets {"name":"projects/478517746609/secrets/GMAIL_USER","replication":{"automatic":{}},"createTime":"2026-05-08T17:32:23.124018Z","labels":{"firebase-managed":"functions"},"etag":"\"165151c7a92165\""}
-[debug] [2026-05-08T17:32:23.593Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:32:23.594Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:32:23.594Z] >>> [apiv2][query] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER:addVersion [none]
-[debug] [2026-05-08T17:32:23.594Z] >>> [apiv2][body] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER:addVersion {"payload":{"data":"cGFwZWxlcmFjYXJvY3J1ekBnbWFpbC5jb20="}}
-[debug] [2026-05-08T17:32:26.984Z] <<< [apiv2][status] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER:addVersion 200
-[debug] [2026-05-08T17:32:26.984Z] <<< [apiv2][body] POST https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER:addVersion {"name":"projects/478517746609/secrets/GMAIL_USER/versions/1","createTime":"2026-05-08T17:32:27.609376Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"165151c7dced20\""}
-[debug] [2026-05-08T17:32:26.984Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:32:26.984Z] Checked if tokens are valid: true, expires at: 1778264957609
-[debug] [2026-05-08T17:32:26.984Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_APP_PASS [none]
-[debug] [2026-05-08T17:32:27.227Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_APP_PASS 404
-[debug] [2026-05-08T17:32:27.227Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_APP_PASS {"error":{"code":404,"message":"Secret [projects/478517746609/secrets/GMAIL_APP_PASS] not found.","status":"NOT_FOUND"}}
+[debug] [2026-05-12T16:11:32.816Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-12T16:11:32.816Z] > authorizing via signed-in user (mfrsteinfeld@gmail.com)
+[debug] [2026-05-12T16:11:32.816Z] [iam] checking project carocruz-4bccc for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2026-05-12T16:11:32.816Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:32.816Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:32.816Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions [none]
+[debug] [2026-05-12T16:11:32.816Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions  x-goog-user-project=carocruz-4bccc
+[debug] [2026-05-12T16:11:32.816Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-05-12T16:11:33.646Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions 200
+[debug] [2026-05-12T16:11:33.646Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carocruz-4bccc:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-05-12T16:11:33.647Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:33.647Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:33.647Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/carocruz-4bccc/instances pageSize=100&pageToken=
+[debug] [2026-05-12T16:11:34.694Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/carocruz-4bccc/instances 200
+[debug] [2026-05-12T16:11:34.694Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/carocruz-4bccc/instances {}
+[debug] [2026-05-12T16:11:34.696Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:34.696Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:34.696Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN [none]
+[debug] [2026-05-12T16:11:35.105Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN 200
+[debug] [2026-05-12T16:11:35.105Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN {"name":"projects/478517746609/secrets/MP_ACCESS_TOKEN","replication":{"automatic":{}},"createTime":"2026-05-08T15:02:24.585934Z","labels":{"firebase-managed":"functions"},"etag":"\"16514faf5ff629\""}
+[debug] [2026-05-12T16:11:35.106Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:35.106Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:35.106Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN/versions/latest [none]
+[debug] [2026-05-12T16:11:35.429Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN/versions/latest 200
+[debug] [2026-05-12T16:11:35.429Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_ACCESS_TOKEN/versions/latest {"name":"projects/478517746609/secrets/MP_ACCESS_TOKEN/versions/1","createTime":"2026-05-08T15:06:18.841594Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"16514fbd3425fa\""}
+[debug] [2026-05-12T16:11:35.430Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:35.430Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:35.430Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET [none]
+[debug] [2026-05-12T16:11:35.728Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET 200
+[debug] [2026-05-12T16:11:35.729Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET {"name":"projects/478517746609/secrets/MP_WEBHOOK_SECRET","replication":{"automatic":{}},"createTime":"2026-05-08T15:06:48.168265Z","labels":{"firebase-managed":"functions"},"etag":"\"16514fbf0e0c41\""}
+[debug] [2026-05-12T16:11:35.729Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:35.729Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:35.729Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET/versions/latest [none]
+[debug] [2026-05-12T16:11:36.055Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET/versions/latest 200
+[debug] [2026-05-12T16:11:36.055Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/MP_WEBHOOK_SECRET/versions/latest {"name":"projects/478517746609/secrets/MP_WEBHOOK_SECRET/versions/3","createTime":"2026-05-08T15:30:50.109351Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"16515014e5e9a7\""}
+[debug] [2026-05-12T16:11:36.055Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:36.055Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:36.055Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER [none]
+[debug] [2026-05-12T16:11:36.288Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER 200
+[debug] [2026-05-12T16:11:36.288Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER {"name":"projects/478517746609/secrets/GMAIL_USER","replication":{"automatic":{}},"createTime":"2026-05-08T17:32:23.124018Z","labels":{"firebase-managed":"functions"},"etag":"\"165151c7a92165\""}
+[debug] [2026-05-12T16:11:36.288Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:36.288Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:36.288Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER/versions/latest [none]
+[debug] [2026-05-12T16:11:36.542Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER/versions/latest 200
+[debug] [2026-05-12T16:11:36.542Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_USER/versions/latest {"name":"projects/478517746609/secrets/GMAIL_USER/versions/1","createTime":"2026-05-08T17:32:27.609376Z","state":"ENABLED","replicationStatus":{"automatic":{}},"etag":"\"165151c7dced20\""}
+[debug] [2026-05-12T16:11:36.542Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:36.542Z] Checked if tokens are valid: true, expires at: 1778605877206
+[debug] [2026-05-12T16:11:36.542Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_APP_PASS [none]
+[debug] [2026-05-12T16:11:36.762Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_APP_PASS 404
+[debug] [2026-05-12T16:11:36.762Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/carocruz-4bccc/secrets/GMAIL_APP_PASS {"error":{"code":404,"message":"Secret [projects/478517746609/secrets/GMAIL_APP_PASS] not found.","status":"NOT_FOUND"}}
