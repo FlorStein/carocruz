@@ -3696,7 +3696,7 @@ function finalizarCompra() {
   const msg = encodeURIComponent(
     `¡Hola! Quiero hacer el siguiente pedido:\n\n${lineas.join('\n')}\n\nTOTAL: ${formatPrecio(total)}`
   );
-  window.open(`https://wa.me/5491100000000?text=${msg}`, '_blank');
+  window.open(`https://wa.me/541178270004?text=${msg}`, '_blank');
 }
 
 // ── Navegación por categorías ────────────────────────────────────────────────
