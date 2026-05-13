@@ -709,14 +709,14 @@ function procesarImagenArchivoAdmin(file, opciones) {
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, sx, sy, sSizeW, sSizeH, 0, 0, w, h);
-        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        const dataUrl = canvas.toDataURL('image/webp', quality);
         canvas.toBlob(function(blob) {
           resolve({
             dataUrl,
             blob: blob || null,
-            contentType: 'image/jpeg'
+            contentType: 'image/webp'
           });
-        }, 'image/jpeg', quality);
+        }, 'image/webp', quality);
       };
       img.onerror = function() { reject(new Error('El archivo no es una imagen válida')); };
       img.src = ev.target.result;
@@ -743,10 +743,10 @@ async function obtenerImagenFinalAdmin(imagenUrl, archivo, opciones) {
     if (firebaseStorageRef && window._authCurrentUser) {
       try {
         const safeName = archivo.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-        const ruta = `productos-admin/${Date.now()}-${safeName.replace(/\.[a-zA-Z0-9]+$/, '')}.jpg`;
+        const ruta = `productos-admin/${Date.now()}-${safeName.replace(/\.[a-zA-Z0-9]+$/, '')}.webp`;
         const payload = procesada?.blob || archivo;
         const task = await withTimeout(
-          firebaseStorageRef.ref(ruta).put(payload, { contentType: 'image/jpeg' }),
+          firebaseStorageRef.ref(ruta).put(payload, { contentType: 'image/webp' }),
           45000,
           'La subida de imagen tardó demasiado.'
         );
