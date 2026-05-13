@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+  <!-- Preload Firebase modules: el browser los descarga en paralelo al parsear el HTML,
+       evitando el waterfall que genera el import dinámico de firebase-init.js -->
+  <link rel="modulepreload" href="firebase-init.js" />
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js" />
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js" />
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js" />
+  <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js" />
   <link rel="preload" as="image" href="LOGOS.png" />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
