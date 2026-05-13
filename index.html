@@ -1208,13 +1208,9 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.478.666 4.8 1.826 6.8L2 30l7.4-1.8A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.55 11.55 0 0 1-5.88-1.6l-.42-.25-4.39 1.07 1.1-4.27-.28-.44A11.56 11.56 0 0 1 4.4 16c0-6.394 5.206-11.6 11.6-11.6S27.6 9.606 27.6 16 22.394 27.6 16 27.6zm6.36-8.68c-.348-.174-2.06-1.016-2.38-1.132-.318-.116-.55-.174-.78.174-.232.348-.896 1.132-1.1 1.364-.202.23-.404.26-.752.086-.348-.174-1.47-.542-2.8-1.728-1.034-.922-1.732-2.062-1.936-2.41-.202-.348-.022-.536.152-.708.156-.156.348-.406.522-.608.174-.202.232-.348.348-.578.116-.232.058-.434-.028-.608-.087-.174-.78-1.882-1.07-2.578-.282-.676-.568-.584-.78-.594l-.664-.012c-.23 0-.608.086-.926.434-.318.348-1.214 1.186-1.214 2.892 0 1.706 1.244 3.354 1.418 3.586.174.232 2.448 3.738 5.932 5.242.83.358 1.476.572 1.982.732.832.266 1.59.228 2.188.138.668-.1 2.06-.842 2.35-1.656.29-.814.29-1.512.202-1.656-.086-.144-.318-.232-.666-.406z"/></svg>
   </a>
 
-  <!-- Firebase SDK (defer: descarga en paralelo, ejecuta en orden tras parseo HTML) -->
-  <!-- MercadoPago JS SDK: deshabilitado hasta activar integracion -->
-  <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+  <!-- Firebase SDK Modular v10 (reemplaza los 4 scripts compat anteriores) -->
+  <!-- type="module" descarga solo los módulos importados, ejecuta antes que los defer -->
+  <script type="module" src="firebase-init.js"></script>
   <!-- Mapa de imágenes (generado por scraper-tam.js — opcional, carga si existe) -->
   <script defer src="imagenes-map.js" onerror="console.info('Sin imagenes-map.js — se usan íconos de categoría')"></script>
   <script defer src="script.js"></script>

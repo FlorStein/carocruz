@@ -9,31 +9,18 @@
    4. Ir a ⚙ Configuración del proyecto → Tu app web → copiá la config y pegala abajo
    ===================================================== */
 
-// ─── REEMPLAZÁ ESTOS VALORES CON LOS DE TU PROYECTO ──────────────────────────
-const FIREBASE_CONFIG = {
-  apiKey:            "AIzaSyAzwyvdj6hhJDMyPhkWmEgIBZl1MfzQ4M8",
-  authDomain:        "carocruz-4bccc.firebaseapp.com",
-  projectId:         "carocruz-4bccc",
-  storageBucket:     "carocruz-4bccc.firebasestorage.app",
-  messagingSenderId: "478517746609",
-  appId:             "1:478517746609:web:a06ee588d3b3d88d547b90"
-};
-// ─────────────────────────────────────────────────────────────────────────────
-
 // Emails con permisos de administración (en minúsculas)
 const ADMIN_EMAILS = [
   'admin@caracruz.com.ar',
   'admin@carocruz.com.ar'
 ];
 
-// Inicializar Firebase solo si la config fue reemplazada
-const CONFIG_PENDIENTE = FIREBASE_CONFIG.apiKey.startsWith('REEMPLAZAR');
-
-if (!CONFIG_PENDIENTE) {
-  firebase.initializeApp(FIREBASE_CONFIG);
+// Firebase está inicializado en firebase-init.js (type="module")
+// que se ejecuta antes que este script (orden de documento, ambos diferidos).
+if (window._fb && window._fbAuth) {
   iniciarAuth();
 } else {
-  console.warn('[Caro Cruz Auth] Configurá Firebase en auth.js para activar el sistema de cuentas.');
+  console.error('[Caro Cruz Auth] firebase-init.js no cargó. Activando modo sin cuenta.');
   mostrarModoBeta();
 }
 
@@ -41,10 +28,11 @@ if (!CONFIG_PENDIENTE) {
    INICIALIZAR AUTH
    ===================================================== */
 function iniciarAuth() {
-  const auth = firebase.auth();
+  // Exponer la instancia de auth para acceder a .currentUser
+  window._auth = window._fbAuth;
 
   // Observar estado de sesión
-  auth.onAuthStateChanged(function(user) {
+  window._fb.onAuthStateChanged(function(user) {
     const btnMiCuenta = document.getElementById('btnMiCuenta');
     const userDisplay  = document.getElementById('userDisplay');
     const userNameEl   = document.getElementById('userNameDisplay');
@@ -81,8 +69,6 @@ function iniciarAuth() {
     }
   });
 
-  // Exponer funciones globales con referencia al objeto auth
-  window._auth = auth;
 }
 
 /* =====================================================
@@ -192,8 +178,8 @@ async function handleRegister(e) {
   btnCargando(btn, 'Creando cuenta…');
 
   try {
-    var cred = await window._auth.createUserWithEmailAndPassword(email, password);
-    await cred.user.updateProfile({ displayName: nombre });
+    var cred = await window._fb.createUserWithEmailAndPassword(email, password);
+    await window._fb.updateProfile(cred.user, { displayName: nombre });
     // onAuthStateChanged se encarga del resto
   } catch (err) {
     btnReset(btn, 'Crear cuenta');
@@ -225,7 +211,7 @@ async function handleLogin(e) {
   btnCargando(btn, 'Ingresando…');
 
   try {
-    await window._auth.signInWithEmailAndPassword(email, password);
+    await window._fb.signInWithEmailAndPassword(email, password);
   } catch (err) {
     btnReset(btn, 'Ingresar');
     mostrarErrorAuth('loginPasswordError', mensajeFirebase(err.code));
@@ -246,7 +232,7 @@ async function handleForgotPassword() {
   if (btn) btnCargando(btn, 'Enviando...');
 
   try {
-    await window._auth.sendPasswordResetEmail(email);
+    await window._fb.sendPasswordResetEmail(email);
     var ok = document.getElementById('loginPasswordError');
     if (ok) {
       ok.textContent = 'Te enviamos un email para restablecer la contraseña.';
@@ -331,8 +317,8 @@ async function handleUserProfileSave(e) {
 
     if (quiereCambiarPw) {
       var credential = firebase.auth.EmailAuthProvider.credential(user.email, pwdCurrent);
-      await user.reauthenticateWithCredential(credential);
-      await user.updatePassword(pwdNew);
+      await window._fb.reauthenticateWithCredential(user, credential);
+      await window._fb.updatePassword(user, pwdNew);
     }
 
     var userNameEl = document.getElementById('userNameDisplay');
@@ -398,8 +384,8 @@ async function handleGuardarPassword() {
 
   try {
     var credential = firebase.auth.EmailAuthProvider.credential(user.email, pwdCurrent);
-    await user.reauthenticateWithCredential(credential);
-    await user.updatePassword(pwdNew);
+    await window._fb.reauthenticateWithCredential(user, credential);
+    await window._fb.updatePassword(user, pwdNew);
 
     document.getElementById('userPwdCurrent').value = '';
     document.getElementById('userPwdNew').value = '';
@@ -462,8 +448,8 @@ async function handleChangePassword(e) {
 
   try {
     var credential = firebase.auth.EmailAuthProvider.credential(user.email, current);
-    await user.reauthenticateWithCredential(credential);
-    await user.updatePassword(nextPw);
+    await window._fb.reauthenticateWithCredential(user, credential);
+    await window._fb.updatePassword(user, nextPw);
     var msg = document.getElementById('pwdGeneralMsg');
     if (msg) {
       msg.textContent = 'Contraseña actualizada correctamente.';
@@ -489,7 +475,7 @@ async function handleGoogle() {
   var btn = document.getElementById('btnGoogle') || document.getElementById('btnGoogleReg');
   try {
     var provider = new firebase.auth.GoogleAuthProvider();
-    await window._auth.signInWithPopup(provider);
+    await window._fb.signInWithPopup(provider);
     // onAuthStateChanged cierra el modal y actualiza el header
   } catch (err) {
     if (err.code !== 'auth/popup-closed-by-user') {
@@ -504,7 +490,7 @@ window.handleGoogle = handleGoogle;
    ===================================================== */
 async function handleLogout() {
   cerrarUserDropdown();
-  await window._auth.signOut();
+  await window._fb.signOut();
 }
 window.handleLogout = handleLogout;
 
