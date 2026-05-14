@@ -431,7 +431,7 @@
       <div class="footer-brand">
         <div>
           <p class="footer-logo">CaroCruz</p>
-          <p class="footer-logo-sub">Insumos descartables, oficina, papelería y limpieza</p>
+          <p id="footerSubtitleEl" class="footer-logo-sub">Insumos descartables, oficina, papelería y limpieza</p>
         </div>
         <p class="footer-desc">Artículos de papelería, librería y útiles a precios mayoristas. Más de 10 años en el mercado.</p>
         <div class="footer-social">
@@ -510,11 +510,11 @@
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Lunes a Viernes: 9:00 a 18:00 hs
+            <span id="footerHorarioEl">Lunes a Viernes: 9:00 a 18:00 hs</span>
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            <a href="https://www.instagram.com/carocruzpapelera" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">@carocruzpapelera</a>
+            <a id="footerInstagramEl" href="https://www.instagram.com/carocruzpapelera" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">@carocruzpapelera</a>
           </li>
         </ul>
       </div>
@@ -760,6 +760,7 @@
           <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="comercial" onclick="setAdminTab('form','comercial')">Comercial</button>
           <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="banners" onclick="setAdminTab('form','banners')">Banners</button>
           <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="promociones" onclick="setAdminTab('form','promociones')">Promociones</button>
+          <button type="button" class="admin-tab-btn" data-scope="form" data-tab-id="footer" onclick="setAdminTab('form','footer')">Footer</button>
         </div>
 
         <div id="adminTabForm-publicaciones" class="admin-tab-panel admin-tab-panel--active" data-scope="form" data-tab-id="publicaciones">
@@ -1023,6 +1024,25 @@
           <div id="adminPromo2x1List" class="admin-promo-2x1-list"></div>
 
           <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar ofertas</button>
+          </div>
+        </div>
+
+        <div id="adminTabForm-footer" class="admin-tab-panel" data-scope="form" data-tab-id="footer">
+          <h4 class="admin-section-title">Personalizar footer</h4>
+          <div class="admin-config-box">
+            <div class="auth-field">
+              <label for="adminFooterSubtitle">Subtítulo bajo el logo (ej: Insumos descartables...)</label>
+              <input id="adminFooterSubtitle" type="text" placeholder="Insumos descartables, oficina, papelería y limpieza" />
+            </div>
+            <div class="auth-field">
+              <label for="adminFooterHorario">Horario de atención</label>
+              <input id="adminFooterHorario" type="text" placeholder="Lunes a Viernes: 9:00 a 18:00 hs" />
+            </div>
+            <div class="auth-field">
+              <label for="adminFooterInstagram">Usuario de Instagram (sin @)</label>
+              <input id="adminFooterInstagram" type="text" placeholder="carocruzpapelera" />
+            </div>
+            <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar footer</button>
           </div>
         </div>
       </form>

@@ -66,7 +66,10 @@ const CONFIG_COMERCIAL_DEFAULT = {
     DESCARTABLES: 0,
     CAJAS: 0,
     'GASTRONÓMICO': 0
-  }
+  },
+  footerSubtitle: 'Insumos descartables, oficina, papelería y limpieza',
+  footerHorario: 'Lunes a Viernes: 9:00 a 18:00 hs',
+  footerInstagram: 'carocruzpapelera'
 };
 
 let configComercial = JSON.parse(JSON.stringify(CONFIG_COMERCIAL_DEFAULT));
@@ -144,7 +147,10 @@ function clonarConfigComercial(raw) {
     productos2x1: productos2x1Raw
       .map(function(id) { return String(id || '').trim(); })
       .filter(Boolean),
-    ofertasPorCategoria: ofertas
+    ofertasPorCategoria: ofertas,
+    footerSubtitle: String(src.footerSubtitle ?? base.footerSubtitle).trim(),
+    footerHorario: String(src.footerHorario ?? base.footerHorario).trim(),
+    footerInstagram: String(src.footerInstagram ?? base.footerInstagram).trim()
   };
 }
 
@@ -234,6 +240,17 @@ function aplicarConfigComercialUI() {
   if (heroSection) heroSection.classList.toggle('hero--has-banner', hasBanner);
   if (heroFallback) {
     heroFallback.style.display = hasBanner ? 'none' : 'flex';
+  }
+
+  const footerSubtitleEl = document.getElementById('footerSubtitleEl');
+  if (footerSubtitleEl) footerSubtitleEl.textContent = configComercial.footerSubtitle || CONFIG_COMERCIAL_DEFAULT.footerSubtitle;
+  const footerHorarioEl = document.getElementById('footerHorarioEl');
+  if (footerHorarioEl) footerHorarioEl.textContent = configComercial.footerHorario || CONFIG_COMERCIAL_DEFAULT.footerHorario;
+  const footerInstagramEl = document.getElementById('footerInstagramEl');
+  if (footerInstagramEl) {
+    const handle = String(configComercial.footerInstagram || CONFIG_COMERCIAL_DEFAULT.footerInstagram).trim();
+    footerInstagramEl.textContent = '@' + handle;
+    footerInstagramEl.href = 'https://www.instagram.com/' + encodeURIComponent(handle);
   }
 }
 
@@ -892,6 +909,9 @@ function cargarFormularioConfigComercialAdmin() {
   setVal('adminOfertaDescartables', descuentoCategoriaActivo('DESCARTABLES'));
   setVal('adminOfertaCajas', descuentoCategoriaActivo('CAJAS'));
   setVal('adminOfertaGastronomico', descuentoCategoriaActivo('GASTRONÓMICO'));
+  setVal('adminFooterSubtitle', configComercial.footerSubtitle || CONFIG_COMERCIAL_DEFAULT.footerSubtitle);
+  setVal('adminFooterHorario', configComercial.footerHorario || CONFIG_COMERCIAL_DEFAULT.footerHorario);
+  setVal('adminFooterInstagram', configComercial.footerInstagram || CONFIG_COMERCIAL_DEFAULT.footerInstagram);
   adminPromo2x1Draft = Array.isArray(configComercial.productos2x1) ? configComercial.productos2x1.slice() : [];
   adminRenderProductos2x1();
   adminRenderSelectorProductos2x1();
@@ -1087,7 +1107,10 @@ async function guardarConfigComercialAdmin() {
       DESCARTABLES: getVal('adminOfertaDescartables'),
       CAJAS: getVal('adminOfertaCajas'),
       'GASTRONÓMICO': getVal('adminOfertaGastronomico')
-    }
+    },
+    footerSubtitle: getVal('adminFooterSubtitle'),
+    footerHorario: getVal('adminFooterHorario'),
+    footerInstagram: getVal('adminFooterInstagram')
   });
 
   configComercial = nuevo;
