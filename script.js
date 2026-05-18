@@ -3438,7 +3438,8 @@ function normalizarTextoBusqueda(txt) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
-    .trim();
+    .trim()
+    .replace(/\s+/g, ' ');
 }
 
 // ── Render de cards ───────────────────────────────────────────────────────────
