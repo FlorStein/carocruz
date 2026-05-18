@@ -618,7 +618,7 @@ ul { list-style: none; }
 
 /* Reacomodo de card por modo para priorizar imagen */
 .products-grid--compacto .card-img {
-  height: 140px;
+  aspect-ratio: 4 / 3;
 }
 .products-grid--compacto .card-foto {
   padding: 8px;
@@ -641,14 +641,14 @@ ul { list-style: none; }
 }
 
 .products-grid--normal .card-img {
-  height: 210px;
+  aspect-ratio: 4 / 3;
 }
 .products-grid--normal .card-foto {
   padding: 8px;
 }
 
 .products-grid--grande .card-img {
-  height: 280px;
+  aspect-ratio: 4 / 3;
 }
 .products-grid--grande .card-foto {
   padding: 6px;
@@ -697,7 +697,8 @@ ul { list-style: none; }
   transform: translateY(-2px);
 }
 .card-img {
-  height: 180px;
+  aspect-ratio: 4 / 3;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1334,7 +1335,7 @@ ul { list-style: none; }
   .faq-grid { grid-template-columns: 1fr; }
 
   /* Product card */
-  .card-img { height: 140px; }
+  .card-img { aspect-ratio: 4 / 3; }
   .card-body { padding: 12px; gap: 8px; }
   .card-name { font-size: 12px; min-height: 34px; }
   .card-price { font-size: 18px; }
@@ -1357,7 +1358,7 @@ ul { list-style: none; }
 @media (max-width: 390px) {
   .hero-title { font-size: 26px; }
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .card-img { height: 120px; }
+  .card-img { aspect-ratio: 4 / 3; }
   .card-body { padding: 10px; }
   .card-price { font-size: 16px; }
 }
@@ -2750,26 +2751,18 @@ ul { list-style: none; }
 
 /* Ajustes responsive de card por modo de zoom */
 @media (max-width: 768px) {
-  .products-grid--compacto .card-img {
-    height: 125px !important;
-  }
-  .products-grid--normal .card-img {
-    height: 175px !important;
-  }
+  .products-grid--compacto .card-img,
+  .products-grid--normal .card-img,
   .products-grid--grande .card-img {
-    height: 220px !important;
+    aspect-ratio: 4 / 3;
   }
 }
 
 @media (max-width: 420px) {
-  .products-grid--compacto .card-img {
-    height: 115px !important;
-  }
-  .products-grid--normal .card-img {
-    height: 150px !important;
-  }
+  .products-grid--compacto .card-img,
+  .products-grid--normal .card-img,
   .products-grid--grande .card-img {
-    height: 190px !important;
+    aspect-ratio: 4 / 3;
   }
 }
 
