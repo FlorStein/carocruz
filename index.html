@@ -1052,9 +1052,12 @@
           <button type="button" class="admin-tab-btn admin-tab-btn--active" data-scope="gestion" data-tab-id="listado" onclick="setAdminTab('gestion','listado')">Listado</button>
           <button type="button" class="admin-tab-btn" data-scope="gestion" data-tab-id="masivo" onclick="setAdminTab('gestion','masivo')">Masivo</button>
         </div>
-        <div class="auth-field">
+        <div class="auth-field" style="position:relative">
           <label for="adminGestionBuscar">Buscar por nombre o categoría</label>
-          <input id="adminGestionBuscar" type="text" placeholder="Ej: cuaderno, limpieza, oferta" oninput="adminResetGestionPage();renderAdminGestionList()" />
+          <div style="position:relative">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9ca3af;pointer-events:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="adminGestionBuscar" type="text" placeholder="Ej: cuaderno, limpieza, oferta" oninput="adminResetGestionPage();renderAdminGestionList()" style="padding-left:34px" />
+          </div>
         </div>
         <div class="admin-gestion-filtros">
           <div class="admin-item-field">
