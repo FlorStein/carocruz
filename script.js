@@ -2994,16 +2994,19 @@ async function adminGuardarPublicacion(id) {
 
   const key = adminDomKey(id);
 
+  // Leer precio/stock/categoría ANTES de guardar imagen,
+  // porque adminGuardarImagenPublicacion llama renderAdminGestionList()
+  // que re-renderiza el panel y destruiría los inputs.
+  const precio = Number(document.getElementById(`adminPrecioEdit-${key}`)?.value || 0);
+  const stock = Number(document.getElementById(`adminStockEdit-${key}`)?.value || 0);
+  const categoriaEdit = normalizarCategoria(document.getElementById(`adminCategoriaEdit-${key}`)?.value || prod.categoria);
+
   // Si hay imagen pendiente, guardarla primero
   const archivoImgPendiente = document.getElementById(`adminImagenArchivoEdit-${key}`)?.files?.[0] || null;
   const urlImgPendiente = String(document.getElementById(`adminImagenEdit-${key}`)?.value || '').trim();
   if (archivoImgPendiente || urlImgPendiente) {
     await adminGuardarImagenPublicacion(id);
   }
-
-  const precio = Number(document.getElementById(`adminPrecioEdit-${key}`)?.value || 0);
-  const stock = Number(document.getElementById(`adminStockEdit-${key}`)?.value || 0);
-  const categoriaEdit = normalizarCategoria(document.getElementById(`adminCategoriaEdit-${key}`)?.value || prod.categoria);
 
   if (!Number.isFinite(precio) || precio <= 0) {
     mostrarToast('Precio inválido en la publicación.');
