@@ -2993,6 +2993,14 @@ async function adminGuardarPublicacion(id) {
   if (!prod) return;
 
   const key = adminDomKey(id);
+
+  // Si hay imagen pendiente, guardarla primero
+  const archivoImgPendiente = document.getElementById(`adminImagenArchivoEdit-${key}`)?.files?.[0] || null;
+  const urlImgPendiente = String(document.getElementById(`adminImagenEdit-${key}`)?.value || '').trim();
+  if (archivoImgPendiente || urlImgPendiente) {
+    await adminGuardarImagenPublicacion(id);
+  }
+
   const precio = Number(document.getElementById(`adminPrecioEdit-${key}`)?.value || 0);
   const stock = Number(document.getElementById(`adminStockEdit-${key}`)?.value || 0);
   const categoriaEdit = normalizarCategoria(document.getElementById(`adminCategoriaEdit-${key}`)?.value || prod.categoria);
