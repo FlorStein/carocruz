@@ -3464,16 +3464,17 @@ function renderProductCard(prod) {
   const cardContent = imgUrl
     ? `<img src="${imgUrl}" alt="${prod.nombre}" class="card-foto" loading="lazy" onerror="this.closest('.card-img').classList.add('card-img--fallback');this.remove()">`
     : `<span style="color:${prod.iconColor}">${prod.icon}</span>`;
+  const idEsc = prod.id.replace(/'/g, "\\'");
   return `
     <article class="product-card" data-id="${prod.id}">
-      <div class="card-img" style="${cardBg}">
+      <a class="card-img" style="${cardBg}" href="#p/${encodeURIComponent(prod.id)}" onclick="event.preventDefault();abrirModalProducto('${idEsc}')" aria-label="Ver detalle de ${prod.nombre}">
         ${cardContent}
-      </div>
+      </a>
       <div class="card-body">
         <span class="card-badge" style="background:${prod.categColor};color:${prod.categText}">${prod.categoria}</span>
         ${stockHtml}
         ${badgePromo2x1}
-        <p class="card-name">${prod.nombre}</p>
+        <p class="card-name" style="cursor:pointer" onclick="abrirModalProducto('${idEsc}')">${prod.nombre}</p>
         ${precioHtml}
         <div class="qty-row">
           <button class="qty-btn" onclick="cambiarCantidad('${prod.id}', -1)">−</button>
@@ -4216,6 +4217,126 @@ function inicializarBotonVolverArriba() {
 
 // ── Enter en buscador ─────────────────────────────────────────────────────────
 
+// ══════════════════════════════════════════════════════════════════════════════
+//  MODAL DETALLE PRODUCTO (hash routing: #p/{id})
+// ══════════════════════════════════════════════════════════════════════════════
+
+window._prodDetalleId = null;
+window._prodDetalleCantidades = cantidades;
+
+function abrirModalProducto(id) {
+  const prod = todosLosProductos().find(function(p) { return p.id === id; });
+  if (!prod) return;
+
+  window._prodDetalleId = id;
+
+  const overlay = document.getElementById('prodDetalleOverlay');
+  const modal   = document.getElementById('prodDetalleModal');
+  const imgWrap = document.getElementById('prodDetalleImgWrap');
+  const badge   = document.getElementById('prodDetalleBadge');
+  const nombre  = document.getElementById('prodDetalleNombre');
+  const precio  = document.getElementById('prodDetallePrecio');
+  const stock   = document.getElementById('prodDetalleStock');
+  const qty     = document.getElementById('prodDetalleQty');
+  const addBtn  = document.getElementById('prodDetalleAddBtn');
+  const shareLink = document.getElementById('prodDetalleShareLink');
+
+  if (!overlay || !modal) return;
+
+  // Imagen
+  const imgUrl = (window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || null;
+  if (imgUrl) {
+    imgWrap.innerHTML = `<img src="${imgUrl}" alt="${prod.nombre}" loading="lazy">`;
+    imgWrap.style.background = '#fff';
+  } else {
+    imgWrap.innerHTML = `<span style="color:${prod.iconColor}">${prod.icon}</span>`;
+    imgWrap.style.background = prod.bgImg;
+  }
+
+  // Datos
+  if (badge) {
+    badge.textContent = prod.categoria;
+    badge.style.background = prod.categColor;
+    badge.style.color = prod.categText;
+  }
+  if (nombre) nombre.textContent = prod.nombre;
+
+  const precioBase  = Number(prod.precio) || 0;
+  const descuento   = descuentoTotalProducto(prod);
+  const precioFinal = precioFinalProducto(prod);
+  if (precio) {
+    if (descuento > 0 && precioFinal < precioBase) {
+      precio.innerHTML = `<span class="card-price-old">${formatPrecio(precioBase)}</span> <span class="card-price-new">${formatPrecio(precioFinal)}</span>`;
+    } else {
+      precio.textContent = formatPrecio(precioFinal);
+    }
+  }
+
+  const stockDisp = stockDisponibleProducto(prod);
+  if (stock) {
+    if (Number.isFinite(prod.stock)) {
+      stock.textContent = stockDisp === 0 ? 'Sin stock' : `Stock disponible: ${stockDisp}`;
+      stock.style.color = stockDisp === 0 ? '#EF4444' : '#64748B';
+    } else {
+      stock.textContent = '';
+    }
+  }
+
+  if (qty) qty.textContent = cantidades[id] || 1;
+  if (addBtn) addBtn.disabled = stockDisp === 0;
+
+  // Enlace compartible
+  const url = `${location.origin}${location.pathname}#p/${encodeURIComponent(id)}`;
+  if (shareLink) {
+    shareLink.onclick = function(e) {
+      e.preventDefault();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function() { mostrarToast('Enlace copiado'); });
+      } else {
+        mostrarToast(url);
+      }
+    };
+  }
+
+  // Actualizar hash sin recargar
+  history.replaceState(null, '', `#p/${encodeURIComponent(id)}`);
+
+  overlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(function() { modal.classList.add('open'); });
+}
+window.abrirModalProducto = abrirModalProducto;
+
+function cerrarModalProducto() {
+  const overlay = document.getElementById('prodDetalleOverlay');
+  const modal   = document.getElementById('prodDetalleModal');
+  if (!overlay || !modal) return;
+  modal.classList.remove('open');
+  overlay.classList.add('hidden');
+  document.body.style.overflow = '';
+  window._prodDetalleId = null;
+  // Limpiar hash sin recargar
+  history.replaceState(null, '', location.pathname + location.search);
+}
+window.cerrarModalProducto = cerrarModalProducto;
+
+function _manejarHashProducto() {
+  const hash = location.hash || '';
+  const m = hash.match(/^#p\/(.+)$/);
+  if (!m) return;
+  const id = decodeURIComponent(m[1]);
+  // Esperar a que el catálogo esté cargado (puede tardar en llegar de Firestore)
+  const intentar = function(restantes) {
+    const prod = todosLosProductos().find(function(p) { return p.id === id; });
+    if (prod) {
+      abrirModalProducto(id);
+    } else if (restantes > 0) {
+      setTimeout(function() { intentar(restantes - 1); }, 300);
+    }
+  };
+  intentar(15);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!FORZAR_CATALOGO_VACIO) {
     capturarBaseCatalogoOriginal();
@@ -4269,8 +4390,12 @@ document.addEventListener('DOMContentLoaded', () => {
       cerrarMobileCatMenu();
       cerrarAdminImageZoom();
       cerrarCheckoutMP();
+      cerrarModalProducto();
     }
   });
+
+  // Abrir modal si la URL ya trae un hash de producto
+  _manejarHashProducto();
 
   // Manejar retorno desde MercadoPago (?pago=aprobado|rechazado|pendiente)
   _manejarRetornoMP();
