@@ -1,6 +1,6 @@
 /* ======================================================
-   PAPELERA CARO CRUZ � styles.css
-   Paleta: Base #f2e8d5 � Arena #c9a96e � Coral #fb844f � Pizarra #17516e � Carb�n #2c2c2e
+   PAPELERA CARO CRUZ — styles.css
+   Paleta: Base #ffffff — Arena #c9a96e — Coral #fb844f — Pizarra #17516e — Carbón #2c2c2e
    ====================================================== */
 
 /* -- Reset & base -- */
@@ -8,7 +8,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', sans-serif;
-  background: #f2e8d5;
+  background: #ffffff;
   color: #2c2c2e;
   font-size: 15px;
   line-height: 1.5;
@@ -24,9 +24,9 @@ ul { list-style: none; }
   --blue-dk: #2c2c2e;
   --orange:  #fb844f;
   --warm:    #c9a96e;
-  --gray:    #f2e8d5;
+  --gray:    #f3f4f6;
   --slate:   #7c8d95;
-  --border:  #d8c3a1;
+  --border:  #e5e7eb;
   --text-muted: #5f6468;
   --radius:  8px;
   --shadow-card: 0 2px 12px rgba(0,0,0,.08);
