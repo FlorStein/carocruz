@@ -550,11 +550,10 @@ function productosNovedadesVisibles() {
 }
 
 function productosNovedadesUltimaSemana() {
+  const base = PRODUCTOS_ADMIN.filter(p => p.categoria !== 'OFERTA' && !p.oculto);
   const haceSieteDias = (Date.now() / 1000) - 7 * 24 * 60 * 60;
-  return PRODUCTOS_ADMIN.filter(function(p) {
-    if (p.categoria === 'OFERTA' || p.oculto) return false;
-    return p.createdAtSeconds !== null && p.createdAtSeconds >= haceSieteDias;
-  });
+  const recientes = base.filter(p => p.createdAtSeconds !== null && p.createdAtSeconds >= haceSieteDias);
+  return recientes.length > 0 ? recientes : base;
 }
 
 function productosOfertasVisibles() {
