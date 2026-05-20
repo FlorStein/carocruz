@@ -446,11 +446,16 @@ async function _enviarEmails(pedidoId, pedido, payerEmail) {
       </div>`,
   });
 
-  // ── Email al comprador (si MP nos dio su email) ────────────────────────────
-  if (payerEmail && emailValido(payerEmail)) {
+  // ── Email al comprador (email ingresado + email de MP, sin duplicados) ──────
+  const compradorEmail = (compradorInfo.email || '').toLowerCase().trim();
+  const destinatarios = new Set();
+  if (compradorEmail && emailValido(compradorEmail)) destinatarios.add(compradorEmail);
+  if (payerEmail && emailValido(payerEmail))         destinatarios.add(payerEmail);
+
+  for (const dest of destinatarios) {
     await transporter.sendMail({
       from:    `"Papelera Caro Cruz" <${gmailUser}>`,
-      to:      payerEmail,
+      to:      dest,
       subject: `✅ Pedido #${pedidoShort} confirmado — Papelera Caro Cruz`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
@@ -481,5 +486,5 @@ async function _enviarEmails(pedidoId, pedido, payerEmail) {
     });
   }
 
-  console.log(`[Email] Emails enviados para pedido ${pedidoShort}`);
+  console.log(`[Email] Emails enviados para pedido ${pedidoShort} → ${[...destinatarios].join(', ')}`);
 }

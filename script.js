@@ -4571,14 +4571,21 @@ async function confirmarDatosComprador(event) {
 
   // Validar email obligatorio
   let valido = true;
-  const emailError  = document.getElementById('cmpEmailError');
-  const nombreError = document.getElementById('cmpNombreError');
-  if (emailError) emailError.textContent = '';
-  if (nombreError) nombreError.textContent = '';
+  const emailError   = document.getElementById('cmpEmailError');
+  const nombreError  = document.getElementById('cmpNombreError');
+  const telefonoError = document.getElementById('cmpTelefonoError');
+  if (emailError)    emailError.textContent = '';
+  if (nombreError)   nombreError.textContent = '';
+  if (telefonoError) telefonoError.textContent = '';
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     if (emailError) emailError.textContent = 'Ingresá un email válido.';
     document.getElementById('cmpEmail')?.focus();
+    valido = false;
+  }
+  if (!telefono || !/^[\d\s()+-]{6,}$/.test(telefono)) {
+    if (telefonoError) telefonoError.textContent = 'Ingresá un teléfono celular válido.';
+    if (valido) document.getElementById('cmpTelefono')?.focus();
     valido = false;
   }
   if (!valido) return;
