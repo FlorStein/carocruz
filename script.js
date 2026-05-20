@@ -1597,6 +1597,7 @@ function renderAdminGestionList() {
           <button type="button" class="admin-item-btn" onclick="adminGuardarImagenPublicacion('${p.id.replace(/'/g, "\\'")}')">Guardar imagen</button>
           <button type="button" class="admin-item-btn" onclick="adminEliminarImagenPublicacion('${p.id.replace(/'/g, "\\'")}')">Quitar imagen</button>
           <button type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminGuardarPublicacion('${p.id.replace(/'/g, "\\'")}')">Guardar cambios</button>
+          <button type="button" class="admin-item-btn" onclick="adminOcultarPublicacion('${p.id.replace(/'/g, "\\'")}')">Ocultar</button>
           ${p._source === 'ADMIN'
             ? `<button type="button" class="admin-item-btn admin-item-btn--danger" onclick="adminEliminarPublicacion('${p.id.replace(/'/g, "\\'")}')">Eliminar</button>`
             : `<button type="button" class="admin-item-btn" onclick="adminRestaurarPublicacionCatalogo('${p.id.replace(/'/g, "\\'")}')">Restaurar CSV</button>`}
@@ -3202,6 +3203,59 @@ async function adminEliminarPublicacion(id) {
   mostrarToast('Publicación eliminada.');
 }
 window.adminEliminarPublicacion = adminEliminarPublicacion;
+
+async function adminOcultarPublicacion(id) {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden ocultar publicaciones.');
+    return;
+  }
+  const prod = todosLosProductos().find(function(p) { return p.id === id; });
+  if (!prod) return;
+
+  const ok = window.confirm(`¿Poner stock en 0 para "${prod.nombre}"? Se ocultará del catálogo.`);
+  if (!ok) return;
+
+  prod.stock = 0;
+  const esManual = PRODUCTOS_ADMIN.some(function(p) { return p.id === id; });
+  if (!esManual) {
+    const prev = PRODUCTOS_OVERRIDES[id] || {};
+    PRODUCTOS_OVERRIDES[id] = Object.assign({}, prev, { stock: 0 });
+  }
+
+  guardarProductosAdmin();
+  guardarOverridesLocal();
+  refrescarCatalogoPrincipal();
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput && searchInput.value.trim()) buscar();
+
+  if (usaFirestoreAdmin && firestoreDb && !productoEsSoloLocal(id)) {
+    try {
+      if (esManual) {
+        await withTimeout(
+          firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).update({ stock: 0, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp() }),
+          8000, 'Timeout Firestore'
+        );
+      } else {
+        await withTimeout(
+          firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set(
+            { stock: 0, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(), updatedBy: window._authCurrentUser?.email || '' },
+            { merge: true }
+          ),
+          8000, 'Timeout Firestore'
+        );
+      }
+    } catch (err) {
+      console.warn('[Admin] Ocultar publicación: sync parcial:', err);
+      mostrarToast('Ocultado localmente. Firestore no respondió.');
+      return;
+    }
+  }
+
+  mostrarToast('Publicación ocultada (stock=0).');
+}
+window.adminOcultarPublicacion = adminOcultarPublicacion;
 
 async function adminEliminarTodosProductosAdmin() {
   if (!usuarioAdminActivo) {
