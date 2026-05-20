@@ -595,7 +595,7 @@
         <button id="tabLogin"    class="auth-tab auth-tab--active" role="tab" onclick="cambiarTabAuth('login')">Iniciar sesión</button>
         <button id="tabRegister" class="auth-tab"                  role="tab" onclick="cambiarTabAuth('register')">Crear cuenta</button>
         <button id="tabUser" class="auth-tab" role="tab" onclick="cambiarTabAuth('user')" style="display:none">Usuario</button>
-        <button id="tabMisCompras" class="auth-tab" role="tab" onclick="cambiarTabAuth('miscompras')" style="display:none">Mis compras</button>
+      </div>
       <button class="auth-close-btn" onclick="cerrarModalAuth()" aria-label="Cerrar">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
@@ -735,13 +735,23 @@
       <button id="btnUserSave" type="submit" class="auth-submit">Guardar usuario</button>
     </form>
 
-    <!-- PANEL: MIS COMPRAS -->
-    <div id="panelMisCompras" class="auth-form hidden">
-      <div id="misComprasContent">
-        <p class="mis-compras-cargando">Cargando pedidos…</p>
-      </div>
-    </div>
+  </div>
 
+  <!-- ░░ MODAL MIS COMPRAS ░░ -->
+  <div id="misComprasOverlay" class="auth-overlay hidden" onclick="cerrarMisCompras()"></div>
+  <div id="misComprasModal" class="mc-modal" role="dialog" aria-modal="true" aria-label="Mis compras">
+    <div class="mc-modal-head">
+      <div>
+        <h2 class="mc-modal-title">Mis compras</h2>
+        <p class="mc-modal-sub">Historial de tus pedidos</p>
+      </div>
+      <button class="auth-close-btn" onclick="cerrarMisCompras()" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="misComprasContent" class="mc-modal-body">
+      <p class="mis-compras-cargando">Cargando pedidos…</p>
+    </div>
   </div>
 
   <!-- ░░ MODAL ADMIN PRODUCTOS ░░ -->

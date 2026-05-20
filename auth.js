@@ -40,7 +40,6 @@ function iniciarAuth() {
     const adminMenuItem = document.getElementById('adminMenuItem');
     const misComprasMenuItem = document.getElementById('misComprasMenuItem');
     const tabUser = document.getElementById('tabUser');
-    const tabMisCompras = document.getElementById('tabMisCompras');
 
     if (user) {
       if (btnMiCuenta) btnMiCuenta.style.display = 'none';
@@ -48,7 +47,6 @@ function iniciarAuth() {
       if (userProfileItem) userProfileItem.style.display = 'flex';
       if (misComprasMenuItem) misComprasMenuItem.style.display = 'flex';
       if (tabUser) tabUser.style.display = '';
-      if (tabMisCompras) tabMisCompras.style.display = '';
       const nombre = user.displayName || user.email.split('@')[0];
       if (userNameEl) userNameEl.textContent = nombre;
 
@@ -67,7 +65,6 @@ function iniciarAuth() {
       if (userProfileItem) userProfileItem.style.display = 'none';
       if (misComprasMenuItem) misComprasMenuItem.style.display = 'none';
       if (tabUser) tabUser.style.display = 'none';
-      if (tabMisCompras) tabMisCompras.style.display = 'none';
       if (adminMenuItem) adminMenuItem.style.display = 'none';
       if (typeof window.actualizarEstadoAdmin === 'function') {
         window.actualizarEstadoAdmin(false, null);
@@ -102,43 +99,34 @@ function cerrarModalAuth() {
 window.cerrarModalAuth = cerrarModalAuth;
 
 function cambiarTabAuth(tab) {
-  var tabLogin        = document.getElementById('tabLogin');
-  var tabRegister     = document.getElementById('tabRegister');
-  var tabUser         = document.getElementById('tabUser');
-  var tabMisCompras   = document.getElementById('tabMisCompras');
-  var formLogin       = document.getElementById('formLogin');
-  var formRegister    = document.getElementById('formRegister');
-  var formUser        = document.getElementById('formUser');
-  var panelMisCompras = document.getElementById('panelMisCompras');
+  var tabLogin     = document.getElementById('tabLogin');
+  var tabRegister  = document.getElementById('tabRegister');
+  var tabUser      = document.getElementById('tabUser');
+  var formLogin    = document.getElementById('formLogin');
+  var formRegister = document.getElementById('formRegister');
+  var formUser     = document.getElementById('formUser');
 
   var user = window._auth ? window._auth.currentUser : null;
   var puedeVerUsuario = !!user;
   var puedeVerAuth = !user;
-  if ((tab === 'user' || tab === 'miscompras') && !puedeVerUsuario) {
+  if (tab === 'user' && !puedeVerUsuario) {
     tab = 'login';
   }
   if (tab === 'password') {
     tab = puedeVerUsuario ? 'user' : 'login';
   }
 
-  if (tabLogin)      tabLogin.style.display      = puedeVerAuth    ? '' : 'none';
-  if (tabRegister)   tabRegister.style.display   = puedeVerAuth    ? '' : 'none';
-  if (tabUser)       tabUser.style.display       = puedeVerUsuario ? '' : 'none';
-  if (tabMisCompras) tabMisCompras.style.display = puedeVerUsuario ? '' : 'none';
+  if (tabLogin)    tabLogin.style.display    = puedeVerAuth    ? '' : 'none';
+  if (tabRegister) tabRegister.style.display = puedeVerAuth    ? '' : 'none';
+  if (tabUser)     tabUser.style.display     = puedeVerUsuario ? '' : 'none';
 
   tabLogin.classList.toggle('auth-tab--active', tab === 'login');
   tabRegister.classList.toggle('auth-tab--active', tab === 'register');
-  if (tabUser)       tabUser.classList.toggle('auth-tab--active',       tab === 'user');
-  if (tabMisCompras) tabMisCompras.classList.toggle('auth-tab--active', tab === 'miscompras');
+  if (tabUser) tabUser.classList.toggle('auth-tab--active', tab === 'user');
 
   formLogin.classList.toggle('hidden', tab !== 'login');
   formRegister.classList.toggle('hidden', tab !== 'register');
-  if (formUser)        formUser.classList.toggle('hidden',        tab !== 'user');
-  if (panelMisCompras) panelMisCompras.classList.toggle('hidden', tab !== 'miscompras');
-
-  if (tab === 'miscompras' && puedeVerUsuario) {
-    cargarMisCompras(user);
-  }
+  if (formUser) formUser.classList.toggle('hidden', tab !== 'user');
 
   limpiarErroresAuth();
 }
@@ -158,9 +146,25 @@ window.abrirModalCambioPassword = abrirModalCambioPassword;
 
 function abrirMisCompras() {
   cerrarUserDropdown();
-  abrirModalAuth('miscompras');
+  var user = window._auth ? window._auth.currentUser : null;
+  if (!user) { abrirModalAuth('login'); return; }
+  var overlay = document.getElementById('misComprasOverlay');
+  var modal   = document.getElementById('misComprasModal');
+  if (overlay) overlay.classList.remove('hidden');
+  if (modal)   modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  cargarMisCompras(user);
 }
 window.abrirMisCompras = abrirMisCompras;
+
+function cerrarMisCompras() {
+  var overlay = document.getElementById('misComprasOverlay');
+  var modal   = document.getElementById('misComprasModal');
+  if (overlay) overlay.classList.add('hidden');
+  if (modal)   modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.cerrarMisCompras = cerrarMisCompras;
 
 /* =====================================================
    REGISTRO
@@ -756,16 +760,20 @@ function renderMisCompras(pedidos, container) {
       return '<li>' + _escHtml(item.nombre || '') + ' &times; ' + (item.cantidad || 1) + '</li>';
     }).join('');
     var total = typeof p.total === 'number'
-      ? '$\u00a0' + p.total.toLocaleString('es-AR', { minimumFractionDigits: 0 })
+      ? p.total.toLocaleString('es-AR', { minimumFractionDigits: 0 })
       : '—';
     return '<div class="mc-pedido">'
       + '<div class="mc-pedido-head">'
-        + '<span class="mc-pedido-id">Pedido #' + idCorto + '</span>'
+        + '<div class="mc-pedido-meta">'
+          + '<span class="mc-pedido-id">Pedido #' + idCorto + '</span>'
+          + '<span class="mc-fecha">' + fecha + '</span>'
+        + '</div>'
         + '<span class="mc-estado mc-estado--' + estadoInfo.cls + '">' + estadoInfo.label + '</span>'
       + '</div>'
-      + '<span class="mc-fecha">' + fecha + '</span>'
-      + '<ul class="mc-items">' + itemsHtml + '</ul>'
-      + '<div class="mc-total">Total: <strong>' + total + '</strong></div>'
+      + '<div class="mc-pedido-body">'
+        + '<ul class="mc-items">' + itemsHtml + '</ul>'
+        + '<div class="mc-total"><span>Total</span><strong>$\u00a0' + total + '</strong></div>'
+      + '</div>'
       + '</div>';
   }).join('');
   container.innerHTML = html;

@@ -1911,73 +1911,150 @@ ul { list-style: none; }
   padding: 12px;
 }
 
-/* ── Mis Compras ─────────────────────────────────────── */
-.mc-pedido {
-  border: 1.5px solid #E5E7EB;
-  border-radius: 10px;
-  padding: 14px;
+/* ── Modal Mis Compras ───────────────────────────────── */
+.mc-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%) scale(.96);
+  width: min(640px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.22);
+  z-index: 302;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
-.mc-pedido + .mc-pedido { margin-top: 12px; }
+.mc-modal.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+}
+.mc-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #F3F4F6;
+  flex-shrink: 0;
+}
+.mc-modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2c2c2e;
+  margin: 0;
+}
+.mc-modal-sub {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 3px 0 0;
+}
+.mc-modal-body {
+  padding: 20px 24px 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Cards de pedido */
+.mc-pedido {
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.mc-pedido + .mc-pedido { margin-top: 14px; }
 
 .mc-pedido-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #F9FAFB;
+  border-bottom: 1px solid #E5E7EB;
   flex-wrap: wrap;
 }
+.mc-pedido-meta { display: flex; flex-direction: column; gap: 2px; }
 .mc-pedido-id {
-  font-weight: 700;
-  font-size: 13px;
+  font-weight: 800;
+  font-size: 14px;
   color: #2c2c2e;
 }
 .mc-fecha {
   font-size: 12px;
   color: #6B7280;
 }
+.mc-pedido-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
 .mc-items {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .mc-items li {
-  font-size: 13px;
+  font-size: 13.5px;
   color: #374151;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.mc-items li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #D1D5DB;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 .mc-total {
-  font-size: 13px;
-  color: #374151;
-  padding-top: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2c2c2e;
+  padding-top: 10px;
   border-top: 1px solid #F3F4F6;
+  display: flex;
+  justify-content: space-between;
 }
+.mc-total span { font-weight: 400; color: #6B7280; }
+
+/* Badges de estado */
 .mc-estado {
   font-size: 11px;
   font-weight: 700;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: .03em;
+  letter-spacing: .04em;
   white-space: nowrap;
+  flex-shrink: 0;
 }
-.mc-estado--pendiente  { background: #FEF3C7; color: #B45309; }
+.mc-estado--pendiente  { background: #FEF3C7; color: #92400E; }
 .mc-estado--aprobado   { background: #D1FAE5; color: #065F46; }
 .mc-estado--rechazado  { background: #FEE2E2; color: #991B1B; }
 .mc-estado--revision   { background: #FFEDD5; color: #9A3412; }
 .mc-estado--otro       { background: #F3F4F6; color: #374151; }
 
+/* Estados vacío / cargando / error */
 .mis-compras-cargando,
 .mis-compras-vacio,
 .mis-compras-error {
   text-align: center;
-  padding: 28px 0;
+  padding: 40px 0;
   color: #6B7280;
   font-size: 14px;
+}
+.mis-compras-vacio::before {
+  content: '🛍️';
+  display: block;
+  font-size: 36px;
+  margin-bottom: 12px;
 }
 .mis-compras-error { color: #DC2626; }
 
