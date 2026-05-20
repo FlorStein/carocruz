@@ -4578,9 +4578,14 @@ async function confirmarDatosComprador(event) {
   if (nombreError)   nombreError.textContent = '';
   if (telefonoError) telefonoError.textContent = '';
 
+  if (!nombre) {
+    if (nombreError) nombreError.textContent = 'Ingresá tu nombre completo.';
+    document.getElementById('cmpNombre')?.focus();
+    valido = false;
+  }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     if (emailError) emailError.textContent = 'Ingresá un email válido.';
-    document.getElementById('cmpEmail')?.focus();
+    if (valido) document.getElementById('cmpEmail')?.focus();
     valido = false;
   }
   if (!telefono || !/^[\d\s()+-]{6,}$/.test(telefono)) {
