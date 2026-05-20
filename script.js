@@ -4520,10 +4520,19 @@ async function abrirCheckoutMP() {
     return;
   }
 
-  const btn  = document.getElementById('btnPagarMP');
-  const text = document.getElementById('btnPagarMPText');
+  // Mostrar overlay instantáneamente para dar feedback inmediato
+  const overlay    = document.getElementById('checkoutMPOverlay');
+  const overlayMsg = document.getElementById('checkoutMPMsg');
+  const btn        = document.getElementById('btnPagarMP');
+  if (overlay) overlay.classList.remove('hidden');
   if (btn) btn.disabled = true;
-  if (text) text.textContent = 'Generando enlace…';
+  document.body.style.overflow = 'hidden';
+
+  function ocultarOverlay() {
+    if (overlay) overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (btn) btn.disabled = false;
+  }
 
   try {
     const payload = {
@@ -4541,9 +4550,8 @@ async function abrirCheckoutMP() {
     const data = await resp.json();
 
     if (!resp.ok) {
+      ocultarOverlay();
       mostrarToast(data?.error || 'Error al generar el enlace de pago.');
-      if (btn) btn.disabled = false;
-      if (text) text.textContent = 'Iniciar compra con MercadoPago';
       return;
     }
 
@@ -4554,17 +4562,18 @@ async function abrirCheckoutMP() {
       pedidoId: data.pedidoId || '',
     }));
 
+    // Cambiar mensaje y redirigir
+    if (overlayMsg) overlayMsg.textContent = 'Redirigiendo a MercadoPago…';
     window.location.href = data.initPoint;
 
   } catch (err) {
     console.error('[CheckoutMP] Error tipo:', err?.name, '| mensaje:', err?.message, '| completo:', err);
+    ocultarOverlay();
     const esCORS = err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network') || err.message.includes('Failed'));
     const msg = esCORS
       ? 'Error al conectar con el servidor de pagos. Recargá la página e intentá de nuevo.'
       : 'No se pudo conectar. Verificá tu conexión e intentá de nuevo.';
     mostrarToast(msg);
-    if (btn) btn.disabled = false;
-    if (text) text.textContent = 'Iniciar compra con MercadoPago';
   }
 }
 

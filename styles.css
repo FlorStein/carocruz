@@ -1140,6 +1140,80 @@ ul { list-style: none; }
 .cart-wsp-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 .cart-wsp-btn:hover { background: #16A34A; }
 
+/* ── Overlay redirigiendo a MercadoPago ─────────────── */
+.cmp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cmp-overlay.hidden { display: none; }
+
+.cmp-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+/* Spinner de 3 anillos concéntricos */
+.cmp-spinner {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.cmp-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  animation: cmpSpin 1.2s linear infinite;
+}
+.cmp-ring--1 {
+  border-top-color: var(--orange);
+  animation-duration: 1s;
+}
+.cmp-ring--2 {
+  inset: 9px;
+  border-top-color: #009EE3;
+  animation-duration: 1.4s;
+  animation-direction: reverse;
+}
+.cmp-ring--3 {
+  inset: 18px;
+  border-top-color: var(--orange);
+  opacity: .5;
+  animation-duration: 0.8s;
+}
+@keyframes cmpSpin {
+  to { transform: rotate(360deg); }
+}
+
+.cmp-msg {
+  font-size: 18px;
+  font-weight: 800;
+  color: #2c2c2e;
+  margin: 0;
+}
+.cmp-sub {
+  font-size: 13px;
+  color: #6B7280;
+  margin: -12px 0 0;
+}
+
+/* Fijar tamaño del botón MP para que no crezca */
+#btnPagarMP {
+  min-height: 52px;
+  height: 52px;
+}
+
 /* ── Modal checkout MP ───────────────────────────────── */
 .checkout-mp-modal {
   max-width: 420px;
