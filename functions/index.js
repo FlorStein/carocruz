@@ -28,7 +28,7 @@ const CORS_ORIGINS = [
 ];
 
 const SITE_URL = 'https://papeleracarocruz.com';
-const WEBHOOK_URL = 'https://us-central1-carocruz-4bccc.cloudfunctions.net/webhookMP';
+const WEBHOOK_URL = 'https://webhookmp-f2t74egmxa-uc.a.run.app';
 
 // ─── Helpers de precio (replica la lógica del frontend) ──────────────────────
 function _normalizar(s) {

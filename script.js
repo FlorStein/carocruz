@@ -4515,7 +4515,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //  CHECKOUT MERCADOPAGO
 // ══════════════════════════════════════════════════════════════════════════════
 
-const MP_CREAR_PREFERENCIA_URL = 'https://crearpreferencia-478517746609.us-central1.run.app';
+const MP_CREAR_PREFERENCIA_URL = 'https://crearpreferencia-f2t74egmxa-uc.a.run.app';
 
 async function abrirCheckoutMP() {
   const total = calcularTotal();
