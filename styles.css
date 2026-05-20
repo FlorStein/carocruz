@@ -188,7 +188,7 @@ ul { list-style: none; }
 /* ======================================================
    NAV CATEGOR�AS
    ====================================================== */
-.cat-nav { background: var(--blue); }
+.cat-nav { background: #2c2c2e; }
 .cat-nav-inner {
   display: flex;
   align-items: stretch;
