@@ -843,7 +843,7 @@ ul { list-style: none; }
 /* ======================================================
    FOOTER
    ====================================================== */
-.footer { background: var(--blue); }
+.footer { background: #2c2c2e; }
 .footer-main {
   display: grid;
   grid-template-columns: 280px repeat(3, 1fr);

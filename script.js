@@ -509,6 +509,7 @@ function aplicarOverridesCatalogo() {
       if (ov.imagen) window.IMAGENES_MAP[id] = String(ov.imagen);
       else delete window.IMAGENES_MAP[id];
     }
+    if (ov.oculto === true) prod.oculto = true;
   });
 }
 
@@ -531,7 +532,8 @@ function cargarOverridesLocal() {
         categoria: normalizarCategoria(item.categoria),
         imagenSet: item.imagenSet === true,
         imagen: typeof item.imagen === 'string' ? item.imagen : '',
-        deletado: item.deletado === true
+        deletado: item.deletado === true,
+        oculto: item.oculto === true
       };
     });
   } catch {
@@ -544,11 +546,11 @@ function obtenerEstiloCategoria(categoria) {
 }
 
 function productosNovedadesVisibles() {
-  return PRODUCTOS_ADMIN.filter(p => p.categoria !== 'OFERTA');
+  return PRODUCTOS_ADMIN.filter(p => p.categoria !== 'OFERTA' && !p.oculto).slice(0, 8);
 }
 
 function productosOfertasVisibles() {
-  return PRODUCTOS_ADMIN.filter(p => p.categoria === 'OFERTA');
+  return PRODUCTOS_ADMIN.filter(p => p.categoria === 'OFERTA' && !p.oculto);
 }
 
 function guardarProductosAdmin() {
@@ -562,7 +564,8 @@ function guardarProductosAdmin() {
       stock: Number.isFinite(p.stock) ? p.stock : null,
       categoria: p.categoria,
       imagen: (window.IMAGENES_MAP && window.IMAGENES_MAP[p.id]) || '',
-      creadoPor: p.creadoPor || ''
+      creadoPor: p.creadoPor || '',
+      oculto: !!p.oculto
     };
   });
   localStorage.setItem(STORAGE_ADMIN_PRODUCTOS, JSON.stringify(serializado));
@@ -600,7 +603,8 @@ function cargarProductosAdmin() {
         bgImg: estilo.bgImg,
         iconColor: estilo.iconColor,
         icon: ICONO_PRODUCTO_ADMIN,
-        creadoPor: item.creadoPor || ''
+        creadoPor: item.creadoPor || '',
+        oculto: item.oculto === true
       });
 
       if (item.imagen) {
@@ -664,7 +668,8 @@ function productoAdminDesdeData(id, data) {
     bgImg: estilo.bgImg,
     iconColor: estilo.iconColor,
     icon: ICONO_PRODUCTO_ADMIN,
-    creadoPor: String(data.creadoPor || '')
+    creadoPor: String(data.creadoPor || ''),
+    oculto: !!data.oculto
   };
 }
 
@@ -1262,7 +1267,7 @@ function obtenerItemsGestionAdmin() {
   const adminIds = new Set(PRODUCTOS_ADMIN.map(function(p) { return p.id; }));
   const map = new Map();
 
-  todosLosProductos().forEach(function(p) {
+  PRODUCTOS_ADMIN.forEach(function(p) {
     if (!p || !p.id) return;
     if (map.has(p.id)) return;
     const source = adminIds.has(p.id) ? 'ADMIN' : 'CATALOGO';
@@ -1272,6 +1277,7 @@ function obtenerItemsGestionAdmin() {
       precio: p.precio,
       stock: Number.isFinite(p.stock) ? p.stock : 0,
       categoria: p.categoria,
+      oculto: !!p.oculto,
       _source: source
     });
   });
@@ -1597,7 +1603,9 @@ function renderAdminGestionList() {
           <button type="button" class="admin-item-btn" onclick="adminGuardarImagenPublicacion('${p.id.replace(/'/g, "\\'")}')">Guardar imagen</button>
           <button type="button" class="admin-item-btn" onclick="adminEliminarImagenPublicacion('${p.id.replace(/'/g, "\\'")}')">Quitar imagen</button>
           <button type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminGuardarPublicacion('${p.id.replace(/'/g, "\\'")}')">Guardar cambios</button>
-          <button type="button" class="admin-item-btn" onclick="adminOcultarPublicacion('${p.id.replace(/'/g, "\\'")}')">Ocultar</button>
+          ${p.oculto
+            ? `<button type="button" class="admin-item-btn admin-item-btn--primary" onclick="adminMostrarPublicacion('${p.id.replace(/'/g, "\\'")}')">Mostrar</button>`
+            : `<button type="button" class="admin-item-btn" onclick="adminOcultarPublicacion('${p.id.replace(/'/g, "\\'")}')">Ocultar</button>`}
           ${p._source === 'ADMIN'
             ? `<button type="button" class="admin-item-btn admin-item-btn--danger" onclick="adminEliminarPublicacion('${p.id.replace(/'/g, "\\'")}')">Eliminar</button>`
             : `<button type="button" class="admin-item-btn" onclick="adminRestaurarPublicacionCatalogo('${p.id.replace(/'/g, "\\'")}')">Restaurar CSV</button>`}
@@ -3209,17 +3217,18 @@ async function adminOcultarPublicacion(id) {
     mostrarToast('Solo usuarios admin pueden ocultar publicaciones.');
     return;
   }
-  const prod = todosLosProductos().find(function(p) { return p.id === id; });
+  const prod = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
   if (!prod) return;
 
-  const ok = window.confirm(`¿Poner stock en 0 para "${prod.nombre}"? Se ocultará del catálogo.`);
+  const ok = window.confirm(`¿Ocultar "${prod.nombre}" del catálogo?`);
   if (!ok) return;
 
-  prod.stock = 0;
-  const esManual = PRODUCTOS_ADMIN.some(function(p) { return p.id === id; });
-  if (!esManual) {
+  prod.oculto = true;
+  const esManual = true; // siempre está en PRODUCTOS_ADMIN
+  const esSoloOverride = !esManual;
+  if (esSoloOverride) {
     const prev = PRODUCTOS_OVERRIDES[id] || {};
-    PRODUCTOS_OVERRIDES[id] = Object.assign({}, prev, { stock: 0 });
+    PRODUCTOS_OVERRIDES[id] = Object.assign({}, prev, { oculto: true });
   }
 
   guardarProductosAdmin();
@@ -3232,20 +3241,10 @@ async function adminOcultarPublicacion(id) {
 
   if (usaFirestoreAdmin && firestoreDb && !productoEsSoloLocal(id)) {
     try {
-      if (esManual) {
-        await withTimeout(
-          firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).update({ stock: 0, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp() }),
-          8000, 'Timeout Firestore'
-        );
-      } else {
-        await withTimeout(
-          firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set(
-            { stock: 0, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(), updatedBy: window._authCurrentUser?.email || '' },
-            { merge: true }
-          ),
-          8000, 'Timeout Firestore'
-        );
-      }
+      await withTimeout(
+        firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).update({ oculto: true, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp() }),
+        8000, 'Timeout Firestore'
+      );
     } catch (err) {
       console.warn('[Admin] Ocultar publicación: sync parcial:', err);
       mostrarToast('Ocultado localmente. Firestore no respondió.');
@@ -3253,9 +3252,48 @@ async function adminOcultarPublicacion(id) {
     }
   }
 
-  mostrarToast('Publicación ocultada (stock=0).');
+  mostrarToast('Publicación ocultada.');
 }
 window.adminOcultarPublicacion = adminOcultarPublicacion;
+
+async function adminMostrarPublicacion(id) {
+  if (!usuarioAdminActivo) {
+    mostrarToast('Solo usuarios admin pueden mostrar publicaciones.');
+    return;
+  }
+  const prod = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
+  if (!prod) return;
+
+  prod.oculto = false;
+  const prev = PRODUCTOS_OVERRIDES[id];
+  if (prev) {
+    PRODUCTOS_OVERRIDES[id] = Object.assign({}, prev, { oculto: false });
+  }
+
+  guardarProductosAdmin();
+  guardarOverridesLocal();
+  refrescarCatalogoPrincipal();
+  renderAdminGestionList();
+  _actualizarInfoSeleccionMasivaAdmin();
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput && searchInput.value.trim()) buscar();
+
+  if (usaFirestoreAdmin && firestoreDb && !productoEsSoloLocal(id)) {
+    try {
+      await withTimeout(
+        firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).update({ oculto: false, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp() }),
+        8000, 'Timeout Firestore'
+      );
+    } catch (err) {
+      console.warn('[Admin] Mostrar publicación: sync parcial:', err);
+      mostrarToast('Mostrado localmente. Firestore no respondió.');
+      return;
+    }
+  }
+
+  mostrarToast('Publicación visible nuevamente.');
+}
+window.adminMostrarPublicacion = adminMostrarPublicacion;
 
 async function adminEliminarTodosProductosAdmin() {
   if (!usuarioAdminActivo) {
@@ -3584,7 +3622,7 @@ function guardarCarrito() {
 }
 
 function todosLosProductos() {
-  return PRODUCTOS_ADMIN.slice();
+  return PRODUCTOS_ADMIN.filter(p => !p.oculto);
 }
 
 function agregarAlCarrito(id) {
