@@ -3723,6 +3723,10 @@ function actualizarUI() {
   const btnVaciar = document.getElementById('btnVaciarCarrito');
   if (btnVaciar) btnVaciar.style.display = carrito.length > 0 ? 'inline-flex' : 'none';
 
+  // Botón pagar con MercadoPago (solo cuando se alcanza el mínimo)
+  const btnMP = document.getElementById('btnPagarMP');
+  if (btnMP) btnMP.style.display = (total >= MIN && carrito.length > 0) ? 'flex' : 'none';
+
   // Progress bar
   const pct     = Math.min(100, (total / MIN) * 100);
   const bar     = document.getElementById('cartProgressBar');
