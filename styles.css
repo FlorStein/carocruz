@@ -392,8 +392,8 @@ ul { list-style: none; }
    BENEFICIOS
    ====================================================== */
 .benefits {
-  background: #fffaf4;
-  border-bottom: 1px solid var(--warm);
+  background: #2c2c2e;
+  border-bottom: 1px solid #3a3a3c;
 }
 .benefits-inner {
   display: flex;
@@ -413,12 +413,12 @@ ul { list-style: none; }
   color: var(--orange);
   flex-shrink: 0;
 }
-.benefit-item h3 { font-size: 15px; font-weight: 700; color: var(--blue); }
-.benefit-item p  { font-size: 12px; color: var(--text-muted); }
+.benefit-item h3 { font-size: 15px; font-weight: 700; color: #ffffff; }
+.benefit-item p  { font-size: 12px; color: #a1a1aa; }
 .benefit-divider {
   width: 1px;
   height: 60px;
-  background: var(--warm);
+  background: #3a3a3c;
   flex-shrink: 0;
   margin: 0 32px;
 }
