@@ -737,6 +737,40 @@
 
   </div>
 
+  <!-- ░░ MODAL DATOS COMPRADOR ░░ -->
+  <div id="cmpDatosOverlay" class="auth-overlay hidden" onclick="cerrarDatosComprador()"></div>
+  <div id="cmpDatosModal" class="auth-modal hidden" role="dialog" aria-modal="true" aria-label="Datos para tu compra">
+    <div class="auth-modal-head">
+      <div>
+        <h2 class="auth-modal-title">Datos para tu compra</h2>
+        <p class="auth-modal-sub">Te enviaremos la confirmación y seguimiento a tu email</p>
+      </div>
+      <button class="auth-close" onclick="cerrarDatosComprador()" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="cmpDatosForm" class="auth-form" onsubmit="confirmarDatosComprador(event)" novalidate>
+      <div class="auth-field">
+        <label for="cmpNombre">Nombre completo</label>
+        <input id="cmpNombre" type="text" placeholder="Tu nombre" autocomplete="name" />
+        <span id="cmpNombreError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="cmpEmail">Email <span style="color:var(--blue);font-size:11px">*</span></label>
+        <input id="cmpEmail" type="email" placeholder="tu@email.com" autocomplete="email" />
+        <span id="cmpEmailError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="cmpTelefono">Teléfono <small style="color:#888">(opcional)</small></label>
+        <input id="cmpTelefono" type="tel" placeholder="Ej: 1123456789" autocomplete="tel" />
+      </div>
+      <button type="submit" class="auth-submit" id="cmpDatosSubmit">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Continuar con MercadoPago
+      </button>
+    </form>
+  </div>
+
   <!-- ░░ OVERLAY REDIRIGIENDO A MP ░░ -->
   <div id="checkoutMPOverlay" class="cmp-overlay hidden">
     <div class="cmp-box">

@@ -4530,7 +4530,65 @@ async function abrirCheckoutMP() {
     return;
   }
 
-  // Mostrar overlay instantáneamente para dar feedback inmediato
+  // Pre-llenar con datos del usuario logueado (si hay)
+  const user = window._auth ? window._auth.currentUser : null;
+  const emailInput  = document.getElementById('cmpEmail');
+  const nombreInput = document.getElementById('cmpNombre');
+  const telInput    = document.getElementById('cmpTelefono');
+
+  if (emailInput && user) {
+    emailInput.value = user.email || '';
+    if (nombreInput) nombreInput.value = user.displayName || '';
+  }
+
+  // Limpiar errores previos
+  ['cmpNombreError', 'cmpEmailError'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '';
+  });
+
+  // Mostrar modal de datos
+  const datosOverlay = document.getElementById('cmpDatosOverlay');
+  const datosModal   = document.getElementById('cmpDatosModal');
+  if (datosOverlay) datosOverlay.classList.remove('hidden');
+  if (datosModal)   datosModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => emailInput && !emailInput.value && emailInput.focus(), 50);
+}
+
+function cerrarDatosComprador() {
+  document.getElementById('cmpDatosOverlay')?.classList.add('hidden');
+  document.getElementById('cmpDatosModal')?.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+async function confirmarDatosComprador(event) {
+  event.preventDefault();
+
+  const nombre   = document.getElementById('cmpNombre')?.value.trim() || '';
+  const email    = document.getElementById('cmpEmail')?.value.trim() || '';
+  const telefono = document.getElementById('cmpTelefono')?.value.trim() || '';
+
+  // Validar email obligatorio
+  let valido = true;
+  const emailError  = document.getElementById('cmpEmailError');
+  const nombreError = document.getElementById('cmpNombreError');
+  if (emailError) emailError.textContent = '';
+  if (nombreError) nombreError.textContent = '';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (emailError) emailError.textContent = 'Ingresá un email válido.';
+    document.getElementById('cmpEmail')?.focus();
+    valido = false;
+  }
+  if (!valido) return;
+
+  // Cerrar modal de datos y ejecutar checkout
+  cerrarDatosComprador();
+  await _ejecutarCheckoutMP({ nombre, email, telefono });
+}
+
+async function _ejecutarCheckoutMP(comprador) {
   const overlay    = document.getElementById('checkoutMPOverlay');
   const overlayMsg = document.getElementById('checkoutMPMsg');
   const btn        = document.getElementById('btnPagarMP');
@@ -4549,6 +4607,7 @@ async function abrirCheckoutMP() {
       items: carrito.map(function(i) {
         return { id: i.id, cantidad: i.cantidad };
       }),
+      comprador,
     };
 
     const resp = await fetch(MP_CREAR_PREFERENCIA_URL, {
@@ -4662,6 +4721,8 @@ function cerrarPagoExitoso() {
   document.body.style.overflow = '';
 }
 
-window.abrirCheckoutMP  = abrirCheckoutMP;
-window.cerrarCheckoutMP = cerrarCheckoutMP;
-window.cerrarPagoExitoso = cerrarPagoExitoso;
+window.abrirCheckoutMP        = abrirCheckoutMP;
+window.cerrarDatosComprador   = cerrarDatosComprador;
+window.confirmarDatosComprador = confirmarDatosComprador;
+window.cerrarCheckoutMP       = cerrarCheckoutMP;
+window.cerrarPagoExitoso      = cerrarPagoExitoso;
