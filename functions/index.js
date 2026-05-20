@@ -128,33 +128,37 @@ exports.crearPreferencia = onRequest(
       const config = configSnap.exists ? configSnap.data() : {};
       const minCompra = Math.max(0, Number(config.minCompra || 0));
 
-      // ── Leer precios reales de Firestore (nunca confiar en el cliente) ───
-      const itemsValidados = [];
+      // ── Validar IDs antes de ir a Firestore ─────────────────────────────
+      const itemsEntrada = [];
       for (const item of body.items) {
         const id       = String(item.id || '').trim();
         const cantidad = Math.max(1, Math.min(999, Math.floor(Number(item.cantidad || 1))));
-
         if (!id || !/^[a-zA-Z0-9_-]{1,100}$/.test(id)) {
           res.status(400).json({ error: `ID de producto inválido: ${id}` });
           return;
         }
+        itemsEntrada.push({ id, cantidad });
+      }
 
-        const prodSnap = await db.collection('productos_admin').doc(id).get();
-        if (!prodSnap.exists) {
+      // ── Leer todos los productos en paralelo (una sola ronda de red) ────
+      const docRefs = itemsEntrada.map(i => db.collection('productos_admin').doc(i.id));
+      const snaps   = await db.getAll(...docRefs);
+
+      const itemsValidados = [];
+      for (let idx = 0; idx < itemsEntrada.length; idx++) {
+        const { id, cantidad } = itemsEntrada[idx];
+        const snap = snaps[idx];
+        if (!snap.exists) {
           res.status(404).json({ error: `Producto no encontrado: ${id}` });
           return;
         }
-
-        const prod = { id, ...prodSnap.data() };
-        // Rechazar productos inactivos
+        const prod = { id, ...snap.data() };
         if (prod.activo === false) {
           res.status(400).json({ error: `Producto no disponible: ${prod.nombre}` });
           return;
         }
-
         const precioUnitario = calcularPrecioFinal(prod, config);
         const subtotal       = calcularSubtotal(prod, cantidad, config);
-
         itemsValidados.push({
           id,
           nombre:       String(prod.nombre || '').slice(0, 256),

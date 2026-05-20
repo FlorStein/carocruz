@@ -3801,6 +3801,10 @@ function toggleCart() {
   const open    = panel.classList.toggle('open');
   overlay.classList.toggle('hidden', !open);
   document.body.style.overflow = open ? 'hidden' : '';
+  // Pre-calentar la Function para reducir cold start al pagar
+  if (open && carrito.length > 0) {
+    fetch(MP_CREAR_PREFERENCIA_URL, { method: 'OPTIONS' }).catch(() => {});
+  }
 }
 
 // ── Finalizar compra ──────────────────────────────────────────────────────────
@@ -4539,7 +4543,7 @@ async function abrirCheckoutMP() {
     if (!resp.ok) {
       mostrarToast(data?.error || 'Error al generar el enlace de pago.');
       if (btn) btn.disabled = false;
-      if (text) text.textContent = 'Pagar con MercadoPago';
+      if (text) text.textContent = 'Iniciar compra con MercadoPago';
       return;
     }
 
@@ -4560,7 +4564,7 @@ async function abrirCheckoutMP() {
       : 'No se pudo conectar. Verificá tu conexión e intentá de nuevo.';
     mostrarToast(msg);
     if (btn) btn.disabled = false;
-    if (text) text.textContent = 'Pagar con MercadoPago';
+    if (text) text.textContent = 'Iniciar compra con MercadoPago';
   }
 }
 
