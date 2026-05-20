@@ -38,13 +38,17 @@ function iniciarAuth() {
     const userNameEl   = document.getElementById('userNameDisplay');
     const userProfileItem = document.getElementById('userProfileItem');
     const adminMenuItem = document.getElementById('adminMenuItem');
+    const misComprasMenuItem = document.getElementById('misComprasMenuItem');
     const tabUser = document.getElementById('tabUser');
+    const tabMisCompras = document.getElementById('tabMisCompras');
 
     if (user) {
       if (btnMiCuenta) btnMiCuenta.style.display = 'none';
       if (userDisplay) userDisplay.style.display = 'flex';
       if (userProfileItem) userProfileItem.style.display = 'flex';
+      if (misComprasMenuItem) misComprasMenuItem.style.display = 'flex';
       if (tabUser) tabUser.style.display = '';
+      if (tabMisCompras) tabMisCompras.style.display = '';
       const nombre = user.displayName || user.email.split('@')[0];
       if (userNameEl) userNameEl.textContent = nombre;
 
@@ -61,7 +65,9 @@ function iniciarAuth() {
       if (btnMiCuenta) btnMiCuenta.style.display = 'flex';
       if (userDisplay) userDisplay.style.display = 'none';
       if (userProfileItem) userProfileItem.style.display = 'none';
+      if (misComprasMenuItem) misComprasMenuItem.style.display = 'none';
       if (tabUser) tabUser.style.display = 'none';
+      if (tabMisCompras) tabMisCompras.style.display = 'none';
       if (adminMenuItem) adminMenuItem.style.display = 'none';
       if (typeof window.actualizarEstadoAdmin === 'function') {
         window.actualizarEstadoAdmin(false, null);
@@ -96,40 +102,43 @@ function cerrarModalAuth() {
 window.cerrarModalAuth = cerrarModalAuth;
 
 function cambiarTabAuth(tab) {
-  var tabLogin     = document.getElementById('tabLogin');
-  var tabRegister  = document.getElementById('tabRegister');
-  var tabUser      = document.getElementById('tabUser');
-  var formLogin    = document.getElementById('formLogin');
-  var formRegister = document.getElementById('formRegister');
-  var formUser     = document.getElementById('formUser');
+  var tabLogin        = document.getElementById('tabLogin');
+  var tabRegister     = document.getElementById('tabRegister');
+  var tabUser         = document.getElementById('tabUser');
+  var tabMisCompras   = document.getElementById('tabMisCompras');
+  var formLogin       = document.getElementById('formLogin');
+  var formRegister    = document.getElementById('formRegister');
+  var formUser        = document.getElementById('formUser');
+  var panelMisCompras = document.getElementById('panelMisCompras');
 
   var user = window._auth ? window._auth.currentUser : null;
   var puedeVerUsuario = !!user;
   var puedeVerAuth = !user;
-  if (tab === 'user' && !puedeVerUsuario) {
+  if ((tab === 'user' || tab === 'miscompras') && !puedeVerUsuario) {
     tab = 'login';
   }
   if (tab === 'password') {
     tab = puedeVerUsuario ? 'user' : 'login';
   }
 
-  if (tabLogin) {
-    tabLogin.style.display = puedeVerAuth ? '' : 'none';
-  }
-  if (tabRegister) {
-    tabRegister.style.display = puedeVerAuth ? '' : 'none';
-  }
-  if (tabUser) {
-    tabUser.style.display = puedeVerUsuario ? '' : 'none';
-  }
+  if (tabLogin)      tabLogin.style.display      = puedeVerAuth    ? '' : 'none';
+  if (tabRegister)   tabRegister.style.display   = puedeVerAuth    ? '' : 'none';
+  if (tabUser)       tabUser.style.display       = puedeVerUsuario ? '' : 'none';
+  if (tabMisCompras) tabMisCompras.style.display = puedeVerUsuario ? '' : 'none';
 
   tabLogin.classList.toggle('auth-tab--active', tab === 'login');
   tabRegister.classList.toggle('auth-tab--active', tab === 'register');
-  if (tabUser) tabUser.classList.toggle('auth-tab--active', tab === 'user');
+  if (tabUser)       tabUser.classList.toggle('auth-tab--active',       tab === 'user');
+  if (tabMisCompras) tabMisCompras.classList.toggle('auth-tab--active', tab === 'miscompras');
 
   formLogin.classList.toggle('hidden', tab !== 'login');
   formRegister.classList.toggle('hidden', tab !== 'register');
-  if (formUser) formUser.classList.toggle('hidden', tab !== 'user');
+  if (formUser)        formUser.classList.toggle('hidden',        tab !== 'user');
+  if (panelMisCompras) panelMisCompras.classList.toggle('hidden', tab !== 'miscompras');
+
+  if (tab === 'miscompras' && puedeVerUsuario) {
+    cargarMisCompras(user);
+  }
 
   limpiarErroresAuth();
 }
@@ -146,6 +155,12 @@ function abrirModalCambioPassword() {
   abrirModalAuth('password');
 }
 window.abrirModalCambioPassword = abrirModalCambioPassword;
+
+function abrirMisCompras() {
+  cerrarUserDropdown();
+  abrirModalAuth('miscompras');
+}
+window.abrirMisCompras = abrirMisCompras;
 
 /* =====================================================
    REGISTRO
@@ -693,4 +708,82 @@ function mensajeFirebase(code) {
     'auth/missing-email':          'Ingresá un email para continuar.',
   };
   return msgs[code] || 'Ocurrió un error. Intentá de nuevo.';
+}
+
+/* =====================================================
+   MIS COMPRAS
+   ===================================================== */
+async function cargarMisCompras(user) {
+  var container = document.getElementById('misComprasContent');
+  if (!container || !user) return;
+  container.innerHTML = '<p class="mis-compras-cargando">Cargando pedidos…</p>';
+  try {
+    var db = firebase.firestore();
+    var snap = await db.collection('pedidos')
+      .where('comprador.email', '==', user.email)
+      .limit(20)
+      .get();
+    var pedidos = [];
+    snap.forEach(function(doc) {
+      var data = doc.data();
+      data._id = doc.id;
+      pedidos.push(data);
+    });
+    pedidos.sort(function(a, b) {
+      var ta = a.creadoEn && a.creadoEn.toMillis ? a.creadoEn.toMillis() : 0;
+      var tb = b.creadoEn && b.creadoEn.toMillis ? b.creadoEn.toMillis() : 0;
+      return tb - ta;
+    });
+    renderMisCompras(pedidos, container);
+  } catch (err) {
+    container.innerHTML = '<p class="mis-compras-error">No se pudieron cargar los pedidos. Intentá de nuevo.</p>';
+  }
+}
+
+function renderMisCompras(pedidos, container) {
+  if (!pedidos.length) {
+    container.innerHTML = '<p class="mis-compras-vacio">Todavía no realizaste compras.</p>';
+    return;
+  }
+  var html = pedidos.map(function(p) {
+    var fecha = p.creadoEn && p.creadoEn.toDate
+      ? p.creadoEn.toDate().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        + ' ' + p.creadoEn.toDate().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })
+      : '—';
+    var idCorto = (p._id || '').slice(-6).toUpperCase();
+    var estadoInfo = _estadoPedidoInfo(p.estado);
+    var itemsHtml = (p.items || []).map(function(item) {
+      return '<li>' + _escHtml(item.nombre || '') + ' &times; ' + (item.cantidad || 1) + '</li>';
+    }).join('');
+    var total = typeof p.total === 'number'
+      ? '$\u00a0' + p.total.toLocaleString('es-AR', { minimumFractionDigits: 0 })
+      : '—';
+    return '<div class="mc-pedido">'
+      + '<div class="mc-pedido-head">'
+        + '<span class="mc-pedido-id">Pedido #' + idCorto + '</span>'
+        + '<span class="mc-estado mc-estado--' + estadoInfo.cls + '">' + estadoInfo.label + '</span>'
+      + '</div>'
+      + '<span class="mc-fecha">' + fecha + '</span>'
+      + '<ul class="mc-items">' + itemsHtml + '</ul>'
+      + '<div class="mc-total">Total: <strong>' + total + '</strong></div>'
+      + '</div>';
+  }).join('');
+  container.innerHTML = html;
+}
+
+function _estadoPedidoInfo(estado) {
+  var map = {
+    pendiente:    { label: 'Pendiente de pago', cls: 'pendiente' },
+    aprobado:     { label: 'Pagado ✓',          cls: 'aprobado'  },
+    rechazado:    { label: 'Rechazado',          cls: 'rechazado' },
+    pendiente_mp: { label: 'En revisión',        cls: 'revision'  },
+  };
+  return map[estado] || { label: estado || 'Desconocido', cls: 'otro' };
+}
+
+function _escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
