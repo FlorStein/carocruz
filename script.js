@@ -549,6 +549,14 @@ function productosNovedadesVisibles() {
   return PRODUCTOS_ADMIN.filter(p => p.categoria !== 'OFERTA' && !p.oculto).slice(0, 8);
 }
 
+function productosNovedadesUltimaSemana() {
+  const haceSieteDias = (Date.now() / 1000) - 7 * 24 * 60 * 60;
+  return PRODUCTOS_ADMIN.filter(function(p) {
+    if (p.categoria === 'OFERTA' || p.oculto) return false;
+    return p.createdAtSeconds !== null && p.createdAtSeconds >= haceSieteDias;
+  });
+}
+
 function productosOfertasVisibles() {
   return PRODUCTOS_ADMIN.filter(p => p.categoria === 'OFERTA' && !p.oculto);
 }
@@ -657,6 +665,8 @@ function productoAdminDesdeData(id, data) {
   if (!nombre || !Number.isFinite(precio) || precio <= 0 || !categoria) return null;
 
   const estilo = obtenerEstiloCategoria(categoria);
+  const tsRaw = data.createdAt;
+  const createdAtSeconds = tsRaw && typeof tsRaw.seconds === 'number' ? tsRaw.seconds : null;
   return {
     id,
     nombre,
@@ -669,7 +679,8 @@ function productoAdminDesdeData(id, data) {
     iconColor: estilo.iconColor,
     icon: ICONO_PRODUCTO_ADMIN,
     creadoPor: String(data.creadoPor || ''),
-    oculto: !!data.oculto
+    oculto: !!data.oculto,
+    createdAtSeconds
   };
 }
 
@@ -4137,7 +4148,7 @@ function mostrarCategoria(cat, titulo) {
 
   // Guardar lista base y resetear filtros
   _productosCategoriaActual = catNorm === 'NOVEDADES'
-    ? productosNovedadesVisibles().slice()
+    ? productosNovedadesUltimaSemana().slice()
     : todosLosProductos().filter(p => normalizarCategoria(p.categoria) === catNorm);
   _modoVistaActual = 'categoria';
   _resetFiltros();
