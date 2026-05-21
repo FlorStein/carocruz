@@ -1772,7 +1772,7 @@ function _adminFindCsvHeaderIndex(headersNormalizados, aliases) {
 }
 
 function _adminIdCsvUnico(baseId, usados) {
-  const base = String(baseId || '').trim() || `adm-csv-${Date.now()}`;
+  const base = (String(baseId || '').trim().replace(/[/\\]/g, '-') || `adm-csv-${Date.now()}`);
   if (!usados.has(base)) {
     usados.add(base);
     return base;
