@@ -28,6 +28,7 @@ import {
   deleteDoc,
   getDoc,
   serverTimestamp,
+  writeBatch,
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import {
   getStorage,
@@ -63,6 +64,7 @@ const storage = getStorage(app);
 function mkDoc(colName, docId) {
   const dRef = doc(db, colName, docId);
   return {
+    _ref:       dRef,
     get:        ()           => getDoc(dRef),
     set:        (data, opts) => opts ? setDoc(dRef, data, opts) : setDoc(dRef, data),
     update:     (data)       => updateDoc(dRef, data),
@@ -92,11 +94,24 @@ function mkStorage() {
   };
 }
 
+// ─── Proxy compat Batch ───────────────────────────────────────────────────────
+function mkBatch() {
+  const batch = writeBatch(db);
+  // Acepta tanto un proxy mkDoc (tiene ._ref) como un DocumentReference nativo
+  function toRef(r) { return r._ref || r; }
+  return {
+    set:    (r, data, opts) => { opts ? batch.set(toRef(r), data, opts) : batch.set(toRef(r), data); },
+    update: (r, data)       => { batch.update(toRef(r), data); },
+    delete: (r)             => { batch.delete(toRef(r)); },
+    commit: ()              => batch.commit(),
+  };
+}
+
 // ─── window.firebase (shim compat) ────────────────────────────────────────────
 // script.js y auth.js siguen usando window.firebase.firestore(), etc.
 // Este shim los atiende sin que esos archivos necesiten cambios estructurales.
 const firebaseShim = {
-  firestore: () => ({ collection: (name) => mkCol(name) }),
+  firestore: () => ({ collection: (name) => mkCol(name), batch: () => mkBatch() }),
   auth:      () => auth,
   storage:   () => mkStorage(),
 };
