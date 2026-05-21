@@ -2400,13 +2400,15 @@ async function adminImportarCsvMasivo() {
 
     if (usaFirestoreAdmin && firestoreDb && (adminIdsSync.size || overridesIdsSync.size)) {
       try {
-        const jobs = [];
+        // Construir lista de operaciones {ref, data}
+        const ops = [];
 
         adminIdsSync.forEach(function(id) {
           const prod = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
           if (!prod) return;
-          jobs.push(withTimeout(
-            firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).set({
+          ops.push({
+            ref: firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id),
+            data: {
               nombre: prod.nombre,
               precio: prod.precio,
               stock: Number.isFinite(prod.stock) ? prod.stock : 0,
@@ -2415,27 +2417,32 @@ async function adminImportarCsvMasivo() {
               creadoPor: prod.creadoPor || (window._authCurrentUser?.email || ''),
               updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
               updatedBy: window._authCurrentUser?.email || ''
-            }, { merge: true }),
-            8000,
-            'No se pudo sincronizar un producto importado.'
-          ));
+            }
+          });
         });
 
         overridesIdsSync.forEach(function(id) {
           const ov = PRODUCTOS_OVERRIDES[id];
           if (!ov) return;
-          jobs.push(withTimeout(
-            firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id).set({
+          ops.push({
+            ref: firestoreDb.collection(FIRESTORE_OVERRIDES_COLLECTION).doc(id),
+            data: {
               ...ov,
               updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
               updatedBy: window._authCurrentUser?.email || ''
-            }, { merge: true }),
-            8000,
-            'No se pudo sincronizar un override importado.'
-          ));
+            }
+          });
         });
 
-        await Promise.all(jobs);
+        // Enviar en lotes de 400 (límite de Firestore: 500 por batch)
+        const BATCH_SIZE = 400;
+        for (let b = 0; b < ops.length; b += BATCH_SIZE) {
+          const batch = firestoreDb.batch();
+          ops.slice(b, b + BATCH_SIZE).forEach(function(op) {
+            batch.set(op.ref, op.data, { merge: true });
+          });
+          await batch.commit();
+        }
       } catch (err) {
         console.warn('[Admin] Importación CSV: sync Firestore parcial/fallida:', err);
         mostrarToast('Importación aplicada localmente. Firestore no respondió para algunos ítems.');
