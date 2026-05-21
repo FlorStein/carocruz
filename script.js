@@ -2231,6 +2231,7 @@ async function adminImportarCsvMasivo() {
     const usados = new Set(todosLosProductos().map(function(p) { return p.id; }));
     const errores = [];
     const adminIdsSync = new Set();
+    const adminIdsNew = new Set();  // solo los creados (para agregar createdAt)
     const overridesIdsSync = new Set();
 
     let procesadas = 0;
@@ -2388,6 +2389,7 @@ async function adminImportarCsvMasivo() {
         else delete window.IMAGENES_MAP[idNuevo];
       }
       adminIdsSync.add(idNuevo);
+      adminIdsNew.add(idNuevo);
       creadas += 1;
     }
 
@@ -2406,6 +2408,7 @@ async function adminImportarCsvMasivo() {
         adminIdsSync.forEach(function(id) {
           const prod = PRODUCTOS_ADMIN.find(function(p) { return p.id === id; });
           if (!prod) return;
+          const esNuevo = adminIdsNew.has(id);
           ops.push({
             ref: firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id),
             data: {
@@ -2415,6 +2418,7 @@ async function adminImportarCsvMasivo() {
               categoria: prod.categoria,
               imagen: String((window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || ''),
               creadoPor: prod.creadoPor || (window._authCurrentUser?.email || ''),
+              ...(esNuevo ? { createdAt: window.firebase.firestore.FieldValue.serverTimestamp() } : {}),
               updatedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
               updatedBy: window._authCurrentUser?.email || ''
             }
@@ -2443,8 +2447,10 @@ async function adminImportarCsvMasivo() {
           });
           await batch.commit();
         }
+        console.log(`[Admin] Sync Firestore OK: ${ops.length} operaciones en ${Math.ceil(ops.length / BATCH_SIZE)} lote(s).`);
       } catch (err) {
         console.warn('[Admin] Importación CSV: sync Firestore parcial/fallida:', err);
+        errores.push(`⚠️ Error al sincronizar con Firestore: ${err?.message || err}. Los productos están en memoria pero no se guardaron en la nube. Recargá la página e intentá de nuevo.`);
         mostrarToast('Importación aplicada localmente. Firestore no respondió para algunos ítems.');
       }
     }
