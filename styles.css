@@ -2597,6 +2597,16 @@ ul { list-style: none; }
   background: #fff;
   font-size: 13px;
 }
+.admin-item-field textarea {
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  font-size: 13px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
 .admin-item-field .admin-select {
   height: 36px;
   font-size: 13px;
@@ -2825,6 +2835,19 @@ ul { list-style: none; }
   color: #1E293B;
   line-height: 1.3;
   margin: 0;
+}
+.prod-detalle-subtitulo {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin: 2px 0 0;
+}
+.prod-detalle-descripcion {
+  font-size: 13px;
+  color: #64748B;
+  line-height: 1.55;
+  margin: 4px 0 0;
+  white-space: pre-line;
 }
 .prod-detalle-precio {
   font-size: 26px;

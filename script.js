@@ -679,7 +679,9 @@ function productoAdminDesdeData(id, data) {
     icon: ICONO_PRODUCTO_ADMIN,
     creadoPor: String(data.creadoPor || ''),
     oculto: !!data.oculto,
-    createdAtSeconds
+    createdAtSeconds,
+    subtitulo: String(data.subtitulo || ''),
+    descripcion: String(data.descripcion || '')
   };
 }
 
@@ -1288,6 +1290,8 @@ function obtenerItemsGestionAdmin() {
       stock: Number.isFinite(p.stock) ? p.stock : 0,
       categoria: p.categoria,
       oculto: !!p.oculto,
+      subtitulo: p.subtitulo || '',
+      descripcion: p.descripcion || '',
       _source: source
     });
   });
@@ -1555,7 +1559,7 @@ function renderAdminGestionList() {
               ${thumbHtml}
             </button>
           </div>
-          <div>
+        <div>
             <p class="admin-item-title">${escapeHtml(p.nombre)}</p>
             <p class="admin-item-cat">${escapeHtml(p.categoria)} · ${p._source === 'ADMIN' ? 'Manual' : 'Catálogo CSV'}</p>
           </div>
@@ -1565,6 +1569,18 @@ function renderAdminGestionList() {
           </label>
         </div>
         <div class="admin-item-grid">
+          <div class="admin-item-field admin-item-field--full">
+            <label for="adminNombreEdit-${k}">Título</label>
+            <input id="adminNombreEdit-${k}" type="text" value="${escapeHtml(p.nombre)}" maxlength="120" />
+          </div>
+          <div class="admin-item-field admin-item-field--full">
+            <label for="adminSubtituloEdit-${k}">Subtítulo</label>
+            <input id="adminSubtituloEdit-${k}" type="text" value="${escapeHtml(p.subtitulo || '')}" maxlength="160" placeholder="(opcional)" />
+          </div>
+          <div class="admin-item-field admin-item-field--full">
+            <label for="adminDescripcionEdit-${k}">Texto de la publicación</label>
+            <textarea id="adminDescripcionEdit-${k}" rows="3" maxlength="1000" placeholder="(opcional)">${escapeHtml(p.descripcion || '')}</textarea>
+          </div>
           <div class="admin-item-field">
             <label for="adminPrecioEdit-${k}">Precio</label>
             <input id="adminPrecioEdit-${k}" type="number" min="1" step="1" value="${Number(p.precio) || 0}" />
@@ -3032,6 +3048,9 @@ async function adminGuardarPublicacion(id) {
   const precio = Number(document.getElementById(`adminPrecioEdit-${key}`)?.value || 0);
   const stock = Number(document.getElementById(`adminStockEdit-${key}`)?.value || 0);
   const categoriaEdit = normalizarCategoria(document.getElementById(`adminCategoriaEdit-${key}`)?.value || prod.categoria);
+  const nombreEdit = String(document.getElementById(`adminNombreEdit-${key}`)?.value || '').trim();
+  const subtituloEdit = String(document.getElementById(`adminSubtituloEdit-${key}`)?.value || '').trim();
+  const descripcionEdit = String(document.getElementById(`adminDescripcionEdit-${key}`)?.value || '').trim();
 
   // Si hay imagen pendiente, guardarla primero
   const archivoImgPendiente = document.getElementById(`adminImagenArchivoEdit-${key}`)?.files?.[0] || null;
@@ -3052,7 +3071,14 @@ async function adminGuardarPublicacion(id) {
     mostrarToast('Categoría inválida en la publicación.');
     return;
   }
+  if (nombreEdit && nombreEdit.length < 2) {
+    mostrarToast('El título debe tener al menos 2 caracteres.');
+    return;
+  }
 
+  if (nombreEdit) prod.nombre = nombreEdit;
+  prod.subtitulo = subtituloEdit;
+  prod.descripcion = descripcionEdit;
   prod.precio = Math.floor(precio);
   prod.stock = Math.floor(stock);
   aplicarEstiloCategoriaProducto(prod, categoriaEdit);
@@ -3078,6 +3104,9 @@ async function adminGuardarPublicacion(id) {
     try {
       await withTimeout(
         firestoreDb.collection(FIRESTORE_ADMIN_COLLECTION).doc(id).update({
+          nombre: prod.nombre,
+          subtitulo: prod.subtitulo,
+          descripcion: prod.descripcion,
           precio: prod.precio,
           stock: prod.stock,
           categoria: prod.categoria,
@@ -4358,6 +4387,8 @@ function abrirModalProducto(id) {
   const imgWrap = document.getElementById('prodDetalleImgWrap');
   const badge   = document.getElementById('prodDetalleBadge');
   const nombre  = document.getElementById('prodDetalleNombre');
+  const subtituloEl = document.getElementById('prodDetalleSubtitulo');
+  const descripcionEl = document.getElementById('prodDetalleDescripcion');
   const precio  = document.getElementById('prodDetallePrecio');
   const stock   = document.getElementById('prodDetalleStock');
   const qty     = document.getElementById('prodDetalleQty');
@@ -4383,6 +4414,14 @@ function abrirModalProducto(id) {
     badge.style.color = prod.categText;
   }
   if (nombre) nombre.textContent = prod.nombre;
+  if (subtituloEl) {
+    subtituloEl.textContent = prod.subtitulo || '';
+    subtituloEl.style.display = prod.subtitulo ? '' : 'none';
+  }
+  if (descripcionEl) {
+    descripcionEl.textContent = prod.descripcion || '';
+    descripcionEl.style.display = prod.descripcion ? '' : 'none';
+  }
 
   const precioBase  = Number(prod.precio) || 0;
   const descuento   = descuentoTotalProducto(prod);
