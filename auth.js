@@ -51,6 +51,7 @@ function iniciarAuth() {
       if (userNameEl) userNameEl.textContent = nombre;
 
       const esAdmin = esUsuarioAdmin(user);
+      if (misComprasMenuItem) misComprasMenuItem.style.display = esAdmin ? 'none' : 'flex';
       if (adminMenuItem) adminMenuItem.style.display = esAdmin ? 'flex' : 'none';
       if (typeof window.actualizarEstadoAdmin === 'function') {
         window.actualizarEstadoAdmin(esAdmin, user);
