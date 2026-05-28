@@ -27,6 +27,8 @@ import {
   updateDoc,
   deleteDoc,
   getDoc,
+  getDocs,
+  addDoc,
   serverTimestamp,
   writeBatch,
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
@@ -77,6 +79,8 @@ function mkCol(colName) {
   const cRef = collection(db, colName);
   return {
     doc:        (docId)      => mkDoc(colName, docId),
+    add:        (data)       => addDoc(cRef, data),
+    get:        ()           => getDocs(cRef),
     onSnapshot: (cb, errCb)  => onSnapshot(cRef, cb, errCb || undefined),
   };
 }
