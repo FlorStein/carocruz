@@ -247,11 +247,6 @@ function aplicarConfigComercialUI() {
   }
 }
 
-    footerInstagramEl.textContent = '@' + handle;
-    footerInstagramEl.href = 'https://www.instagram.com/' + encodeURIComponent(handle);
-  }
-}
-
 // ── Carrusel del hero ─────────────────────────────────────────────────────────
 function _iniciarCarrusel(banners) {
   if (_carruselTimer) { clearInterval(_carruselTimer); _carruselTimer = null; }
