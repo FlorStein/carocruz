@@ -3167,3 +3167,71 @@ ul { list-style: none; }
   }
 }
 
+
+/* ======================================================
+   NEWSLETTER POPUP
+   ====================================================== */
+.newsletter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .3s;
+  padding: 16px;
+}
+.newsletter-overlay.newsletter-visible { opacity: 1; }
+.newsletter-modal {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px 24px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,.18);
+  transform: translateY(20px);
+  transition: transform .3s;
+}
+.newsletter-overlay.newsletter-visible .newsletter-modal { transform: translateY(0); }
+.newsletter-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+.newsletter-close:hover { color: #333; }
+.newsletter-icon { font-size: 2rem; margin-bottom: 8px; }
+.newsletter-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #1a1a2e;
+}
+.newsletter-sub {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+.newsletter-skip {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: underline;
+}
+.newsletter-skip:hover { color: #555; }
