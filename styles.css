@@ -379,14 +379,62 @@ ul { list-style: none; }
   gap: 14px;
 }
 .hero-img-placeholder svg { width: 64px; height: 64px; }
-.hero-dots { display: flex; gap: 8px; }
+.hero-dots { display: flex; gap: 8px; min-height: 10px; }
 .dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: rgba(255,255,255,.35);
+  transition: background .3s;
 }
 .dot--active { background: #fff; }
+
+/* Carousel prev/next buttons */
+.hero-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.4);
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .2s;
+}
+.hero-carousel-btn:hover { background: rgba(0,0,0,.65); }
+.hero-carousel-btn--prev { left: 8px; }
+.hero-carousel-btn--next { right: 8px; }
+
+/* Admin carousel slide list */
+.admin-carrusel-slide {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+.admin-carrusel-slide-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.admin-carrusel-slide-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+@media (max-width: 600px) {
+  .admin-carrusel-slide-fields { grid-template-columns: 1fr; }
+}
 
 /* ======================================================
    BENEFICIOS

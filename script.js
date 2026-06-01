@@ -54,6 +54,7 @@ const CONFIG_COMERCIAL_DEFAULT = {
   heroBannerPositionY: 50,
   heroBannerPositionXMobile: 50,
   heroBannerPositionYMobile: 50,
+  heroBanners: [],
   marcasPromocion: [],
   descuentoMarca: 0,
   productos2x1: [],
@@ -99,6 +100,12 @@ let adminSeleccionados = new Set();
 let adminHeroBannerObjectUrl = '';
 let adminPromo2x1Draft = [];
 const adminImageCropDrafts = {};
+let _adminCarruselSlides = [];
+
+// ── Carrusel del hero ────────────────────────────────────────────────────────
+let _carruselBanners = [];
+let _carruselIdx     = 0;
+let _carruselTimer   = null;
 
 function _toEnteroPositivo(value, fallback) {
   const n = Number(value);
@@ -150,7 +157,17 @@ function clonarConfigComercial(raw) {
     ofertasPorCategoria: ofertas,
     footerSubtitle: String(src.footerSubtitle ?? base.footerSubtitle).trim(),
     footerHorario: String(src.footerHorario ?? base.footerHorario).trim(),
-    footerInstagram: String(src.footerInstagram ?? base.footerInstagram).trim()
+    footerInstagram: String(src.footerInstagram ?? base.footerInstagram).trim(),
+    heroBanners: Array.isArray(src.heroBanners) ? src.heroBanners.map(function(s) {
+      return {
+        imagen: String(s && s.imagen || '').trim(),
+        imagenMobile: String(s && s.imagenMobile || '').trim(),
+        posX: Math.max(0, Math.min(100, Number.isFinite(+s.posX) ? +s.posX : 50)),
+        posY: Math.max(0, Math.min(100, Number.isFinite(+s.posY) ? +s.posY : 50)),
+        posXMobile: Math.max(0, Math.min(100, Number.isFinite(+s.posXMobile) ? +s.posXMobile : 50)),
+        posYMobile: Math.max(0, Math.min(100, Number.isFinite(+s.posYMobile) ? +s.posYMobile : 50))
+      };
+    }).filter(function(s) { return !!s.imagen; }) : []
   };
 }
 
@@ -205,42 +222,18 @@ function aplicarConfigComercialUI() {
   _setTextoConSaltos('heroTitleText', configComercial.heroTitle || CONFIG_COMERCIAL_DEFAULT.heroTitle);
   _setTextoConSaltos('heroSubText', configComercial.heroSub || CONFIG_COMERCIAL_DEFAULT.heroSub);
 
-  const heroImg = document.getElementById('heroBannerImg');
+  const heroImg     = document.getElementById('heroBannerImg');
   const heroImgMobile = document.getElementById('heroBannerImgMobile');
-  const heroFallback = document.getElementById('heroBannerFallback');
-  const heroSection = document.getElementById('heroSection');
-  const heroSrc = String(configComercial.heroBannerImage || '').trim();
-  const heroSrcMobile = String(configComercial.heroBannerImageMobile || '').trim();
-  if (heroImg) {
-    heroImg.onerror = function() {
-      heroImg.style.display = 'none';
-      if (!heroSrcMobile && heroFallback) heroFallback.style.display = 'flex';
-      if (heroSection && !heroSrcMobile) heroSection.classList.remove('hero--has-banner');
-    };
-    if (heroSrc) {
-      heroImg.src = heroSrc;
-      heroImg.style.objectPosition = (configComercial.heroBannerPositionX ?? 50) + '% ' + (configComercial.heroBannerPositionY ?? 50) + '%';
-      heroImg.style.display = 'block';
-    } else {
-      heroImg.removeAttribute('src');
-      heroImg.style.display = 'none';
-    }
-  }
-  if (heroImgMobile) {
-    if (heroSrcMobile) {
-      heroImgMobile.src = heroSrcMobile;
-      heroImgMobile.style.objectPosition = (configComercial.heroBannerPositionXMobile ?? 50) + '% ' + (configComercial.heroBannerPositionYMobile ?? 50) + '%';
-      heroImgMobile.style.display = 'block';
-    } else {
-      heroImgMobile.removeAttribute('src');
-      heroImgMobile.style.display = 'none';
-    }
-  }
-  const hasBanner = !!(heroSrc || heroSrcMobile);
-  if (heroSection) heroSection.classList.toggle('hero--has-banner', hasBanner);
-  if (heroFallback) {
-    heroFallback.style.display = hasBanner ? 'none' : 'flex';
-  }
+
+  // Construir lista de banners para el carrusel
+  const _slides = Array.isArray(configComercial.heroBanners) && configComercial.heroBanners.length > 0
+    ? configComercial.heroBanners
+    : (configComercial.heroBannerImage
+        ? [{ imagen: configComercial.heroBannerImage, imagenMobile: configComercial.heroBannerImageMobile || '',
+             posX: configComercial.heroBannerPositionX ?? 50, posY: configComercial.heroBannerPositionY ?? 50,
+             posXMobile: configComercial.heroBannerPositionXMobile ?? 50, posYMobile: configComercial.heroBannerPositionYMobile ?? 50 }]
+        : []);
+  _iniciarCarrusel(_slides);
 
   const footerSubtitleEl = document.getElementById('footerSubtitleEl');
   if (footerSubtitleEl) footerSubtitleEl.textContent = configComercial.footerSubtitle || CONFIG_COMERCIAL_DEFAULT.footerSubtitle;
@@ -252,6 +245,201 @@ function aplicarConfigComercialUI() {
     footerInstagramEl.textContent = '@' + handle;
     footerInstagramEl.href = 'https://www.instagram.com/' + encodeURIComponent(handle);
   }
+}
+
+    footerInstagramEl.textContent = '@' + handle;
+    footerInstagramEl.href = 'https://www.instagram.com/' + encodeURIComponent(handle);
+  }
+}
+
+// ── Carrusel del hero ─────────────────────────────────────────────────────────
+function _iniciarCarrusel(banners) {
+  if (_carruselTimer) { clearInterval(_carruselTimer); _carruselTimer = null; }
+  _carruselBanners = banners;
+  _carruselIdx = 0;
+
+  const prev = document.getElementById('heroBannerPrev');
+  const next = document.getElementById('heroBannerNext');
+  const multi = banners.length > 1;
+  if (prev) prev.style.display = multi ? 'flex' : 'none';
+  if (next) next.style.display = multi ? 'flex' : 'none';
+
+  if (banners.length > 0) {
+    _irASlide(0);
+    if (multi) {
+      _carruselTimer = setInterval(function() {
+        _irASlide((_carruselIdx + 1) % _carruselBanners.length);
+      }, 5000);
+    }
+  } else {
+    // Sin banners: mostrar fallback
+    const heroSection = document.getElementById('heroSection');
+    const heroFallback = document.getElementById('heroBannerFallback');
+    const heroImg = document.getElementById('heroBannerImg');
+    const heroImgMobile = document.getElementById('heroBannerImgMobile');
+    if (heroImg) { heroImg.removeAttribute('src'); heroImg.style.display = 'none'; }
+    if (heroImgMobile) { heroImgMobile.removeAttribute('src'); heroImgMobile.style.display = 'none'; }
+    if (heroSection) heroSection.classList.remove('hero--has-banner');
+    if (heroFallback) heroFallback.style.display = 'flex';
+    _actualizarDots();
+  }
+}
+
+function _irASlide(idx) {
+  if (!_carruselBanners.length) return;
+  _carruselIdx = ((idx % _carruselBanners.length) + _carruselBanners.length) % _carruselBanners.length;
+  const slide = _carruselBanners[_carruselIdx];
+
+  const heroImg       = document.getElementById('heroBannerImg');
+  const heroImgMobile = document.getElementById('heroBannerImgMobile');
+  const heroFallback  = document.getElementById('heroBannerFallback');
+  const heroSection   = document.getElementById('heroSection');
+
+  if (heroImg) {
+    if (slide.imagen) {
+      heroImg.src = slide.imagen;
+      heroImg.style.objectPosition = (slide.posX ?? 50) + '% ' + (slide.posY ?? 50) + '%';
+      heroImg.style.display = 'block';
+    } else {
+      heroImg.removeAttribute('src'); heroImg.style.display = 'none';
+    }
+  }
+  if (heroImgMobile) {
+    if (slide.imagenMobile) {
+      heroImgMobile.src = slide.imagenMobile;
+      heroImgMobile.style.objectPosition = (slide.posXMobile ?? 50) + '% ' + (slide.posYMobile ?? 50) + '%';
+      heroImgMobile.style.display = 'block';
+    } else {
+      heroImgMobile.removeAttribute('src'); heroImgMobile.style.display = 'none';
+    }
+  }
+  const hasBanner = !!(slide.imagen || slide.imagenMobile);
+  if (heroSection) heroSection.classList.toggle('hero--has-banner', hasBanner);
+  if (heroFallback) heroFallback.style.display = hasBanner ? 'none' : 'flex';
+  _actualizarDots();
+}
+
+function _actualizarDots() {
+  const dotsContainer = document.getElementById('heroDots');
+  if (!dotsContainer) return;
+  dotsContainer.innerHTML = _carruselBanners.map(function(_, i) {
+    return `<span class="dot${i === _carruselIdx ? ' dot--active' : ''}" onclick="heroBannerIrASlide(${i})" style="cursor:pointer"></span>`;
+  }).join('');
+}
+
+function _reiniciarTimerCarrusel() {
+  if (_carruselTimer) { clearInterval(_carruselTimer); _carruselTimer = null; }
+  if (_carruselBanners.length > 1) {
+    _carruselTimer = setInterval(function() {
+      _irASlide((_carruselIdx + 1) % _carruselBanners.length);
+    }, 5000);
+  }
+}
+
+function heroBannerNext() { _irASlide(_carruselIdx + 1); _reiniciarTimerCarrusel(); }
+function heroBannerPrev() { _irASlide(_carruselIdx - 1); _reiniciarTimerCarrusel(); }
+function heroBannerIrASlide(idx) { _irASlide(idx); _reiniciarTimerCarrusel(); }
+window.heroBannerNext = heroBannerNext;
+window.heroBannerPrev = heroBannerPrev;
+window.heroBannerIrASlide = heroBannerIrASlide;
+
+// ── Admin: gestión de slides del carrusel ─────────────────────────────────────
+function renderAdminCarruselSlides() {
+  const container = document.getElementById('adminCarruselSlidesList');
+  if (!container) return;
+  if (!_adminCarruselSlides.length) {
+    container.innerHTML = '<p class="admin-help" style="margin:8px 0">Sin slides. Hacé clic en "Agregar slide" para comenzar.</p>';
+    return;
+  }
+  container.innerHTML = _adminCarruselSlides.map(function(s, i) {
+    return `
+      <div class="admin-carrusel-slide">
+        <div class="admin-carrusel-slide-head">
+          <strong>Slide ${i + 1}</strong>
+          <div style="display:flex;gap:4px">
+            ${i > 0 ? `<button type="button" class="admin-item-btn" onclick="adminCarruselMoverSlide(${i},-1)">↑</button>` : ''}
+            ${i < _adminCarruselSlides.length - 1 ? `<button type="button" class="admin-item-btn" onclick="adminCarruselMoverSlide(${i},1)">↓</button>` : ''}
+            <button type="button" class="admin-item-btn admin-item-btn--danger" onclick="adminCarruselEliminarSlide(${i})">Eliminar</button>
+          </div>
+        </div>
+        <div class="admin-carrusel-slide-fields">
+          <div class="auth-field">
+            <label>Desktop — imagen URL</label>
+            <input type="url" id="adminCarruselSlide${i}Img" value="${escapeHtml(s.imagen || '')}" placeholder="https://..." style="width:100%" />
+          </div>
+          <div class="auth-field">
+            <label>Desktop — subir archivo</label>
+            <input type="file" accept="image/*" onchange="adminCarruselSubirImagen(${i}, this, false)" />
+          </div>
+          <div class="auth-field">
+            <label>Mobile — imagen URL <span class="admin-help">(opcional)</span></label>
+            <input type="url" id="adminCarruselSlide${i}ImgMobile" value="${escapeHtml(s.imagenMobile || '')}" placeholder="https://..." style="width:100%" />
+          </div>
+          <div class="auth-field">
+            <label>Mobile — subir archivo <span class="admin-help">(opcional)</span></label>
+            <input type="file" accept="image/*" onchange="adminCarruselSubirImagen(${i}, this, true)" />
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+window.renderAdminCarruselSlides = renderAdminCarruselSlides;
+
+function adminCarruselAgregarSlide() {
+  _adminCarruselSlides.push({ imagen: '', imagenMobile: '', posX: 50, posY: 50, posXMobile: 50, posYMobile: 50 });
+  renderAdminCarruselSlides();
+}
+window.adminCarruselAgregarSlide = adminCarruselAgregarSlide;
+
+function adminCarruselEliminarSlide(idx) {
+  _adminCarruselSlides.splice(idx, 1);
+  renderAdminCarruselSlides();
+}
+window.adminCarruselEliminarSlide = adminCarruselEliminarSlide;
+
+function adminCarruselMoverSlide(idx, dir) {
+  const ni = idx + dir;
+  if (ni < 0 || ni >= _adminCarruselSlides.length) return;
+  const tmp = _adminCarruselSlides[idx];
+  _adminCarruselSlides[idx] = _adminCarruselSlides[ni];
+  _adminCarruselSlides[ni] = tmp;
+  renderAdminCarruselSlides();
+}
+window.adminCarruselMoverSlide = adminCarruselMoverSlide;
+
+async function adminCarruselSubirImagen(idx, input, esMobile) {
+  const file = input.files && input.files[0];
+  if (!file || !String(file.type).startsWith('image/')) return;
+  try {
+    const dataUrl = await obtenerImagenFinalAdmin('', file, { maxWidth: esMobile ? 700 : 1400, maxHeight: esMobile ? 700 : 700, quality: 0.85 });
+    if (!_adminCarruselSlides[idx]) return;
+    if (esMobile) {
+      _adminCarruselSlides[idx].imagenMobile = dataUrl;
+      const el = document.getElementById(`adminCarruselSlide${idx}ImgMobile`);
+      if (el) el.value = dataUrl;
+    } else {
+      _adminCarruselSlides[idx].imagen = dataUrl;
+      const el = document.getElementById(`adminCarruselSlide${idx}Img`);
+      if (el) el.value = dataUrl;
+    }
+    mostrarToast('Imagen del slide lista. Guardá la configuración para publicarla.');
+  } catch (err) {
+    mostrarToast('Error al procesar imagen: ' + (err?.message || 'error desconocido'));
+  }
+}
+window.adminCarruselSubirImagen = adminCarruselSubirImagen;
+
+function _leerSlidesDesdeAdmin() {
+  return _adminCarruselSlides.map(function(s, i) {
+    const imgEl = document.getElementById(`adminCarruselSlide${i}Img`);
+    const imgMobEl = document.getElementById(`adminCarruselSlide${i}ImgMobile`);
+    return {
+      imagen: (imgEl ? imgEl.value.trim() : '') || s.imagen || '',
+      imagenMobile: (imgMobEl ? imgMobEl.value.trim() : '') || s.imagenMobile || '',
+      posX: s.posX || 50, posY: s.posY || 50,
+      posXMobile: s.posXMobile || 50, posYMobile: s.posYMobile || 50
+    };
+  }).filter(function(s) { return !!s.imagen; });
 }
 
 function descuentoCategoriaActivo(categoria) {
@@ -932,6 +1120,10 @@ function cargarFormularioConfigComercialAdmin() {
   adminPromo2x1Draft = Array.isArray(configComercial.productos2x1) ? configComercial.productos2x1.slice() : [];
   adminRenderProductos2x1();
   adminRenderSelectorProductos2x1();
+  _adminCarruselSlides = Array.isArray(configComercial.heroBanners)
+    ? configComercial.heroBanners.map(function(s) { return Object.assign({}, s); })
+    : [];
+  renderAdminCarruselSlides();
   actualizarPreviewHeroBannerAdmin();
   _actualizarInfoSeleccionMasivaAdmin();
 }
@@ -1112,6 +1304,7 @@ async function guardarConfigComercialAdmin() {
     heroBannerPositionY: Math.round(parseFloat(getVal('adminHeroBannerPosY')) || 50),
     heroBannerPositionXMobile: Math.round(parseFloat(getVal('adminHeroBannerPosMobileX')) || 50),
     heroBannerPositionYMobile: Math.round(parseFloat(getVal('adminHeroBannerPosMobileY')) || 50),
+    heroBanners: _leerSlidesDesdeAdmin(),
     marcasPromocion: marcasPromo,
     descuentoMarca: getVal('adminDescuentoMarca'),
     productos2x1: adminPromo2x1Draft,
@@ -1148,6 +1341,13 @@ async function guardarConfigComercialAdmin() {
     }
     if (esDataUrl(payloadFirestore.heroBannerImageMobile)) {
       payloadFirestore.heroBannerImageMobile = '';
+    }
+    if (Array.isArray(payloadFirestore.heroBanners)) {
+      payloadFirestore.heroBanners = payloadFirestore.heroBanners.map(function(s) {
+        return Object.assign({}, s,
+          { imagen: esDataUrl(s.imagen) ? '' : (s.imagen || ''),
+            imagenMobile: esDataUrl(s.imagenMobile) ? '' : (s.imagenMobile || '') });
+      }).filter(function(s) { return !!s.imagen; });
     }
     try {
       await withTimeout(
@@ -4499,6 +4699,69 @@ function _manejarHashProducto() {
   intentar(15);
 }
 
+// ══════════════════════════════════════════════════════════════════════════════
+//  NEWSLETTER POPUP
+// ══════════════════════════════════════════════════════════════════════════════
+
+function mostrarPopupSuscripcion() {
+  const overlay = document.getElementById('newsletterOverlay');
+  if (!overlay) return;
+  overlay.style.display = 'flex';
+  requestAnimationFrame(function() { overlay.classList.add('newsletter-visible'); });
+}
+
+function cerrarSuscripcion() {
+  localStorage.setItem('carocruz_newsletter_shown', '1');
+  const overlay = document.getElementById('newsletterOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('newsletter-visible');
+  setTimeout(function() { overlay.style.display = 'none'; }, 300);
+}
+
+async function enviarSuscripcion(event) {
+  if (event) event.preventDefault();
+  const nombreEl = document.getElementById('nlNombre');
+  const emailEl  = document.getElementById('nlEmail');
+  const nombre   = (nombreEl?.value || '').trim();
+  const email    = (emailEl?.value || '').trim();
+
+  if (!nombre) { mostrarToast('Por favor ingresá tu nombre.'); nombreEl?.focus(); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    mostrarToast('Por favor ingresá un email válido.'); emailEl?.focus(); return;
+  }
+
+  const btn = document.getElementById('nlSubmitBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+
+  try {
+    if (firestoreDb) {
+      await firestoreDb.collection('suscriptores').add({
+        nombre: nombre,
+        email:  email,
+        createdAt: window.firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
+    localStorage.setItem('carocruz_newsletter_shown', '1');
+    // Reemplazar form con mensaje de éxito
+    const body = document.getElementById('newsletterBody');
+    if (body) {
+      body.innerHTML = `<div style="text-align:center;padding:16px 0">
+        <p style="font-size:1.3rem;margin-bottom:8px">¡Gracias, ${escapeHtml(nombre)}!</p>
+        <p style="color:#666">Te avisaremos de novedades y ofertas.</p>
+        <button type="button" class="btn-primary" style="margin-top:16px" onclick="cerrarSuscripcion()">Cerrar</button>
+      </div>`;
+    }
+  } catch (err) {
+    console.warn('[Newsletter] Error al guardar suscriptor:', err);
+    if (btn) { btn.disabled = false; btn.textContent = 'Suscribirme'; }
+    mostrarToast('Hubo un problema. Por favor intentá de nuevo.');
+  }
+}
+
+window.mostrarPopupSuscripcion = mostrarPopupSuscripcion;
+window.cerrarSuscripcion       = cerrarSuscripcion;
+window.enviarSuscripcion       = enviarSuscripcion;
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!FORZAR_CATALOGO_VACIO) {
     capturarBaseCatalogoOriginal();
@@ -4561,6 +4824,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Manejar retorno desde MercadoPago (?pago=aprobado|rechazado|pendiente)
   _manejarRetornoMP();
+
+  // Mostrar popup de suscripción después de unos segundos (si no fue descartado antes)
+  if (!localStorage.getItem('carocruz_newsletter_shown')) {
+    setTimeout(mostrarPopupSuscripcion, 4000);
+  }
 });
 
 // ══════════════════════════════════════════════════════════════════════════════

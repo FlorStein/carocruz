@@ -159,13 +159,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             <p>Productos de calidad<br />para tu negocio</p>
           </div>
+          <button id="heroBannerPrev" class="hero-carousel-btn hero-carousel-btn--prev" style="display:none" onclick="heroBannerPrev()" aria-label="Slide anterior">&#8249;</button>
+          <button id="heroBannerNext" class="hero-carousel-btn hero-carousel-btn--next" style="display:none" onclick="heroBannerNext()" aria-label="Slide siguiente">&#8250;</button>
         </div>
-        <div class="hero-dots">
-          <span class="dot dot--active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+        <div class="hero-dots" id="heroDots"></div>
       </div>
     </div>
   </section>
@@ -1003,6 +1000,16 @@
           </div>
 
           <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar banners</button>
+
+          <!-- Carrusel de slides adicionales -->
+          <div class="admin-config-box" style="margin-top:20px">
+            <p class="admin-mini-title">Carrusel de slides</p>
+            <p class="admin-help" style="margin-bottom:10px">Agregá múltiples slides para el hero. Si hay slides aquí, se usan en lugar del banner único de arriba.</p>
+            <div id="adminCarruselSlidesList"></div>
+            <button type="button" class="admin-item-btn" style="margin-top:10px" onclick="adminCarruselAgregarSlide()">+ Agregar slide</button>
+          </div>
+
+          <button type="button" class="auth-submit admin-config-save" onclick="guardarConfigComercialAdmin()">Guardar banners</button>
         </div>
 
         <div id="adminTabForm-promociones" class="admin-tab-panel" data-scope="form" data-tab-id="promociones">
@@ -1334,6 +1341,30 @@
   </div>
 
   <!-- Firebase SDK Modular v10 (reemplaza los 4 scripts compat anteriores) -->
+  <!-- Newsletter popup -->
+  <div id="newsletterOverlay" class="newsletter-overlay" style="display:none" onclick="if(event.target===this)cerrarSuscripcion()">
+    <div class="newsletter-modal" role="dialog" aria-modal="true" aria-labelledby="nlTitle">
+      <button class="newsletter-close" onclick="cerrarSuscripcion()" aria-label="Cerrar">&times;</button>
+      <div id="newsletterBody">
+        <div class="newsletter-icon" aria-hidden="true">✉️</div>
+        <h3 id="nlTitle" class="newsletter-title">¡Novedades y ofertas exclusivas!</h3>
+        <p class="newsletter-sub">Suscribite y recibí alertas de descuentos y nuevos productos.</p>
+        <form onsubmit="enviarSuscripcion(event)" novalidate>
+          <div class="auth-field">
+            <label for="nlNombre">Nombre</label>
+            <input id="nlNombre" type="text" placeholder="Tu nombre" autocomplete="given-name" required />
+          </div>
+          <div class="auth-field">
+            <label for="nlEmail">Email</label>
+            <input id="nlEmail" type="email" placeholder="tu@email.com" autocomplete="email" required />
+          </div>
+          <button id="nlSubmitBtn" type="submit" class="auth-submit" style="width:100%;margin-top:8px">Suscribirme</button>
+        </form>
+        <button type="button" class="newsletter-skip" onclick="cerrarSuscripcion()">No gracias</button>
+      </div>
+    </div>
+  </div>
+
   <!-- type="module" descarga solo los módulos importados, ejecuta antes que los defer -->
   <script type="module" src="firebase-init.js"></script>
   <!-- Mapa de imágenes (generado por scraper-tam.js — opcional, carga si existe) -->
