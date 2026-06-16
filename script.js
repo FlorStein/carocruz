@@ -4866,14 +4866,22 @@ async function abrirCheckoutMP() {
   const datosOverlay = document.getElementById('cmpDatosOverlay');
   const datosModal   = document.getElementById('cmpDatosModal');
   if (datosOverlay) datosOverlay.classList.remove('hidden');
-  if (datosModal)   datosModal.classList.remove('hidden');
+  if (datosModal) {
+    datosModal.classList.remove('hidden');
+    datosModal.classList.add('open');
+  }
   document.body.style.overflow = 'hidden';
   setTimeout(() => emailInput && !emailInput.value && emailInput.focus(), 50);
 }
 
 function cerrarDatosComprador() {
-  document.getElementById('cmpDatosOverlay')?.classList.add('hidden');
-  document.getElementById('cmpDatosModal')?.classList.add('hidden');
+  const datosOverlay = document.getElementById('cmpDatosOverlay');
+  const datosModal = document.getElementById('cmpDatosModal');
+  if (datosOverlay) datosOverlay.classList.add('hidden');
+  if (datosModal) {
+    datosModal.classList.remove('open');
+    datosModal.classList.add('hidden');
+  }
   document.body.style.overflow = '';
 }
 
