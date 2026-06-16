@@ -1585,7 +1585,7 @@ ul { list-style: none; }
   left: 50%;
   transform: translate(-50%, -48%) scale(.96);
   width: min(460px, calc(100vw - 32px));
-  max-height: calc(100dvh - 32px);
+  max-height: min(600px, calc(100dvh - 60px));
   overflow-y: auto;
   background: #fff;
   border-radius: 16px;
