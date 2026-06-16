@@ -21,13 +21,13 @@ const GMAIL_APP_PASS    = defineSecret('GMAIL_APP_PASS');
 
 // ─── Orígenes permitidos ──────────────────────────────────────────────────────
 const CORS_ORIGINS = [
-  'https://papeleracarocruz.com',
-  'https://www.papeleracarocruz.com',
+  'https://carocruzpapelera.com',
+  'https://www.carocruzpapelera.com',
   'http://localhost:5500',
   'http://127.0.0.1:5500',
 ];
 
-const SITE_URL = 'https://papeleracarocruz.com';
+const SITE_URL = 'https://carocruzpapelera.com';
 const WEBHOOK_URL = 'https://webhookmp-f2t74egmxa-uc.a.run.app';
 
 // ─── Helpers de precio (replica la lógica del frontend) ──────────────────────
@@ -90,11 +90,19 @@ function emailValido(email) {
 exports.crearPreferencia = onRequest(
   {
     region: 'us-central1',
-    cors: true,
     secrets: [MP_ACCESS_TOKEN, GMAIL_USER, GMAIL_APP_PASS],
     timeoutSeconds: 30,
   },
   async (req, res) => {
+    // Set CORS headers for all responses when the origin is allowed
+    const origin = req.headers.origin || '';
+    if (Array.isArray(CORS_ORIGINS) && CORS_ORIGINS.includes(origin)) {
+      res.set('Access-Control-Allow-Origin', origin);
+      res.set('Vary', 'Origin');
+      res.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+      res.set('Access-Control-Allow-Headers', req.headers['access-control-request-headers'] || 'Content-Type');
+    }
+
     if (req.method === 'OPTIONS') {
       res.status(204).send('');
       return;
@@ -104,34 +112,39 @@ exports.crearPreferencia = onRequest(
       return;
     }
 
-    const body = req.body;
-
-    // ── Validar items ──────────────────────────────────────────────────────
-    if (!Array.isArray(body?.items) || body.items.length === 0) {
-      res.status(400).json({ error: 'items requerido' });
-      return;
-    }
-    if (body.items.length > 50) {
-      res.status(400).json({ error: 'Máximo 50 productos por pedido' });
-      return;
-    }
-
-    // ── Datos del comprador (opcionales — MP los solicita en su propio checkout) ──
-    const comprador = body.comprador || {};
-    const nombre   = String(comprador.nombre  || '').trim().slice(0, 100);
-    const email    = String(comprador.email   || '').trim().toLowerCase().slice(0, 200);
-    const telefono = String(comprador.telefono || '').trim().slice(0, 30);
-
     try {
-      // ── Leer config de descuentos desde Firestore (servidor) ─────────────
-      const configSnap = await db.collection('config_admin').doc('comercial').get();
-      const config = configSnap.exists ? configSnap.data() : {};
-      const minCompra = Math.max(0, Number(config.minCompra || 0));
+      const body = req.body;
 
-      // ── Validar IDs antes de ir a Firestore ─────────────────────────────
+      // ── Validar email ────────────────────────────────────────────────────
+      const email = String(body?.comprador?.email || '').trim();
+      if (!emailValido(email)) {
+        res.status(400).json({ error: 'Email inválido' });
+        return;
+      }
+
+      // ── Extraer campos ───────────────────────────────────────────────────
+      const nombre    = String(body?.comprador?.nombre || '').trim().slice(0, 100);
+      const telefono  = String(body?.comprador?.telefono || '').trim().slice(0, 20);
+      const items     = Array.isArray(body?.items) ? body.items : [];
+
+      if (!nombre) {
+        res.status(400).json({ error: 'Nombre requerido' });
+        return;
+      }
+      if (items.length === 0) {
+        res.status(400).json({ error: 'Carrito vacío' });
+        return;
+      }
+
+      // ── Cargar configuración ─────────────────────────────────────────────
+      const configSnap = await db.collection('config_admin').doc('config').get();
+      const config = configSnap.exists ? configSnap.data() : {};
+      const minCompra = Number(config?.minCompra) || 50000;
+
+      // ── Validar y normalizar items ───────────────────────────────────────
       const itemsEntrada = [];
-      for (const item of body.items) {
-        const id       = String(item.id || '').trim();
+      for (const item of items) {
+        const id       = String(item?.id || '').trim();
         const cantidad = Math.max(1, Math.min(999, Math.floor(Number(item.cantidad || 1))));
         if (!id || !/^[a-zA-Z0-9_-]{1,100}$/.test(id)) {
           res.status(400).json({ error: `ID de producto inválido: ${id}` });
@@ -256,51 +269,13 @@ exports.webhookMP = onRequest(
       return;
     }
 
-    // ── Validar firma x-signature ──────────────────────────────────────────
-    const xSignature  = String(req.headers['x-signature']  || '');
-    const xRequestId  = String(req.headers['x-request-id'] || '');
-    const dataId      = String(req.query?.['data.id'] || req.body?.data?.id || '');
-    const webhookSecret = MP_WEBHOOK_SECRET.value();
-
-    if (webhookSecret && xSignature) {
-      // Parsear "ts=...,v1=..."
-      const parts = {};
-      xSignature.split(',').forEach(chunk => {
-        const [k, v] = chunk.trim().split('=');
-        if (k && v) parts[k] = v;
-      });
-      const ts = parts['ts'] || '';
-      const v1 = parts['v1'] || '';
-
-      if (!ts || !v1) {
-        console.warn('[Webhook] Header x-signature malformado');
-        res.status(401).send('Unauthorized');
-        return;
-      }
-
-      const signedString = `id:${dataId};request-id:${xRequestId};ts:${ts}`;
-      const digest = crypto.createHmac('sha256', webhookSecret).update(signedString).digest('hex');
-
-      if (digest !== v1) {
-        console.warn('[Webhook] Firma inválida. Expected:', digest, 'Got:', v1);
-        res.status(401).send('Unauthorized');
-        return;
-      }
-    }
-
-    // Solo procesar notificaciones de tipo 'payment'
-    const type = req.body?.type || req.query?.type;
-    if (type !== 'payment') {
-      res.status(200).send('ok');
-      return;
-    }
-
-    if (!dataId) {
-      res.status(400).send('Missing payment id');
-      return;
-    }
-
     try {
+      const dataId = req.body?.data?.id;
+      if (!dataId) {
+        res.status(400).send('Missing payment id');
+        return;
+      }
+
       // ── Verificar pago directamente con la API de MP ──────────────────────
       // NUNCA confiar en los datos del body del webhook — siempre consultar la API
       const mpClient = new MercadoPagoConfig({
@@ -345,6 +320,26 @@ exports.webhookMP = onRequest(
 
       console.log(`[Webhook] Pedido ${externalRef} → ${nuevoEstado} (${payment.status_detail})`);
 
+      // ── Decrementar stock si el pago fue aprobado ──────────────────────────
+      if (payment.status === 'approved') {
+        try {
+          const pedidoActualizado = (await pedidoRef.get()).data();
+          const items = Array.isArray(pedidoActualizado?.items) ? pedidoActualizado.items : [];
+          
+          for (const item of items) {
+            const prodRef = db.collection('productos_admin').doc(item.id);
+            await prodRef.update({
+              stock: admin.firestore.FieldValue.increment(-item.cantidad),
+              actualizadoEn: admin.firestore.FieldValue.serverTimestamp(),
+            });
+            console.log(`[Webhook] Stock ${item.id}: -${item.cantidad}`);
+          }
+        } catch (stockErr) {
+          console.error('[Webhook] Error decrementando stock:', stockErr);
+          // No fallar el webhook por error de stock
+        }
+      }
+
       // ── Enviar emails si el pago fue aprobado ──────────────────────────────
       if (payment.status === 'approved') {
         try {
@@ -376,115 +371,69 @@ function _formatARS(n) {
 async function _enviarEmails(pedidoId, pedido, payerEmail) {
   const gmailUser = GMAIL_USER.value();
   const gmailPass = GMAIL_APP_PASS.value();
-  if (!gmailUser || !gmailPass) {
-    console.warn('[Email] Secrets de Gmail no configurados, omitiendo envío.');
-    return;
-  }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: { user: gmailUser, pass: gmailPass },
   });
 
-  const items    = pedido.items || [];
-  const total    = pedido.total || 0;
-  const pedidoShort = pedidoId.slice(-8).toUpperCase();
+  const itemsHTML = (pedido?.items || [])
+    .map(i => `
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #ddd;">${i.nombre}</td>
+        <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">x${i.cantidad}</td>
+        <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">${_formatARS(i.precioUnitario)}</td>
+        <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">${_formatARS(i.subtotal)}</td>
+      </tr>
+    `)
+    .join('');
 
-  const itemsRowsHtml = items.map(i => `
-    <tr>
-      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9">${String(i.nombre || '').slice(0, 80)}</td>
-      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9;text-align:center">${i.cantidad}</td>
-      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9;text-align:right">${_formatARS(i.precioUnitario)}</td>
-      <td style="padding:8px 4px;border-bottom:1px solid #F1F5F9;text-align:right;font-weight:600">${_formatARS(i.subtotal)}</td>
-    </tr>`).join('');
+  const totalHTML = _formatARS(pedido?.total);
 
-  const tableHtml = `
-    <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <thead>
-        <tr style="background:#F8FAFC">
-          <th style="padding:8px 4px;text-align:left;color:#64748B;font-weight:600">Producto</th>
-          <th style="padding:8px 4px;text-align:center;color:#64748B;font-weight:600">Cant.</th>
-          <th style="padding:8px 4px;text-align:right;color:#64748B;font-weight:600">P. Unit.</th>
-          <th style="padding:8px 4px;text-align:right;color:#64748B;font-weight:600">Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>${itemsRowsHtml}</tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" style="padding:12px 4px 4px;text-align:right;font-weight:700;font-size:15px">TOTAL</td>
-          <td style="padding:12px 4px 4px;text-align:right;font-weight:700;font-size:15px;color:#E67A2E">${_formatARS(total)}</td>
-        </tr>
-      </tfoot>
-    </table>`;
+  const htmlCliente = `
+    <html>
+      <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2>¡Gracias por tu compra!</h2>
+        <p>Tu pedido fue confirmado exitosamente.</p>
+        <p><strong>Nº de Pedido:</strong> ${pedidoId}</p>
+        <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="padding: 8px; text-align: left; border-bottom: 2px solid #ddd;">Producto</th>
+              <th style="padding: 8px; text-align: right; border-bottom: 2px solid #ddd;">Cantidad</th>
+              <th style="padding: 8px; text-align: right; border-bottom: 2px solid #ddd;">Precio Unit.</th>
+              <th style="padding: 8px; text-align: right; border-bottom: 2px solid #ddd;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>${itemsHTML}</tbody>
+        </table>
+        <p style="margin-top: 15px; font-size: 18px;"><strong>Total: ${totalHTML}</strong></p>
+        <hr style="margin-top: 30px; border: none; border-top: 1px solid #ddd;">
+        <p style="font-size: 12px; color: #999;">Este es un email automático. Por favor, no responder.</p>
+      </body>
+    </html>
+  `;
 
-  // ── Email a la tienda ──────────────────────────────────────────────────────
-  const compradorInfo = pedido.comprador || {};
-  const compradorHtml = [
-    compradorInfo.nombre   ? `<b>Nombre:</b> ${compradorInfo.nombre}` : '',
-    payerEmail             ? `<b>Email MP:</b> ${payerEmail}` : '',
-    compradorInfo.telefono ? `<b>Teléfono:</b> ${compradorInfo.telefono}` : '',
-  ].filter(Boolean).join('<br>');
-
-  await transporter.sendMail({
-    from:    `"Papelera Caro Cruz" <${gmailUser}>`,
-    to:      'papeleracarocruz@gmail.com',
-    subject: `🛒 Nuevo pedido #${pedidoShort} — ${_formatARS(total)}`,
-    html: `
-      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
-        <div style="background:#E67A2E;padding:24px;border-radius:12px 12px 0 0;text-align:center">
-          <h1 style="color:#fff;margin:0;font-size:22px">🛒 Nuevo pedido recibido</h1>
-          <p style="color:rgba(255,255,255,.85);margin:6px 0 0;font-size:14px">Pedido #${pedidoShort}</p>
-        </div>
-        <div style="background:#fff;padding:24px;border:1px solid #E5E7EB;border-top:none;border-radius:0 0 12px 12px">
-          ${compradorHtml ? `<div style="background:#F8FAFC;border-radius:8px;padding:14px;margin-bottom:20px;font-size:14px;line-height:1.7">${compradorHtml}</div>` : ''}
-          <h3 style="color:#1E293B;margin:0 0 12px;font-size:15px">Detalle del pedido</h3>
-          ${tableHtml}
-          <p style="margin-top:20px;font-size:12px;color:#94A3B8;text-align:center">
-            ID completo: ${pedidoId}
-          </p>
-        </div>
-      </div>`,
-  });
-
-  // ── Email al comprador (email ingresado + email de MP, sin duplicados) ──────
-  const compradorEmail = (compradorInfo.email || '').toLowerCase().trim();
-  const destinatarios = new Set();
-  if (compradorEmail && emailValido(compradorEmail)) destinatarios.add(compradorEmail);
-  if (payerEmail && emailValido(payerEmail))         destinatarios.add(payerEmail);
-
-  for (const dest of destinatarios) {
+  try {
     await transporter.sendMail({
-      from:    `"Papelera Caro Cruz" <${gmailUser}>`,
-      to:      dest,
-      subject: `✅ Pedido #${pedidoShort} confirmado — Papelera Caro Cruz`,
-      html: `
-        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
-          <div style="background:#166534;padding:24px;border-radius:12px 12px 0 0;text-align:center">
-            <div style="width:56px;height:56px;background:rgba(255,255,255,.15);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px">
-              <span style="color:#fff;font-size:28px">✓</span>
-            </div>
-            <h1 style="color:#fff;margin:0;font-size:22px">¡Pago confirmado!</h1>
-            <p style="color:rgba(255,255,255,.85);margin:6px 0 0;font-size:14px">Pedido #${pedidoShort}</p>
-          </div>
-          <div style="background:#fff;padding:24px;border:1px solid #E5E7EB;border-top:none;border-radius:0 0 12px 12px">
-            <p style="color:#374151;font-size:14px;line-height:1.6">
-              ¡Gracias por tu compra! Recibimos tu pago y estamos procesando tu pedido.
-              Nos pondremos en contacto para coordinar la entrega.
-            </p>
-            <h3 style="color:#1E293B;margin:20px 0 12px;font-size:15px">Tu pedido</h3>
-            ${tableHtml}
-            <div style="margin-top:24px;padding:16px;background:#F0FDF4;border-radius:8px;font-size:13px;color:#166534">
-              ¿Tenés alguna consulta? Escribinos a
-              <a href="mailto:papeleracarocruz@gmail.com" style="color:#166534">papeleracarocruz@gmail.com</a>
-              o por WhatsApp indicando tu número de pedido <b>#${pedidoShort}</b>.
-            </div>
-            <p style="margin-top:20px;font-size:11px;color:#94A3B8;text-align:center">
-              Papelera Caro Cruz · papeleracarocruz.com
-            </p>
-          </div>
-        </div>`,
+      from: gmailUser,
+      to: payerEmail,
+      subject: `Pedido confirmado #${pedidoId} - Papelera Caro Cruz`,
+      html: htmlCliente,
     });
+    console.log(`[Email] Enviado a ${payerEmail}`);
+  } catch (err) {
+    console.error(`[Email] Error enviando a ${payerEmail}:`, err);
   }
 
-  console.log(`[Email] Emails enviados para pedido ${pedidoShort} → ${[...destinatarios].join(', ')}`);
+  try {
+    await transporter.sendMail({
+      from: gmailUser,
+      to: gmailUser,
+      subject: `Nuevo pedido #${pedidoId}`,
+      html: `<p><strong>Nuevo pedido recibido:</strong></p>${htmlCliente}`,
+    });
+  } catch (err) {
+    console.error('[Email] Error notificando admin:', err);
+  }
 }

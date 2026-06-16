@@ -1451,7 +1451,7 @@ function solicitarListaMayorista(e) {
   const body = encodeURIComponent(
     `Hola, quiero recibir la lista mayorista.\n\nCorreo de contacto: ${email}\nTipo de cliente: Mayorista / Revendedor\n\nGracias.`
   );
-  window.location.href = `mailto:ventas@papeleracarocruz.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:ventas@carocruzpapelera.com?subject=${subject}&body=${body}`;
 
   if (input) input.value = '';
   mostrarToast('Solicitud preparada. Revisá tu mail para enviarla.');
