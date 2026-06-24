@@ -1583,9 +1583,10 @@ ul { list-style: none; }
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -48%) scale(.96);
-  width: min(460px, calc(100vw - 32px));
-  max-height: min(500px, calc(100dvh - 80px)) !important;
+  transform: translate(-50%, -50%) scale(1);
+  width: min(420px, calc(100vw - 40px));
+  max-height: 420px !important;
+  height: auto !important;
   overflow-y: auto !important;
   background: #fff;
   border-radius: 16px;
@@ -1606,7 +1607,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 20px 0;
+  padding: 16px 20px 8px;
 }
 .auth-tabs {
   display: flex;
@@ -1646,10 +1647,10 @@ ul { list-style: none; }
 
 /* Formulario */
 .auth-form {
-  padding: 24px;
+  padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 .auth-form.hidden { display: none; }
 
@@ -1657,19 +1658,19 @@ ul { list-style: none; }
 .auth-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 .auth-field label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #374151;
 }
 .auth-field input {
-  height: 44px;
+  height: 40px;
   border: 1.5px solid #D1D5DB;
   border-radius: var(--radius);
-  padding: 0 14px;
-  font-size: 14px;
+  padding: 0 12px;
+  font-size: 13px;
   font-family: inherit;
   color: #2c2c2e;
   background: #FAFAFA;
@@ -1756,17 +1757,17 @@ ul { list-style: none; }
 
 /* Bot�n de enviar */
 .auth-submit {
-  height: 46px;
+  height: 40px;
   background: var(--blue);
   color: #fff;
   border-radius: var(--radius);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .3px;
   font-family: inherit;
   transition: background var(--transition);
   cursor: pointer;
-  margin-top: 4px;
+  margin-top: 0;
 }
 .auth-submit:hover:not(:disabled) { background: var(--blue-dk); }
 .auth-submit:disabled { opacity: .55; cursor: not-allowed; }
