@@ -116,6 +116,69 @@ function _toEnteroPositivo(value, fallback) {
   return Math.floor(n);
 }
 
+function _direccionValida(value) {
+  const raw = String(value || '').trim();
+  if (raw.length < 6) return false;
+  if (!/[A-Za-zÁÉÍÓÚÑáéíóúñ]/.test(raw)) return false;
+  if (!/\d/.test(raw)) return false;
+  if (/^\d+$/.test(raw)) return false;
+  return /\b(calle|av\.?|avenida|boulevard|bvd\.?|pasaje|pje\.?|ruta|camino|pb|piso|dept|depto|esquina|esq\.?|barrio)\b/i.test(raw)
+    || /\d+/.test(raw);
+}
+
+let _googleAutocomplete = null;
+function initGoogleAutocomplete() {
+  const input = document.getElementById('cmpDireccion');
+  if (!input || typeof window.google === 'undefined' || !window.google.maps || !window.google.maps.places) {
+    return;
+  }
+
+  _googleAutocomplete = new google.maps.places.Autocomplete(input, {
+    types: ['address'],
+    componentRestrictions: { country: 'ar' },
+    fields: ['address_components', 'formatted_address'],
+  });
+
+  _googleAutocomplete.addListener('place_changed', () => {
+    const place = _googleAutocomplete.getPlace();
+    if (!place || !Array.isArray(place.address_components)) return;
+
+    const components = {};
+    place.address_components.forEach(component => {
+      component.types.forEach(type => {
+        if (!components[type]) components[type] = component.long_name;
+      });
+    });
+
+    const localidad = components.locality || components.sublocality || components.administrative_area_level_2 || components.administrative_area_level_1 || '';
+    const codigoPostal = components.postal_code || '';
+    const calle = components.route || '';
+    const numero = components.street_number || '';
+    const piso = components.subpremise || '';
+
+    if (calle && numero) {
+      input.value = `${calle} ${numero}${piso ? ' ' + piso : ''}`;
+    }
+    if (localidad) {
+      document.getElementById('cmpLocalidad').value = localidad;
+    }
+    if (codigoPostal) {
+      document.getElementById('cmpCodigoPostal').value = codigoPostal;
+    }
+  });
+}
+
+window.initGoogleAutocomplete = initGoogleAutocomplete;
+
+function _localidadValida(value) {
+  const raw = String(value || '').trim();
+  return raw.length >= 3 && /[A-Za-zÁÉÍÓÚÑáéíóúñ]/.test(raw) && /^[A-Za-zÁÉÍÓÚÑáéíóúñ0-9\s\-]+$/.test(raw);
+}
+
+function _codigoPostalValido(value) {
+  return /^\d{4,5}$/.test(String(value || '').trim());
+}
+
 function _toPorcentajeOferta(value) {
   const n = Number(value);
   if (!Number.isFinite(n)) return 0;
@@ -4824,6 +4887,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('adminHeroBannerUrl')?.addEventListener('input', actualizarPreviewHeroBannerAdmin);
   document.getElementById('adminHeroBannerArchivo')?.addEventListener('change', actualizarPreviewHeroBannerAdmin);
 
+  initGoogleAutocomplete();
   _cargarPreferenciasCategorias();
   _actualizarBotonesFavorita();
   _renderFavoritasMobile();
@@ -4925,18 +4989,27 @@ function cerrarDatosComprador() {
 async function confirmarDatosComprador(event) {
   event.preventDefault();
 
-  const nombre   = document.getElementById('cmpNombre')?.value.trim() || '';
-  const email    = document.getElementById('cmpEmail')?.value.trim() || '';
-  const telefono = document.getElementById('cmpTelefono')?.value.trim() || '';
+  const nombre        = document.getElementById('cmpNombre')?.value.trim() || '';
+  const email         = document.getElementById('cmpEmail')?.value.trim() || '';
+  const telefono      = document.getElementById('cmpTelefono')?.value.trim() || '';
+  const direccion     = document.getElementById('cmpDireccion')?.value.trim() || '';
+  const localidad     = document.getElementById('cmpLocalidad')?.value.trim() || '';
+  const codigoPostal  = document.getElementById('cmpCodigoPostal')?.value.trim() || '';
 
-  // Validar email obligatorio
   let valido = true;
-  const emailError   = document.getElementById('cmpEmailError');
-  const nombreError  = document.getElementById('cmpNombreError');
-  const telefonoError = document.getElementById('cmpTelefonoError');
-  if (emailError)    emailError.textContent = '';
-  if (nombreError)   nombreError.textContent = '';
-  if (telefonoError) telefonoError.textContent = '';
+  const emailError        = document.getElementById('cmpEmailError');
+  const nombreError       = document.getElementById('cmpNombreError');
+  const telefonoError     = document.getElementById('cmpTelefonoError');
+  const direccionError    = document.getElementById('cmpDireccionError');
+  const localidadError    = document.getElementById('cmpLocalidadError');
+  const codigoPostalError = document.getElementById('cmpCodigoPostalError');
+
+  if (emailError)        emailError.textContent = '';
+  if (nombreError)       nombreError.textContent = '';
+  if (telefonoError)     telefonoError.textContent = '';
+  if (direccionError)    direccionError.textContent = '';
+  if (localidadError)    localidadError.textContent = '';
+  if (codigoPostalError) codigoPostalError.textContent = '';
 
   if (!nombre) {
     if (nombreError) nombreError.textContent = 'Ingresá tu nombre completo.';
@@ -4948,16 +5021,30 @@ async function confirmarDatosComprador(event) {
     if (valido) document.getElementById('cmpEmail')?.focus();
     valido = false;
   }
-  if (!telefono || !/^[\d\s()+-]{6,}$/.test(telefono)) {
+  if (!telefono || !/^[\d\s()+-]{8,}$/.test(telefono)) {
     if (telefonoError) telefonoError.textContent = 'Ingresá un teléfono celular válido.';
     if (valido) document.getElementById('cmpTelefono')?.focus();
     valido = false;
   }
+  if (!direccion || !_direccionValida(direccion)) {
+    if (direccionError) direccionError.textContent = 'Ingresá una dirección válida con calle y número.';
+    if (valido) document.getElementById('cmpDireccion')?.focus();
+    valido = false;
+  }
+  if (!localidad || !_localidadValida(localidad)) {
+    if (localidadError) localidadError.textContent = 'Ingresá una localidad o ciudad válida.';
+    if (valido) document.getElementById('cmpLocalidad')?.focus();
+    valido = false;
+  }
+  if (!codigoPostal || !_codigoPostalValido(codigoPostal)) {
+    if (codigoPostalError) codigoPostalError.textContent = 'Ingresá un código postal válido de 4 o 5 dígitos.';
+    if (valido) document.getElementById('cmpCodigoPostal')?.focus();
+    valido = false;
+  }
   if (!valido) return;
 
-  // Cerrar modal de datos y ejecutar checkout
   cerrarDatosComprador();
-  await _ejecutarCheckoutMP({ nombre, email, telefono });
+  await _ejecutarCheckoutMP({ nombre, email, telefono, direccion, localidad, codigoPostal });
 }
 
 async function _ejecutarCheckoutMP(comprador) {
@@ -5077,6 +5164,24 @@ function _mostrarModalExitoso(snapshot) {
       </div>`).join('');
   } else if (itemsEl) {
     itemsEl.innerHTML = '';
+  }
+
+  const envioEl = document.getElementById('pagoExitosoEnvio');
+  const direccionEl = document.getElementById('pagoExitosoDireccion');
+  const localidadEl = document.getElementById('pagoExitosoLocalidad');
+  const codigoPostalEl = document.getElementById('pagoExitosoCodigoPostal');
+  if (envioEl && direccionEl && localidadEl && codigoPostalEl && snapshot?.comprador) {
+    const direccion = snapshot.comprador.direccion || '';
+    const localidad = snapshot.comprador.localidad || '';
+    const codigoPostal = snapshot.comprador.codigoPostal || '';
+    if (direccion || localidad || codigoPostal) {
+      envioEl.style.display = 'block';
+      direccionEl.textContent = `Dirección: ${direccion}`;
+      localidadEl.textContent = `Localidad: ${localidad}`;
+      codigoPostalEl.textContent = `Código postal: ${codigoPostal}`;
+    } else {
+      envioEl.style.display = 'none';
+    }
   }
 
   overlay.classList.remove('hidden');

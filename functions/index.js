@@ -95,6 +95,29 @@ function emailValido(email) {
   return /^[^\s@]{1,64}@[^\s@]{1,253}\.[^\s@]{2,}$/.test(email);
 }
 
+function _direccionValida(value) {
+  const raw = String(value || '').trim();
+  if (raw.length < 6) return false;
+  if (!/[A-Za-zÁÉÍÓÚÑáéíóúñ]/.test(raw)) return false;
+  if (!/\d/.test(raw)) return false;
+  if (/^\d+$/.test(raw)) return false;
+  return /\b(calle|av\.?|avenida|boulevard|bvd\.?|pasaje|pje\.?|ruta|camino|esquina|esq\.?|barrio|piso|dept\.?|depto\.?|km)\b/i.test(raw)
+    || /\d+/.test(raw);
+}
+
+function _localidadValida(value) {
+  const raw = String(value || '').trim();
+  return raw.length >= 3 && /[A-Za-zÁÉÍÓÚÑáéíóúñ]/.test(raw) && /^[A-Za-zÁÉÍÓÚÑáéíóúñ0-9\s\-]+$/.test(raw);
+}
+
+function _codigoPostalValido(value) {
+  return /^\d{4,5}$/.test(String(value || '').trim());
+}
+
+function _telefonoValido(value) {
+  return /^[\d\s()+-]{8,}$/.test(String(value || '').trim());
+}
+
 // ─── ENDPOINT 1: Crear preferencia de pago ────────────────────────────────────
 exports.crearPreferencia = onRequest(
   {
@@ -132,12 +155,43 @@ exports.crearPreferencia = onRequest(
       }
 
       // ── Extraer campos ───────────────────────────────────────────────────
-      const nombre    = String(body?.comprador?.nombre || '').trim().slice(0, 100);
-      const telefono  = String(body?.comprador?.telefono || '').trim().slice(0, 20);
-      const items     = Array.isArray(body?.items) ? body.items : [];
+      const nombre        = String(body?.comprador?.nombre || '').trim().slice(0, 100);
+      const telefono      = String(body?.comprador?.telefono || '').trim().slice(0, 20);
+      const direccion     = String(body?.comprador?.direccion || '').trim().slice(0, 200);
+      const localidad     = String(body?.comprador?.localidad || '').trim().slice(0, 100);
+      const codigoPostal  = String(body?.comprador?.codigoPostal || '').trim().slice(0, 32);
+      const items         = Array.isArray(body?.items) ? body.items : [];
 
       if (!nombre) {
         res.status(400).json({ error: 'Nombre requerido' });
+        return;
+      }
+      if (!telefono || !_telefonoValido(telefono)) {
+        res.status(400).json({ error: 'Teléfono inválido' });
+        return;
+      }
+      if (!direccion) {
+        res.status(400).json({ error: 'Dirección de envío requerida' });
+        return;
+      }
+      if (!_direccionValida(direccion)) {
+        res.status(400).json({ error: 'Dirección de envío inválida' });
+        return;
+      }
+      if (!localidad) {
+        res.status(400).json({ error: 'Localidad o ciudad requerida' });
+        return;
+      }
+      if (!_localidadValida(localidad)) {
+        res.status(400).json({ error: 'Localidad o ciudad inválida' });
+        return;
+      }
+      if (!codigoPostal) {
+        res.status(400).json({ error: 'Código postal requerido' });
+        return;
+      }
+      if (!_codigoPostalValido(codigoPostal)) {
+        res.status(400).json({ error: 'Código postal inválido' });
         return;
       }
       if (items.length === 0) {
@@ -222,7 +276,7 @@ exports.crearPreferencia = onRequest(
       await pedidoRef.set({
         items:      itemsValidados,
         total,
-        comprador:  { nombre, email, telefono },
+        comprador:  { nombre, email, telefono, direccion, localidad, codigoPostal },
         estado:     'pendiente',
         creadoEn:   admin.firestore.FieldValue.serverTimestamp(),
         actualizadoEn: admin.firestore.FieldValue.serverTimestamp(),
@@ -371,7 +425,7 @@ exports.webhookMP = onRequest(
         try {
           const pedidoActualizado = (await pedidoRef.get()).data();
           const payerEmail = payment.payer?.email || '';
-          await _enviarEmails(externalRef, pedidoActualizado, payerEmail);
+          await _enviarEmails(externalRef, pedidoActualizado, payerEmail, payment);
         } catch (emailErr) {
           // No fallar el webhook por un error de email
           console.error('[Webhook] Error enviando emails:', emailErr);
@@ -394,7 +448,7 @@ function _formatARS(n) {
 }
 
 // ─── Envío de emails post-pago ────────────────────────────────────────────────
-async function _enviarEmails(pedidoId, pedido, payerEmail) {
+async function _enviarEmails(pedidoId, pedido, payerEmail, payment) {
   const gmailUser = GMAIL_USER.value();
   const gmailPass = GMAIL_APP_PASS.value();
 
@@ -415,6 +469,16 @@ async function _enviarEmails(pedidoId, pedido, payerEmail) {
     .join('');
 
   const totalHTML = _formatARS(pedido?.total);
+  const estadoPedido = pedido?.estado ? String(pedido.estado).toUpperCase() : 'PENDIENTE';
+
+  const direccionHTML = pedido?.comprador?.direccion ? `<p><strong>Dirección de envío:</strong> ${pedido.comprador.direccion}</p>` : '';
+  const localidadHTML = pedido?.comprador?.localidad ? `<p><strong>Localidad / Ciudad:</strong> ${pedido.comprador.localidad}</p>` : '';
+  const codigoPostalHTML = pedido?.comprador?.codigoPostal ? `<p><strong>Código postal:</strong> ${pedido.comprador.codigoPostal}</p>` : '';
+
+  const paymentMethod = String(payment?.payment_method?.name || payment?.payment_method_id || payment?.payment_type_id || 'MercadoPago').trim();
+  const paymentAmount = payment?.transaction_amount ? _formatARS(payment.transaction_amount) : totalHTML;
+  const installmentsHTML = payment?.installments ? `<p><strong>Cuotas:</strong> ${payment.installments}</p>` : '';
+  const paymentDetailHTML = payment?.status_detail ? `<p><strong>Detalle de pago:</strong> ${payment.status_detail}</p>` : '';
 
   const htmlCliente = `
     <html>
@@ -422,6 +486,9 @@ async function _enviarEmails(pedidoId, pedido, payerEmail) {
         <h2>¡Gracias por tu compra!</h2>
         <p>Tu pedido fue confirmado exitosamente.</p>
         <p><strong>Nº de Pedido:</strong> ${pedidoId}</p>
+        ${direccionHTML}
+        ${localidadHTML}
+        ${codigoPostalHTML}
         <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
           <thead>
             <tr style="background-color: #f5f5f5;">
@@ -440,14 +507,49 @@ async function _enviarEmails(pedidoId, pedido, payerEmail) {
     </html>
   `;
 
+  const htmlAdmin = `
+    <html>
+      <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2>Nuevo pedido recibido</h2>
+        <p>Se generó un pedido aprobado para procesar.</p>
+        <p><strong>Nº de Pedido:</strong> ${pedidoId}</p>
+        <p><strong>Estado:</strong> ${estadoPedido}</p>
+        <p><strong>Comprador:</strong> ${pedido?.comprador?.nombre || '-'} (${pedido?.comprador?.email || '-'}): ${pedido?.comprador?.telefono || '-'}</p>
+        ${direccionHTML}
+        ${localidadHTML}
+        ${codigoPostalHTML}
+        <p><strong>Forma de pago:</strong> ${paymentMethod}</p>
+        <p><strong>Importe pagado:</strong> ${paymentAmount}</p>
+        ${installmentsHTML}
+        ${paymentDetailHTML}
+        <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="padding: 8px; text-align: left; border-bottom: 2px solid #ddd;">Producto</th>
+              <th style="padding: 8px; text-align: right; border-bottom: 2px solid #ddd;">Cantidad</th>
+              <th style="padding: 8px; text-align: right; border-bottom: 2px solid #ddd;">Precio Unit.</th>
+              <th style="padding: 8px; text-align: right; border-bottom: 2px solid #ddd;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>${itemsHTML}</tbody>
+        </table>
+        <p style="margin-top: 15px; font-size: 18px;"><strong>Total: ${totalHTML}</strong></p>
+        <hr style="margin-top: 30px; border: none; border-top: 1px solid #ddd;">
+        <p style="font-size: 12px; color: #999;">Este es un email automático para el vendedor.</p>
+      </body>
+    </html>
+  `;
+
   try {
-    await transporter.sendMail({
-      from: gmailUser,
-      to: payerEmail,
-      subject: `Pedido confirmado #${pedidoId} - Papelera Caro Cruz`,
-      html: htmlCliente,
-    });
-    console.log(`[Email] Enviado a ${payerEmail}`);
+    if (payerEmail) {
+      await transporter.sendMail({
+        from: gmailUser,
+        to: payerEmail,
+        subject: `Pedido confirmado #${pedidoId} - Papelera Caro Cruz`,
+        html: htmlCliente,
+      });
+      console.log(`[Email] Enviado a ${payerEmail}`);
+    }
   } catch (err) {
     console.error(`[Email] Error enviando a ${payerEmail}:`, err);
   }
@@ -457,7 +559,7 @@ async function _enviarEmails(pedidoId, pedido, payerEmail) {
       from: gmailUser,
       to: gmailUser,
       subject: `Nuevo pedido #${pedidoId}`,
-      html: `<p><strong>Nuevo pedido recibido:</strong></p>${htmlCliente}`,
+      html: htmlAdmin,
     });
   } catch (err) {
     console.error('[Email] Error notificando admin:', err);

@@ -570,6 +570,12 @@
     </div>
     <div class="auth-modal-body" style="padding:20px 24px 24px">
       <div id="pagoExitosoItems" style="margin-bottom:16px"></div>
+      <div id="pagoExitosoEnvio" style="margin-bottom:16px;padding:14px;background:#F8FAFC;border-radius:10px;display:none;">
+        <p style="margin:0 0 8px;font-weight:700;color:#0F172A">Datos de envío</p>
+        <p id="pagoExitosoDireccion" style="margin:0 0 4px;font-size:14px;color:#334155"></p>
+        <p id="pagoExitosoLocalidad" style="margin:0 0 4px;font-size:14px;color:#334155"></p>
+        <p id="pagoExitosoCodigoPostal" style="margin:0;font-size:14px;color:#334155"></p>
+      </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#F0FDF4;border-radius:10px;margin-bottom:16px">
         <span style="font-size:14px;font-weight:700;color:#166534">Total pagado</span>
         <span id="pagoExitosoTotal" style="font-size:18px;font-weight:800;color:#166534"></span>
@@ -738,7 +744,7 @@
     <div class="auth-modal-head">
       <div>
         <h2 class="auth-modal-title">Datos para tu compra</h2>
-        <p class="auth-modal-sub">Te enviaremos la confirmación y seguimiento a tu email</p>
+        <p class="auth-modal-sub">Completa tus datos y la dirección de entrega.</p>
       </div>
       <button class="auth-close" onclick="cerrarDatosComprador()" aria-label="Cerrar">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -759,6 +765,21 @@
         <label for="cmpTelefono">Teléfono celular <span style="color:var(--blue);font-size:11px">*</span></label>
         <input id="cmpTelefono" type="tel" placeholder="Ej: 1123456789" autocomplete="tel" />
         <span id="cmpTelefonoError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="cmpDireccion">Dirección de envío <span style="color:var(--blue);font-size:11px">*</span></label>
+        <input id="cmpDireccion" type="text" placeholder="Calle, número, piso y dpto" autocomplete="street-address" />
+        <span id="cmpDireccionError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="cmpLocalidad">Localidad / Ciudad <span style="color:var(--blue);font-size:11px">*</span></label>
+        <input id="cmpLocalidad" type="text" placeholder="Ej: CABA, La Plata" autocomplete="address-level2" />
+        <span id="cmpLocalidadError" class="auth-field-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="cmpCodigoPostal">Código postal <span style="color:var(--blue);font-size:11px">*</span></label>
+        <input id="cmpCodigoPostal" type="text" placeholder="Ej: 1426" autocomplete="postal-code" />
+        <span id="cmpCodigoPostalError" class="auth-field-error"></span>
       </div>
       <button type="submit" class="auth-submit" id="cmpDatosSubmit">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
@@ -1371,5 +1392,7 @@
   <script defer src="imagenes-map.js" onerror="console.info('Sin imagenes-map.js — se usan íconos de categoría')"></script>
   <script defer src="script.js"></script>
   <script defer src="auth.js"></script>
+  <!-- Places API para autocompletar direcciones en el checkout. Reemplazá YOUR_GOOGLE_MAPS_API_KEY por tu propia clave. -->
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzYJy3lUcfHLjIpth44fbAB5UaRt0Iv_8&libraries=places&callback=initGoogleAutocomplete"></script>
 </body>
 </html>
