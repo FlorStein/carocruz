@@ -5088,6 +5088,7 @@ async function _ejecutarCheckoutMP(comprador) {
       items: carrito.map(i => ({ nombre: i.nombre, cantidad: i.cantidad, precio: i.precio, subtotal: i.subtotal || (i.precio * i.cantidad) })),
       total: calcularTotal(),
       pedidoId: data.pedidoId || '',
+      pedidoNumero: data.pedidoNumero || '',
     }));
 
     // Cambiar mensaje y redirigir
@@ -5145,8 +5146,8 @@ function _mostrarModalExitoso(snapshot) {
     return;
   }
 
-  // Numero de pedido
-  const pedidoShort = snapshot?.pedidoId ? snapshot.pedidoId.slice(-8).toUpperCase() : '';
+  // Número de pedido
+  const pedidoShort = snapshot?.pedidoNumero || (snapshot?.pedidoId ? snapshot.pedidoId.slice(-8).toUpperCase() : '');
   const numEl = document.getElementById('pagoExitosoNumero');
   if (numEl) numEl.textContent = pedidoShort ? `Pedido #${pedidoShort}` : '';
 

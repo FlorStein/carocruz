@@ -53,6 +53,20 @@ function _toEnteroPositivo(value, fallback) {
   return Math.floor(n);
 }
 
+async function _obtenerSiguientePedidoNumero() {
+  const counterRef = db.collection('meta').doc('pedidos');
+  const nextNumber = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(counterRef);
+    const current = snap.exists && Number.isFinite(Number(snap.data()?.nextOrderNumber))
+      ? Number(snap.data().nextOrderNumber)
+      : 1;
+    const assigned = current;
+    tx.set(counterRef, { nextOrderNumber: assigned + 1 }, { merge: true });
+    return assigned;
+  });
+  return `CC-${String(nextNumber).padStart(6, '0')}`;
+}
+
 function calcularPrecioFinal(prod, config) {
   const base = Number(prod?.precio || 0);
   if (!base || base <= 0) return 0;
@@ -271,12 +285,15 @@ exports.crearPreferencia = onRequest(
         return;
       }
 
+      const pedidoNumero = await _obtenerSiguientePedidoNumero();
+
       // ── Crear pedido en Firestore (estado: pendiente) ────────────────────
       const pedidoRef = db.collection('pedidos').doc();
       await pedidoRef.set({
         items:      itemsValidados,
         total,
         comprador:  { nombre, email, telefono, direccion, localidad, codigoPostal },
+        pedidoNumero,
         estado:     'pendiente',
         creadoEn:   admin.firestore.FieldValue.serverTimestamp(),
         actualizadoEn: admin.firestore.FieldValue.serverTimestamp(),
@@ -327,6 +344,7 @@ exports.crearPreferencia = onRequest(
         preferenceId: prefResult.id,
         initPoint:    prefResult.init_point,
         pedidoId:     pedidoRef.id,
+        pedidoNumero,
       });
 
     } catch (err) {
