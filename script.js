@@ -182,7 +182,19 @@ function cargarConfigComercialLocal() {
       configComercial = clonarConfigComercial(CONFIG_COMERCIAL_DEFAULT);
       return;
     }
-    configComercial = clonarConfigComercial(JSON.parse(raw));
+
+    const parsed = JSON.parse(raw);
+    configComercial = clonarConfigComercial(parsed);
+
+    // Migración: si la config guardada trae el mínimo antiguo de 50.000,
+    // forzamos el nuevo mínimo y descartamos el banner viejo.
+    if (configComercial.minCompra === 50000 || /50\.000/.test(String(configComercial.announcementMain || ''))) {
+      configComercial = clonarConfigComercial(Object.assign({}, parsed, {
+        minCompra: CONFIG_COMERCIAL_DEFAULT.minCompra,
+        announcementMain: '',
+      }));
+      guardarConfigComercialLocal();
+    }
   } catch {
     configComercial = clonarConfigComercial(CONFIG_COMERCIAL_DEFAULT);
   }
