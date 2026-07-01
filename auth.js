@@ -517,8 +517,12 @@ window.handleLogout = handleLogout;
 /* =====================================================
    DROPDOWN USUARIO
    ===================================================== */
-function toggleUserDropdown() {
-  document.getElementById('userDropdown').classList.toggle('open');
+function toggleUserDropdown(event) {
+  if (event && typeof event.stopPropagation === 'function') {
+    event.stopPropagation();
+  }
+  const dd = document.getElementById('userDropdown');
+  if (dd) dd.classList.toggle('open');
 }
 window.toggleUserDropdown = toggleUserDropdown;
 

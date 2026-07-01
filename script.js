@@ -4701,6 +4701,8 @@ function _manejarHashProducto() {
 function mostrarPopupSuscripcion() {
   const overlay = document.getElementById('newsletterOverlay');
   if (!overlay) return;
+  const cartPanel = document.getElementById('cartPanel');
+  if (cartPanel?.classList.contains('open')) return;
   overlay.style.display = 'flex';
   requestAnimationFrame(function() { overlay.classList.add('newsletter-visible'); });
 }

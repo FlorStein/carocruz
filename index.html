@@ -51,14 +51,14 @@
 
       <!-- Iconos derecha -->
       <div class="header-icons">
-        <button id="btnMiCuenta" class="icon-btn" aria-label="Mi cuenta" onclick="abrirModalAuth('login')">
+        <button type="button" id="btnMiCuenta" class="icon-btn" aria-label="Mi cuenta" onclick="abrirModalAuth('login')">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           <span>Mi cuenta</span>
         </button>
 
         <!-- Usuario logueado (visible cuando hay sesión activa) -->
         <div id="userDisplay" class="user-display" style="display:none" role="navigation" aria-label="Menú de usuario">
-          <button class="user-trigger" onclick="toggleUserDropdown()" aria-label="Menú de usuario" aria-haspopup="true">
+          <button class="user-trigger" type="button" onclick="toggleUserDropdown(event)" aria-label="Menú de usuario" aria-haspopup="true">
             <div class="user-avatar" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </div>
@@ -505,7 +505,7 @@
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            ventas@caracruz.com.ar
+            <a href="mailto:papeleracarocruz@gmail.com" style="color:inherit;text-decoration:none;">papeleracarocruz@gmail.com</a>
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -546,7 +546,7 @@
         <span>Total (<span id="cartItemsCount">0 productos</span>)</span>
         <span id="cartTotal">$0,00</span>
       </div>
-      <button id="btnPagarMP" class="btn btn-primary w-full" onclick="abrirCheckoutMP()" style="display:none">
+      <button type="button" id="btnPagarMP" class="btn btn-primary w-full" onclick="abrirCheckoutMP()" style="display:none">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         <span id="btnPagarMPText">Iniciar compra con MercadoPago</span>
       </button>

@@ -66,6 +66,7 @@ ul { list-style: none; }
   top: 0;
   z-index: 100;
   box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  overflow: visible;
 }
 .header-inner {
   display: flex;
@@ -73,6 +74,7 @@ ul { list-style: none; }
   justify-content: space-between;
   gap: 24px;
   height: 80px;
+  overflow: visible;
 }
 
 /* Logo */
@@ -160,14 +162,19 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 3px;
   color: #374151;
   font-size: 10px;
-  transition: color var(--transition);
+  padding: 8px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 10px;
+  transition: color var(--transition), background var(--transition);
 }
-.icon-btn:hover { color: var(--blue); }
+.icon-btn:hover { color: var(--blue); background: rgba(59,130,246,.08); }
 .icon-btn svg { width: 22px; height: 22px; }
-.cart-icon-wrap { position: relative; }
+.cart-icon-wrap { position: relative; overflow: visible; }
 .cart-badge {
   position: absolute;
   top: -6px;
@@ -1169,7 +1176,7 @@ ul { list-style: none; }
 .cart-seguir-btn:hover { color: var(--orange); }
 
 .cart-wsp-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
@@ -1184,6 +1191,8 @@ ul { list-style: none; }
   font-family: inherit;
   cursor: pointer;
   transition: background var(--transition);
+  position: relative;
+  z-index: 1;
 }
 .cart-wsp-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 .cart-wsp-btn:hover { background: #16A34A; }
@@ -1260,6 +1269,8 @@ ul { list-style: none; }
 #btnPagarMP {
   min-height: 52px;
   height: 52px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Modal checkout MP ───────────────────────────────── */
@@ -1492,6 +1503,7 @@ ul { list-style: none; }
 .user-display {
   position: relative;
   align-items: center;
+  z-index: 200;
 }
 .user-trigger {
   display: flex;
@@ -1540,9 +1552,11 @@ ul { list-style: none; }
   border-radius: var(--radius);
   box-shadow: 0 8px 24px rgba(0,0,0,.12);
   min-width: 170px;
+  max-width: min(100vw, 240px);
   overflow: hidden;
   display: none;
   z-index: 150;
+  pointer-events: auto;
 }
 .user-dropdown.open { display: block; }
 .user-dropdown-item {
@@ -1565,7 +1579,8 @@ ul { list-style: none; }
 /* � Mobile: ocultar user-name � */
 @media (max-width: 640px) {
   .user-name { display: none; }
-  .user-trigger { padding: 6px; }
+  .user-trigger { padding: 6px; min-width: 0; }
+  .user-dropdown { min-width: 180px; }
 }
 
 /* ======================================================
