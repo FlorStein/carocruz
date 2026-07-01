@@ -1791,6 +1791,8 @@ ul { list-style: none; }
   margin-top: 0;
 }
 .auth-submit svg {
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 .auth-submit:hover:not(:disabled) { background: var(--blue-dk); }
