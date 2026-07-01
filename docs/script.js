@@ -277,7 +277,7 @@ function toggleCart() {
 
 function finalizarCompra() {
   const total = calcularTotal();
-  const MIN   = 80000;
+  const MIN   = 20000;
 
   if (carrito.length === 0) {
     mostrarToast('Tu carrito está vacío');

@@ -139,7 +139,7 @@ exports.crearPreferencia = onRequest(
       // ── Cargar configuración ─────────────────────────────────────────────
       const configSnap = await db.collection('config_admin').doc('config').get();
       const config = configSnap.exists ? configSnap.data() : {};
-      const minCompra = Number(config?.minCompra) || 50000;
+      const minCompra = Number(config?.minCompra) || 20000;
 
       // ── Validar y normalizar items ───────────────────────────────────────
       const itemsEntrada = [];

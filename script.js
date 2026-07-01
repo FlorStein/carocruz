@@ -40,7 +40,7 @@ const CATEGORIAS_OFERTA_CONFIG = [
 ];
 
 const CONFIG_COMERCIAL_DEFAULT = {
-  minCompra: 50000,
+  minCompra: 20000,
   minEnvioCaba: 11000,
   minEnvioGba: 22000,
   announcementMain: '',
