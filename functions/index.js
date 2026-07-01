@@ -25,10 +25,12 @@ const CORS_ORIGINS = [
   'https://www.carocruzpapelera.com',
   'http://localhost:5500',
   'http://127.0.0.1:5500',
+  'null',
 ];
 
 const SITE_URL = 'https://carocruzpapelera.com';
 const WEBHOOK_URL = 'https://webhookmp-f2t74egmxa-uc.a.run.app';
+const FIRESTORE_CONFIG_DOC = 'sitio';
 
 // ─── Helpers de precio (replica la lógica del frontend) ──────────────────────
 function _normalizar(s) {
@@ -42,6 +44,13 @@ function _normalizar(s) {
 function _toPct(v) {
   const n = Math.floor(Number(v || 0));
   return Number.isFinite(n) ? Math.max(0, Math.min(90, n)) : 0;
+}
+
+function _toEnteroPositivo(value, fallback) {
+  const normalized = String(value || '').replace(/[.,]/g, '').trim();
+  const n = Number(normalized);
+  if (!Number.isFinite(n) || n <= 0) return fallback;
+  return Math.floor(n);
 }
 
 function calcularPrecioFinal(prod, config) {
@@ -137,9 +146,16 @@ exports.crearPreferencia = onRequest(
       }
 
       // ── Cargar configuración ─────────────────────────────────────────────
-      const configSnap = await db.collection('config_admin').doc('config').get();
-      const config = configSnap.exists ? configSnap.data() : {};
-      const minCompra = Number(config?.minCompra) || 20000;
+      const configSnap = await db.collection('config_admin').doc(FIRESTORE_CONFIG_DOC).get();
+      let config = configSnap.exists ? configSnap.data() : {};
+      if (!configSnap.exists) {
+        const fallbackSnap = await db.collection('config_admin').doc('config').get();
+        if (fallbackSnap.exists) {
+          config = fallbackSnap.data();
+        }
+      }
+      const minCompraRaw = _toEnteroPositivo(config?.minCompra, 20000);
+      const minCompra = (minCompraRaw === 50000 || minCompraRaw === 50) ? 20000 : minCompraRaw;
 
       // ── Validar y normalizar items ───────────────────────────────────────
       const itemsEntrada = [];

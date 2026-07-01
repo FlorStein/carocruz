@@ -490,7 +490,7 @@ function precioVigenteItemCarrito(item) {
 
 function minimoCompraActual() {
   const min = _toEnteroPositivo(configComercial?.minCompra, CONFIG_COMERCIAL_DEFAULT.minCompra);
-  return min === 50000 ? CONFIG_COMERCIAL_DEFAULT.minCompra : min;
+  return (min === 50000 || min === 50) ? CONFIG_COMERCIAL_DEFAULT.minCompra : min;
 }
 
 function _limpiarAdminHeroBannerObjectUrl() {
