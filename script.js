@@ -108,6 +108,9 @@ let _carruselIdx     = 0;
 let _carruselTimer   = null;
 
 function _toEnteroPositivo(value, fallback) {
+  if (typeof value === 'string') {
+    value = value.trim().replace(/[.,]/g, '');
+  }
   const n = Number(value);
   if (!Number.isFinite(n) || n <= 0) return fallback;
   return Math.floor(n);
@@ -132,8 +135,11 @@ function clonarConfigComercial(raw) {
     ofertas[cat] = _toPorcentajeOferta(ofertasRaw[cat]);
   });
 
+  const rawMinCompra = _toEnteroPositivo(src.minCompra, base.minCompra);
+  const minCompra = rawMinCompra === 50000 || rawMinCompra === 50 ? base.minCompra : rawMinCompra;
+
   return {
-    minCompra: _toEnteroPositivo(src.minCompra, base.minCompra),
+    minCompra,
     minEnvioCaba: _toEnteroPositivo(src.minEnvioCaba, base.minEnvioCaba),
     minEnvioGba: _toEnteroPositivo(src.minEnvioGba, base.minEnvioGba),
     announcementMain: String(src.announcementMain || '').trim(),
@@ -188,7 +194,9 @@ function cargarConfigComercialLocal() {
 
     // Migración: si la config guardada trae el mínimo antiguo de 50.000,
     // forzamos el nuevo mínimo y descartamos el banner viejo.
-    if (configComercial.minCompra === 50000 || /50\.000/.test(String(configComercial.announcementMain || ''))) {
+    const hasLegacyMinCompra = configComercial.minCompra === 50000 || configComercial.minCompra === 50;
+    const hasLegacyAnnouncement = /50[.,]?000/.test(String(configComercial.announcementMain || '')) || /50[.,]?000/.test(String(parsed?.minCompra || ''));
+    if (hasLegacyMinCompra || hasLegacyAnnouncement) {
       configComercial = clonarConfigComercial(Object.assign({}, parsed, {
         minCompra: CONFIG_COMERCIAL_DEFAULT.minCompra,
         announcementMain: '',
@@ -225,7 +233,11 @@ function aplicarConfigComercialUI() {
   const annExtra = document.getElementById('announcementExtraText');
   const benefitMin = document.getElementById('benefitMinimoText');
 
-  if (annMain) annMain.textContent = configComercial.announcementMain || getAnnouncementMainDefault();
+  const annMainValue = configComercial.announcementMain && !/50\.000/.test(configComercial.announcementMain)
+    ? configComercial.announcementMain
+    : getAnnouncementMainDefault();
+
+  if (annMain) annMain.textContent = annMainValue;
   if (annExtra) annExtra.textContent = configComercial.announcementExtra || (' ' + getAnnouncementExtraDefault());
   if (benefitMin) benefitMin.textContent = `Compra mínima desde ${formatearMontoSinDecimales(configComercial.minCompra)}`;
 

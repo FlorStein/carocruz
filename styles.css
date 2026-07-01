@@ -1600,7 +1600,7 @@ ul { list-style: none; }
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   width: min(420px, calc(100vw - 40px));
-  max-height: 420px !important;
+  max-height: calc(100vh - 40px);
   height: auto !important;
   overflow-y: auto !important;
   background: #fff;
@@ -1772,7 +1772,13 @@ ul { list-style: none; }
 
 /* Bot�n de enviar */
 .auth-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 180px;
   height: 40px;
+  padding: 0 16px;
   background: var(--blue);
   color: #fff;
   border-radius: var(--radius);
@@ -1783,6 +1789,9 @@ ul { list-style: none; }
   transition: background var(--transition);
   cursor: pointer;
   margin-top: 0;
+}
+.auth-submit svg {
+  flex-shrink: 0;
 }
 .auth-submit:hover:not(:disabled) { background: var(--blue-dk); }
 .auth-submit:disabled { opacity: .55; cursor: not-allowed; }
