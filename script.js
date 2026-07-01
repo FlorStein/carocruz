@@ -193,14 +193,21 @@ function cargarConfigComercialLocal() {
     configComercial = clonarConfigComercial(parsed);
 
     // Migración: si la config guardada trae el mínimo antiguo de 50.000,
-    // forzamos el nuevo mínimo y descartamos el banner viejo.
+    // o un banner con 50.000, forzamos el nuevo mínimo y descartamos el banner viejo.
     const hasLegacyMinCompra = configComercial.minCompra === 50000 || configComercial.minCompra === 50;
-    const hasLegacyAnnouncement = /50[.,]?000/.test(String(configComercial.announcementMain || '')) || /50[.,]?000/.test(String(parsed?.minCompra || ''));
+    const hasLegacyAnnouncement = /50[.,]?000/.test(String(configComercial.announcementMain || ''))
+      || /50[.,]?000/.test(String(configComercial.announcementExtra || ''))
+      || /50[.,]?000/.test(String(parsed?.minCompra || ''))
+      || /\$?\s*50[.,]?000/.test(String(parsed?.announcementMain || ''))
+      || /\$?\s*50[.,]?000/.test(String(parsed?.announcementExtra || ''));
+
     if (hasLegacyMinCompra || hasLegacyAnnouncement) {
-      configComercial = clonarConfigComercial(Object.assign({}, parsed, {
+      const cleanConfig = Object.assign({}, parsed, {
         minCompra: CONFIG_COMERCIAL_DEFAULT.minCompra,
         announcementMain: '',
-      }));
+        announcementExtra: '',
+      });
+      configComercial = clonarConfigComercial(cleanConfig);
       guardarConfigComercialLocal();
     }
   } catch {
@@ -482,7 +489,8 @@ function precioVigenteItemCarrito(item) {
 }
 
 function minimoCompraActual() {
-  return _toEnteroPositivo(configComercial?.minCompra, CONFIG_COMERCIAL_DEFAULT.minCompra);
+  const min = _toEnteroPositivo(configComercial?.minCompra, CONFIG_COMERCIAL_DEFAULT.minCompra);
+  return min === 50000 ? CONFIG_COMERCIAL_DEFAULT.minCompra : min;
 }
 
 function _limpiarAdminHeroBannerObjectUrl() {
