@@ -156,6 +156,16 @@ exports.crearPreferencia = onRequest(
       }
       const minCompraRaw = _toEnteroPositivo(config?.minCompra, 20000);
       const minCompra = (minCompraRaw === 50000 || minCompraRaw === 50) ? 20000 : minCompraRaw;
+      const announcementMain = String(config?.announcementMain || '').trim();
+      const announcementExtra = String(config?.announcementExtra || '').trim();
+      const hasLegacyAnnouncement = /\$?\s*50[.,]?000/.test(announcementMain) || /\$?\s*50[.,]?000/.test(announcementExtra);
+      if (hasLegacyAnnouncement) {
+        config = Object.assign({}, config, {
+          minCompra: 20000,
+          announcementMain: '',
+          announcementExtra: '',
+        });
+      }
 
       // ── Validar y normalizar items ───────────────────────────────────────
       const itemsEntrada = [];

@@ -136,14 +136,17 @@ function clonarConfigComercial(raw) {
   });
 
   const rawMinCompra = _toEnteroPositivo(src.minCompra, base.minCompra);
-  const minCompra = rawMinCompra === 50000 || rawMinCompra === 50 ? base.minCompra : rawMinCompra;
+  const minCompra = (rawMinCompra === 50000 || rawMinCompra === 50) ? base.minCompra : rawMinCompra;
+  const rawAnnouncementMain = String(src.announcementMain || '').trim();
+  const rawAnnouncementExtra = String(src.announcementExtra || '').trim();
+  const hasLegacyAnnouncement = /\$?\s*50[.,]?000/.test(rawAnnouncementMain) || /\$?\s*50[.,]?000/.test(rawAnnouncementExtra);
 
   return {
     minCompra,
     minEnvioCaba: _toEnteroPositivo(src.minEnvioCaba, base.minEnvioCaba),
     minEnvioGba: _toEnteroPositivo(src.minEnvioGba, base.minEnvioGba),
-    announcementMain: String(src.announcementMain || '').trim(),
-    announcementExtra: String(src.announcementExtra || '').trim(),
+    announcementMain: hasLegacyAnnouncement ? '' : rawAnnouncementMain,
+    announcementExtra: hasLegacyAnnouncement ? '' : rawAnnouncementExtra,
     heroBadge: String(src.heroBadge || base.heroBadge).trim(),
     heroTitle: String(src.heroTitle || base.heroTitle).trim(),
     heroSub: String(src.heroSub || base.heroSub).trim(),
