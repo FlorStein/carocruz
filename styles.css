@@ -189,6 +189,8 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
+  z-index: 2;
 }
 .cart-badge.hidden { display: none; }
 
@@ -1515,6 +1517,14 @@ ul { list-style: none; }
   .logo-name { font-size: 22px; }
   .logo-sub { font-size: 8px; letter-spacing: 1.5px; }
   .icon-btn span { display: none; }
+  .icon-btn .cart-badge:not(.hidden) { display: flex; }
+  .cart-badge {
+    top: -8px;
+    right: -10px;
+    min-width: 18px;
+    padding: 0 5px;
+    width: auto;
+  }
   .icon-btn svg { width: 24px; height: 24px; }
   .header-icons { gap: 16px; }
   .search-input { padding: 10px 8px; font-size: 13px; min-width: 0; flex: 1; }
