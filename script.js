@@ -4146,6 +4146,22 @@ function finalizarCompra() {
 // ── Navegación por categorías ────────────────────────────────────────────────
 
 const _HOME_IDS = ['heroSection', 'benefitsSection', 'novedades', 'ofertas', 'lista-mayorista', 'faq'];
+const _CATEGORY_ROUTES = {
+  LIMPIEZA: { slug: 'limpieza', titulo: 'Limpieza' },
+  'LIBRERÍA': { slug: 'libreria', titulo: 'Librería' },
+  ESCOLAR: { slug: 'escolar', titulo: 'Escolar' },
+  EMBALAJE: { slug: 'embalaje', titulo: 'Embalaje' },
+  BOLSAS: { slug: 'bolsas', titulo: 'Bolsas' },
+  DESCARTABLES: { slug: 'descartables', titulo: 'Descartables' },
+  CAJAS: { slug: 'cajas', titulo: 'Cajas' },
+  'GASTRONÓMICO': { slug: 'gastronomico', titulo: 'Gastronómico' },
+  NOVEDADES: { slug: 'novedades', titulo: 'Novedades' },
+  OFERTA: { slug: 'ofertas', titulo: 'Ofertas' },
+};
+const _ROUTE_TO_CATEGORY = Object.keys(_CATEGORY_ROUTES).reduce(function(acc, cat) {
+  acc[_CATEGORY_ROUTES[cat].slug] = cat;
+  return acc;
+}, {});
 const _CAT_FAVS_STORAGE_KEY = 'carocruz_cat_favoritas';
 const _CAT_RECENTS_STORAGE_KEY = 'carocruz_cat_recientes';
 
@@ -4158,6 +4174,44 @@ function _esMobileViewport() {
 
 function _normalizarCategoriaClave(cat) {
   return String(cat || '').trim().toUpperCase();
+}
+
+function _categoriaRouteInfo(cat) {
+  return _CATEGORY_ROUTES[normalizarCategoria(cat)] || null;
+}
+
+function _setRutaCategoria(cat) {
+  const info = _categoriaRouteInfo(cat);
+  if (!info || !window.history?.pushState) return;
+  const path = '/' + info.slug;
+  if (window.location.pathname !== path) {
+    window.history.pushState({ categoria: normalizarCategoria(cat) }, '', path);
+  }
+}
+
+function _setRutaHome() {
+  if (window.history?.pushState && window.location.pathname !== '/') {
+    window.history.pushState({ home: true }, '', '/');
+  }
+}
+
+function _categoriaDesdeRuta() {
+  const slug = decodeURIComponent(window.location.pathname || '/')
+    .replace(/^\/+|\/+$/g, '')
+    .toLowerCase();
+  if (!slug) return null;
+  return _ROUTE_TO_CATEGORY[slug] || null;
+}
+
+function _aplicarRutaActual() {
+  const cat = _categoriaDesdeRuta();
+  if (!cat) {
+    if (window.location.pathname === '/') return false;
+    return false;
+  }
+  const info = _CATEGORY_ROUTES[cat];
+  mostrarCategoria(cat, info.titulo, { updateUrl: false });
+  return true;
 }
 
 function _cargarPreferenciasCategorias() {
@@ -4421,11 +4475,13 @@ function _aplicarZoomGrid() {
   });
 }
 
-function mostrarCategoria(cat, titulo) {
+function mostrarCategoria(cat, titulo, options) {
   cerrarMobileCatMenu();
   _registrarUsoCategoria(cat);
 
   const catNorm = normalizarCategoria(cat);
+  const opts = options || {};
+  if (opts.updateUrl !== false) _setRutaCategoria(catNorm);
 
   _HOME_IDS.forEach(id => {
     const el = document.getElementById(id);
@@ -4485,8 +4541,10 @@ function _scrollASeccionConOffset(targetId) {
   window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
-function volverAlHome(scrollTo) {
+function volverAlHome(scrollTo, options) {
   cerrarMobileCatMenu();
+  const opts = options || {};
+  if (opts.updateUrl !== false) _setRutaHome();
 
   const catView = document.getElementById('categoriaView');
   if (catView) catView.style.display = 'none';
@@ -4849,6 +4907,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('adminHeroBannerUrl')?.addEventListener('input', actualizarPreviewHeroBannerAdmin);
   document.getElementById('adminHeroBannerArchivo')?.addEventListener('change', actualizarPreviewHeroBannerAdmin);
+
+  _aplicarRutaActual();
+  window.addEventListener('popstate', () => {
+    if (!_aplicarRutaActual()) volverAlHome(null, { updateUrl: false });
+  });
 
   _cargarPreferenciasCategorias();
   _actualizarBotonesFavorita();
