@@ -126,49 +126,12 @@ function _direccionValida(value) {
     || /\d+/.test(raw);
 }
 
-let _googleAutocomplete = null;
-function initGoogleAutocomplete() {
-  const input = document.getElementById('cmpDireccion');
-  if (!input || typeof window.google === 'undefined' || !window.google.maps || !window.google.maps.places) {
-    return;
-  }
-
-  _googleAutocomplete = new google.maps.places.Autocomplete(input, {
-    types: ['address'],
-    componentRestrictions: { country: 'ar' },
-    fields: ['address_components', 'formatted_address'],
-  });
-
-  _googleAutocomplete.addListener('place_changed', () => {
-    const place = _googleAutocomplete.getPlace();
-    if (!place || !Array.isArray(place.address_components)) return;
-
-    const components = {};
-    place.address_components.forEach(component => {
-      component.types.forEach(type => {
-        if (!components[type]) components[type] = component.long_name;
-      });
-    });
-
-    const localidad = components.locality || components.sublocality || components.administrative_area_level_2 || components.administrative_area_level_1 || '';
-    const codigoPostal = components.postal_code || '';
-    const calle = components.route || '';
-    const numero = components.street_number || '';
-    const piso = components.subpremise || '';
-
-    if (calle && numero) {
-      input.value = `${calle} ${numero}${piso ? ' ' + piso : ''}`;
-    }
-    if (localidad) {
-      document.getElementById('cmpLocalidad').value = localidad;
-    }
-    if (codigoPostal) {
-      document.getElementById('cmpCodigoPostal').value = codigoPostal;
-    }
-  });
+function _setDireccionHelp(texto, tipo) {
+  const el = document.getElementById('cmpDireccionHelp');
+  if (!el) return;
+  el.textContent = texto || '';
+  el.className = `cmp-address-help${tipo ? ' cmp-address-help--' + tipo : ''}`;
 }
-
-window.initGoogleAutocomplete = initGoogleAutocomplete;
 
 function _localidadValida(value) {
   const raw = String(value || '').trim();
@@ -4887,7 +4850,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('adminHeroBannerUrl')?.addEventListener('input', actualizarPreviewHeroBannerAdmin);
   document.getElementById('adminHeroBannerArchivo')?.addEventListener('change', actualizarPreviewHeroBannerAdmin);
 
-  initGoogleAutocomplete();
   _cargarPreferenciasCategorias();
   _actualizarBotonesFavorita();
   _renderFavoritasMobile();
@@ -4972,6 +4934,7 @@ async function abrirCheckoutMP() {
     datosModal.classList.add('open');
   }
   document.body.style.overflow = 'hidden';
+  _setDireccionHelp('Escribí la dirección completa: calle, número, piso/depto si corresponde.', '');
   setTimeout(() => emailInput && !emailInput.value && emailInput.focus(), 50);
 }
 
@@ -5083,13 +5046,26 @@ async function _ejecutarCheckoutMP(comprador) {
       return;
     }
 
-    // Guardar snapshot del carrito para mostrar en modal de éxito
-    localStorage.setItem('carocruz_pedido_snapshot', JSON.stringify({
-      items: carrito.map(i => ({ nombre: i.nombre, cantidad: i.cantidad, precio: i.precio, subtotal: i.subtotal || (i.precio * i.cantidad) })),
+    // Guardar snapshot completo para mostrar la confirmacion al volver de MercadoPago.
+    const pedidoSnapshot = {
+      items: carrito.map(i => ({
+        id: i.id,
+        nombre: i.nombre,
+        cantidad: i.cantidad,
+        precioUnitario: precioVigenteItemCarrito(i),
+        subtotal: subtotalItemCarrito(i),
+      })),
       total: calcularTotal(),
       pedidoId: data.pedidoId || '',
       pedidoNumero: data.pedidoNumero || '',
-    }));
+      estado: 'Pago aprobado',
+      creadoEn: new Date().toISOString(),
+      comprador,
+    };
+    localStorage.setItem('carocruz_pedido_snapshot', JSON.stringify(pedidoSnapshot));
+    if (pedidoSnapshot.pedidoId) {
+      localStorage.setItem(`carocruz_pedido_snapshot_${pedidoSnapshot.pedidoId}`, JSON.stringify(pedidoSnapshot));
+    }
 
     // Cambiar mensaje y redirigir
     if (overlayMsg) overlayMsg.textContent = 'Redirigiendo a MercadoPago…';
@@ -5111,6 +5087,7 @@ function cerrarCheckoutMP() { /* sin uso */ }
 function _manejarRetornoMP() {
   const params = new URLSearchParams(window.location.search);
   const estado = params.get('pago');
+  const pedidoIdRetorno = params.get('pedido') || '';
   if (!estado) return;
 
   // Limpiar la URL sin recargar
@@ -5128,8 +5105,13 @@ function _manejarRetornoMP() {
   // Aprobado: mostrar modal con resumen
   if (estado === 'aprobado') {
     try {
-      const snapshot = JSON.parse(localStorage.getItem('carocruz_pedido_snapshot') || 'null');
+      const snapshotKey = pedidoIdRetorno ? `carocruz_pedido_snapshot_${pedidoIdRetorno}` : '';
+      const rawSnapshot = snapshotKey
+        ? (localStorage.getItem(snapshotKey) || localStorage.getItem('carocruz_pedido_snapshot'))
+        : localStorage.getItem('carocruz_pedido_snapshot');
+      const snapshot = JSON.parse(rawSnapshot || 'null');
       localStorage.removeItem('carocruz_pedido_snapshot');
+      if (snapshotKey) localStorage.removeItem(snapshotKey);
       _mostrarModalExitoso(snapshot);
     } catch (e) {
       mostrarToast('¡Pago aprobado! Tu pedido fue registrado.', 5000);
@@ -5146,43 +5128,59 @@ function _mostrarModalExitoso(snapshot) {
     return;
   }
 
-  // Número de pedido
   const pedidoShort = snapshot?.pedidoNumero || (snapshot?.pedidoId ? snapshot.pedidoId.slice(-8).toUpperCase() : '');
   const numEl = document.getElementById('pagoExitosoNumero');
   if (numEl) numEl.textContent = pedidoShort ? `Pedido #${pedidoShort}` : '';
 
-  // Total
+  const estadoEl = document.getElementById('pagoExitosoEstado');
+  if (estadoEl) estadoEl.textContent = snapshot?.estado || 'Pago aprobado';
+
+  const fechaEl = document.getElementById('pagoExitosoFecha');
+  if (fechaEl) {
+    const fecha = snapshot?.creadoEn ? new Date(snapshot.creadoEn) : new Date();
+    fechaEl.textContent = Number.isNaN(fecha.getTime())
+      ? ''
+      : fecha.toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  const pedidoIdEl = document.getElementById('pagoExitosoPedidoId');
+  if (pedidoIdEl) pedidoIdEl.textContent = snapshot?.pedidoId || '-';
+
   const totalEl = document.getElementById('pagoExitosoTotal');
   if (totalEl) totalEl.textContent = snapshot?.total ? formatPrecio(snapshot.total) : '';
 
-  // Items
+  const comprador = snapshot?.comprador || {};
+  const setText = function(id, label, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const clean = String(value || '').trim();
+    el.textContent = clean ? `${label}: ${clean}` : '';
+    el.style.display = clean ? '' : 'none';
+  };
+
+  setText('pagoExitosoComprador', 'Nombre', comprador.nombre);
+  setText('pagoExitosoEmail', 'Email', comprador.email);
+  setText('pagoExitosoTelefono', 'Telefono', comprador.telefono);
+  setText('pagoExitosoDireccion', 'Direccion', comprador.direccion);
+  setText('pagoExitosoLocalidad', 'Localidad', comprador.localidad);
+  setText('pagoExitosoCodigoPostal', 'Codigo postal', comprador.codigoPostal);
+
+  const envioEl = document.getElementById('pagoExitosoEnvio');
+  if (envioEl) {
+    const tieneEnvio = Boolean(comprador.direccion || comprador.localidad || comprador.codigoPostal);
+    envioEl.style.display = tieneEnvio ? '' : 'none';
+  }
+
   const itemsEl = document.getElementById('pagoExitosoItems');
   if (itemsEl && Array.isArray(snapshot?.items) && snapshot.items.length > 0) {
     itemsEl.innerHTML = snapshot.items.map(i => `
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #F1F5F9;font-size:13px;gap:12px">
-        <span style="color:#374151;line-height:1.4">${i.nombre} <span style="color:#94A3B8">×${i.cantidad}</span></span>
-        <span style="color:#1E293B;font-weight:600;white-space:nowrap">${formatPrecio(i.subtotal)}</span>
+      <div class="pago-exitoso-item">
+        <span class="pago-exitoso-item-name">${escapeHtml(i.nombre || 'Producto')}</span>
+        <span class="pago-exitoso-item-meta">${Number(i.cantidad || 1)} x ${formatPrecio(i.precioUnitario || 0)}</span>
+        <span class="pago-exitoso-item-subtotal">${formatPrecio(i.subtotal || 0)}</span>
       </div>`).join('');
   } else if (itemsEl) {
-    itemsEl.innerHTML = '';
-  }
-
-  const envioEl = document.getElementById('pagoExitosoEnvio');
-  const direccionEl = document.getElementById('pagoExitosoDireccion');
-  const localidadEl = document.getElementById('pagoExitosoLocalidad');
-  const codigoPostalEl = document.getElementById('pagoExitosoCodigoPostal');
-  if (envioEl && direccionEl && localidadEl && codigoPostalEl && snapshot?.comprador) {
-    const direccion = snapshot.comprador.direccion || '';
-    const localidad = snapshot.comprador.localidad || '';
-    const codigoPostal = snapshot.comprador.codigoPostal || '';
-    if (direccion || localidad || codigoPostal) {
-      envioEl.style.display = 'block';
-      direccionEl.textContent = `Dirección: ${direccion}`;
-      localidadEl.textContent = `Localidad: ${localidad}`;
-      codigoPostalEl.textContent = `Código postal: ${codigoPostal}`;
-    } else {
-      envioEl.style.display = 'none';
-    }
+    itemsEl.innerHTML = '<p>No pudimos recuperar el detalle de productos en este navegador. El pedido quedó registrado correctamente.</p>';
   }
 
   overlay.classList.remove('hidden');

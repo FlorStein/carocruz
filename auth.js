@@ -728,16 +728,26 @@ async function cargarMisCompras(user) {
   container.innerHTML = '<p class="mis-compras-cargando">Cargando pedidos…</p>';
   try {
     var db = firebase.firestore();
-    var snap = await db.collection('pedidos')
-      .where('comprador.email', '==', user.email)
-      .limit(20)
-      .get();
-    var pedidos = [];
-    snap.forEach(function(doc) {
-      var data = doc.data();
-      data._id = doc.id;
-      pedidos.push(data);
+    var emailLower = String(user.email || '').trim().toLowerCase();
+    var pedidosPorId = {};
+    var snaps = await Promise.all([
+      db.collection('pedidos')
+        .where('comprador.emailLower', '==', emailLower)
+        .limit(20)
+        .get(),
+      db.collection('pedidos')
+        .where('comprador.email', '==', user.email)
+        .limit(20)
+        .get()
+    ]);
+    snaps.forEach(function(snap) {
+      snap.forEach(function(doc) {
+        var data = doc.data();
+        data._id = doc.id;
+        pedidosPorId[doc.id] = data;
+      });
     });
+    var pedidos = Object.keys(pedidosPorId).map(function(id) { return pedidosPorId[id]; });
     pedidos.sort(function(a, b) {
       var ta = a.creadoEn && a.creadoEn.toMillis ? a.creadoEn.toMillis() : 0;
       var tb = b.creadoEn && b.creadoEn.toMillis ? b.creadoEn.toMillis() : 0;
@@ -759,7 +769,7 @@ function renderMisCompras(pedidos, container) {
       ? p.creadoEn.toDate().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' })
         + ' ' + p.creadoEn.toDate().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })
       : '—';
-    var idCorto = (p._id || '').slice(-6).toUpperCase();
+    var idCorto = p.pedidoNumero || (p._id || '').slice(-6).toUpperCase();
     var estadoInfo = _estadoPedidoInfo(p.estado);
     var itemsHtml = (p.items || []).map(function(item) {
       return '<li>' + _escHtml(item.nombre || '') + ' &times; ' + (item.cantidad || 1) + '</li>';

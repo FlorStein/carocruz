@@ -67,6 +67,23 @@ async function _obtenerSiguientePedidoNumero() {
   return `CC-${String(nextNumber).padStart(6, '0')}`;
 }
 
+async function _crearPedidoConNumero(pedidoData) {
+  const counterRef = db.collection('meta').doc('pedidos');
+  const pedidoRef = db.collection('pedidos').doc();
+  const pedidoNumero = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(counterRef);
+    const current = snap.exists && Number.isFinite(Number(snap.data()?.nextOrderNumber))
+      ? Number(snap.data().nextOrderNumber)
+      : 10000;
+    const assigned = Math.max(10000, Math.floor(current));
+    const numero = `CC-${String(assigned).padStart(5, '0')}`;
+    tx.set(counterRef, { nextOrderNumber: assigned + 1 }, { merge: true });
+    tx.set(pedidoRef, Object.assign({}, pedidoData, { pedidoNumero: numero }));
+    return numero;
+  });
+  return { pedidoRef, pedidoNumero };
+}
+
 function calcularPrecioFinal(prod, config) {
   const base = Number(prod?.precio || 0);
   if (!base || base <= 0) return 0;
@@ -163,6 +180,7 @@ exports.crearPreferencia = onRequest(
 
       // ── Validar email ────────────────────────────────────────────────────
       const email = String(body?.comprador?.email || '').trim();
+      const emailLower = email.toLowerCase();
       if (!emailValido(email)) {
         res.status(400).json({ error: 'Email inválido' });
         return;
@@ -285,19 +303,16 @@ exports.crearPreferencia = onRequest(
         return;
       }
 
-      const pedidoNumero = await _obtenerSiguientePedidoNumero();
-
-      // ── Crear pedido en Firestore (estado: pendiente) ────────────────────
-      const pedidoRef = db.collection('pedidos').doc();
-      await pedidoRef.set({
+      // Crear pedido en Firestore con numero corto como fuente de verdad.
+      const pedidoData = {
         items:      itemsValidados,
         total,
-        comprador:  { nombre, email, telefono, direccion, localidad, codigoPostal },
-        pedidoNumero,
+        comprador:  { nombre, email, emailLower, telefono, direccion, localidad, codigoPostal },
         estado:     'pendiente',
         creadoEn:   admin.firestore.FieldValue.serverTimestamp(),
         actualizadoEn: admin.firestore.FieldValue.serverTimestamp(),
-      });
+      };
+      const { pedidoRef, pedidoNumero } = await _crearPedidoConNumero(pedidoData);
 
       // ── Crear preferencia en MercadoPago ─────────────────────────────────
       const mpClient = new MercadoPagoConfig({
@@ -488,6 +503,7 @@ async function _enviarEmails(pedidoId, pedido, payerEmail, payment) {
 
   const totalHTML = _formatARS(pedido?.total);
   const estadoPedido = pedido?.estado ? String(pedido.estado).toUpperCase() : 'PENDIENTE';
+  const pedidoNumero = String(pedido?.pedidoNumero || pedidoId || '').trim();
 
   const direccionHTML = pedido?.comprador?.direccion ? `<p><strong>Dirección de envío:</strong> ${pedido.comprador.direccion}</p>` : '';
   const localidadHTML = pedido?.comprador?.localidad ? `<p><strong>Localidad / Ciudad:</strong> ${pedido.comprador.localidad}</p>` : '';
@@ -503,7 +519,7 @@ async function _enviarEmails(pedidoId, pedido, payerEmail, payment) {
       <body style="font-family: Arial, sans-serif; color: #333;">
         <h2>¡Gracias por tu compra!</h2>
         <p>Tu pedido fue confirmado exitosamente.</p>
-        <p><strong>Nº de Pedido:</strong> ${pedidoId}</p>
+        <p><strong>Nº de Pedido:</strong> ${pedidoNumero}</p>
         ${direccionHTML}
         ${localidadHTML}
         ${codigoPostalHTML}
@@ -530,7 +546,7 @@ async function _enviarEmails(pedidoId, pedido, payerEmail, payment) {
       <body style="font-family: Arial, sans-serif; color: #333;">
         <h2>Nuevo pedido recibido</h2>
         <p>Se generó un pedido aprobado para procesar.</p>
-        <p><strong>Nº de Pedido:</strong> ${pedidoId}</p>
+        <p><strong>Nº de Pedido:</strong> ${pedidoNumero}</p>
         <p><strong>Estado:</strong> ${estadoPedido}</p>
         <p><strong>Comprador:</strong> ${pedido?.comprador?.nombre || '-'} (${pedido?.comprador?.email || '-'}): ${pedido?.comprador?.telefono || '-'}</p>
         ${direccionHTML}
@@ -563,7 +579,7 @@ async function _enviarEmails(pedidoId, pedido, payerEmail, payment) {
       await transporter.sendMail({
         from: gmailUser,
         to: payerEmail,
-        subject: `Pedido confirmado #${pedidoId} - Papelera Caro Cruz`,
+        subject: `Pedido confirmado #${pedidoNumero} - Papelera Caro Cruz`,
         html: htmlCliente,
       });
       console.log(`[Email] Enviado a ${payerEmail}`);
@@ -576,7 +592,7 @@ async function _enviarEmails(pedidoId, pedido, payerEmail, payment) {
     await transporter.sendMail({
       from: gmailUser,
       to: gmailUser,
-      subject: `Nuevo pedido #${pedidoId}`,
+      subject: `Nuevo pedido #${pedidoNumero}`,
       html: htmlAdmin,
     });
   } catch (err) {
