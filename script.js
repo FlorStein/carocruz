@@ -4901,7 +4901,7 @@ function _limpiarEstadoRedireccionMP() {
   const overlayMsg = document.getElementById('checkoutMPMsg');
   const btn = document.getElementById('btnPagarMP');
   if (overlay) overlay.classList.add('hidden');
-  if (overlayMsg) overlayMsg.textContent = 'Preparando tu pedido…';
+  if (overlayMsg) overlayMsg.textContent = 'Preparando tu pago seguro';
   if (btn) btn.disabled = false;
   document.body.style.overflow = '';
   _checkoutRedirigiendoMP = false;
@@ -5098,7 +5098,7 @@ async function _ejecutarCheckoutMP(comprador) {
       return;
     }
 
-    if (overlayMsg) overlayMsg.textContent = 'Redirigiendo a MercadoPago…';
+    if (overlayMsg) overlayMsg.textContent = 'Abriendo MercadoPago';
     _checkoutRedirigiendoMP = true;
     window.location.href = data.initPoint;
 
