@@ -1265,6 +1265,23 @@ ul { list-style: none; }
   margin: -12px 0 0;
 }
 
+.cmp-cancel-btn {
+  background: transparent;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  color: #334155;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  min-height: 40px;
+  padding: 0 18px;
+}
+
+.cmp-cancel-btn:hover {
+  background: #F8FAFC;
+  border-color: #94A3B8;
+}
+
 /* Fijar tamaño del botón MP para que no crezca */
 #btnPagarMP {
   min-height: 52px;

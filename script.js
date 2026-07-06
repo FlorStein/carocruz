@@ -4894,6 +4894,23 @@ document.addEventListener('DOMContentLoaded', () => {
 // ══════════════════════════════════════════════════════════════════════════════
 
 const MP_CREAR_PREFERENCIA_URL = 'https://crearpreferencia-f2t74egmxa-uc.a.run.app';
+let _checkoutRedirigiendoMP = false;
+
+function _limpiarEstadoRedireccionMP() {
+  const overlay = document.getElementById('checkoutMPOverlay');
+  const overlayMsg = document.getElementById('checkoutMPMsg');
+  const btn = document.getElementById('btnPagarMP');
+  if (overlay) overlay.classList.add('hidden');
+  if (overlayMsg) overlayMsg.textContent = 'Preparando tu pedido…';
+  if (btn) btn.disabled = false;
+  document.body.style.overflow = '';
+  _checkoutRedirigiendoMP = false;
+}
+
+function cancelarRedireccionMP() {
+  _limpiarEstadoRedireccionMP();
+  mostrarToast('Volviste a la tienda. Si querés, podés intentar pagar nuevamente.', 4500);
+}
 
 async function abrirCheckoutMP() {
   const total = calcularTotal();
@@ -5014,6 +5031,11 @@ async function _ejecutarCheckoutMP(comprador) {
   const overlay    = document.getElementById('checkoutMPOverlay');
   const overlayMsg = document.getElementById('checkoutMPMsg');
   const btn        = document.getElementById('btnPagarMP');
+  const paymentWindow = window.open('', '_blank');
+  if (paymentWindow) {
+    paymentWindow.opener = null;
+    paymentWindow.document.write('<!doctype html><title>MercadoPago</title><p style="font-family:Arial,sans-serif;padding:24px">Preparando el pago...</p>');
+  }
   if (overlay) overlay.classList.remove('hidden');
   if (btn) btn.disabled = true;
   document.body.style.overflow = 'hidden';
@@ -5041,6 +5063,7 @@ async function _ejecutarCheckoutMP(comprador) {
     const data = await resp.json();
 
     if (!resp.ok) {
+      if (paymentWindow && !paymentWindow.closed) paymentWindow.close();
       ocultarOverlay();
       mostrarToast(data?.error || 'Error al generar el enlace de pago.');
       return;
@@ -5068,11 +5091,20 @@ async function _ejecutarCheckoutMP(comprador) {
     }
 
     // Cambiar mensaje y redirigir
+    if (paymentWindow && !paymentWindow.closed) {
+      paymentWindow.location.href = data.initPoint;
+      ocultarOverlay();
+      mostrarToast('Abrimos MercadoPago en una nueva pestaña. Podés volver a la tienda cuando quieras.', 6000);
+      return;
+    }
+
     if (overlayMsg) overlayMsg.textContent = 'Redirigiendo a MercadoPago…';
+    _checkoutRedirigiendoMP = true;
     window.location.href = data.initPoint;
 
   } catch (err) {
     console.error('[CheckoutMP] Error tipo:', err?.name, '| mensaje:', err?.message, '| completo:', err);
+    if (paymentWindow && !paymentWindow.closed) paymentWindow.close();
     ocultarOverlay();
     const esCORS = err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network') || err.message.includes('Failed'));
     const msg = esCORS
@@ -5083,6 +5115,12 @@ async function _ejecutarCheckoutMP(comprador) {
 }
 
 function cerrarCheckoutMP() { /* sin uso */ }
+
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted || _checkoutRedirigiendoMP) {
+    _limpiarEstadoRedireccionMP();
+  }
+});
 
 function _manejarRetornoMP() {
   const params = new URLSearchParams(window.location.search);
@@ -5198,6 +5236,7 @@ function cerrarPagoExitoso() {
 }
 
 window.abrirCheckoutMP        = abrirCheckoutMP;
+window.cancelarRedireccionMP  = cancelarRedireccionMP;
 window.cerrarDatosComprador   = cerrarDatosComprador;
 window.confirmarDatosComprador = confirmarDatosComprador;
 window.cerrarCheckoutMP       = cerrarCheckoutMP;
