@@ -10,6 +10,90 @@
 // Fallback: si imagenes-map.js no se cargó, IMAGENES_MAP será un objeto vacío
 if (typeof window.IMAGENES_MAP === 'undefined') window.IMAGENES_MAP = {};
 
+const ANALYTICS_CURRENCY = 'ARS';
+const ANALYTICS_PURCHASE_KEY_PREFIX = 'carocruz_analytics_purchase_';
+
+function _analyticsItemFromProduct(prod, cantidad) {
+  if (!prod) return null;
+  return {
+    item_id: String(prod.id || ''),
+    item_name: String(prod.nombre || 'Producto'),
+    item_category: String(prod.categoria || ''),
+    price: precioFinalProducto(prod),
+    quantity: Math.max(1, Number(cantidad || 1))
+  };
+}
+
+function _analyticsItemFromCart(item) {
+  const prod = todosLosProductos().find(function(p) { return p.id === item.id; });
+  const base = prod || item;
+  return {
+    item_id: String(item.id || ''),
+    item_name: String(base.nombre || 'Producto'),
+    item_category: String(base.categoria || ''),
+    price: precioVigenteItemCarrito(item),
+    quantity: Math.max(1, Number(item.cantidad || 1))
+  };
+}
+
+function _analyticsItemsFromCart() {
+  return carrito.map(_analyticsItemFromCart);
+}
+
+function _trackGA4(eventName, params) {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', eventName, params || {});
+}
+
+function _trackClarity(eventName, params) {
+  if (typeof window.clarity !== 'function') return;
+  window.clarity('event', eventName);
+  if (params && Number.isFinite(Number(params.value))) {
+    window.clarity('set', 'cart_value', String(Math.round(Number(params.value))));
+  }
+}
+
+function trackEcommerceEvent(eventName, params) {
+  const payload = Object.assign({ currency: ANALYTICS_CURRENCY }, params || {});
+  _trackGA4(eventName, payload);
+  _trackClarity(eventName, payload);
+}
+
+function trackPageView(path, title) {
+  const cleanPath = path || window.location.pathname || '/';
+  _trackGA4('page_view', {
+    page_title: title || document.title,
+    page_location: window.location.origin + cleanPath,
+    page_path: cleanPath
+  });
+  _trackClarity('page_view', { path: cleanPath });
+}
+
+function trackPurchaseFromSnapshot(snapshot) {
+  if (!snapshot || typeof snapshot !== 'object') return;
+  const transactionId = String(snapshot.pedidoNumero || snapshot.pedidoId || '').trim();
+  if (!transactionId) return;
+
+  const purchaseKey = ANALYTICS_PURCHASE_KEY_PREFIX + transactionId;
+  if (localStorage.getItem(purchaseKey)) return;
+
+  const items = Array.isArray(snapshot.items) ? snapshot.items.map(function(item) {
+    return {
+      item_id: String(item.id || ''),
+      item_name: String(item.nombre || 'Producto'),
+      price: Number(item.precioUnitario || 0),
+      quantity: Math.max(1, Number(item.cantidad || 1))
+    };
+  }) : [];
+
+  trackEcommerceEvent('purchase', {
+    transaction_id: transactionId,
+    value: Number(snapshot.total || 0),
+    items: items
+  });
+  localStorage.setItem(purchaseKey, new Date().toISOString());
+}
+
 // ── Catálogo ─────────────────────────────────────────────────────────────────
 
 const PRODUCTOS_NOVEDADES = [];
@@ -3972,6 +4056,10 @@ function agregarAlCarrito(id) {
 
   guardarCarrito();
   actualizarUI();
+  trackEcommerceEvent('add_to_cart', {
+    value: precioFinalProducto(prod) * cantidad,
+    items: [_analyticsItemFromProduct(prod, cantidad)]
+  });
   mostrarToast(`"${prod.nombre.substring(0, 30)}…" agregado al carrito`);
 }
 
@@ -4186,12 +4274,14 @@ function _setRutaCategoria(cat) {
   const path = '/' + info.slug;
   if (window.location.pathname !== path) {
     window.history.pushState({ categoria: normalizarCategoria(cat) }, '', path);
+    trackPageView(path, info.titulo);
   }
 }
 
 function _setRutaHome() {
   if (window.history?.pushState && window.location.pathname !== '/') {
     window.history.pushState({ home: true }, '', '/');
+    trackPageView('/', document.title);
   }
 }
 
@@ -4694,6 +4784,11 @@ function abrirModalProducto(id) {
   const prod = todosLosProductos().find(function(p) { return p.id === id; });
   if (!prod) return;
 
+  trackEcommerceEvent('view_item', {
+    value: precioFinalProducto(prod),
+    items: [_analyticsItemFromProduct(prod, cantidades[id] || 1)]
+  });
+
   window._prodDetalleId = id;
 
   const overlay = document.getElementById('prodDetalleOverlay');
@@ -4988,6 +5083,11 @@ async function abrirCheckoutMP() {
     return;
   }
 
+  trackEcommerceEvent('begin_checkout', {
+    value: total,
+    items: _analyticsItemsFromCart()
+  });
+
   // Pre-llenar con datos del usuario logueado (si hay)
   const user = window._auth ? window._auth.currentUser : null;
   const emailInput  = document.getElementById('cmpEmail');
@@ -5211,6 +5311,7 @@ function _manejarRetornoMP() {
         ? (localStorage.getItem(snapshotKey) || localStorage.getItem('carocruz_pedido_snapshot'))
         : localStorage.getItem('carocruz_pedido_snapshot');
       const snapshot = JSON.parse(rawSnapshot || 'null');
+      trackPurchaseFromSnapshot(snapshot);
       localStorage.removeItem('carocruz_pedido_snapshot');
       if (snapshotKey) localStorage.removeItem(snapshotKey);
       _mostrarModalExitoso(snapshot);
