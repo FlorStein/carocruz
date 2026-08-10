@@ -435,8 +435,15 @@ function _irASlide(idx) {
   const heroSection   = document.getElementById('heroSection');
 
   if (heroImg) {
-    if (slide.imagen) {
-      heroImg.src = slide.imagen;
+    const imgDesktop = resolverImagenBanner(slide.imagen, 'hero-desktop.webp');
+    heroImg.onerror = function() {
+      heroImg.removeAttribute('src');
+      heroImg.style.display = 'none';
+      if (heroSection) heroSection.classList.remove('hero--has-banner');
+      if (heroFallback) heroFallback.style.display = 'flex';
+    };
+    if (imgDesktop) {
+      heroImg.src = imgDesktop;
       heroImg.style.objectPosition = (slide.posX ?? 50) + '% ' + (slide.posY ?? 50) + '%';
       heroImg.style.display = 'block';
     } else {
@@ -444,8 +451,13 @@ function _irASlide(idx) {
     }
   }
   if (heroImgMobile) {
-    if (slide.imagenMobile) {
-      heroImgMobile.src = slide.imagenMobile;
+    const imgMobile = resolverImagenBanner(slide.imagenMobile, 'hero-mobile.webp');
+    heroImgMobile.onerror = function() {
+      heroImgMobile.removeAttribute('src');
+      heroImgMobile.style.display = 'none';
+    };
+    if (imgMobile) {
+      heroImgMobile.src = imgMobile;
       heroImgMobile.style.objectPosition = (slide.posXMobile ?? 50) + '% ' + (slide.posYMobile ?? 50) + '%';
       heroImgMobile.style.display = 'block';
     } else {
@@ -1019,15 +1031,9 @@ function firebaseFirestoreDisponible() {
 }
 
 function inicializarStorageAdmin() {
-  if (typeof window.firebase === 'undefined' || typeof window.firebase.storage !== 'function') return false;
-  try {
-    firebaseStorageRef = window.firebase.storage();
-    return true;
-  } catch (err) {
-    console.warn('[Admin] Storage no disponible:', err);
-    firebaseStorageRef = null;
-    return false;
-  }
+  // Las imagenes se sirven desde GitHub Pages. Evitamos depender de Firebase Storage.
+  firebaseStorageRef = null;
+  return false;
 }
 
 function procesarImagenArchivoAdmin(file, opciones) {
@@ -1887,9 +1893,9 @@ function renderAdminGestionList() {
 
   list.innerHTML = productosPage.map(function(p) {
     const k = adminDomKey(p.id);
-    const imgUrl = String((window.IMAGENES_MAP && window.IMAGENES_MAP[p.id]) || '').trim();
+    const imgUrl = resolverImagenProducto(p);
     const thumbHtml = imgUrl
-      ? `<img src="${imgUrl}" alt="${escapeHtml(p.nombre)}" class="admin-item-thumb" />`
+      ? `<img src="${imgUrl}" alt="${escapeHtml(p.nombre)}" class="admin-item-thumb" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'admin-item-thumb admin-item-thumb--empty', textContent: 'Sin imagen' }))" />`
       : `<div class="admin-item-thumb admin-item-thumb--empty">Sin imagen</div>`;
     return `
       <article class="admin-item">
@@ -3002,7 +3008,8 @@ function adminAjustarStock(id, delta) {
 window.adminAjustarStock = adminAjustarStock;
 
 function adminZoomImagen(id) {
-  const src = String((window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || '').trim();
+  const prod = todosLosProductos().find(function(p) { return p.id === id; }) || { id };
+  const src = resolverImagenProducto(prod);
   if (!src) {
     mostrarToast('Este producto no tiene imagen.');
     return;
@@ -3920,6 +3927,35 @@ function formatPrecio(n) {
   return '$\u202F' + n.toLocaleString('es-AR', { minimumFractionDigits: 2 });
 }
 
+function esFirebaseStorageUrl(url) {
+  return /firebasestorage\.googleapis\.com|storage\.googleapis\.com\/.*carocruz-4bccc/i.test(String(url || ''));
+}
+
+function rutaImagenGithubProducto(id) {
+  return `assets/products/${encodeURIComponent(String(id || '').trim())}.webp`;
+}
+
+function resolverImagenProducto(prod) {
+  const id = String(prod?.id || '').trim();
+  if (!id) return '';
+
+  const githubMap = window.GITHUB_IMAGE_MAP && typeof window.GITHUB_IMAGE_MAP === 'object'
+    ? String(window.GITHUB_IMAGE_MAP[id] || '').trim()
+    : '';
+  if (githubMap) return githubMap;
+
+  const raw = String((window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || '').trim();
+  if (esFirebaseStorageUrl(raw)) return rutaImagenGithubProducto(id);
+  return raw;
+}
+
+function resolverImagenBanner(raw, nombreArchivo) {
+  const url = String(raw || '').trim();
+  if (!url) return '';
+  if (esFirebaseStorageUrl(url)) return `assets/banners/${nombreArchivo}`;
+  return url;
+}
+
 function normalizarTextoBusqueda(txt) {
   return String(txt || '')
     .normalize('NFD')
@@ -3932,7 +3968,7 @@ function normalizarTextoBusqueda(txt) {
 // ── Render de cards ───────────────────────────────────────────────────────────
 
 function renderProductCard(prod) {
-  const imgUrl = (window.IMAGENES_MAP && window.IMAGENES_MAP[prod.id]) || null;
+  const imgUrl = resolverImagenProducto(prod);
   const stockDisponible = stockDisponibleProducto(prod);
   const precioBase = Number(prod.precio) || 0;
   const descuento = descuentoTotalProducto(prod);
@@ -3946,7 +3982,7 @@ function renderProductCard(prod) {
     : `<p class="card-price">${formatPrecio(precioFinal)}</p>`;
   const cardBg      = imgUrl ? 'background:#fff;border-bottom:1px solid #eee' : `background:${prod.bgImg}`;
   const cardContent = imgUrl
-    ? `<img src="${imgUrl}" alt="${prod.nombre}" class="card-foto" loading="lazy" onerror="this.closest('.card-img').classList.add('card-img--fallback');this.remove()">`
+    ? `<img src="${imgUrl}" alt="${prod.nombre}" class="card-foto" loading="lazy" onerror="this.closest('.card-img').style.background='${prod.bgImg}';this.closest('.card-img').classList.add('card-img--fallback');this.remove()">`
     : `<span style="color:${prod.iconColor}">${prod.icon}</span>`;
   const idEsc = prod.id.replace(/'/g, "\\'");
   return `
@@ -4807,9 +4843,9 @@ function abrirModalProducto(id) {
   if (!overlay || !modal) return;
 
   // Imagen
-  const imgUrl = (window.IMAGENES_MAP && window.IMAGENES_MAP[id]) || null;
+  const imgUrl = resolverImagenProducto(prod);
   if (imgUrl) {
-    imgWrap.innerHTML = `<img src="${imgUrl}" alt="${prod.nombre}" loading="lazy">`;
+    imgWrap.innerHTML = `<img src="${imgUrl}" alt="${prod.nombre}" loading="lazy" onerror="this.parentNode.style.background='${prod.bgImg}';this.parentNode.classList.add('card-img--fallback');this.remove()">`;
     imgWrap.style.background = '#fff';
   } else {
     imgWrap.innerHTML = `<span style="color:${prod.iconColor}">${prod.icon}</span>`;
