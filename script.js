@@ -3952,7 +3952,6 @@ function resolverImagenProducto(prod) {
 function resolverImagenBanner(raw, nombreArchivo) {
   const url = String(raw || '').trim();
   if (!url) return '';
-  if (esFirebaseStorageUrl(url)) return `assets/banners/${nombreArchivo}`;
   return url;
 }
 
