@@ -10,6 +10,20 @@ service cloud.firestore {
         ];
     }
 
+    function isText(value, maxLength) {
+      return value is string && value.size() > 0 && value.size() <= maxLength;
+    }
+
+    function isOptionalText(value, maxLength) {
+      return value == null || (value is string && value.size() <= maxLength);
+    }
+
+    function isValidEmail(value) {
+      return value is string &&
+        value.size() <= 254 &&
+        value.matches('^[^\\s@]{1,64}@[^\\s@]{1,253}\\.[^\\s@]{2,}$');
+    }
+
     // Productos: lectura pública, escritura solo admin
     match /productos_admin/{docId} {
       allow read: if true;
@@ -43,12 +57,23 @@ service cloud.firestore {
 
     // Perfiles de usuario
     match /usuarios/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if request.auth != null &&
+        request.auth.uid == uid &&
+        request.resource.data.keys().hasOnly(['nombre', 'email', 'direccion', 'updatedAt']) &&
+        isText(request.resource.data.nombre, 100) &&
+        isValidEmail(request.resource.data.email) &&
+        request.resource.data.email == request.auth.token.email &&
+        isOptionalText(request.resource.data.direccion, 180) &&
+        request.resource.data.updatedAt is int;
     }
 
     // Suscriptores newsletter: cualquiera puede crear (sin auth), solo admin puede leer
     match /suscriptores/{docId} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasOnly(['nombre', 'email', 'createdAt']) &&
+        isText(request.resource.data.nombre, 100) &&
+        isValidEmail(request.resource.data.email) &&
+        request.resource.data.createdAt is timestamp;
       allow read, update, delete: if isAdmin();
     }
   }

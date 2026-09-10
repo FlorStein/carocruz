@@ -149,6 +149,53 @@ function _telefonoValido(value) {
   return /^[\d\s()+-]{8,}$/.test(String(value || '').trim());
 }
 
+function _firstString(value) {
+  if (Array.isArray(value)) return _firstString(value[0]);
+  if (value == null) return '';
+  return String(value).trim();
+}
+
+function _parseMpSignature(raw) {
+  return String(raw || '')
+    .split(',')
+    .map(part => part.trim().split('='))
+    .reduce((acc, pair) => {
+      if (pair.length >= 2 && pair[0]) acc[pair[0]] = pair.slice(1).join('=');
+      return acc;
+    }, {});
+}
+
+function _validarFirmaMercadoPago(req, dataId) {
+  const xSignature = _firstString(req.headers['x-signature']);
+  const xRequestId = _firstString(req.headers['x-request-id']);
+  const secret = _firstString(MP_WEBHOOK_SECRET.value());
+  const parsed = _parseMpSignature(xSignature);
+  const ts = _firstString(parsed.ts);
+  const received = _firstString(parsed.v1);
+
+  if (!secret || !ts || !received || !dataId) return false;
+
+  const timestamp = Number(ts);
+  if (!Number.isFinite(timestamp)) return false;
+  const now = Date.now();
+  const eventMs = timestamp > 9999999999 ? timestamp : timestamp * 1000;
+  if (Math.abs(now - eventMs) > 15 * 60 * 1000) return false;
+
+  let manifest = `id:${String(dataId).toLowerCase()};`;
+  if (xRequestId) manifest += `request-id:${xRequestId};`;
+  manifest += `ts:${ts};`;
+
+  const expected = crypto
+    .createHmac('sha256', secret)
+    .update(manifest)
+    .digest('hex');
+
+  const expectedBuffer = Buffer.from(expected, 'hex');
+  const receivedBuffer = Buffer.from(received, 'hex');
+  return expectedBuffer.length === receivedBuffer.length &&
+    crypto.timingSafeEqual(expectedBuffer, receivedBuffer);
+}
+
 // ─── ENDPOINT 1: Crear preferencia de pago ────────────────────────────────────
 exports.crearPreferencia = onRequest(
   {
@@ -383,9 +430,14 @@ exports.webhookMP = onRequest(
     }
 
     try {
-      const dataId = req.body?.data?.id;
+      const dataId = _firstString(req.query?.['data.id']) || _firstString(req.body?.data?.id);
       if (!dataId) {
         res.status(400).send('Missing payment id');
+        return;
+      }
+      if (!_validarFirmaMercadoPago(req, dataId)) {
+        console.warn('[Webhook] Firma MercadoPago inválida o ausente');
+        res.status(401).send('Invalid signature');
         return;
       }
 
@@ -412,6 +464,7 @@ exports.webhookMP = onRequest(
         res.status(200).send('ok');
         return;
       }
+      const pedidoAntes = pedidoSnap.data() || {};
 
       const estadoMap = {
         approved:   'aprobado',
@@ -422,6 +475,7 @@ exports.webhookMP = onRequest(
         refunded:   'reembolsado',
       };
       const nuevoEstado = estadoMap[payment.status] || payment.status;
+      const yaProcesadoAprobado = pedidoAntes.pagoAprobadoProcesado === true;
 
       await pedidoRef.update({
         estado:         nuevoEstado,
@@ -434,18 +488,30 @@ exports.webhookMP = onRequest(
       console.log(`[Webhook] Pedido ${externalRef} → ${nuevoEstado} (${payment.status_detail})`);
 
       // ── Decrementar stock si el pago fue aprobado ──────────────────────────
-      if (payment.status === 'approved') {
+      let pagoProcesadoAhora = false;
+      if (payment.status === 'approved' && !yaProcesadoAprobado) {
         try {
-          const pedidoActualizado = (await pedidoRef.get()).data();
-          const items = Array.isArray(pedidoActualizado?.items) ? pedidoActualizado.items : [];
-          
-          for (const item of items) {
-            const prodRef = db.collection('productos_admin').doc(item.id);
-            await prodRef.update({
-              stock: admin.firestore.FieldValue.increment(-item.cantidad),
-              actualizadoEn: admin.firestore.FieldValue.serverTimestamp(),
+          pagoProcesadoAhora = await db.runTransaction(async (tx) => {
+            const freshPedidoSnap = await tx.get(pedidoRef);
+            const freshPedido = freshPedidoSnap.data() || {};
+            if (freshPedido.pagoAprobadoProcesado === true) return false;
+            const items = Array.isArray(freshPedido.items) ? freshPedido.items : [];
+
+            for (const item of items) {
+              const prodRef = db.collection('productos_admin').doc(item.id);
+              tx.update(prodRef, {
+                stock: admin.firestore.FieldValue.increment(-item.cantidad),
+                actualizadoEn: admin.firestore.FieldValue.serverTimestamp(),
+              });
+            }
+            tx.update(pedidoRef, {
+              pagoAprobadoProcesado: true,
+              stockDescontadoEn: admin.firestore.FieldValue.serverTimestamp(),
             });
-            console.log(`[Webhook] Stock ${item.id}: -${item.cantidad}`);
+            return true;
+          });
+          if (pagoProcesadoAhora) {
+            console.log(`[Webhook] Stock descontado para pedido ${externalRef}`);
           }
         } catch (stockErr) {
           console.error('[Webhook] Error decrementando stock:', stockErr);
@@ -454,11 +520,14 @@ exports.webhookMP = onRequest(
       }
 
       // ── Enviar emails si el pago fue aprobado ──────────────────────────────
-      if (payment.status === 'approved') {
+      if (payment.status === 'approved' && pagoProcesadoAhora) {
         try {
           const pedidoActualizado = (await pedidoRef.get()).data();
           const payerEmail = payment.payer?.email || '';
           await _enviarEmails(externalRef, pedidoActualizado, payerEmail, payment);
+          await pedidoRef.update({
+            emailAprobadoEnviadoEn: admin.firestore.FieldValue.serverTimestamp(),
+          });
         } catch (emailErr) {
           // No fallar el webhook por un error de email
           console.error('[Webhook] Error enviando emails:', emailErr);

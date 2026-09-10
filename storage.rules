@@ -13,7 +13,11 @@ service firebase.storage {
     // Imágenes del hero banner y productos — lectura pública, escritura solo admin
     match /productos-admin/{allPaths=**} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow create, update: if isAdmin() &&
+        request.resource != null &&
+        request.resource.size < 5 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
     }
 
     // Bloquear todo lo demás
