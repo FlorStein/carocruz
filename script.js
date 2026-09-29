@@ -4238,34 +4238,6 @@ function toggleCart() {
   }
 }
 
-// ── Finalizar compra ──────────────────────────────────────────────────────────
-
-function finalizarCompra() {
-  const total = calcularTotal();
-  const MIN   = minimoCompraActual();
-
-  if (carrito.length === 0) {
-    mostrarToast('Tu carrito está vacío');
-    return;
-  }
-  if (total < MIN) {
-    mostrarToast(`El pedido mínimo es ${formatPrecio(MIN)}. Te faltan ${formatPrecio(MIN - total)}.`);
-    return;
-  }
-
-  // Arma mensaje para WhatsApp
-  const lineas = carrito.map(function(i) {
-    const precioUnit = precioVigenteItemCarrito(i);
-    const subtotal = subtotalItemCarrito(i);
-    const extra = esProducto2x1(i.id) ? ' (2x1)' : '';
-    return `• ${i.nombre} x${i.cantidad}${extra} = ${formatPrecio(subtotal)}`;
-  });
-  const msg = encodeURIComponent(
-    `¡Hola! Quiero hacer el siguiente pedido:\n\n${lineas.join('\n')}\n\nTOTAL: ${formatPrecio(total)}`
-  );
-  window.open(`https://wa.me/541178270004?text=${msg}`, '_blank');
-}
-
 // ── Navegación por categorías ────────────────────────────────────────────────
 
 const _HOME_IDS = ['heroSection', 'benefitsSection', 'novedades', 'ofertas', 'lista-mayorista', 'faq'];
@@ -5330,7 +5302,7 @@ function _manejarRetornoMP() {
   window.history.replaceState({}, '', window.location.pathname);
 
   if (estado === 'rechazado') {
-    mostrarToast('El pago fue rechazado. Podés intentarlo de nuevo o consultar por WhatsApp.', 7000);
+    mostrarToast('El pago fue rechazado. Podés intentarlo de nuevo.', 7000);
     return;
   }
   if (estado === 'pendiente') {
