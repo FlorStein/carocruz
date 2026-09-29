@@ -569,9 +569,9 @@
         <span>Total (<span id="cartItemsCount">0 productos</span>)</span>
         <span id="cartTotal">$0,00</span>
       </div>
-      <button type="button" id="btnPagarMP" class="btn btn-primary w-full" onclick="abrirCheckoutMP()" style="display:none">
+      <button type="button" id="btnPagarMP" class="btn btn-primary w-full" onclick="abrirCheckoutPorMail()" style="display:none">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        <span id="btnPagarMPText">Iniciar compra con MercadoPago</span>
+        <span id="btnPagarMPText">Enviar pedido por mail</span>
       </button>
       <button class="cart-seguir-btn" onclick="toggleCart()">← Seguir comprando</button>
     </div>
@@ -833,23 +833,23 @@
       </div>
       <button type="submit" class="auth-submit" id="cmpDatosSubmit">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Continuar con MercadoPago
+        Preparar mail de pedido
       </button>
     </form>
   </div>
 
-  <!-- ░░ OVERLAY REDIRIGIENDO A MP ░░ -->
+  <!-- ░░ OVERLAY PREPARANDO PEDIDO ░░ -->
   <div id="checkoutMPOverlay" class="cmp-overlay hidden">
     <div class="cmp-box">
       <div class="cmp-icon" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>
       </div>
       <div class="cmp-copy">
-        <p id="checkoutMPMsg" class="cmp-msg">Preparando tu pago seguro</p>
-        <p class="cmp-sub">Estamos creando tu pedido y abriendo MercadoPago en una pestaña nueva.</p>
+        <p id="checkoutMPMsg" class="cmp-msg">Preparando tu pedido</p>
+        <p class="cmp-sub">Estamos armando el detalle para enviarlo por mail.</p>
       </div>
       <div class="cmp-progress" aria-hidden="true"><span></span></div>
-      <button type="button" class="cmp-cancel-btn" onclick="cancelarRedireccionMP()">Volver a la tienda</button>
+      <button type="button" class="cmp-cancel-btn" onclick="cancelarRedireccionMP()">Volver al carrito</button>
     </div>
   </div>
 

@@ -4154,7 +4154,7 @@ function actualizarUI() {
   const btnVaciar = document.getElementById('btnVaciarCarrito');
   if (btnVaciar) btnVaciar.style.display = carrito.length > 0 ? 'inline-flex' : 'none';
 
-  // Botón pagar con MercadoPago (visible cuando hay productos en el carrito)
+  // Botón de pedido por mail (visible cuando hay productos en el carrito)
   const btnMP = document.getElementById('btnPagarMP');
   if (btnMP) btnMP.style.display = carrito.length > 0 ? 'flex' : 'none';
 
@@ -4232,10 +4232,6 @@ function toggleCart() {
   const open    = panel.classList.toggle('open');
   overlay.classList.toggle('hidden', !open);
   document.body.style.overflow = open ? 'hidden' : '';
-  // Pre-calentar la Function para reducir cold start al pagar
-  if (open && carrito.length > 0) {
-    fetch(MP_CREAR_PREFERENCIA_URL, { method: 'OPTIONS' }).catch(() => {});
-  }
 }
 
 // ── Navegación por categorías ────────────────────────────────────────────────
@@ -5045,7 +5041,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Abrir modal si la URL ya trae un hash de producto
   _manejarHashProducto();
 
-  // Manejar retorno desde MercadoPago (?pago=aprobado|rechazado|pendiente)
+  // Mantener compatibilidad con retornos de pedidos anteriores (?pago=aprobado|rechazado|pendiente)
   _manejarRetornoMP();
 
   // Mostrar popup de suscripción después de unos segundos (si no fue descartado antes)
@@ -5055,29 +5051,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ══════════════════════════════════════════════════════════════════════════════
-//  CHECKOUT MERCADOPAGO
+//  PEDIDO POR MAIL
 // ══════════════════════════════════════════════════════════════════════════════
 
-const MP_CREAR_PREFERENCIA_URL = 'https://crearpreferencia-f2t74egmxa-uc.a.run.app';
-let _checkoutRedirigiendoMP = false;
+const PEDIDOS_EMAIL_TO = 'papeleracarocruz@gmail.com';
 
 function _limpiarEstadoRedireccionMP() {
   const overlay = document.getElementById('checkoutMPOverlay');
   const overlayMsg = document.getElementById('checkoutMPMsg');
   const btn = document.getElementById('btnPagarMP');
   if (overlay) overlay.classList.add('hidden');
-  if (overlayMsg) overlayMsg.textContent = 'Preparando tu pago seguro';
+  if (overlayMsg) overlayMsg.textContent = 'Preparando tu pedido';
   if (btn) btn.disabled = false;
   document.body.style.overflow = '';
-  _checkoutRedirigiendoMP = false;
 }
 
 function cancelarRedireccionMP() {
   _limpiarEstadoRedireccionMP();
-  mostrarToast('Volviste a la tienda. Si querés, podés intentar pagar nuevamente.', 4500);
+  mostrarToast('Volviste al carrito. Si querés, podés enviar el pedido cuando esté listo.', 4500);
 }
 
-async function abrirCheckoutMP() {
+async function abrirCheckoutPorMail() {
   const total = calcularTotal();
   const MIN   = minimoCompraActual();
 
@@ -5194,103 +5188,54 @@ async function confirmarDatosComprador(event) {
   if (!valido) return;
 
   cerrarDatosComprador();
-  await _ejecutarCheckoutMP({ nombre, email, telefono, direccion, localidad, codigoPostal });
+  _ejecutarPedidoPorMail({ nombre, email, telefono, direccion, localidad, codigoPostal });
 }
 
-async function _ejecutarCheckoutMP(comprador) {
-  const overlay    = document.getElementById('checkoutMPOverlay');
-  const overlayMsg = document.getElementById('checkoutMPMsg');
-  const btn        = document.getElementById('btnPagarMP');
-  const paymentWindow = window.open('', '_blank');
-  if (paymentWindow) {
-    paymentWindow.opener = null;
-    paymentWindow.document.write('<!doctype html><title>MercadoPago</title><p style="font-family:Arial,sans-serif;padding:24px">Preparando el pago...</p>');
-  }
-  if (overlay) overlay.classList.remove('hidden');
-  if (btn) btn.disabled = true;
-  document.body.style.overflow = 'hidden';
+function _armarPedidoMailBody(comprador) {
+  const lineas = carrito.map(function(i, idx) {
+    const precioUnit = precioVigenteItemCarrito(i);
+    const subtotal = subtotalItemCarrito(i);
+    const extra = esProducto2x1(i.id) ? ' (2x1)' : '';
+    return [
+      `${idx + 1}. ${i.nombre}${extra}`,
+      `   Código: ${i.id}`,
+      `   Cantidad: ${i.cantidad}`,
+      `   Precio unitario: ${formatPrecio(precioUnit)}`,
+      `   Subtotal: ${formatPrecio(subtotal)}`,
+    ].join('\n');
+  });
 
-  function ocultarOverlay() {
-    if (overlay) overlay.classList.add('hidden');
-    document.body.style.overflow = '';
-    if (btn) btn.disabled = false;
-  }
+  return [
+    'Hola, quiero realizar este pedido desde la web:',
+    '',
+    'DATOS DEL COMPRADOR',
+    `Nombre: ${comprador.nombre}`,
+    `Email: ${comprador.email}`,
+    `Teléfono: ${comprador.telefono}`,
+    '',
+    'ENVÍO',
+    `Dirección: ${comprador.direccion}`,
+    `Localidad / Ciudad: ${comprador.localidad}`,
+    `Código postal: ${comprador.codigoPostal}`,
+    '',
+    'PRODUCTOS',
+    lineas.join('\n\n'),
+    '',
+    `TOTAL ESTIMADO: ${formatPrecio(calcularTotal())}`,
+    '',
+    'Quedo a la espera de confirmación de disponibilidad, envío y forma de pago.',
+    'Gracias.'
+  ].join('\n');
+}
 
-  try {
-    const payload = {
-      items: carrito.map(function(i) {
-        return { id: i.id, cantidad: i.cantidad };
-      }),
-      comprador,
-    };
-
-    const resp = await fetch(MP_CREAR_PREFERENCIA_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(payload),
-    });
-
-    const data = await resp.json();
-
-    if (!resp.ok) {
-      if (paymentWindow && !paymentWindow.closed) paymentWindow.close();
-      ocultarOverlay();
-      mostrarToast(data?.error || 'Error al generar el enlace de pago.');
-      return;
-    }
-
-    // Guardar snapshot completo para mostrar la confirmacion al volver de MercadoPago.
-    const pedidoSnapshot = {
-      items: carrito.map(i => ({
-        id: i.id,
-        nombre: i.nombre,
-        cantidad: i.cantidad,
-        precioUnitario: precioVigenteItemCarrito(i),
-        subtotal: subtotalItemCarrito(i),
-      })),
-      total: calcularTotal(),
-      pedidoId: data.pedidoId || '',
-      pedidoNumero: data.pedidoNumero || '',
-      estado: 'Pago aprobado',
-      creadoEn: new Date().toISOString(),
-      comprador,
-    };
-    localStorage.setItem('carocruz_pedido_snapshot', JSON.stringify(pedidoSnapshot));
-    if (pedidoSnapshot.pedidoId) {
-      localStorage.setItem(`carocruz_pedido_snapshot_${pedidoSnapshot.pedidoId}`, JSON.stringify(pedidoSnapshot));
-    }
-
-    // Cambiar mensaje y redirigir
-    if (paymentWindow && !paymentWindow.closed) {
-      paymentWindow.location.href = data.initPoint;
-      ocultarOverlay();
-      mostrarToast('Abrimos MercadoPago en una nueva pestaña. Podés volver a la tienda cuando quieras.', 6000);
-      return;
-    }
-
-    if (overlayMsg) overlayMsg.textContent = 'Abriendo MercadoPago';
-    _checkoutRedirigiendoMP = true;
-    window.location.href = data.initPoint;
-
-  } catch (err) {
-    console.error('[CheckoutMP] Error tipo:', err?.name, '| mensaje:', err?.message, '| completo:', err);
-    if (paymentWindow && !paymentWindow.closed) paymentWindow.close();
-    ocultarOverlay();
-    const esCORS = err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network') || err.message.includes('Failed'));
-    const msg = esCORS
-      ? 'Error al conectar con el servidor de pagos. Recargá la página e intentá de nuevo.'
-      : 'No se pudo conectar. Verificá tu conexión e intentá de nuevo.';
-    mostrarToast(msg);
-  }
+function _ejecutarPedidoPorMail(comprador) {
+  const subject = encodeURIComponent(`Pedido web Carocruz - ${comprador.nombre}`);
+  const body = encodeURIComponent(_armarPedidoMailBody(comprador));
+  window.location.href = `mailto:${PEDIDOS_EMAIL_TO}?subject=${subject}&body=${body}`;
+  mostrarToast('Pedido preparado. Revisá tu mail para enviarlo.', 6000);
 }
 
 function cerrarCheckoutMP() { /* sin uso */ }
-
-window.addEventListener('pageshow', function(event) {
-  if (event.persisted || _checkoutRedirigiendoMP) {
-    _limpiarEstadoRedireccionMP();
-  }
-});
 
 function _manejarRetornoMP() {
   const params = new URLSearchParams(window.location.search);
@@ -5406,7 +5351,7 @@ function cerrarPagoExitoso() {
   document.body.style.overflow = '';
 }
 
-window.abrirCheckoutMP        = abrirCheckoutMP;
+window.abrirCheckoutPorMail   = abrirCheckoutPorMail;
 window.cancelarRedireccionMP  = cancelarRedireccionMP;
 window.cerrarDatosComprador   = cerrarDatosComprador;
 window.confirmarDatosComprador = confirmarDatosComprador;

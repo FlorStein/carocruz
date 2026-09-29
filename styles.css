@@ -1172,7 +1172,7 @@ ul { list-style: none; }
 }
 .cart-seguir-btn:hover { color: var(--orange); }
 
-/* ── Overlay redirigiendo a MercadoPago ─────────────── */
+/* ── Overlay preparando pedido ─────────────── */
 .cmp-overlay {
   position: fixed;
   inset: 0;
@@ -1306,7 +1306,7 @@ ul { list-style: none; }
   border-color: #94A3B8;
 }
 
-/* Fijar tamaño del botón MP para que no crezca */
+/* Fijar tamaño del botón de pedido para que no crezca */
 #btnPagarMP {
   min-height: 52px;
   height: 52px;
@@ -1314,7 +1314,7 @@ ul { list-style: none; }
   z-index: 1;
 }
 
-/* ── Modal checkout MP ───────────────────────────────── */
+/* ── Modal de datos del pedido ───────────────────────────────── */
 .checkout-mp-modal {
   max-width: 420px;
 }
